@@ -112,11 +112,20 @@ jobs:
           script: |
             set -eux
             adb install -r build/roguelike_premium.apk
+            adb shell settings put system accelerometer_rotation 0 || true
+            adb shell settings put system user_rotation 0 || true
             adb logcat -c
             adb shell am force-stop com.agustin.roguelikepremium
             adb shell monkey -p com.agustin.roguelikepremium -c android.intent.category.LAUNCHER 1
-            sleep 10
-            PID="$(adb shell pidof com.agustin.roguelikepremium | tr -d '\r')"; if [ -z "$PID" ]; then echo "App process died after launch"; adb logcat -d -v brief | tail -500; exit 1; fi; echo "App stayed alive with PID $PID"
+            sleep 2
+            PID1="$(adb shell pidof com.agustin.roguelikepremium | tr -d '\r')"; if [ -z "$PID1" ]; then echo "App process died during cold start"; adb logcat -d -v brief | tail -500; exit 1; fi
+            sleep 8
+            PID2="$(adb shell pidof com.agustin.roguelikepremium | tr -d '\r')"; if [ -z "$PID2" ]; then echo "App process died after launch"; adb logcat -d -v brief | tail -500; exit 1; fi
+            test "$PID1" = "$PID2"
+            STARTS="$(adb logcat -d -v brief | grep -c "Godot Engine v4.7.2" || true)"
+            echo "Godot engine starts: $STARTS"
+            test "$STARTS" -eq 1
+            echo "Cold start stayed alive with one engine initialization, PID $PID2"
             adb shell dumpsys activity activities | grep -E "mResumedActivity|com.agustin.roguelikepremium" | head -20 || true
             adb logcat -d -v brief | grep -E "godot|FATAL EXCEPTION|AndroidRuntime" | tail -250 || true
 
