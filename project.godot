@@ -3,11 +3,19 @@ config_version=5
 
 [application]
 
-config/name="Roguelike Premium - Sala"
+config/name="Roguelike Premium"
 config/icon="res://icon.svg"
-run/main_scene="res://scenes/main.tscn"
+run/main_scene="res://scenes/home.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 run/max_fps=0
+
+[autoload]
+
+Boot="*res://core/boot.gd"
+Catalog="*res://data/catalog.gd"
+Profile="*res://save/profile.gd"
+Router="*res://core/router.gd"
+AudioMgr="*res://audio/audio_manager.gd"
 
 [display]
 
