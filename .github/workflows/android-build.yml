@@ -81,8 +81,10 @@ jobs:
         shell: bash
         run: |
           set -euxo pipefail
-          godot --headless --path . --import
-          timeout 20s godot --headless --path . -- --bot --god --quit=8 || test $? -eq 124
+          python3 -m unittest discover -s tests -v
+          godot --headless --path . --editor --import --quit 2>&1 | tee /tmp/godot-import.log
+          timeout 30s godot --headless --path . -- --bot --god --quit=8 2>&1 | tee /tmp/godot-smoke.log
+          ! grep -E "SCRIPT ERROR|Parse Error|ERROR:" /tmp/godot-import.log /tmp/godot-smoke.log
 
       - name: Export debug APK
         shell: bash
@@ -109,24 +111,16 @@ jobs:
           target: google_apis
           profile: pixel_2
           disable-animations: true
-          script: |
-            set -eux
-            adb install -r build/roguelike_premium.apk
-            adb shell settings put system accelerometer_rotation 0 || true
-            adb shell settings put system user_rotation 0 || true
-            adb logcat -c
-            adb shell am force-stop com.agustin.roguelikepremium
-            adb shell monkey -p com.agustin.roguelikepremium -c android.intent.category.LAUNCHER 1
-            sleep 2
-            adb shell pidof com.agustin.roguelikepremium | tr -d '\r' > /tmp/roguelike_pid1
-            test -s /tmp/roguelike_pid1
-            sleep 8
-            adb shell pidof com.agustin.roguelikepremium | tr -d '\r' > /tmp/roguelike_pid2
-            test -s /tmp/roguelike_pid2
-            cmp /tmp/roguelike_pid1 /tmp/roguelike_pid2
-            echo "Cold start stayed alive with stable PID $(cat /tmp/roguelike_pid2)"
-            adb shell dumpsys activity activities | grep -E "mResumedActivity|com.agustin.roguelikepremium" | head -20 || true
-            adb logcat -d -v brief | grep -E "godot|FATAL EXCEPTION|AndroidRuntime" | tail -250 || true
+          script: python3 tools/android_cold_start.py --apk build/roguelike_premium.apk --runs 5 --seconds 20 --out build/android-cold-start
+
+      - name: Upload complete startup evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-cold-start-evidence
+          path: build/android-cold-start/
+          if-no-files-found: warn
+          retention-days: 14
 
       - name: Upload APK
         if: always()

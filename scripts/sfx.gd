@@ -83,7 +83,8 @@ static func _wav(s: PackedFloat32Array, loop: bool = false) -> AudioStreamWAV:
 	if loop:
 		w.loop_mode = AudioStreamWAV.LOOP_FORWARD
 		w.loop_begin = 0
-		w.loop_end = s.size()
+		# loop_end == size crashes Godot's Android mixer (SIGSEGV in AudioTrack thread at the wrap)
+		w.loop_end = s.size() - 1
 	return w
 
 

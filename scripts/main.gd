@@ -59,9 +59,20 @@ var shots: Array[float] = []
 var shot_dir := "/tmp/shots"
 var shot_i := 0
 var quit_at := -1.0
+var _boot_first_frame := true
+
+
+func _boot(stage: int, detail: String) -> void:
+	if OS.is_debug_build() and OS.has_feature("android"):
+		print("[BOOT %02d] PID=%d OS=%s ticks=%d %s" % [stage, OS.get_process_id(), OS.get_name(), Time.get_ticks_msec(), detail])
+
+
+func _enter_tree() -> void:
+	_boot(1, "main entered")
 
 
 func _ready() -> void:
+	_boot(2, "ready begin")
 	randomize()
 	tscale = 1.0
 	Engine.time_scale = 1.0
@@ -92,23 +103,28 @@ func _ready() -> void:
 		elif a == "--touch":
 			touch_mode = true
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	_boot(3, "input initialized; audio begin")
 	sfx = Sfx.new()
 	add_child(sfx)
+	_boot(4, "audio ready; room begin")
 	ysort = Node2D.new()
 	ysort.y_sort_enabled = true
 	room = Room.new()
 	add_child(room)
 	add_child(ysort)
 	room.build(self)
+	_boot(5, "room ready; vfx begin")
 	fx = Fx.new()
 	add_child(fx)
 	bullets = Bullets.new()
 	bullets.game = self
 	add_child(bullets)
+	_boot(6, "vfx ready; player begin")
 	player = Player.new()
 	player.position = Vector2(0, 150)
 	ysort.add_child(player)
 	player.build(self)
+	_boot(7, "player ready; camera and hud begin")
 	cam = Camera2D.new()
 	cam.zoom = Vector2.ONE * zoom_arg
 	add_child(cam)
@@ -124,6 +140,9 @@ func _ready() -> void:
 	hud.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_snap_camera()
 	get_tree().create_timer(0.8).timeout.connect(func(): _start_wave(start_wave))
+	_boot(8, "ready complete nodes=%d memory=%d" % [get_tree().get_node_count(), OS.get_static_memory_usage()])
+	if OS.is_debug_build() and OS.has_feature("android"):
+		RenderingServer.frame_post_draw.connect(func(): _boot(10, "first rendered frame"), CONNECT_ONE_SHOT)
 
 
 # ---------------------------------------------------------------- entrada
@@ -330,6 +349,9 @@ func _nearest_enemy() -> Enemy:
 
 # ---------------------------------------------------------------- bucle
 func _process(delta: float) -> void:
+	if _boot_first_frame:
+		_boot_first_frame = false
+		_boot(9, "first frame viewport=%s landscape=%s" % [_view_size(), _view_size().x > _view_size().y])
 	var rdt := minf(delta, 1.0 / 30.0)
 	clock += rdt
 	if hs_timer > 0.0:
