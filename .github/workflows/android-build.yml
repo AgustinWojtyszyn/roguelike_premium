@@ -11,7 +11,7 @@ permissions:
 jobs:
   build-android:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
 
     steps:
       - name: Checkout
@@ -94,7 +94,40 @@ jobs:
           ls -lh build/roguelike_premium.apk
           sha256sum build/roguelike_premium.apk | tee build/roguelike_premium.apk.sha256
 
+      - name: Enable KVM
+        shell: bash
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm || true
+
+      - name: Android emulator smoke test
+        uses: ReactiveCircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          arch: x86_64
+          target: google_apis
+          profile: pixel_2
+          disable-animations: true
+          script: |
+            set -eux
+            adb install -r build/roguelike_premium.apk
+            adb logcat -c
+            adb shell am force-stop com.agustin.roguelikepremium
+            adb shell monkey -p com.agustin.roguelikepremium -c android.intent.category.LAUNCHER 1
+            sleep 10
+            PID="$(adb shell pidof com.agustin.roguelikepremium | tr -d '\r')"
+            if [ -z "$PID" ]; then
+              echo "App process died after launch"
+              adb logcat -d -v brief | tail -500
+              exit 1
+            fi
+            echo "App stayed alive with PID $PID"
+            adb shell dumpsys activity activities | grep -E "mResumedActivity|com.agustin.roguelikepremium" | head -20 || true
+            adb logcat -d -v brief | grep -E "godot|FATAL EXCEPTION|AndroidRuntime" | tail -250 || true
+
       - name: Upload APK
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: roguelike-premium-android
