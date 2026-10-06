@@ -36,7 +36,6 @@ jobs:
           echo "$ANDROID_SDK/platform-tools" >> "$GITHUB_PATH"
           yes | "$SDKMANAGER" --licenses >/dev/null || true
           "$SDKMANAGER" "platform-tools" "platforms;android-35" "build-tools;35.0.0"
-          "$SDKMANAGER" --list_installed | head -80
 
       - name: Install Godot 4.7.2 and export templates
         shell: bash
@@ -61,7 +60,7 @@ jobs:
           godot --version
           test -f "$HOME/.local/share/godot/export_templates/4.7.2.stable/android_debug.apk"
 
-      - name: Configure Android export
+      - name: Create debug keystore
         shell: bash
         run: |
           set -euxo pipefail
@@ -77,26 +76,6 @@ jobs:
               -validity 10000 \
               -dname "CN=Android Debug,O=Android,C=US"
           fi
-
-          mkdir -p .ci
-          cat > .ci/configure_android.gd <<'GDSCRIPT'
-          extends SceneTree
-
-          func _init() -> void:
-              var sdk := OS.get_environment("ANDROID_HOME")
-              var java_home := OS.get_environment("JAVA_HOME")
-              var home := OS.get_environment("HOME")
-              EditorSettings.set_setting("export/android/android_sdk_path", sdk)
-              EditorSettings.set_setting("export/android/java_sdk_path", java_home)
-              EditorSettings.set_setting("export/android/debug_keystore", home.path_join(".android/debug.keystore"))
-              EditorSettings.set_setting("export/android/debug_keystore_user", "androiddebugkey")
-              EditorSettings.set_setting("export/android/debug_keystore_pass", "android")
-              EditorSettings.save()
-              quit()
-          GDSCRIPT
-
-          godot --headless --editor --path . --script res://.ci/configure_android.gd
-          rm -f .ci/configure_android.gd
 
       - name: Validate project
         shell: bash
