@@ -23,7 +23,9 @@ pointing/emulate_touch_from_mouse=false
 
 [rendering]
 
+rendering_device/fallback_to_opengl3=true
+
 renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"
+renderer/rendering_method.mobile="mobile"
 textures/vram_compression/import_etc2_astc=true
 environment/defaults/default_clear_color=Color(0.02, 0.027, 0.05, 1)
