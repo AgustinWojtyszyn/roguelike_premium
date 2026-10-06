@@ -1,0 +1,7 @@
+.godot/
+*.import
+export_presets.cfg.bak
+/android/
+*.apk
+*.aab
+shots/
