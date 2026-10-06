@@ -43,7 +43,7 @@ func _ready() -> void:
 	_wipe = Wipe.new()
 	_wipe.router = self
 	_wipe.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	_wipe.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_wipe.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	_layer.add_child(_wipe)
 
 

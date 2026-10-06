@@ -560,7 +560,7 @@ func _paint_head(c: Part) -> void:
 			Gfx.grrect(c, Rect2(-11.5, -26, 24, 24), 9.0, hm[0], hm[1], ink, 2.4)
 			for sx in [-1, 1]:
 				var bx: float = 1.0 + 10.5 * sx
-				Gfx.poly(c, PackedVector2Array([Vector2(bx - 2.5, -22), Vector2(bx + 6 * sx, -31), Vector2(bx + 12 * sx, -33), Vector2(bx + 5 * sx, -26), Vector2(bx + 2.5, -17)]), lk["trim"], ink, 1.6)
+				Gfx.poly(c, PackedVector2Array([Vector2(bx - 2.5 * sx, -22), Vector2(bx + 6 * sx, -31), Vector2(bx + 12 * sx, -33), Vector2(bx + 5 * sx, -26), Vector2(bx + 2.5 * sx, -17)]), lk["trim"], ink, 1.6)
 			c.draw_line(Vector2(-6, -25), Vector2(-2, -4), Color(1, 1, 1, 0.14), 2.0)
 			Gfx.poly(c, PackedVector2Array([Vector2(-8, -12), Vector2(-4, -17), Vector2(14, -17), Vector2(14, -2), Vector2(2, 1), Vector2(-8, -3)]), Color("10101c"), ink, 1.6)
 			if ly >= -0.55:

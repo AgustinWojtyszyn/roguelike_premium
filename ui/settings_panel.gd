@@ -15,7 +15,7 @@ var close_btn: GButton
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	mouse_filter = Control.MOUSE_FILTER_STOP
-	set_anchors_preset(Control.PRESET_FULL_RECT)
+	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	size = get_viewport_rect().size
 	get_viewport().size_changed.connect(func(): size = get_viewport_rect().size)
 	close_btn = GButton.make("LISTO", GButton.Style.PRIMARY)

@@ -30,7 +30,7 @@ var _lv_anim: float = 0.0
 
 func _ready() -> void:
 	Boot.log_stage(2, "home entered")
-	set_anchors_preset(Control.PRESET_FULL_RECT)
+	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	mouse_filter = Control.MOUSE_FILTER_PASS
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	var p := Profile.p
@@ -104,8 +104,8 @@ func _make_buttons() -> void:
 func _layout() -> void:
 	var vs := size
 	var sc := clampf(vs.y / 720.0, 0.7, 1.4)
-	hero_scale = 3.3 * sc
-	hero_pos = Vector2(vs.x * 0.5, vs.y * 0.64)
+	hero_scale = 4.0 * sc
+	hero_pos = Vector2(vs.x * 0.5, vs.y * 0.62)
 	rig.position = hero_pos
 	rig.scale = Vector2.ONE * hero_scale
 	hero_hit.size = Vector2(300, 400) * sc
@@ -381,6 +381,6 @@ func _draw_pass_chip(ci: CanvasItem, r: Rect2) -> void:
 func _draw_gift_chip(ci: CanvasItem, r: Rect2) -> void:
 	var pulse := 0.5 + 0.5 * sin(t * 4.0)
 	Gfx.draw_glow(ci, r.get_center(), 90.0, Color(1.0, 0.8, 0.3, 0.12 + 0.12 * pulse))
-	UiIcons.draw(ci, "chest", Vector2(36, r.get_center().y), 15.0, Color("ffd24a"))
+	UiIcons.draw(ci, "gift", Vector2(36, r.get_center().y), 15.0, Color("ffd24a"))
 	UiKit.text(ci, Vector2(64, r.get_center().y - 4.0), "REGALO", 17, UiKit.GOLD, 0, -1.0, 3.0)
 	UiKit.text(ci, Vector2(64, r.get_center().y + 18.0), "¡Reclámalo gratis!", 13, UiKit.TEXT, 0, -1.0, 2.0, false)

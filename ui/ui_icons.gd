@@ -117,9 +117,19 @@ static func draw(ci: CanvasItem, id: String, c: Vector2, s: float, col: Color, d
 			ci.draw_line(c + Vector2(-0.7, 0.7) * s, c + Vector2(0.7, -0.7) * s, col, maxf(3.0, s * 0.26), true)
 			ci.draw_line(c + Vector2(-0.6, 0.15) * s, c + Vector2(-0.15, 0.6) * s, col, maxf(3.0, s * 0.22), true)
 		"chest":
-			ci.draw_rect(Rect2(c + Vector2(-0.9, -0.2) * s, Vector2(1.8, 1.0) * s), col)
-			ci.draw_arc(c + Vector2(0, -0.2) * s, s * 0.9, PI, TAU, 12, col, maxf(3.0, s * 0.3), true)
-			ci.draw_rect(Rect2(c + Vector2(-0.12, 0.05) * s, Vector2(0.24, 0.35) * s), dark)
+			ci.draw_rect(Rect2(c + Vector2(-0.9, -0.05) * s, Vector2(1.8, 0.95) * s), col)
+			ci.draw_rect(Rect2(c + Vector2(-0.9, -0.05) * s, Vector2(1.8, 0.95) * s), dark, false, maxf(1.5, s * 0.1))
+			var lid := PackedVector2Array([c + Vector2(-0.9, -0.05) * s, c + Vector2(-0.75, -0.7) * s, c + Vector2(0.75, -0.7) * s, c + Vector2(0.9, -0.05) * s])
+			ci.draw_colored_polygon(lid, col.lightened(0.15))
+			_outline(ci, lid, dark, maxf(1.5, s * 0.1))
+			ci.draw_rect(Rect2(c + Vector2(-0.14, -0.2) * s, Vector2(0.28, 0.5) * s), dark)
+			ci.draw_line(c + Vector2(-0.9, 0.3) * s, c + Vector2(0.9, 0.3) * s, dark, maxf(1.2, s * 0.08))
+		"gift":
+			ci.draw_rect(Rect2(c + Vector2(-0.8, -0.2) * s, Vector2(1.6, 1.0) * s), col)
+			ci.draw_rect(Rect2(c + Vector2(-0.9, -0.55) * s, Vector2(1.8, 0.4) * s), col.lightened(0.15))
+			ci.draw_rect(Rect2(c + Vector2(-0.14, -0.55) * s, Vector2(0.28, 1.35) * s), Color.WHITE)
+			ci.draw_arc(c + Vector2(-0.3, -0.75) * s, s * 0.3, 0, TAU, 8, Color.WHITE, maxf(1.5, s * 0.1), true)
+			ci.draw_arc(c + Vector2(0.3, -0.75) * s, s * 0.3, 0, TAU, 8, Color.WHITE, maxf(1.5, s * 0.1), true)
 		"skull":
 			ci.draw_circle(c + Vector2(0, -0.1) * s, s * 0.75, col)
 			ci.draw_rect(Rect2(c + Vector2(-0.4, 0.4) * s, Vector2(0.8, 0.55) * s), col)

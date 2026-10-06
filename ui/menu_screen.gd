@@ -21,15 +21,15 @@ const HEADER_H := 84.0
 
 
 func _ready() -> void:
-	set_anchors_preset(Control.PRESET_FULL_RECT)
+	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	mouse_filter = Control.MOUSE_FILTER_STOP
-	back_btn = GButton.make("", GButton.Style.ICON, "")
+	back_btn = GButton.make("", GButton.Style.ICON, "chev_l")
 	back_btn.click_sound = "ui_back"
 	back_btn.pressed.connect(close)
 	add_child(back_btn)
+	_build()
 	resized.connect(_relayout)
 	_relayout()
-	_build()
 	AudioMgr.ui("ui_open", -4.0)
 
 

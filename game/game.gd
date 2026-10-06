@@ -125,7 +125,7 @@ func _ready() -> void:
 	hud_layer.layer = 10
 	add_child(hud_layer)
 	hud_layer.add_child(hud)
-	hud.set_anchors_preset(Control.PRESET_FULL_RECT)
+	hud.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	hud.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	overlay_layer = CanvasLayer.new()
 	overlay_layer.layer = 20

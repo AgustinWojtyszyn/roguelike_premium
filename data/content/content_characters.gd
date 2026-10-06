@@ -34,7 +34,7 @@ static func build() -> Array[CharacterData]:
 		"passive_id": "self_repair", "passive_name": "AUTORREPARACIÓN", "passive_desc": "El escudo se regenera mucho más rápido.",
 		"start_weapon": "trinca", "side_weapon": "chispa", "recommended_weapon": "relampago",
 		"look": {"base": Color("5c6577"), "light": Color("c9d2e2"), "glow": Color("b8ff3d"), "accent": Color("b8ff3d"),
-			"head": "dome", "torso": "suit", "back": "array", "shoulder": "plain", "scarf": null, "hs": 1.05, "w": 0.97},
+			"head": "dome", "torso": "suit", "back": "array", "shoulder_style": "plain", "scarf": null, "hs": 1.05, "w": 0.97},
 		"unlock": {"type": "coins", "price": 900}, "order": 1,
 	}))
 	L.append(_c("sera", "DOC SERA", "Médica de combate", Rarity.Tier.RARE, {
@@ -45,7 +45,7 @@ static func build() -> Array[CharacterData]:
 		"passive_id": "triage", "passive_name": "TRIAJE", "passive_desc": "Los botiquines curan 1 punto extra.",
 		"start_weapon": "chispa", "side_weapon": "pulsar", "recommended_weapon": "colmena",
 		"look": {"base": Color("dfe8f2"), "light": Color("ffffff"), "glow": Color("5fffc8"), "accent": Color("ff4f6a"),
-			"head": "medic", "torso": "suit", "back": "medpack", "shoulder": "plain", "scarf": null, "hs": 1.08, "w": 0.9, "h": 0.97},
+			"head": "medic", "torso": "suit", "back": "medpack", "shoulder_style": "plain", "scarf": null, "hs": 1.08, "w": 0.9, "h": 0.97},
 		"unlock": {"type": "coins", "price": 1100}, "order": 2,
 	}))
 	L.append(_c("orla", "ORLA", "Ingeniera de campo", Rarity.Tier.RARE, {
@@ -56,7 +56,7 @@ static func build() -> Array[CharacterData]:
 		"passive_id": "scrapper", "passive_name": "CHATARRERA", "passive_desc": "Romper cajas y barriles suelta monedas y energía.",
 		"start_weapon": "gota", "side_weapon": "chispa", "recommended_weapon": "pomelo",
 		"look": {"base": Color("e8a824"), "light": Color("ffd96a"), "glow": Color("36e0d0"), "accent": Color("36e0d0"),
-			"head": "goggles", "torso": "armor", "back": "toolbox", "shoulder": "pads", "scarf": null, "hs": 1.04, "w": 1.0},
+			"head": "goggles", "torso": "armor", "back": "toolbox", "shoulder_style": "pads", "scarf": null, "hs": 1.04, "w": 1.0},
 		"unlock": {"type": "coins", "price": 1200}, "order": 3,
 	}))
 	L.append(_c("halo", "HALO", "Tiradora de precisión", Rarity.Tier.RARE, {
@@ -67,7 +67,7 @@ static func build() -> Array[CharacterData]:
 		"passive_id": "eagle_eye", "passive_name": "OJO DE ÁGUILA", "passive_desc": "+18% de probabilidad de golpe crítico.",
 		"start_weapon": "aguja", "side_weapon": "chispa", "recommended_weapon": "riel_q",
 		"look": {"base": Color("a48b5c"), "light": Color("e6d3a2"), "glow": Color("ff5a4a"), "accent": Color("ff5a4a"),
-			"head": "sniper", "torso": "hunter", "back": "rifle_sling", "shoulder": "plain", "scarf": Color("c9b380"), "hs": 1.0, "h": 1.04, "w": 0.92},
+			"head": "sniper", "torso": "hunter", "back": "rifle_sling", "shoulder_style": "plain", "scarf": Color("c9b380"), "hs": 1.0, "h": 1.04, "w": 0.92},
 		"unlock": {"type": "coins", "price": 1500}, "order": 4,
 	}))
 	L.append(_c("sable", "SABLE", "Filo errante", Rarity.Tier.EPIC, {
@@ -78,7 +78,7 @@ static func build() -> Array[CharacterData]:
 		"passive_id": "deflect", "passive_name": "REFLEJO DE ACERO", "passive_desc": "Cada tajo desvía los proyectiles enemigos cercanos.",
 		"start_weapon": "filo_z", "side_weapon": "chispa", "recommended_weapon": "garra",
 		"look": {"base": Color("2a2a3c"), "light": Color("8a8aa8"), "glow": Color("ff3a5a"), "accent": Color("ff3a5a"),
-			"head": "horned", "torso": "hunter", "back": "cape", "shoulder": "spikes", "scarf": Color("ff3a5a"), "hs": 1.0, "h": 1.02, "w": 0.92},
+			"head": "horned", "torso": "hunter", "back": "cape", "shoulder_style": "spikes", "scarf": Color("ff3a5a"), "hs": 1.0, "h": 1.02, "w": 0.92},
 		"unlock": {"type": "coins", "price": 3200}, "order": 5,
 	}))
 	L.append(_c("nyx", "NYX", "Exploradora dimensional", Rarity.Tier.EPIC, {
@@ -89,7 +89,7 @@ static func build() -> Array[CharacterData]:
 		"passive_id": "ether_step", "passive_name": "PASO ETÉREO", "passive_desc": "12% de probabilidad de ignorar un impacto.",
 		"start_weapon": "rebote", "side_weapon": "chispa", "recommended_weapon": "anomalia",
 		"look": {"base": Color("4a2f7a"), "light": Color("b9a0ff"), "glow": Color("ff4fd8"), "accent": Color("ff4fd8"),
-			"head": "hood", "torso": "robe", "back": "ring", "shoulder": "none", "scarf": null, "hs": 1.02, "w": 0.94},
+			"head": "hood", "torso": "robe", "back": "ring", "shoulder_style": "none", "scarf": null, "hs": 1.02, "w": 0.94},
 		"unlock": {"type": "coins", "price": 3400}, "order": 6,
 	}))
 	L.append(_c("kraal", "KRAAL", "Cazador alienígena", Rarity.Tier.EPIC, {
@@ -100,7 +100,7 @@ static func build() -> Array[CharacterData]:
 		"passive_id": "hunt", "passive_name": "INSTINTO DE CAZA", "passive_desc": "Cada 5 bajas recuperas 1 punto de escudo.",
 		"start_weapon": "brasero", "side_weapon": "garra", "recommended_weapon": "maul12",
 		"look": {"base": Color("3f8a6e"), "light": Color("d8e8c8"), "glow": Color("ffb23d"), "accent": Color("ffb23d"),
-			"head": "alien", "torso": "hunter", "back": "spine", "shoulder": "spikes", "scarf": null, "hs": 1.0, "h": 1.08, "w": 0.95, "skin": Color("5fb88a")},
+			"head": "alien", "torso": "hunter", "back": "spine", "shoulder_style": "spikes", "scarf": null, "hs": 1.0, "h": 1.08, "w": 0.95, "skin": Color("5fb88a")},
 		"unlock": {"type": "coins", "price": 3600}, "order": 7,
 	}))
 	L.append(_c("basalto", "BASALTO", "Pesado de asalto", Rarity.Tier.EPIC, {
@@ -111,7 +111,7 @@ static func build() -> Array[CharacterData]:
 		"passive_id": "immovable", "passive_name": "INAMOVIBLE", "passive_desc": "Inmune al empuje. El escudo empieza a regenerarse antes.",
 		"start_weapon": "mastin", "side_weapon": "chispa", "recommended_weapon": "pomelo",
 		"look": {"base": Color("8a3a32"), "light": Color("d9b8a0"), "glow": Color("ff8a3d"), "accent": Color("ff8a3d"),
-			"head": "heavy", "torso": "heavy", "back": "tanks", "shoulder": "big", "scarf": null, "hs": 1.0, "h": 0.94, "w": 1.22},
+			"head": "heavy", "torso": "heavy", "back": "tanks", "shoulder_style": "big", "scarf": null, "hs": 1.0, "h": 0.94, "w": 1.22},
 		"unlock": {"type": "coins", "price": 4200}, "order": 8,
 	}))
 	L.append(_c("ilex", "ILEX", "Tecnomante", Rarity.Tier.LEGENDARY, {
@@ -122,7 +122,7 @@ static func build() -> Array[CharacterData]:
 		"passive_id": "arcane_flow", "passive_name": "FLUJO ARCANO", "passive_desc": "Las armas de energía cuestan un 30% menos.",
 		"start_weapon": "relampago", "side_weapon": "chispa", "recommended_weapon": "riel_q",
 		"look": {"base": Color("2a3a8a"), "light": Color("e8d28a"), "glow": Color("4fd8ff"), "accent": Color("ffd24a"),
-			"head": "crown", "torso": "robe", "back": "orbs", "shoulder": "none", "scarf": null, "hs": 1.02, "w": 0.96},
+			"head": "crown", "torso": "robe", "back": "orbs", "shoulder_style": "none", "scarf": null, "hs": 1.02, "w": 0.96},
 		"unlock": {"type": "coins", "price": 7500}, "order": 9,
 	}))
 	L.append(_c("paradoja", "PARADOJA", "Experimento inestable", Rarity.Tier.ANOMALOUS, {
@@ -133,7 +133,7 @@ static func build() -> Array[CharacterData]:
 		"passive_id": "unstable", "passive_name": "INESTABLE", "passive_desc": "Al empezar cada sala recibe un beneficio aleatorio temporal.",
 		"start_weapon": "anomalia", "side_weapon": "chispa", "recommended_weapon": "enjambre",
 		"look": {"base": Color("1c1c2e"), "light": Color("e8e8ff"), "glow": Color("ff4fd8"), "accent": Color("4fffe8"),
-			"head": "glitch", "torso": "glitch", "back": "shards", "shoulder": "none", "scarf": null, "hs": 1.04, "w": 0.96},
+			"head": "glitch", "torso": "glitch", "back": "shards", "shoulder_style": "none", "scarf": null, "hs": 1.04, "w": 0.96},
 		"unlock": {"type": "pass", "level": 30}, "order": 10,
 	}))
 	return L

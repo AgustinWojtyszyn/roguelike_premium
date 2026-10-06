@@ -22,7 +22,7 @@ var _levelup_played := false
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	set_anchors_preset(Control.PRESET_FULL_RECT)
+	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	size = get_viewport_rect().size
 	get_viewport().size_changed.connect(func(): size = get_viewport_rect().size)
 	mouse_filter = Control.MOUSE_FILTER_STOP

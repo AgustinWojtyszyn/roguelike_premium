@@ -59,6 +59,8 @@ static func cut_poly(r: Rect2, cut: float = 10.0, cut_br: bool = true) -> Packed
 
 
 static func panel(ci: CanvasItem, r: Rect2, fill: Color = PANEL, edge: Color = Color(EDGE, 0.55), cut: float = 12.0, alpha: float = 1.0, grad: bool = true) -> void:
+	if r.size.x < 6.0 or r.size.y < 6.0:
+		return
 	var pts := cut_poly(r, cut)
 	var top := Color(fill.lightened(0.12), fill.a * alpha)
 	var bot := Color(fill.darkened(0.25), fill.a * alpha)
@@ -77,6 +79,8 @@ static func panel(ci: CanvasItem, r: Rect2, fill: Color = PANEL, edge: Color = C
 
 ## Boton "chunky": cuerpo con degradado, brillo superior, sombra inferior gruesa y contorno de tinta.
 static func chunky(ci: CanvasItem, r: Rect2, top: Color, bot: Color, press: float = 0.0, hover: float = 0.0, cut: float = 14.0, outline: float = 3.0) -> Rect2:
+	if r.size.x < 12.0 or r.size.y < 14.0:
+		return r
 	var off := press * 4.0
 	var body := Rect2(r.position + Vector2(0, off), r.size - Vector2(0, 5.0))
 	# sombra / canto inferior
@@ -103,7 +107,7 @@ static func chunky(ci: CanvasItem, r: Rect2, top: Color, bot: Color, press: floa
 	return body
 
 
-static func bar(ci: CanvasItem, r: Rect2, frac: float, col: Color, bg: Color = Color(0.03, 0.05, 0.1, 0.9), segments: int = 0) -> void:
+static func bar(ci: CanvasItem, r: Rect2, frac: float, col: Color, bg: Color = Color(0.1, 0.14, 0.26, 1.0), segments: int = 0) -> void:
 	ci.draw_rect(r.grow(2.0), INK)
 	ci.draw_rect(r, bg)
 	var f := clampf(frac, 0.0, 1.0)
@@ -121,6 +125,8 @@ static func gradient_rect(ci: CanvasItem, r: Rect2, top: Color, bot: Color) -> v
 
 
 static func pill(ci: CanvasItem, r: Rect2, fill: Color, edge: Color = Color(INK, 1.0), w: float = 2.0) -> void:
+	if r.size.x < 6.0 or r.size.y < 6.0:
+		return
 	var rad := r.size.y * 0.5
 	var pts := Gfx.rr_pts(r, rad, 6)
 	ci.draw_colored_polygon(pts, fill)

@@ -32,11 +32,47 @@ func build_dressing(_room: Room, _rng: RandomNumberGenerator) -> Dictionary:
 	return {}
 
 
-func paint_floor(_ci: CanvasItem, _room: Room) -> void:
+func paint_floor(ci: CanvasItem, room: Room) -> void:
+	ci.draw_rect(room.bounds.grow(900.0), void_col)
+	var idx := 0
+	for R in room.walk:
+		_floor_panels(ci, R, 4242 + idx * 17)
+		idx += 1
+	_floor_extras(ci, room)
+
+
+func _floor_panels(_ci: CanvasItem, _R: Rect2, _seed: int) -> void:
 	pass
 
 
-func paint_wall_run(_ci: CanvasItem, _room: Room, _run: Dictionary) -> void:
+func _floor_extras(_ci: CanvasItem, _room: Room) -> void:
+	pass
+
+
+## Despacho de muros por lado. Los temas implementan _wall_n / _wall_s / _wall_we.
+func paint_wall_run(ci: CanvasItem, room: Room, run: Dictionary) -> void:
+	var side: String = run["side"]
+	var a: float = run["a"]
+	var b: float = run["b"]
+	var edge: float = run["edge"]
+	match side:
+		"N":
+			_wall_n(ci, room, a - float(run["ext_a"]), b + float(run["ext_b"]), edge)
+		"S":
+			_wall_s(ci, room, a - float(run["ext_a"]), b + float(run["ext_b"]), edge)
+		_:
+			_wall_we(ci, room, side, a, b, edge)
+
+
+func _wall_n(_ci: CanvasItem, _room: Room, _x0: float, _x1: float, _edge: float) -> void:
+	pass
+
+
+func _wall_s(_ci: CanvasItem, _room: Room, _x0: float, _x1: float, _edge: float) -> void:
+	pass
+
+
+func _wall_we(_ci: CanvasItem, _room: Room, _side: String, _a: float, _b: float, _edge: float) -> void:
 	pass
 
 
