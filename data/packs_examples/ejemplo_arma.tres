@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3]
+
+[ext_resource type="Script" path="res://data/defs/weapon_data.gd" id="1_e5wsc"]
+
+[resource]
+script = ExtResource("1_e5wsc")
+id = "pack_demo_blaster"
+display_name = "BLASTER DE PACK"
+sub = "EJEMPLO DE CONTENIDO EXTERNO"
+category = "pistol"
+description = "Arma de ejemplo cargada desde un .tres: demuestra que el contenido se agrega sin tocar el core."
+rarity = 1
+damage = 4.0
+rate = 0.3
+speed = 900.0
+life = 0.7
+color = Color(1, 0.6039216, 0.8156863, 1)
+art = "pistol"
+palette = {
+"body": Color(0.7529412, 0.5411765, 0.6901961, 1),
+"dark": Color(0.2509804, 0.15686275, 0.2901961, 1),
+"glow": Color(1, 0.6039216, 0.8156863, 1)
+}

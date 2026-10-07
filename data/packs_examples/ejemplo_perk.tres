@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="PerkData" format=3]
+
+[ext_resource type="Script" path="res://data/defs/perk_data.gd" id="1_iplgm"]
+
+[resource]
+script = ExtResource("1_iplgm")
+id = "pack_demo_perk"
+display_name = "PERK DE PACK"
+description = "+10% de daño. Cargado desde un .tres."
+mods = {
+"dmg_mult": 0.1
+}

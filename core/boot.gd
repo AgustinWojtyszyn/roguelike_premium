@@ -10,6 +10,7 @@ var _snap_i := 0
 var _snap_dir := "/tmp/snaps"
 var _exit_at := -1.0
 var _wall := 0.0
+var _quit_alias := false
 
 
 func _enter_tree() -> void:
@@ -30,6 +31,7 @@ func _ready() -> void:
 		_exit_at = float(args["exit"])
 	elif args.has("quit"):
 		_exit_at = float(args["quit"]) + 1.0     # alias: las escenas que no lo gestionan (menu) tambien terminan
+		_quit_alias = true
 	if OS.is_debug_build() and OS.has_feature("android"):
 		RenderingServer.frame_post_draw.connect(func(): log_stage(10, "first rendered frame"), CONNECT_ONE_SHOT)
 
@@ -46,6 +48,9 @@ func _process(delta: float) -> void:
 		DirAccess.make_dir_recursive_absolute(_snap_dir)
 		get_viewport().get_texture().get_image().save_png("%s/snap_%02d.png" % [_snap_dir, _snap_i])
 		_snap_i += 1
+	if _quit_alias and get_tree().current_scene is Game:
+		_exit_at = -1.0     # la escena de run gestiona --quit con su propio reloj
+		_quit_alias = false
 	if _exit_at >= 0.0 and _wall >= _exit_at:
 		get_tree().quit()
 

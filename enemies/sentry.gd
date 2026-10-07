@@ -153,7 +153,7 @@ func _animate(dt: float) -> void:
 	vis.scale.x = 1.0
 	head.position = Vector2(0, -24 + recoil * 1.5)
 	head.queue_redraw()
-	glow_p.queue_redraw()
+	glow_p.soft_redraw()
 	if state == S_SPAWN:
 		open = 0.0
 

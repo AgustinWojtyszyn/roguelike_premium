@@ -1,0 +1,3 @@
+Ejemplos de contenido externo (.tres). Para activarlos, copiar los archivos a res://data/packs/ :
+el Catalogo escanea esa carpeta al iniciar y registra cualquier WeaponData / PerkData / CharacterData /
+SkinData / MissionData / EnemyData / RoomDef / EncounterDef sin tocar codigo.

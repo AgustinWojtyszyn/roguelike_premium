@@ -30,7 +30,7 @@ static func chapters() -> Array[ChapterData]:
 		"Una estación de investigación cuyo sistema operativo despertó con hambre. Los drones de mantenimiento ya no limpian: cazan."))
 	L.append(_chapter("ch2", "TEMPLO DE JADE", "Civilización antigua · Ruinas conectadas", "aztec", 1, "ch2", Color("3dd9a8"),
 		["templo_patio", "sala_serpientes", "camara_jade", "mirador_sol"], ["tesoro_azteca"], "gran_altar",
-		["jaguar", "cerbatana", "idolo"], ["idolo", "jaguar"], "", "drops_ch2", 1.25, "ch1",
+		["jaguar", "cerbatana", "idolo", "sacerdote"], ["idolo", "jaguar", "sacerdote"], "xocotl", "drops_ch2", 1.25, "ch1",
 		"Bajo la estación dormía algo más antiguo: un templo cuyos circuitos son de jade y cuyos guardianes nunca durmieron."))
 	L.append(_chapter("ch3", "FORTALEZA ESCARLATA", "Caballeros · Murallas oscuras", "castle", 2, "ch3", Color("e0405a"),
 		["patio_armas", "gran_salon", "mazmorra", "murallas"], ["armeria_tesoro"], "sala_trono",
@@ -324,6 +324,7 @@ static func encounters() -> Array[EncounterDef]:
 	L.append(_enc("c2_t1_b", ["ch2"], 1, [[["jaguar", 0.0], ["cerbatana", 0.8]], [["cerbatana", 0.0], ["cerbatana", 0.8], ["cerbatana", 1.6]]]))
 	L.append(_enc("c2_t2_a", ["ch2"], 2, [[["jaguar", 0.0], ["jaguar", 1.0], ["cerbatana", 1.8]], [["idolo", 0.0], ["cerbatana", 1.0], ["cerbatana", 1.8]], [["jaguar", 0.0], ["cerbatana", 0.8], ["cerbatana", 1.6]]]))
 	L.append(_enc("c2_t2_b", ["ch2"], 2, [[["cerbatana", 0.0], ["cerbatana", 0.8], ["jaguar", 1.6]], [["jaguar", 0.0], ["jaguar", 0.9], ["idolo", 1.8]], [["cerbatana", 0.0], ["jaguar", 1.0], ["cerbatana", 1.8]]]))
+	L.append(_enc("c2_t2_c", ["ch2"], 2, [[["cerbatana", 0.0], ["sacerdote", 1.0]], [["jaguar", 0.0], ["jaguar", 1.0], ["cerbatana", 1.8]], [["sacerdote", 0.0], ["cerbatana", 1.0], ["jaguar", 2.0]]]))
 	L.append(_enc("c2_t3_a", ["ch2"], 3, [[["jaguar", 0.0], ["jaguar", 0.8], ["cerbatana", 1.6], ["cerbatana", 2.2]], [["idolo", 0.0], ["jaguar", 1.2], ["jaguar", 2.0]], [["idolo", 0.0], ["cerbatana", 1.0], ["cerbatana", 1.6], ["jaguar", 2.4]]], ["elite"]))
 	L.append(_enc("c2_t4_a", ["ch2"], 4, [[["jaguar", 0.0], ["jaguar", 0.7], ["cerbatana", 1.4], ["cerbatana", 2.0]], [["idolo", 0.0], ["idolo", 1.5], ["jaguar", 2.4]], [["jaguar", 0.0], ["jaguar", 0.6], ["jaguar", 1.2], ["cerbatana", 1.8], ["cerbatana", 2.4]]], ["finale"]))
 	# ---- CAPITULO 3
@@ -358,6 +359,18 @@ static func bosses() -> Array[BossData]:
 	b.coins = 60
 	b.guaranteed_loot = "boss_ch1"
 	L.append(b)
+	var x := BossData.new()
+	x.id = "xocotl"
+	x.display_name = "XOCOTL"
+	x.title = "Guardián del Sol"
+	x.chapter = "ch2"
+	x.script_path = "res://bosses/boss_xocotl.gd"
+	x.hp = 1000.0
+	x.phases = [1.0, 0.64, 0.32]
+	x.accent = Color("3dd9a8")
+	x.coins = 80
+	x.guaranteed_loot = "boss_ch1"
+	L.append(x)
 	return L
 
 

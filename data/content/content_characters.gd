@@ -94,7 +94,7 @@ static func build() -> Array[CharacterData]:
 	}))
 	L.append(_c("kraal", "KRAAL", "Cazador alienígena", Rarity.Tier.EPIC, {
 		"description": "Cazó cosas peores que esto en un mundo sin nombre. Pelea cerca, huele el miedo y sonríe con demasiados dientes.",
-		"hp": 8, "shield": 2, "energy": 110, "speed_mult": 1.04,
+		"hp": 8, "shield": 2, "energy": 140, "speed_mult": 1.04,
 		"ability_id": "roar", "ability_name": "RUGIDO", "ability_desc": "Onda de choque: aturde, empuja y daña a todos los enemigos cercanos.",
 		"ability_cost": 45, "ability_cd": 11.0,
 		"passive_id": "hunt", "passive_name": "INSTINTO DE CAZA", "passive_desc": "Cada 5 bajas recuperas 1 punto de escudo.",

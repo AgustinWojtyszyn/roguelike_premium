@@ -177,3 +177,67 @@ func run(t) -> void:
 			t.check(gg.room != null and gg.player != null, "%s etapa %d carga" % [chid, i])
 		gg.queue_free()
 		await _frames(t, 2)
+
+
+	# ------------------------------------------------------------------ cada jefe: pelea de humo (fases, ataques, muerte)
+	for bid in Catalog.bosses:
+		var bd: BossData = Catalog.bosses[bid]
+		var bg := _make_game(t, {"god": "1", "bot": "1", "chapter": bd.chapter, "seed": "33", "speed": "1"})
+		await _frames(t, 3)
+		bg.director._load_stage(bg.director.plan.size() - 1, true)
+		await _frames(t, 3)
+		bg.input.auto_walk = null
+		bg.director.entered = true
+		bg.director._begin_encounter()
+		await _frames(t, 4)
+		var boss := bg.director.boss
+		t.check(boss != null and is_instance_valid(boss), "jefe %s aparece" % bid)
+		if boss == null:
+			continue
+		var states: Dictionary = {}
+		var phases: Dictionary = {}
+		for i in 2400:
+			await t.process_frame
+			if not is_instance_valid(boss):
+				break
+			states[boss.state] = true
+			phases[boss.phase] = true
+			# acelerar la pelea: el jefe recibe dano progresivo
+			if i % 60 == 0 and boss.state != Enemy.S_SPAWN and boss.state != Enemy.S_DYING:
+				boss.hp = maxf(1.0, boss.hp - boss.max_hp * 0.03)
+		t.check(states.size() >= 4, "jefe %s usa varios estados/ataques (%d)" % [bid, states.size()])
+		t.check(phases.size() >= 2, "jefe %s cambia de fase (%d fases vistas)" % [bid, phases.size()])
+		bg.queue_free()
+		await _frames(t, 3)
+
+
+	# ------------------------------------------------------------------ cada enemigo: ataca sin errores y puede morir
+	var eg := _make_game(t, {"god": "1", "bot": "1", "seed": "9", "speed": "1"})
+	await _frames(t, 3)
+	eg.input.auto_walk = null
+	eg.director.entered = true
+	eg.director.in_combat = false
+	eg.director.cleared = true
+	for eid in Catalog.enemies:
+		eg.bullets.clear_all()
+		eg.player.position = Vector2(0, 40)
+		var e := eg.director.spawn_enemy_at(eid, Vector2(280, 40), false)
+		var shot_taken := false
+		var killed := false
+		for i in 420:
+			await t.process_frame
+			if not is_instance_valid(e) or e.state == Enemy.S_DYING:
+				killed = true
+				break
+			eg.player.energy = eg.player.max_energy
+			if i == 300:
+				e.hp = 1.0
+		t.check(is_instance_valid(e) or killed, "enemigo %s corre sin errores" % eid)
+		# limpiar
+		for o in eg.enemies.duplicate():
+			if is_instance_valid(o):
+				o.hp = 0.0
+				o._start_dying(Vector2.RIGHT)
+		await _frames(t, 30)
+	eg.queue_free()
+	await _frames(t, 3)

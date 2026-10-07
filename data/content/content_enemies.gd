@@ -30,6 +30,8 @@ static func build() -> Array[EnemyData]:
 	L.append(_e("jaguar", "JAGUAR DE OBSIDIANA", "aztec", "charger", "res://enemies/jaguar.gd", 20.0, 2.5, 2))
 	L.append(_e("cerbatana", "CAZADOR DE CERBATANA", "aztec", "shooter", "res://enemies/cerbatana.gd", 11.0, 1.5, 1))
 	L.append(_e("idolo", "ÍDOLO VIGÍA", "aztec", "turret", "res://enemies/idolo.gd", 40.0, 3.5, 3))
+	L.append(_e("sacerdote", "SACERDOTE DE JADE", "aztec", "summoner", "res://enemies/sacerdote.gd", 18.0, 3.0, 3))
+	L.append(_e("escarabajo", "ESCARABAJO DE JADE", "aztec", "melee", "res://enemies/escarabajo.gd", 4.0, 0.5, 0, false))
 	# ---- Familia 3: fortaleza oscura
 	L.append(_e("caballero", "CABALLERO", "castle", "heavy", "res://enemies/caballero.gd", 40.0, 4.0, 3))
 	L.append(_e("ballestero", "BALLESTERO", "castle", "sniper", "res://enemies/ballestero.gd", 13.0, 2.0, 2))

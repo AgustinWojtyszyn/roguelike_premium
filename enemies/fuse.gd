@@ -122,4 +122,4 @@ func _animate(dt: float) -> void:
 	body_p.position = Vector2(0, -11 + sin(wheel_ph * 0.5) * 0.5)
 	body_p.rotation = clampf(vel.x / 400.0, -0.3, 0.3)
 	body_p.queue_redraw()
-	glow_p.queue_redraw()
+	glow_p.soft_redraw()

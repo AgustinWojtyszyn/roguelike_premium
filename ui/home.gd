@@ -149,6 +149,7 @@ func _refresh_hero() -> void:
 	if sid != "" and Catalog.skins.has(sid):
 		look.merge((Catalog.skins[sid] as SkinData).look, true)
 	for ch in rig.get_children():
+		rig.remove_child(ch)
 		ch.queue_free()
 	rig.scarf_pts.clear()
 	rig.build(look, Catalog.weapon(c.start_weapon), false)

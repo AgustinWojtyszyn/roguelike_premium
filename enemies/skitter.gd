@@ -276,6 +276,6 @@ func _animate(dt: float) -> void:
 	claw_b.position = Vector2(9.0 + lunge, -9.0 + squat * 2.5 - bob)
 	legs.queue_redraw()
 	body_p.queue_redraw()
-	glow_p.queue_redraw()
+	glow_p.soft_redraw()
 	if state != S_SPAWN and state != S_DYING:
 		legs.position.y = squat * 1.5

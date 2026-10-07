@@ -51,6 +51,7 @@ func _rebuild_rig() -> void:
 	rig_char = sel_id
 	rig_skin = skin
 	for ch in rig.get_children():
+		rig.remove_child(ch)
 		ch.queue_free()
 	rig.scarf_pts.clear()
 	var look: Dictionary = c.look.duplicate()

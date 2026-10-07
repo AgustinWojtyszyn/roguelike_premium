@@ -16,7 +16,8 @@ static func choose_scale(size: Vector2) -> float:
 	var max_dim := maxf(size.x, size.y)
 	while max_dim * s > 4000.0 and s > 0.6:
 		s -= 0.1
-	while size.x * size.y * s * s > 7.0e6 and s > 0.6:
+	var cap := 5.0e6 if OS.has_feature("mobile") else 1.2e7
+	while size.x * size.y * s * s > cap and s > 0.6:
 		s -= 0.1
 	return s
 

@@ -29,6 +29,7 @@ extends Resource
 @export var behavior: Dictionary = {}
 @export var sfx: String = "smg"
 @export var sfx_vol: float = -6.0
+@export var sfx_pitch: float = 1.0
 @export var art: String = "pulsar"         # pintor de `WeaponArt`
 @export var palette: Dictionary = {}       # overrides de color del pintor
 @export var muzzle_scale: float = 1.0

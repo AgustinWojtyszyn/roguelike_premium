@@ -136,5 +136,5 @@ func _animate(dt: float) -> void:
 	body_p.rotation = clampf(vel.x / 300.0, -0.25, 0.25)
 	glow_p.position = Vector2(0, -HOVER + bob)
 	body_p.queue_redraw()
-	glow_p.queue_redraw()
-	shadow.queue_redraw()
+	glow_p.soft_redraw()
+	shadow.soft_redraw()

@@ -279,6 +279,6 @@ func _animate(dt: float) -> void:
 	body_p.queue_redraw()
 	wing_l.queue_redraw()
 	wing_r.queue_redraw()
-	glow_p.queue_redraw()
+	glow_p.soft_redraw()
 	jets.queue_redraw()
-	shadow.queue_redraw()
+	shadow.soft_redraw()

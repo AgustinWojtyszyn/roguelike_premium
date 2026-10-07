@@ -759,9 +759,9 @@ func _animate_impl(dt: float) -> void:
 	arm_b.queue_redraw()
 	arm_f.queue_redraw()
 	wnode.queue_redraw()
-	head.get_child(0).queue_redraw()
-	torso.get_child(0).queue_redraw()
-	pack.get_child(0).queue_redraw()
+	(head.get_child(0) as Part).soft_redraw()
+	(torso.get_child(0) as Part).soft_redraw()
+	(pack.get_child(0) as Part).soft_redraw()
 	var anim_back: bool = lk["back"] in ["array", "cape", "ring", "orbs", "shards"]
 	if anim_back or lk["head"] in ["crown", "hood", "glitch"] or lk["torso"] in ["robe", "glitch"]:
 		pack.queue_redraw()

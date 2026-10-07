@@ -60,3 +60,13 @@ func run(t) -> void:
 				prev_exit = st["exit"]
 				t.check(def.theme == ch.theme, "%s: sala %s del tema correcto" % [chid, st["room"]])
 			t.eq(a[a.size() - 1]["exit"], "", "%s: ultima etapa sin salida" % chid)
+
+	# packs externos .tres: el catalogo los registra solo (se prueba con una instancia aparte)
+	var cat = load("res://data/catalog.gd").new()
+	cat._scan_packs("res://data/packs_examples")
+	t.check(cat.weapons.has("pack_demo_blaster"), "pack .tres: arma de ejemplo registrada")
+	t.check(cat.perks.has("pack_demo_perk"), "pack .tres: perk de ejemplo registrado")
+	if cat.weapons.has("pack_demo_blaster"):
+		t.eq(cat.weapons["pack_demo_blaster"].category, "pistol", "pack .tres: propiedades cargadas")
+	t.check(not Catalog.weapons.has("pack_demo_blaster"), "los ejemplos no contaminan el juego real")
+	cat.free()

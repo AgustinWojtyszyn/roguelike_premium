@@ -215,7 +215,7 @@ func _begin_encounter() -> void:
 	if st["kind"] == "boss" and Catalog.bosses.has(game.chapter.boss):
 		_spawn_boss()
 		return
-	var enc: EncounterDef = Catalog.encounters.get(st["encounter"])
+	var enc: EncounterDef = Catalog.encounters.get(Boot.get_arg("enc", st["encounter"]))
 	if enc == null:
 		_clear_stage()
 		return

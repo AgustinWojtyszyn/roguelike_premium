@@ -41,6 +41,8 @@ func update(dt: float, firing: bool) -> void:
 				if int(charge * 30.0) % 4 == 0:
 					player.game.fx.mote(player.muzzle_world() + Vector2.from_angle(randf() * TAU) * 26.0, player.muzzle_world(), data.color, 0.18)
 				if charge >= float(b["charge"]):
+					player.energy = maxf(0.0, player.energy - energy_cost())
+					player.energy_idle = 0.0
 					_fire()
 					charge = 0.0
 					cd = data.rate
@@ -184,7 +186,7 @@ func _fire_projectiles() -> void:
 	if data.casing:
 		var side := Vector2(-player.aim.y, player.aim.x) * player.face
 		g.fx.casing(player.position + Vector2(0, -26) + player.aim * 6.0, (side * 0.8 + Vector2(0, -0.4)).normalized())
-	g.sfx.play(data.sfx, data.sfx_vol, 1.0, 0.06, 0.03 if data.sfx == "flame" else 0.0)
+	g.sfx.play(data.sfx, data.sfx_vol, data.sfx_pitch, 0.06, 0.03 if data.sfx == "flame" else 0.0)
 
 
 func _roll_variant() -> Dictionary:

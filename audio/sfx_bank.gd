@@ -596,7 +596,8 @@ const TRACKS := {
 }
 
 
-static func music(id: String) -> AudioStreamWAV:
+## `abort`: Callable opcional que devuelve true para cancelar (cierre de la app durante la sintesis en el hilo).
+static func music(id: String, abort: Callable = Callable()) -> AudioStreamWAV:
 	var tr: Dictionary = TRACKS.get(id, TRACKS["menu"])
 	var rate := MUSIC_RATE
 	var bpm: float = tr["bpm"]
@@ -614,6 +615,8 @@ static func music(id: String) -> AudioStreamWAV:
 	var drum_amt: float = tr["drums"]
 	# bajo + acordes: un acorde por compas
 	for bar in bars:
+		if abort.is_valid() and abort.call():
+			return null
 		var croot: int = chords[bar % chords.size()]
 		var t0 := float(bar) * beat * 4.0
 		var f_bass := root * pow(2.0, float(croot) / 12.0)

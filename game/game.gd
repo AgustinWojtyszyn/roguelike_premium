@@ -502,3 +502,10 @@ func quit_to_home(abandon: bool = true) -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	AudioMgr.stop_hum()
 	Router.goto("home")
+
+
+func _notification(what: int) -> void:
+	# Al pasar la app a segundo plano (llamada, gesto de inicio) la run se pausa sola
+	if what == NOTIFICATION_APPLICATION_PAUSED or what == NOTIFICATION_APPLICATION_FOCUS_OUT:
+		if is_inside_tree() and director != null and not over and not bot:
+			request_pause()

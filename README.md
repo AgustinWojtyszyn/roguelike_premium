@@ -44,7 +44,7 @@ tools/       android_cold_start.py (se conserva) · gallery.tscn (revisión visu
 | Perk | `data/content/content_perks.gd` | `mods` numéricos y/o `hooks` en `game/perk_effects.gd`. |
 | Misión / pase / tienda | `data/content/content_meta.gd` | Todo local; el precio del pase vive en `data/defs/pricing.gd`. |
 | Tema visual | `game/themes/` | Subclase de `RoomTheme` (suelo, muros, luces, apariciones, bloques). |
-| Packs externos | `data/packs/*.tres` | Cualquier `WeaponData`, `PerkData`, `CharacterData`... se registra solo. |
+| Packs externos | `data/packs/*.tres` (ejemplos en `data/packs_examples/`) | Cualquier `WeaponData`, `PerkData`, `CharacterData`... se registra solo. |
 
 ## Pruebas
 
@@ -76,3 +76,15 @@ Opciones útiles: `--char=ID --chapter=chN --stage=N --seed=N --weapon=ID --perk
 
 Capas estáticas de sala (suelo, muros, luces) **horneadas a una textura** (`RoomBake`): de ~2900 a ~900 draw calls y de ~111k a ~26k primitivas;
 proyectiles y partículas con **pool**; HUD con redibujo por cambios; props estáticos sin redibujo periódico; síntesis de audio en un hilo.
+
+## Contenido actual
+
+| | |
+|---|---|
+| Personajes | 11 (Vesper, Kiro-9, Doc Sera, Orla, Halo, Sable, Nyx, Kraal, Basalto, Ilex, Paradoja) + 8 skins |
+| Armas | 18 con mecánicas distintas (ráfaga, minigun con arranque, plasma/granada explosivos, rayo en cadena, rebote, misiles/drones teledirigidos, hoja y garras, haz de riel cargado, lanzallamas, francotirador, experimental aleatoria) |
+| Enemigos | 18 en 4 familias (máquinas corruptas, civilización de jade, fortaleza escarlata, anomalías) con roles: melee, tirador, francotirador, pesado, torreta, soporte, invocador, embestidor, kamikaze, escudo |
+| Jefes | 2 con 3 fases (Custodio – cap. 1, Xocotl – cap. 2); los capítulos 3 y 4 cierran con un encuentro final |
+| Capítulos | 4 (tecnología corrupta, azteca-tecnológica, fortaleza oscura, interdimensional), 5 etapas c/u, 25 salas curadas, 28 encuentros |
+| Perks | 22 con slots (5), apilables y con comportamientos especiales |
+| Meta | HOME, colección, armería, pase (30 niveles, gratis/premium simulado), misiones diarias/semanales/temporada, tienda local, ajustes |

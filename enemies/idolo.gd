@@ -89,5 +89,5 @@ func _animate(dt: float) -> void:
 	mask_p.rotation = sin(hover_t * 1.1) * 0.03 + aim_dir.x * 0.04
 	mask_p.queue_redraw()
 	orbit_p.queue_redraw()
-	glow_p.queue_redraw()
-	shadow.queue_redraw()
+	glow_p.soft_redraw()
+	shadow.soft_redraw()

@@ -123,4 +123,4 @@ func _animate(dt: float) -> void:
 	body_p.queue_redraw()
 	head_p.queue_redraw()
 	tail_p.queue_redraw()
-	glow_p.queue_redraw()
+	glow_p.soft_redraw()

@@ -138,8 +138,9 @@ func _worker() -> void:
 			var s: AudioStreamWAV = (recipes[job[1]] as Callable).call()
 			_on_sfx.call_deferred(job[1], s)
 		else:
-			var m: AudioStreamWAV = SfxBank.music(job[1])
-			_on_music.call_deferred(job[1], m)
+			var m: AudioStreamWAV = SfxBank.music(job[1], func(): return _stop)
+			if m != null:
+				_on_music.call_deferred(job[1], m)
 
 
 var _stop := false

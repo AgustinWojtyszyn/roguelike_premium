@@ -85,5 +85,5 @@ func _animate(dt: float) -> void:
 	muzzle_off = Vector2(0, -HOVER + bob)
 	core_p.queue_redraw()
 	halo_p.queue_redraw()
-	glow_p.queue_redraw()
-	shadow.queue_redraw()
+	glow_p.soft_redraw()
+	shadow.soft_redraw()

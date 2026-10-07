@@ -116,4 +116,4 @@ func _animate(dt: float) -> void:
 	torso_p.queue_redraw()
 	head_p.queue_redraw()
 	bow_p.queue_redraw()
-	glow_p.queue_redraw()
+	glow_p.soft_redraw()
