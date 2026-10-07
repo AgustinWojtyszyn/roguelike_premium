@@ -1,0 +1,15 @@
+{
+  "id": "vesper",
+  "kind": "hero_ranged",
+  "pack": "kaykit_adventurers",
+  "source": "Characters/gltf/Rogue.glb",
+  "cell": 144, "ss": 3, "ortho": 3.0, "feet_frac": 0.80, "pitch": 35.0,
+  "hand_layer": true, "hand_radius": 0.15, "hand_patch": 40,
+  "weapon_axis": "fore",
+  "anims": {
+    "idle":  {"lower": "Idle",      "upper": "1H_Ranged_Aiming", "upper_hold": 0.4, "frames": 4, "loop": true,  "weapon_mode": "aim"},
+    "walk":  {"lower": "Running_A", "upper": "1H_Ranged_Aiming", "upper_hold": 0.4, "frames": 6, "loop": true,  "weapon_mode": "aim"},
+    "hurt":  {"lower": "Hit_A",     "upper": "Hit_A",            "frames": 3, "loop": false, "weapon_mode": "aim"},
+    "death": {"lower": "Death_A",   "upper": "Death_A",          "frames": 6, "loop": false, "recenter": 1.0, "fit_cell": true, "weapon_mode": "rig"}
+  }
+}

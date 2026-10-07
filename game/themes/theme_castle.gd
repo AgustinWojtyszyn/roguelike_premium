@@ -8,6 +8,24 @@ const TORCH := Color("ff9a3d")
 const CRIM := Color("a01c3c")
 const INKC := Color("07080f")
 
+## Arte pre-renderizado (KayKit Dungeon Remastered, CC0) para suelo/muros/estandartes/antorchas. Si falta, se usa el dibujo vectorial original.
+const PRE := "premium/dungeon/castle/"
+const PREMIUM_ART := [
+	"premium/dungeon/castle/floor_tile_small", "premium/dungeon/castle/floor_tile_small_broken_A", "premium/dungeon/castle/floor_tile_small_broken_B",
+	"premium/dungeon/castle/floor_tile_small_weeds_A", "premium/dungeon/castle/floor_tile_small_decorated", "premium/dungeon/castle/floor_tile_grate",
+	"premium/dungeon/castle/wall", "premium/dungeon/castle/wall_cracked", "premium/dungeon/castle/wall_arched", "premium/dungeon/castle/wall_window_closed",
+	"premium/dungeon/castle/banner_red", "premium/dungeon/castle/banner_patternA_red", "premium/dungeon/castle/banner_shield_red", "premium/dungeon/castle/banner_thin_red",
+	"premium/dungeon/castle/torch_mounted",
+]
+const FLOOR_TINT := Color("6b7094")
+const WALL_TINT := Color("8d94bb")
+const FLOOR_VARIANTS := [
+	["floor_tile_small", 0.80], ["floor_tile_small_broken_A", 0.06], ["floor_tile_small_broken_B", 0.05],
+	["floor_tile_small_weeds_A", 0.04], ["floor_tile_small_decorated", 0.03], ["floor_tile_grate", 0.02],
+]
+const WALL_VARIANTS := [["wall", 0.62], ["wall_cracked", 0.14], ["wall_arched", 0.14], ["wall_window_closed", 0.10]]
+const TORCH_FLAME_Y := 56.0   # altura de la llama sobre el borde del muro (la antorcha premium cuelga a esa altura)
+
 
 func _init() -> void:
 	id = "castle"
@@ -35,7 +53,63 @@ func build_dressing(room: Room, rng: RandomNumberGenerator) -> Dictionary:
 	return {"torches": torches, "banners": banners}
 
 
+func _pre(id: String) -> Dictionary:
+	if not VisualProfiles.sprites_enabled():
+		return {}
+	var inf := AssetCatalog.info(PRE + id)
+	if inf.is_empty() or AssetCatalog.tex(PRE + id) == null:
+		return {}
+	return inf
+
+
+static func _pick(variants: Array, rng: RandomNumberGenerator) -> String:
+	var r := rng.randf()
+	var acc := 0.0
+	for v in variants:
+		acc += float(v[1])
+		if r <= acc:
+			return v[0]
+	return variants[0][0]
+
+
+## Suelo premium: losetas pre-renderizadas con la rejilla de la propia loseta (se hornea en RoomBake: coste cero en juego).
+func _floor_premium(ci: CanvasItem, R: Rect2, seed_v: int) -> bool:
+	var base := _pre("floor_tile_small")
+	if base.is_empty():
+		return false
+	var rng := RandomNumberGenerator.new()
+	rng.seed = seed_v
+	var sc: float = float(base["scale"])
+	var tw: float = float((base["size"] as Array)[0]) * sc
+	ci.draw_rect(R, Color("14172a"))
+	var y := R.position.y
+	while y < R.end.y - 0.5:
+		var x := R.position.x
+		while x < R.end.x - 0.5:
+			var id := _pick(FLOOR_VARIANTS, rng)
+			var inf := _pre(id)
+			if inf.is_empty():
+				inf = base
+				id = "floor_tile_small"
+			var w := minf(tw, R.end.x - x)
+			var h := minf(tw, R.end.y - y)
+			var tex := AssetCatalog.tex(PRE + id)
+			var rot := int(rng.randi() % 4) if id == "floor_tile_small" else 0
+			var src := Rect2(0, 0, w / sc, h / sc)
+			if rot == 0 or w < tw or h < tw:
+				ci.draw_texture_rect_region(tex, Rect2(x, y, w, h), src, FLOOR_TINT)
+			else:
+				ci.draw_set_transform(Vector2(x + tw * 0.5, y + tw * 0.5), float(rot) * PI * 0.5, Vector2.ONE)
+				ci.draw_texture_rect(tex, Rect2(-tw * 0.5, -tw * 0.5, tw, tw), false, FLOOR_TINT)
+				ci.draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
+			x += tw
+		y += tw
+	return true
+
+
 func _floor_panels(ci: CanvasItem, R: Rect2, seed_v: int) -> void:
+	if _floor_premium(ci, R, seed_v):
+		return
 	var rng := RandomNumberGenerator.new()
 	rng.seed = seed_v
 	var ts := tile
@@ -112,9 +186,51 @@ func _floor_extras(ci: CanvasItem, room: Room) -> void:
 			ci.draw_rect(Rect2(F.end.x - o - 4.0, F.position.y, 4.0, F.size.y), Color(0, 0, 0, a * 0.8))
 
 
+## Franja de muro premium: tramos de la pieza `wall` (variantes aleatorias deterministas) entre x0 y x1 con su base en `base_y`.
+func _wall_strip(ci: CanvasItem, x0: float, x1: float, y_anchor: float, tint: Color, seed_v: int, from_top: bool) -> bool:
+	var base := _pre("wall")
+	if base.is_empty():
+		return false
+	var rng := RandomNumberGenerator.new()
+	rng.seed = seed_v
+	var sc: float = float(base["scale"])
+	var tw: float = float((base["size"] as Array)[0]) * sc
+	var th: float = float((base["size"] as Array)[1]) * sc
+	var ay: float = float((base["anchor"] as Array)[1]) * sc
+	var y0 := y_anchor if from_top else y_anchor - ay
+	var x := x0
+	while x < x1 - 0.5:
+		var id := _pick(WALL_VARIANTS, rng)
+		var tex := AssetCatalog.tex(PRE + id)
+		if tex == null:
+			tex = AssetCatalog.tex(PRE + "wall")
+		var w := minf(tw, x1 - x)
+		ci.draw_texture_rect_region(tex, Rect2(x, y0, w, th), Rect2(0, 0, w / sc, th / sc), tint)
+		x += tw
+	return true
+
+
 func _wall_n(ci: CanvasItem, room: Room, x0: float, x1: float, edge: float) -> void:
 	var w := x1 - x0
 	var top := edge - FACE_H
+	if not _pre("wall").is_empty():
+		ci.draw_rect(Rect2(x0 - 70, edge - 260, w + 140, 262), Color("05060c"))
+		_wall_strip(ci, x0, x1, edge, WALL_TINT, 777 + int(x0), false)
+		ci.draw_rect(Rect2(x0, edge - 2.0, w, 6.0), Color(0, 0, 0, 0.35))
+		var F0 := room.floor_rect
+		if absf(edge - F0.position.y) < 1.0:
+			var d0: Dictionary = room.dressing
+			for tp in d0.get("torches", []):
+				var v0: Vector2 = tp
+				if v0.x > x0 + 24.0 and v0.x < x1 - 24.0:
+					_premium_sprite(ci, "torch_mounted", Vector2(v0.x, edge - 34.0), 1.5, WALL_TINT)
+			var bi := 0
+			for bx0 in d0.get("banners", []):
+				if bx0 > x0 + 40.0 and bx0 < x1 - 40.0:
+					var bid: String = ["banner_red", "banner_patternA_red", "banner_shield_red", "banner_thin_red"][bi % 4]
+					_premium_sprite(ci, bid, Vector2(bx0, edge - 10.0), 1.0, WALL_TINT)
+				bi += 1
+		return
 	ci.draw_rect(Rect2(x0 - 70, top - 100, w + 140, 102), Color("05060c"))
 	Gfx.grect_grad(ci, Rect2(x0, top, w, FACE_H), Color("3e4260"), Color("1a1d2e"))
 	# ladrillos
@@ -176,9 +292,23 @@ func _wall_n(ci: CanvasItem, room: Room, x0: float, x1: float, edge: float) -> v
 				ci.draw_line(Vector2(bx2 - 9, edge - 74.0), Vector2(bx2 + 9, edge - 74.0), Color("e0c070"), 3.0)
 
 
+## Dibuja una pieza premium con su ancla (origen del modelo) en `at`; `k` multiplica la escala de juego de la pieza.
+func _premium_sprite(ci: CanvasItem, id: String, at: Vector2, k: float, tint: Color) -> void:
+	var inf := _pre(id)
+	if inf.is_empty():
+		return
+	var sc: float = float(inf["scale"]) * k
+	var sz: Array = inf["size"]
+	var an: Array = inf["anchor"]
+	ci.draw_texture_rect(AssetCatalog.tex(PRE + id), Rect2(at.x - float(an[0]) * sc, at.y - float(an[1]) * sc, float(sz[0]) * sc, float(sz[1]) * sc), false, tint)
+
+
 func _wall_s(ci: CanvasItem, room: Room, x0: float, x1: float, edge: float) -> void:
 	var sr := Rect2(x0, edge, x1 - x0, 140)
 	Gfx.grect_grad(ci, sr, Color("3a3e58"), Color("14162a"))
+	if _wall_strip(ci, x0, x1, edge + 2.0, WALL_TINT.darkened(0.25), 991 + int(x0), true):
+		ci.draw_rect(Rect2(x0, edge, x1 - x0, 3.0), INKC)
+		return
 	ci.draw_rect(Rect2(x0, edge, sr.size.x, 4), INKC)
 	ci.draw_rect(Rect2(x0, edge + 4, sr.size.x, 2), Color(1, 1, 1, 0.16))
 	var yy := edge + 20.0
@@ -196,6 +326,29 @@ func _wall_we(ci: CanvasItem, room: Room, side: String, a: float, b: float, edge
 	var y1 := b + (18.0 if eb > 0.0 else 0.0)
 	var x0 := edge - 50.0 if side == "W" else edge
 	Gfx.grect_grad(ci, Rect2(x0, y0, 50, y1 - y0), Color("3a3e58"), Color("171a2c"))
+	var pw := _pre("wall")
+	if not pw.is_empty():
+		# lateral: la misma pieza girada 90 grados y comprimida al ancho del muro lateral (cara interior en vista cenital)
+		var sc: float = float(pw["scale"])
+		var tw: float = float((pw["size"] as Array)[0]) * sc
+		var th: float = float((pw["size"] as Array)[1]) * sc
+		var yy := y0
+		var rng := RandomNumberGenerator.new()
+		rng.seed = 313 + int(edge)
+		while yy < y1 - 0.5:
+			var len_ := minf(tw, y1 - yy)
+			var tex := AssetCatalog.tex(PRE + _pick(WALL_VARIANTS, rng))
+			if side == "W":
+				ci.draw_set_transform(Vector2(edge, yy), PI * 0.5, Vector2(1.0, 50.0 / th))
+				ci.draw_texture_rect_region(tex, Rect2(0, 0, len_, th), Rect2(0, 0, len_ / sc, th / sc), WALL_TINT.darkened(0.2))
+			else:
+				ci.draw_set_transform(Vector2(edge, yy + len_), -PI * 0.5, Vector2(1.0, 50.0 / th))
+				ci.draw_texture_rect_region(tex, Rect2(0, 0, len_, th), Rect2(0, 0, len_ / sc, th / sc), WALL_TINT.darkened(0.2))
+			ci.draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
+			yy += tw
+		var ex2 := edge - 4.0 if side == "W" else edge
+		ci.draw_rect(Rect2(ex2, a - 110.0, 4, b - a + 110.0), INKC)
+		return
 	var ex := edge - 4.0 if side == "W" else edge
 	ci.draw_rect(Rect2(ex, a - 110.0, 4, b - a + 110.0), INKC)
 	ci.draw_rect(Rect2(ex + (0.0 if side == "W" else 4.0), a - 110.0, 2, b - a + 110.0), Color(1, 1, 1, 0.13))
@@ -240,7 +393,7 @@ func paint_deco(ci: CanvasItem, room: Room, t: float) -> void:
 		if room.in_exit_gap(v.x, "N"):
 			continue
 		var fl := 0.75 + 0.25 * sin(t * 12.0 + v.x * 0.1)
-		var fy := F.position.y - 106.0
+		var fy := F.position.y - (TORCH_FLAME_Y if not _pre("wall").is_empty() else 106.0)
 		ci.draw_colored_polygon(PackedVector2Array([Vector2(v.x - 7, fy), Vector2(v.x - 3, fy - 15 * fl), Vector2(v.x, fy - 7), Vector2(v.x + 4, fy - 19 * fl), Vector2(v.x + 7, fy)]), Color(1.0, 0.5, 0.12, 0.9))
 		ci.draw_colored_polygon(PackedVector2Array([Vector2(v.x - 3, fy), Vector2(v.x, fy - 10 * fl), Vector2(v.x + 3, fy)]), Color(1.0, 0.9, 0.5, 0.9))
 		Gfx.draw_glow(ci, Vector2(v.x, fy - 8), 44.0, Color(1.0, 0.6, 0.2, 0.3 * fl))

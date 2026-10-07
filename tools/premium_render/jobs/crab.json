@@ -1,0 +1,62 @@
+{
+ "id": "crab",
+ "kind": "enemy_creature",
+ "pack": "quaternius",
+ "source": "Cute Animated Monsters - Aug 2020/glTF/Crab.gltf",
+ "cell": 96,
+ "ss": 3,
+ "ortho": 3.2,
+ "feet_frac": 0.72,
+ "pitch": 35.0,
+ "dirs": [
+  "south",
+  "south-east",
+  "east",
+  "north-east",
+  "north"
+ ],
+ "anims": {
+  "idle": {
+   "lower": "Idle",
+   "frames": 4,
+   "loop": true
+  },
+  "walk": {
+   "lower": "Walk",
+   "frames": 6,
+   "loop": true
+  },
+  "windup": {
+   "lower": "Bite_Front",
+   "frames": 4,
+   "loop": false,
+   "t0": 0.0,
+   "t1": 0.4
+  },
+  "attack": {
+   "lower": "Bite_Front",
+   "frames": 4,
+   "loop": false,
+   "t0": 0.4,
+   "t1": 0.85
+  },
+  "recover": {
+   "lower": "Bite_Front",
+   "frames": 2,
+   "loop": false,
+   "t0": 0.85,
+   "t1": 1.0
+  },
+  "death": {
+   "lower": "Death",
+   "frames": 6,
+   "loop": false,
+   "recenter": 0.0,
+   "fit_cell": true
+  }
+ },
+ "fix_materials": true,
+ "ambient_e": 1.1,
+ "sun": 1.1,
+ "albedo_mul": 2.2
+}

@@ -19,6 +19,12 @@ const CHAR_FPS := {"default": 10.0, "walk": 15.0, "idle": 6.0, "attack": 16.0, "
 const CHARACTERS := {
 	# Se llena solo con perfiles aprobados por PREMIUM_ASSET_REBUILD.md.
 	# Mientras un heroe no tenga rig/pose de arma real, CharacterRig muestra un placeholder temporal.
+	# Perfiles pre-renderizados desde rigs 3D CC0 (tools/premium_pipeline.py). El agarre sale de cada frame del set
+	# (hueso handslot del rig fuente): `grip_mode: rig` ancla arma + mano a ese agarre. `scale` = px de juego por px de celda.
+	"vesper": {"set": "premium/characters/vesper", "height": 66.0, "scale": 0.72, "fps": CHAR_FPS, "shadow": 1.0,
+		"weapon_compatible": true, "grip_mode": "rig", "weapon_scale": 0.5, "filter": "linear"},
+	"sable": {"set": "premium/characters/sable", "height": 66.0, "scale": 0.72, "fps": CHAR_FPS, "shadow": 1.0,
+		"weapon_compatible": true, "grip_mode": "rig", "weapon_scale": 0.5, "filter": "linear"},
 }
 
 static func character(visual_id: String) -> Dictionary:
@@ -31,16 +37,18 @@ static func character(visual_id: String) -> Dictionary:
 const ENEMY_FPS := {"default": 10.0, "walk": 11.0, "idle": 6.0, "attack": 14.0, "death": 16.0, "roll": 16.0}
 
 const ENEMIES := {
-	"caballero": {"set": "rpg/enemies/bone_guard", "height": 62.0, "fps": ENEMY_FPS, "shadow": 1.2,
-		"anim_map": {"idle": "shield_idle", "move": "walk", "windup": "bash_windup_alt", "strike": "attack", "recover": "guard_fatigue"}},
+	# Premium (pre-render 3D CC0): esqueleto guerrero KayKit con hoja+escudo montados en handslot; 5 direcciones (el espejo lo hace vis.scale.x).
+	"caballero": {"set": "premium/enemies/skeleton_warrior", "height": 62.0, "scale": 0.95, "fps": ENEMY_FPS, "shadow": 1.2, "death_dur": 0.8,
+		"anim_map": {"idle": "idle", "move": "walk", "windup": "windup", "strike": "attack", "recover": "recover"}},
 	"sabueso": {"set": "rpg/enemies/raptor", "height": 46.0, "fps": ENEMY_FPS, "tint": Color("ffc89a"), "shadow": 1.0,
 		"anim_map": {"idle": "idle", "move": "walk", "windup": "lunge_windup", "strike": "lunge_attack", "recover": "recovery"}},
 	"acechador": {"set": "rpg/enemies/raptor", "height": 56.0, "fps": ENEMY_FPS, "tint": Color("c8a6ff"), "shadow": 1.1,
 		"anim_map": {"idle": "idle", "move": "walk", "windup": "lunge_windup", "strike": "lunge_attack", "recover": "recovery"}},
 	"ojo": {"set": "rpg/enemies/orb_stalker", "height": 70.0, "offset": Vector2(0, -16), "fps": ENEMY_FPS, "shadow": 1.2,
 		"anim_map": {"idle": "idle", "move": "move", "windup": "ranged_windup", "strike": "projectile_attack", "recover": "idle"}},
-	"escarabajo": {"set": "rpg/enemies/iron_beetle", "height": 30.0, "fps": ENEMY_FPS, "tint": Color("9affd0"), "shadow": 0.8,
-		"anim_map": {"idle": "idle", "move": "walk", "windup": "roll_windup_alt", "strike": "roll", "recover": "idle"}},
+	# Premium (pre-render 3D CC0): cangrejo Quaternius, criatura no humanoide.
+	"escarabajo": {"set": "premium/enemies/crab", "height": 34.0, "scale": 0.9, "fps": ENEMY_FPS, "shadow": 0.9, "death_dur": 0.6,
+		"anim_map": {"idle": "idle", "move": "walk", "windup": "windup", "strike": "attack", "recover": "recover"}},
 }
 
 
@@ -89,7 +97,23 @@ const PROPS := {
 }
 
 
-static func prop(kind: String) -> Dictionary:
+## Variantes Premium por tema (arte pre-renderizado desde KayKit Dungeon, CC0). Sustituyen a PROPS solo en ese tema.
+## tint: multiplica el sprite para integrarlo con la paleta oscura del capitulo (gradacion final = pasada de Astra).
+const PROPS_THEMED := {
+	"castle": {
+		"wood_crate": {"art": ["premium/dungeon/castle/box_large", "premium/dungeon/castle/box_stacked", "premium/dungeon/castle/crates_stacked"], "fit": "h", "hmul": 1.15, "tint": Color("d6d2e6")},
+		"wood_barrel": {"art": ["premium/dungeon/castle/barrel_large", "premium/dungeon/castle/barrel_large_decorated", "premium/dungeon/castle/keg_decorated"], "fit": "h", "hmul": 1.15, "tint": Color("d6d2e6")},
+		"table": {"art": ["premium/dungeon/castle/table_long_decorated_A", "premium/dungeon/castle/table_long"], "fit": "w2", "tint": Color("d6d2e6")},
+		"column": {"art": ["premium/dungeon/castle/pillar_decorated"], "fit": "h", "hmul": 1.0, "tint": Color("c4c8e0")},
+		"statue": {"art": ["premium/dungeon/castle/pillar_decorated"], "fit": "h", "hmul": 1.05, "tint": Color("c4c8e0")},
+		"weapon_rack": {"art": ["premium/dungeon/castle/crates_stacked", "premium/dungeon/castle/box_stacked"], "fit": "w2", "tint": Color("d6d2e6")},
+	},
+}
+
+
+static func prop(kind: String, theme: String = "") -> Dictionary:
+	if theme != "" and PROPS_THEMED.has(theme) and PROPS_THEMED[theme].has(kind) and PremiumManifest.STATIC.has(PROPS_THEMED[theme][kind]["art"][0]):
+		return PROPS_THEMED[theme][kind]
 	return PROPS.get(kind, {})
 
 
@@ -99,20 +123,23 @@ static func prop(kind: String) -> Dictionary:
 const DECOR := {
 	"castle": {
 		"floor": [
-			{"art": "rpg/decals/floor_crack", "n": [2, 4], "kind": "decal", "a": 0.4, "s": 1.2},
-			{"art": "rpg/decals/bone_dust", "n": [2, 3], "kind": "decal", "a": 0.7, "s": 1.3},
-			{"art": "rpg/decals/gravel_scatter", "n": [2, 4], "kind": "decal", "a": 0.65, "s": 1.4},
-			{"art": "rpg/props/rubble/stone_rubble", "n": [2, 4], "kind": "obj", "a": 1.0, "s": 0.9},
-			{"art": "rpg/props/rubble/skull_pile", "n": [1, 2], "kind": "obj", "a": 1.0, "s": 0.8},
-			{"art": "rpg/props/rubble/bone_debris", "n": [1, 3], "kind": "obj", "a": 1.0, "s": 0.9},
-			{"art": "rpg/props/dungeon2/bone_heap", "n": [0, 1], "kind": "obj", "a": 1.0, "s": 0.75},
+			{"art": "premium/dungeon/castle/candle_triple", "n": [4, 6], "kind": "obj", "a": 1.0, "h": 30.0, "tint": Color("d6d2e6")},
+			{"art": "premium/dungeon/castle/coin_stack_large", "n": [2, 3], "kind": "obj", "a": 1.0, "h": 28.0},
+			{"art": "premium/dungeon/castle/box_small_decorated", "n": [2, 3], "kind": "obj", "a": 1.0, "h": 40.0, "tint": Color("d6d2e6")},
+			{"art": "premium/dungeon/castle/barrel_small_stack", "n": [2, 3], "kind": "obj", "a": 1.0, "h": 40.0, "tint": Color("d6d2e6")},
+			{"art": "premium/dungeon/castle/stool", "n": [2, 3], "kind": "obj", "a": 1.0, "h": 26.0, "tint": Color("d6d2e6")},
+			{"art": "premium/dungeon/castle/chair", "n": [1, 3], "kind": "obj", "a": 1.0, "h": 42.0, "tint": Color("d6d2e6")},
+			{"art": "premium/dungeon/castle/table_medium_tablecloth_decorated_B", "n": [0, 1], "kind": "obj", "a": 1.0, "h": 52.0, "tint": Color("d6d2e6")},
+			{"art": "rpg/decals/floor_crack", "n": [3, 5], "kind": "decal", "a": 0.35, "s": 1.2},
+			{"art": "rpg/decals/gravel_scatter", "n": [3, 4], "kind": "decal", "a": 0.5, "s": 1.4},
 		],
 		"stand": [
-			{"art": "rpg/props/dungeon/candles", "n": [1, 2], "s": 0.9},
-			{"art": "rpg/props/dungeon2/lantern_post", "n": [1, 2], "s": 0.9},
-			{"art": "rpg/props/dungeon/books_scroll", "n": [0, 1], "s": 0.9},
-			{"art": "rpg/props/dungeon2/sarcophagus", "n": [0, 1], "s": 0.85},
-			{"art": "rpg/props/dungeon/chains_shackles", "n": [0, 1], "s": 0.9},
+			{"art": "premium/dungeon/castle/chest", "n": [1, 2], "h": 52.0, "tint": Color("d6d2e6")},
+			{"art": "premium/dungeon/castle/shelf_small_candles", "n": [2, 3], "h": 44.0, "tint": Color("d6d2e6")},
+			{"art": "premium/dungeon/castle/trunk_large_A", "n": [1, 2], "h": 46.0, "tint": Color("d6d2e6")},
+			{"art": "premium/dungeon/castle/bed_frame", "n": [0, 1], "h": 70.0, "tint": Color("d6d2e6")},
+			{"art": "premium/dungeon/castle/keg_decorated", "n": [1, 2], "h": 60.0, "tint": Color("d6d2e6")},
+			{"art": "premium/dungeon/castle/barrel_large_decorated", "n": [1, 1], "h": 64.0, "tint": Color("d6d2e6")},
 		],
 	},
 	"aztec": {

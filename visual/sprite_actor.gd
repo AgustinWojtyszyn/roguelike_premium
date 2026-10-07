@@ -2,7 +2,7 @@ class_name SpriteActor
 extends Sprite2D
 ## Un unico Sprite2D que reproduce animaciones direccionales de un AnimSet segun un perfil visual.
 ## Solo cambia la textura cuando cambia (anim, direccion, frame). Los pies quedan en el origen del nodo.
-## Perfil: {set, height, anim_map, fps, offset, loop_anims}. La escala sale de `height` / alto de la caja opaca.
+## Perfil: {set, height, anim_map, fps, offset, loop_anims}. La escala sale de `height` / alto de la caja opaca (o de `scale` explicito en sets pre-renderizados Premium: px de juego por px de celda).
 
 const FALLBACK := {"walk": "idle", "move": "walk", "idle": "walk", "attack": "idle", "hurt": "idle", "death": "idle", "cast": "attack"}
 
@@ -33,7 +33,7 @@ static func create(parent: Node, profile: Dictionary) -> SpriteActor:
 	a.use_parent_material = true
 	var h: float = float(profile.get("height", 56.0))
 	var bh := maxf(1.0, float(s.bbox.size.y))
-	var sc := h / bh
+	var sc: float = float(profile["scale"]) if profile.has("scale") else h / bh
 	a.scale = Vector2(sc, sc) * float(profile.get("xscale", 1.0))
 	var feet_y: float = float(s.bbox.end.y) + float(profile.get("feet_pad", 0.0))
 	a.offset = Vector2(-float(s.cell.x) * 0.5, -feet_y)

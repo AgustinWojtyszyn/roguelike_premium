@@ -1,0 +1,935 @@
+{
+ "id": "castle_set",
+ "kind": "static_set",
+ "role": "environment",
+ "source_pack": "KayKit Dungeon Remastered 1.0",
+ "source_revision": "b0ca9bd96a8072ab36a3a5464f00ed1e06a16d07",
+ "license": "CC0 1.0",
+ "transformation": "Godot offscreen ortho render (tools/premium_render/render_static.gd) + recorte por alfa; ancla = origen del modelo",
+ "job_sha256": "289312765732cd31",
+ "runtime_path": "res://assets/premium/dungeon/castle/",
+ "ppu": 68.0,
+ "ppu_game": 26.0,
+ "items": {
+  "wall": {
+   "path": "res://assets/premium/dungeon/castle/wall.png",
+   "size": [
+    276,
+    266
+   ],
+   "bbox": [
+    0,
+    0,
+    276,
+    266
+   ],
+   "anchor": [
+    138,
+    244
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "wall.gltf.glb"
+  },
+  "wall_cracked": {
+   "path": "res://assets/premium/dungeon/castle/wall_cracked.png",
+   "size": [
+    276,
+    266
+   ],
+   "bbox": [
+    0,
+    0,
+    276,
+    266
+   ],
+   "anchor": [
+    138,
+    244
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "wall_cracked.gltf.glb"
+  },
+  "wall_arched": {
+   "path": "res://assets/premium/dungeon/castle/wall_arched.png",
+   "size": [
+    276,
+    266
+   ],
+   "bbox": [
+    0,
+    0,
+    276,
+    266
+   ],
+   "anchor": [
+    138,
+    244
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "wall_arched.gltf.glb"
+  },
+  "wall_window_closed": {
+   "path": "res://assets/premium/dungeon/castle/wall_window_closed.png",
+   "size": [
+    276,
+    266
+   ],
+   "bbox": [
+    0,
+    0,
+    276,
+    266
+   ],
+   "anchor": [
+    138,
+    244
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "wall_window_closed.gltf.glb"
+  },
+  "wall_half": {
+   "path": "res://assets/premium/dungeon/castle/wall_half.png",
+   "size": [
+    140,
+    266
+   ],
+   "bbox": [
+    0,
+    0,
+    140,
+    266
+   ],
+   "anchor": [
+    2,
+    244
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "wall_half.gltf.glb"
+  },
+  "wall_corner": {
+   "path": "res://assets/premium/dungeon/castle/wall_corner.png",
+   "size": [
+    174,
+    325
+   ],
+   "bbox": [
+    0,
+    0,
+    174,
+    325
+   ],
+   "anchor": [
+    138,
+    244
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "wall_corner.gltf.glb"
+  },
+  "floor_tile_small": {
+   "path": "res://assets/premium/dungeon/castle/floor_tile_small.png",
+   "size": [
+    136,
+    136
+   ],
+   "bbox": [
+    0,
+    0,
+    136,
+    136
+   ],
+   "anchor": [
+    68,
+    68
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 90.0,
+   "source_file": "floor_tile_small.gltf.glb"
+  },
+  "floor_tile_small_broken_A": {
+   "path": "res://assets/premium/dungeon/castle/floor_tile_small_broken_A.png",
+   "size": [
+    136,
+    136
+   ],
+   "bbox": [
+    0,
+    0,
+    136,
+    136
+   ],
+   "anchor": [
+    68,
+    68
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 90.0,
+   "source_file": "floor_tile_small_broken_A.gltf.glb"
+  },
+  "floor_tile_small_broken_B": {
+   "path": "res://assets/premium/dungeon/castle/floor_tile_small_broken_B.png",
+   "size": [
+    136,
+    136
+   ],
+   "bbox": [
+    0,
+    0,
+    136,
+    136
+   ],
+   "anchor": [
+    68,
+    68
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 90.0,
+   "source_file": "floor_tile_small_broken_B.gltf.glb"
+  },
+  "floor_tile_small_weeds_A": {
+   "path": "res://assets/premium/dungeon/castle/floor_tile_small_weeds_A.png",
+   "size": [
+    136,
+    136
+   ],
+   "bbox": [
+    0,
+    0,
+    136,
+    136
+   ],
+   "anchor": [
+    68,
+    68
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 90.0,
+   "source_file": "floor_tile_small_weeds_A.gltf.glb"
+  },
+  "floor_tile_small_decorated": {
+   "path": "res://assets/premium/dungeon/castle/floor_tile_small_decorated.png",
+   "size": [
+    136,
+    136
+   ],
+   "bbox": [
+    0,
+    0,
+    136,
+    136
+   ],
+   "anchor": [
+    68,
+    68
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 90.0,
+   "source_file": "floor_tile_small_decorated.gltf.glb"
+  },
+  "floor_tile_large": {
+   "path": "res://assets/premium/dungeon/castle/floor_tile_large.png",
+   "size": [
+    272,
+    272
+   ],
+   "bbox": [
+    0,
+    0,
+    272,
+    272
+   ],
+   "anchor": [
+    136,
+    136
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 90.0,
+   "source_file": "floor_tile_large.gltf.glb"
+  },
+  "floor_tile_grate": {
+   "path": "res://assets/premium/dungeon/castle/floor_tile_grate.png",
+   "size": [
+    272,
+    136
+   ],
+   "bbox": [
+    0,
+    0,
+    272,
+    136
+   ],
+   "anchor": [
+    136,
+    68
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 90.0,
+   "source_file": "floor_tile_grate.gltf.glb"
+  },
+  "barrel_large": {
+   "path": "res://assets/premium/dungeon/castle/barrel_large.png",
+   "size": [
+    128,
+    164
+   ],
+   "bbox": [
+    0,
+    0,
+    128,
+    164
+   ],
+   "anchor": [
+    64,
+    137
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "barrel_large.gltf.glb"
+  },
+  "barrel_large_decorated": {
+   "path": "res://assets/premium/dungeon/castle/barrel_large_decorated.png",
+   "size": [
+    137,
+    179
+   ],
+   "bbox": [
+    0,
+    0,
+    137,
+    179
+   ],
+   "anchor": [
+    65,
+    146
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "barrel_large_decorated.gltf.glb"
+  },
+  "barrel_small_stack": {
+   "path": "res://assets/premium/dungeon/castle/barrel_small_stack.png",
+   "size": [
+    130,
+    126
+   ],
+   "bbox": [
+    0,
+    0,
+    130,
+    126
+   ],
+   "anchor": [
+    65,
+    112
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "barrel_small_stack.gltf.glb"
+  },
+  "keg_decorated": {
+   "path": "res://assets/premium/dungeon/castle/keg_decorated.png",
+   "size": [
+    244,
+    168
+   ],
+   "bbox": [
+    0,
+    0,
+    244,
+    168
+   ],
+   "anchor": [
+    126,
+    138
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "keg_decorated.gltf.glb"
+  },
+  "box_large": {
+   "path": "res://assets/premium/dungeon/castle/box_large.png",
+   "size": [
+    106,
+    141
+   ],
+   "bbox": [
+    0,
+    0,
+    106,
+    141
+   ],
+   "anchor": [
+    53,
+    112
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "box_large.gltf.glb"
+  },
+  "box_stacked": {
+   "path": "res://assets/premium/dungeon/castle/box_stacked.png",
+   "size": [
+    241,
+    280
+   ],
+   "bbox": [
+    0,
+    0,
+    241,
+    280
+   ],
+   "anchor": [
+    121,
+    207
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "box_stacked.gltf.glb"
+  },
+  "crates_stacked": {
+   "path": "res://assets/premium/dungeon/castle/crates_stacked.png",
+   "size": [
+    146,
+    187
+   ],
+   "bbox": [
+    0,
+    0,
+    146,
+    187
+   ],
+   "anchor": [
+    76,
+    144
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "crates_stacked.gltf.glb"
+  },
+  "box_small_decorated": {
+   "path": "res://assets/premium/dungeon/castle/box_small_decorated.png",
+   "size": [
+    106,
+    138
+   ],
+   "bbox": [
+    0,
+    0,
+    106,
+    138
+   ],
+   "anchor": [
+    44,
+    103
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "box_small_decorated.gltf.glb"
+  },
+  "column": {
+   "path": "res://assets/premium/dungeon/castle/column.png",
+   "size": [
+    52,
+    98
+   ],
+   "bbox": [
+    0,
+    0,
+    52,
+    98
+   ],
+   "anchor": [
+    26,
+    82
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "column.gltf.glb"
+  },
+  "pillar_decorated": {
+   "path": "res://assets/premium/dungeon/castle/pillar_decorated.png",
+   "size": [
+    156,
+    286
+   ],
+   "bbox": [
+    0,
+    0,
+    156,
+    286
+   ],
+   "anchor": [
+    78,
+    254
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "pillar_decorated.gltf.glb"
+  },
+  "table_long": {
+   "path": "res://assets/premium/dungeon/castle/table_long.png",
+   "size": [
+    276,
+    134
+   ],
+   "bbox": [
+    0,
+    0,
+    276,
+    134
+   ],
+   "anchor": [
+    138,
+    96
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "table_long.gltf.glb"
+  },
+  "table_long_decorated_A": {
+   "path": "res://assets/premium/dungeon/castle/table_long_decorated_A.png",
+   "size": [
+    276,
+    152
+   ],
+   "bbox": [
+    0,
+    0,
+    276,
+    152
+   ],
+   "anchor": [
+    138,
+    114
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "table_long_decorated_A.gltf.glb"
+  },
+  "table_medium_tablecloth_decorated_B": {
+   "path": "res://assets/premium/dungeon/castle/table_medium_tablecloth_decorated_B.png",
+   "size": [
+    140,
+    158
+   ],
+   "bbox": [
+    0,
+    0,
+    140,
+    158
+   ],
+   "anchor": [
+    70,
+    120
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "table_medium_tablecloth_decorated_B.gltf.glb"
+  },
+  "chair": {
+   "path": "res://assets/premium/dungeon/castle/chair.png",
+   "size": [
+    69,
+    99
+   ],
+   "bbox": [
+    0,
+    0,
+    69,
+    99
+   ],
+   "anchor": [
+    35,
+    80
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "chair.gltf.glb"
+  },
+  "stool": {
+   "path": "res://assets/premium/dungeon/castle/stool.png",
+   "size": [
+    56,
+    60
+   ],
+   "bbox": [
+    0,
+    0,
+    56,
+    60
+   ],
+   "anchor": [
+    28,
+    44
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "stool.gltf.glb"
+  },
+  "shelf_large": {
+   "path": "res://assets/premium/dungeon/castle/shelf_large.png",
+   "size": [
+    140,
+    35
+   ],
+   "bbox": [
+    0,
+    0,
+    140,
+    35
+   ],
+   "anchor": [
+    70,
+    8
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "shelf_large.gltf.glb"
+  },
+  "shelf_small_candles": {
+   "path": "res://assets/premium/dungeon/castle/shelf_small_candles.png",
+   "size": [
+    72,
+    61
+   ],
+   "bbox": [
+    0,
+    0,
+    72,
+    61
+   ],
+   "anchor": [
+    36,
+    34
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "shelf_small_candles.gltf.glb"
+  },
+  "torch_mounted": {
+   "path": "res://assets/premium/dungeon/castle/torch_mounted.png",
+   "size": [
+    42,
+    66
+   ],
+   "bbox": [
+    0,
+    0,
+    42,
+    66
+   ],
+   "anchor": [
+    21,
+    36
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "torch_mounted.gltf.glb"
+  },
+  "torch_lit": {
+   "path": "res://assets/premium/dungeon/castle/torch_lit.png",
+   "size": [
+    42,
+    72
+   ],
+   "bbox": [
+    0,
+    0,
+    42,
+    72
+   ],
+   "anchor": [
+    21,
+    47
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "torch_lit.gltf.glb"
+  },
+  "banner_red": {
+   "path": "res://assets/premium/dungeon/castle/banner_red.png",
+   "size": [
+    106,
+    178
+   ],
+   "bbox": [
+    0,
+    0,
+    106,
+    178
+   ],
+   "anchor": [
+    53,
+    190
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "banner_red.gltf.glb"
+  },
+  "banner_patternA_red": {
+   "path": "res://assets/premium/dungeon/castle/banner_patternA_red.png",
+   "size": [
+    106,
+    178
+   ],
+   "bbox": [
+    0,
+    0,
+    106,
+    178
+   ],
+   "anchor": [
+    53,
+    190
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "banner_patternA_red.gltf.glb"
+  },
+  "banner_shield_red": {
+   "path": "res://assets/premium/dungeon/castle/banner_shield_red.png",
+   "size": [
+    156,
+    178
+   ],
+   "bbox": [
+    0,
+    0,
+    156,
+    178
+   ],
+   "anchor": [
+    78,
+    190
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "banner_shield_red.gltf.glb"
+  },
+  "banner_thin_red": {
+   "path": "res://assets/premium/dungeon/castle/banner_thin_red.png",
+   "size": [
+    80,
+    177
+   ],
+   "bbox": [
+    0,
+    0,
+    80,
+    177
+   ],
+   "anchor": [
+    40,
+    190
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "banner_thin_red.gltf.glb"
+  },
+  "sword_shield": {
+   "path": "res://assets/premium/dungeon/castle/sword_shield.png",
+   "size": [
+    156,
+    104
+   ],
+   "bbox": [
+    0,
+    0,
+    156,
+    104
+   ],
+   "anchor": [
+    78,
+    50
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "sword_shield.gltf.glb"
+  },
+  "sword_shield_gold": {
+   "path": "res://assets/premium/dungeon/castle/sword_shield_gold.png",
+   "size": [
+    156,
+    104
+   ],
+   "bbox": [
+    0,
+    0,
+    156,
+    104
+   ],
+   "anchor": [
+    78,
+    50
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "sword_shield_gold.gltf.glb"
+  },
+  "chest": {
+   "path": "res://assets/premium/dungeon/castle/chest.png",
+   "size": [
+    120,
+    112
+   ],
+   "bbox": [
+    0,
+    0,
+    120,
+    112
+   ],
+   "anchor": [
+    60,
+    87
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "chest.glb"
+  },
+  "chest_gold": {
+   "path": "res://assets/premium/dungeon/castle/chest_gold.png",
+   "size": [
+    120,
+    112
+   ],
+   "bbox": [
+    0,
+    0,
+    120,
+    112
+   ],
+   "anchor": [
+    60,
+    87
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "chest_gold.glb"
+  },
+  "candle_triple": {
+   "path": "res://assets/premium/dungeon/castle/candle_triple.png",
+   "size": [
+    39,
+    65
+   ],
+   "bbox": [
+    0,
+    0,
+    39,
+    65
+   ],
+   "anchor": [
+    14,
+    53
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "candle_triple.gltf.glb"
+  },
+  "trunk_large_A": {
+   "path": "res://assets/premium/dungeon/castle/trunk_large_A.png",
+   "size": [
+    106,
+    94
+   ],
+   "bbox": [
+    0,
+    0,
+    106,
+    94
+   ],
+   "anchor": [
+    53,
+    72
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "trunk_large_A.gltf.glb"
+  },
+  "coin_stack_large": {
+   "path": "res://assets/premium/dungeon/castle/coin_stack_large.png",
+   "size": [
+    102,
+    106
+   ],
+   "bbox": [
+    0,
+    0,
+    102,
+    106
+   ],
+   "anchor": [
+    51,
+    72
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "coin_stack_large.gltf.glb"
+  },
+  "bed_frame": {
+   "path": "res://assets/premium/dungeon/castle/bed_frame.png",
+   "size": [
+    106,
+    167
+   ],
+   "bbox": [
+    0,
+    0,
+    106,
+    167
+   ],
+   "anchor": [
+    53,
+    109
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "bed_frame.gltf.glb"
+  },
+  "barrier_column": {
+   "path": "res://assets/premium/dungeon/castle/barrier_column.png",
+   "size": [
+    276,
+    98
+   ],
+   "bbox": [
+    0,
+    0,
+    276,
+    98
+   ],
+   "anchor": [
+    138,
+    82
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "barrier_column.gltf.glb"
+  },
+  "wall_pillar": {
+   "path": "res://assets/premium/dungeon/castle/wall_pillar.png",
+   "size": [
+    276,
+    286
+   ],
+   "bbox": [
+    0,
+    0,
+    276,
+    286
+   ],
+   "anchor": [
+    138,
+    254
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "wall_pillar.gltf.glb"
+  }
+ }
+}

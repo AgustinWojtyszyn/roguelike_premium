@@ -40,7 +40,8 @@ func _playable_gate(t) -> void:
 		if pr.is_empty():
 			continue
 		t.check(bool(pr.get("weapon_compatible", false)), "jugable %s marcado weapon_compatible" % cid)
-		t.check(pr.has("weapon_anchor"), "jugable %s tiene grip/weapon anchors" % cid)
+		# contrato Premium: agarre generado desde el hueso del rig fuente (no anchors a mano); lo valida tests/test_premium_slice.gd
+		t.check(pr.has("weapon_anchor") or str(pr.get("grip_mode", "")) == "rig", "jugable %s tiene agarre (rig fuente) o anchors" % cid)
 
 func _profiles(t) -> void:
 	for vid in VisualProfiles.CHARACTERS:

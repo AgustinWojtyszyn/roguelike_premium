@@ -57,11 +57,12 @@ static func _paint_floor(ci: CanvasItem, room: Room) -> void:
 		var tex := AssetCatalog.tex(spec["art"])
 		if tex == null:
 			continue
-		var sid: String = AssetManifest.ALIASES.get(spec["art"], spec["art"])
-		var bb: Array = AssetManifest.STATIC.get(sid, {}).get("bbox", [0, 0, tex.get_width(), tex.get_height()])
+		var bb: Array = AssetCatalog.info(spec["art"]).get("bbox", [0, 0, tex.get_width(), tex.get_height()])
 		var bw := float(bb[2]) - float(bb[0])
 		var bh := float(bb[3]) - float(bb[1])
 		var s: float = float(spec.get("s", 1.0))
+		if spec.has("h"):
+			s = float(spec["h"]) / bh   # piezas Premium: alto de juego explicito (el arte 3D no tiene la escala de pixel-art)
 		var decal: bool = spec.get("kind", "obj") == "decal"
 		for i in _count(spec, rng, area_k):
 			var p := Vector2.ZERO
@@ -74,7 +75,7 @@ static func _paint_floor(ci: CanvasItem, room: Room) -> void:
 			if not ok:
 				continue
 			var flip := -1.0 if rng.randf() < 0.5 else 1.0
-			var col := Color(1, 1, 1, float(spec.get("a", 1.0)))
+			var col: Color = Color(spec.get("tint", Color.WHITE), float(spec.get("a", 1.0)))
 			var w := bw * s
 			var h := bh * s
 			var src := Rect2(float(bb[0]), float(bb[1]), bw, bh)
@@ -105,9 +106,10 @@ static func spawn_standing(room: Room, parent: Node2D) -> void:
 		var tex := AssetCatalog.tex(spec["art"])
 		if tex == null:
 			continue
-		var sid: String = AssetManifest.ALIASES.get(spec["art"], spec["art"])
-		var bb: Array = AssetManifest.STATIC.get(sid, {}).get("bbox", [0, 0, tex.get_width(), tex.get_height()])
+		var bb: Array = AssetCatalog.info(spec["art"]).get("bbox", [0, 0, tex.get_width(), tex.get_height()])
 		var s: float = float(spec.get("s", 1.0))
+		if spec.has("h"):
+			s = float(spec["h"]) / maxf(1.0, float(bb[3]) - float(bb[1]))
 		for i in _count(spec, rng, 1.0):
 			for tries in 12:
 				var p := Vector2(rng.randf_range(F.position.x + 110.0, F.end.x - 110.0), F.position.y + 34.0 + rng.randf_range(0.0, 18.0))
@@ -128,7 +130,8 @@ static func spawn_standing(room: Room, parent: Node2D) -> void:
 				spr.offset = Vector2(-(float(bb[2]) - float(bb[0])) * 0.5, -(float(bb[3]) - float(bb[1])))
 				spr.scale = Vector2(s, s) * (1.0 if rng.randf() < 0.5 else 1.0)
 				spr.position = p
-				spr.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST if absf(s - roundf(s)) < 0.12 else CanvasItem.TEXTURE_FILTER_LINEAR
+				spr.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST if absf(s - roundf(s)) < 0.12 and not spec.has("h") else CanvasItem.TEXTURE_FILTER_LINEAR
+				spr.modulate = spec.get("tint", Color.WHITE)
 				parent.add_child(spr)
 				room.standing.append(spr)
 				break

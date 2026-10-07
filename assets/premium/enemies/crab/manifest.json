@@ -1,0 +1,150 @@
+{
+ "id": "crab",
+ "kind": "enemy_creature",
+ "role": "enemy",
+ "source_pack": "Quaternius FreeModels mirror",
+ "source_revision": "db3df04d1e4714298a09510b26fb6de6645138a2",
+ "license": "CC0 1.0",
+ "source_file": "Cute Animated Monsters - Aug 2020/glTF/Crab.gltf",
+ "transformation": "Godot offscreen ortho 3/4 render (tools/premium_render/render_rig.gd), 8 dirs, bone-masked pose blend; grip from rig bone handslot; packed by tools/premium_pipeline.py",
+ "job_sha256": "87e6fb59701c470b",
+ "runtime_path": "res://assets/premium/enemies/crab/",
+ "cell": [
+  96,
+  96
+ ],
+ "feet": [
+  48,
+  69.12
+ ],
+ "ppu": 30.0,
+ "pitch": 35.0,
+ "anims": {
+  "idle": {
+   "sheet": "res://assets/premium/enemies/crab/idle.png",
+   "dirs": [
+    "south",
+    "south-east",
+    "east",
+    "north-east",
+    "north"
+   ],
+   "counts": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "cell": [
+    96,
+    96
+   ]
+  },
+  "walk": {
+   "sheet": "res://assets/premium/enemies/crab/walk.png",
+   "dirs": [
+    "south",
+    "south-east",
+    "east",
+    "north-east",
+    "north"
+   ],
+   "counts": [
+    6,
+    6,
+    6,
+    6,
+    6
+   ],
+   "cell": [
+    96,
+    96
+   ]
+  },
+  "windup": {
+   "sheet": "res://assets/premium/enemies/crab/windup.png",
+   "dirs": [
+    "south",
+    "south-east",
+    "east",
+    "north-east",
+    "north"
+   ],
+   "counts": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "cell": [
+    96,
+    96
+   ]
+  },
+  "attack": {
+   "sheet": "res://assets/premium/enemies/crab/attack.png",
+   "dirs": [
+    "south",
+    "south-east",
+    "east",
+    "north-east",
+    "north"
+   ],
+   "counts": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "cell": [
+    96,
+    96
+   ]
+  },
+  "recover": {
+   "sheet": "res://assets/premium/enemies/crab/recover.png",
+   "dirs": [
+    "south",
+    "south-east",
+    "east",
+    "north-east",
+    "north"
+   ],
+   "counts": [
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "cell": [
+    96,
+    96
+   ]
+  },
+  "death": {
+   "sheet": "res://assets/premium/enemies/crab/death.png",
+   "dirs": [
+    "south",
+    "south-east",
+    "east",
+    "north-east",
+    "north"
+   ],
+   "counts": [
+    6,
+    6,
+    6,
+    6,
+    6
+   ],
+   "cell": [
+    96,
+    96
+   ]
+  }
+ }
+}
