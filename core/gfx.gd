@@ -79,7 +79,13 @@ static func outline(ci: CanvasItem, pts: PackedVector2Array, line: Color, w: flo
 	ci.draw_polyline(p, line, w, true)
 
 
+static var polycheck := false
+
+
 static func poly(ci: CanvasItem, pts: PackedVector2Array, fill: Color, line: Color = INK, w: float = 2.0) -> void:
+	if polycheck and Geometry2D.triangulate_polygon(pts).is_empty():
+		print("BAD POLY ", pts)
+		print_stack()
 	ci.draw_colored_polygon(pts, fill)
 	if w > 0.0:
 		outline(ci, pts, line, w)
@@ -93,6 +99,9 @@ static func gpoly(ci: CanvasItem, pts: PackedVector2Array, top: Color, bot: Colo
 		mn = minf(mn, p.y)
 		mx = maxf(mx, p.y)
 	var span := maxf(mx - mn, 0.001)
+	if polycheck and Geometry2D.triangulate_polygon(pts).is_empty():
+		print("BAD GPOLY ", pts)
+		print_stack()
 	var cols := PackedColorArray()
 	for p in pts:
 		cols.append(top.lerp(bot, (p.y - mn) / span))

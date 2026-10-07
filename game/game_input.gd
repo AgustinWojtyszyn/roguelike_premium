@@ -189,9 +189,31 @@ func _input(event: InputEvent) -> void:
 
 
 # ---------------------------------------------------------------- bot de pruebas (--bot)
+var _bot_last := Vector2.ZERO
+var _bot_stuck := 0.0
+var _bot_detour := 0.0
+var _bot_detour_dir := Vector2.ZERO
+
+
 func _bot_move() -> Vector2:
 	if game.idle:
 		return Vector2.ZERO
+	# desatasco: sin pathfinding, si el bot lleva 1.5 s sin avanzar toma un rodeo aleatorio
+	var dtb := get_process_delta_time()
+	if game.player.position.distance_to(_bot_last) < 10.0 * dtb * 6.0:
+		_bot_stuck += dtb
+	else:
+		_bot_stuck = 0.0
+		_bot_last = game.player.position
+	if _bot_detour > 0.0:
+		_bot_detour -= dtb
+		return _bot_detour_dir
+	if _bot_stuck > 1.5:
+		_bot_stuck = 0.0
+		_bot_last = game.player.position
+		_bot_detour = 1.4
+		_bot_detour_dir = Vector2.from_angle(randf() * TAU)
+		return _bot_detour_dir
 	var nearest := game.nearest_enemy()
 	var v := Vector2.ZERO
 	var p := game.player.position

@@ -76,6 +76,7 @@ func _ready() -> void:
 	if Boot.has_flag("show"):
 		_dbg_t = 2.0
 	Prof.on = Boot.has_flag("perf")
+	Gfx.polycheck = Boot.has_flag("polycheck")
 	if Boot.has_flag("speed"):
 		Engine.time_scale = float(Boot.get_arg("speed"))
 	sfx = AudioMgr
