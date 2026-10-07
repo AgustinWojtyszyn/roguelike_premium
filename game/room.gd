@@ -328,16 +328,18 @@ func _build_solids() -> void:
 	while y < y1:
 		var cur: Array = []
 		var x := x0
-		var start := -1.0
+		var start := 0.0
+		var has_start := false
 		while x < x1:
 			var is_walk := _in_walk(Vector2(x + CELL * 0.5, y + CELL * 0.5))
-			if not is_walk and start < 0.0:
+			if not is_walk and not has_start:
 				start = x
-			elif is_walk and start >= 0.0:
+				has_start = true
+			elif is_walk and has_start:
 				cur.append([start, x])
-				start = -1.0
+				has_start = false
 			x += CELL
-		if start >= 0.0:
+		if has_start:
 			cur.append([start, x1])
 		# fusion vertical con runs abiertos identicos
 		var next_open: Array = []

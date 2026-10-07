@@ -262,12 +262,14 @@ func __process_impl(delta: float) -> void:
 		enemy_time = lerpf(enemy_time, 1.0, clampf(rdt * 4.0, 0.0, 1.0))
 	if not over:
 		run.time += rdt
+	if Boot.has_flag("debug") and director != null and not room.bounds.grow(60.0).has_point(player.position):
+		print("[FUERA DE LIMITES] t=%.1f sala=%s %s>%s pos=%s bounds=%s vel=%s cleared=%s transition=%s" % [clock, director.plan[director.stage]["room"], room.entry_side, room.exit_side, str(player.position.round()), str(room.bounds), str(player.vel.round()), str(director.cleared), str(director.transition)])
 	if not enemies.is_empty() and director != null and director.in_combat:
 		stall_t += rdt * tscale
 	else:
 		stall_t = 0.0
 	if Boot.has_flag("debug") and int(clock * 2.0) != int((clock - rdt) * 2.0) and int(clock) % 5 == 0:
-		print("[t=%.0f] etapa=%d entered=%s combat=%s cleared=%s enemies=%d pend=%d wave=%d seal=%.2f pos=%s hp=%d kills=%d" % [clock, director.stage, director.entered, director.in_combat, director.cleared, enemies.size(), director.pending.size(), director.wave_i, room.seal_open, str(player.position.round()), player.hp, run.kills] + (" boss=%d%% state=%d" % [int(director.boss.hp_frac() * 100.0), director.boss.state] if director.boss_alive() else "") + (" [%s pos=%s hp=%.0f st=%d tg=%s]" % [enemies[0].kind_name, str(enemies[0].position.round()), enemies[0].hp, enemies[0].state, str(enemies[0].targetable())] if enemies.size() == 1 else ""))
+		print("[t=%.0f] sala=%s %s>%s etapa=%d entered=%s combat=%s cleared=%s enemies=%d pend=%d wave=%d seal=%.2f pos=%s hp=%d kills=%d" % [clock, director.plan[director.stage]["room"], room.entry_side, room.exit_side, director.stage, director.entered, director.in_combat, director.cleared, enemies.size(), director.pending.size(), director.wave_i, room.seal_open, str(player.position.round()), player.hp, run.kills] + (" boss=%d%% state=%d" % [int(director.boss.hp_frac() * 100.0), director.boss.state] if director.boss_alive() else "") + (" [%s pos=%s hp=%.0f st=%d tg=%s]" % [enemies[0].kind_name, str(enemies[0].position.round()), enemies[0].hp, enemies[0].state, str(enemies[0].targetable())] if enemies.size() == 1 else ""))
 	if bot:
 		bot_t += rdt
 	_update_camera(rdt)

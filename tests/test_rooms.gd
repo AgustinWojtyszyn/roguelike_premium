@@ -54,6 +54,29 @@ func run(t) -> void:
 				var blocked := _blocked_rects(room, def)
 				var tag := "%s %s->%s" % [rid, ein, eout]
 				checked += 1
+				# contencion: todo el perimetro exterior de las zonas transitables esta cubierto por muros solidos
+				var leaks := 0
+				for run in room.runs:
+					var a: float = run["a"]
+					var b: float = run["b"]
+					var edge: float = run["edge"]
+					var v := a + 10.0
+					while v < b - 10.0:
+						var q: Vector2
+						match run["side"]:
+							"N": q = Vector2(v, edge - 30.0)
+							"S": q = Vector2(v, edge + 30.0)
+							"W": q = Vector2(edge - 30.0, v)
+							_: q = Vector2(edge + 30.0, v)
+						var covered := false
+						for sr in room.base_solids:
+							if sr.has_point(q):
+								covered = true
+								break
+						if not covered:
+							leaks += 1
+						v += 25.0
+				t.eq(leaks, 0, "%s: muros solidos cubren todo el perimetro (huecos: %d)" % [tag, leaks])
 				# props y bloques dentro del suelo
 				for p in def.props:
 					var r := Rect2(float(p[1]), float(p[2]), float(p[3]), float(p[4]))
