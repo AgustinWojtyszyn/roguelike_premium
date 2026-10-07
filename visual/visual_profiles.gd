@@ -102,7 +102,7 @@ static func prop(kind: String) -> Dictionary:
 const DECOR := {
 	"castle": {
 		"floor": [
-			{"art": "rpg/decals/floor_crack", "n": [3, 5], "kind": "decal", "a": 0.55, "s": 1.5},
+			{"art": "rpg/decals/floor_crack", "n": [2, 4], "kind": "decal", "a": 0.4, "s": 1.2},
 			{"art": "rpg/decals/bone_dust", "n": [2, 3], "kind": "decal", "a": 0.7, "s": 1.3},
 			{"art": "rpg/decals/gravel_scatter", "n": [2, 4], "kind": "decal", "a": 0.65, "s": 1.4},
 			{"art": "rpg/props/rubble/stone_rubble", "n": [2, 4], "kind": "obj", "a": 1.0, "s": 0.9},
@@ -120,9 +120,9 @@ const DECOR := {
 	},
 	"aztec": {
 		"floor": [
-			{"art": "rpg/decals/moss_patch_a", "n": [2, 3], "kind": "decal", "a": 0.7, "s": 1.5},
-			{"art": "rpg/decals/moss_patch_b", "n": [2, 3], "kind": "decal", "a": 0.7, "s": 1.5},
-			{"art": "rpg/decals/floor_roots", "n": [2, 3], "kind": "decal", "a": 0.75, "s": 1.5},
+			{"art": "rpg/decals/moss_patch_a", "n": [2, 3], "kind": "decal", "a": 0.6, "s": 1.2},
+			{"art": "rpg/decals/moss_patch_b", "n": [2, 3], "kind": "decal", "a": 0.6, "s": 1.2},
+			{"art": "rpg/decals/floor_roots", "n": [1, 2], "kind": "decal", "a": 0.55, "s": 1.0},
 			{"art": "rpg/decals/gravel_scatter", "n": [2, 3], "kind": "decal", "a": 0.6, "s": 1.4},
 			{"art": "rpg/props/rubble/stone_rubble", "n": [2, 3], "kind": "obj", "a": 1.0, "s": 0.9},
 			{"art": "rpg/props/organic/glowing_mushroom_cluster", "n": [1, 2], "kind": "obj", "a": 1.0, "s": 0.85},
@@ -150,7 +150,7 @@ const DECOR := {
 	},
 	"anomaly": {
 		"floor": [
-			{"art": "rpg/decals/floor_crack", "n": [3, 5], "kind": "decal", "a": 0.5, "s": 1.5},
+			{"art": "rpg/decals/floor_crack", "n": [2, 3], "kind": "decal", "a": 0.3, "s": 1.1},
 			{"art": "rpg/props/rift/void_debris", "n": [1, 3], "kind": "obj", "a": 0.95, "s": 0.8},
 			{"art": "rpg/props/rift/dimensional_fragment", "n": [1, 2], "kind": "obj", "a": 1.0, "s": 0.85},
 			{"art": "rpg/props/crystals/violet_rift_crystal_cluster", "n": [1, 2], "kind": "obj", "a": 1.0, "s": 0.75},

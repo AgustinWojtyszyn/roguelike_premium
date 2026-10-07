@@ -526,60 +526,6 @@ const ANIMS := {
 			}
 		}
 	},
-	"rpg/enemies/root_vine": {
-		"state": "migrate",
-		"bbox": [20, 18, 106, 109],
-		"anims": {
-			"attack": {
-				"sheet": "res://assets/migrated/rpg/enemies/root_vine/attack.png",
-				"dirs": ["south"],
-				"counts": [7],
-				"cell": [128, 128]
-			},
-			"death": {
-				"sheet": "res://assets/migrated/rpg/enemies/root_vine/death.png",
-				"dirs": ["south"],
-				"counts": [7],
-				"cell": [128, 128]
-			},
-			"grab_pull": {
-				"sheet": "res://assets/migrated/rpg/enemies/root_vine/grab_pull.png",
-				"dirs": ["south"],
-				"counts": [7],
-				"cell": [128, 128]
-			},
-			"grab_windup": {
-				"sheet": "res://assets/migrated/rpg/enemies/root_vine/grab_windup.png",
-				"dirs": ["south"],
-				"counts": [7],
-				"cell": [128, 128]
-			},
-			"hurt": {
-				"sheet": "res://assets/migrated/rpg/enemies/root_vine/hurt.png",
-				"dirs": ["south"],
-				"counts": [7],
-				"cell": [128, 128]
-			},
-			"idle": {
-				"sheet": "res://assets/migrated/rpg/enemies/root_vine/idle.png",
-				"dirs": ["south"],
-				"counts": [7],
-				"cell": [128, 128]
-			},
-			"move": {
-				"sheet": "res://assets/migrated/rpg/enemies/root_vine/move.png",
-				"dirs": ["south"],
-				"counts": [7],
-				"cell": [128, 128]
-			},
-			"vine_grab": {
-				"sheet": "res://assets/migrated/rpg/enemies/root_vine/vine_grab.png",
-				"dirs": ["south"],
-				"counts": [7],
-				"cell": [128, 128]
-			}
-		}
-	},
 	"rpg/bosses/rift_warden": {
 		"state": "migrate",
 		"bbox": [76, 35, 143, 195],
@@ -691,150 +637,10 @@ const ANIMS := {
 }
 
 const STATIC := {
-	"rpg/ui/portraits/beetle_cyborg_portrait": {
-		"path": "res://assets/migrated/rpg/ui/portraits/beetle_cyborg_portrait.png",
-		"size": [64, 64],
-		"bbox": [1, 1, 63, 63]
-	},
-	"rpg/ui/portraits/combat_android_portrait": {
-		"path": "res://assets/migrated/rpg/ui/portraits/combat_android_portrait.png",
-		"size": [64, 64],
-		"bbox": [1, 2, 63, 61]
-	},
-	"rpg/ui/portraits/human_ranger_portrait": {
-		"path": "res://assets/migrated/rpg/ui/portraits/human_ranger_portrait.png",
-		"size": [64, 64],
-		"bbox": [3, 0, 61, 63]
-	},
-	"rpg/ui/portraits/mutant_striker_portrait": {
-		"path": "res://assets/migrated/rpg/ui/portraits/mutant_striker_portrait.png",
-		"size": [64, 64],
-		"bbox": [0, 1, 64, 63]
-	},
-	"rpg/props/rooms/boss_arena_pillar": {
-		"path": "res://assets/migrated/rpg/props/rooms/boss_arena_pillar.png",
-		"size": [128, 192],
-		"bbox": [9, 5, 118, 187]
-	},
-	"rpg/props/rooms/boss_arena_seal": {
-		"path": "res://assets/migrated/rpg/props/rooms/boss_arena_seal.png",
-		"size": [96, 96],
-		"bbox": [7, 11, 88, 85]
-	},
-	"rpg/props/rooms/challenge_obelisk": {
-		"path": "res://assets/migrated/rpg/props/rooms/challenge_obelisk.png",
-		"size": [48, 80],
-		"bbox": [6, 1, 43, 79]
-	},
-	"rpg/props/rooms/challenge_rune_plate": {
-		"path": "res://assets/migrated/rpg/props/rooms/challenge_rune_plate.png",
-		"size": [128, 128],
-		"bbox": [9, 10, 119, 118]
-	},
-	"rpg/props/rooms/combat_blood_decal": {
-		"path": "res://assets/migrated/rpg/props/rooms/combat_blood_decal.png",
-		"size": [96, 96],
-		"bbox": [8, 4, 85, 71]
-	},
 	"rpg/props/rooms/combat_scorch_decal": {
 		"path": "res://assets/migrated/rpg/props/rooms/combat_scorch_decal.png",
 		"size": [96, 96],
 		"bbox": [24, 21, 78, 73]
-	},
-	"rpg/props/rooms/dimensional_pocket_anomaly": {
-		"path": "res://assets/migrated/rpg/props/rooms/dimensional_pocket_anomaly.png",
-		"size": [96, 96],
-		"bbox": [8, 25, 89, 88]
-	},
-	"rpg/props/rooms/elite_dais": {
-		"path": "res://assets/migrated/rpg/props/rooms/elite_dais.png",
-		"size": [96, 64],
-		"bbox": [6, 8, 89, 61]
-	},
-	"rpg/props/rooms/elite_floor_marker": {
-		"path": "res://assets/migrated/rpg/props/rooms/elite_floor_marker.png",
-		"size": [96, 96],
-		"bbox": [12, 11, 84, 85]
-	},
-	"rpg/props/rooms/entrance_archway": {
-		"path": "res://assets/migrated/rpg/props/rooms/entrance_archway.png",
-		"size": [64, 64],
-		"bbox": [0, 4, 64, 56]
-	},
-	"rpg/props/rooms/event_artifact_stone": {
-		"path": "res://assets/migrated/rpg/props/rooms/event_artifact_stone.png",
-		"size": [128, 128],
-		"bbox": [23, 19, 107, 106]
-	},
-	"rpg/props/rooms/event_rune_circle": {
-		"path": "res://assets/migrated/rpg/props/rooms/event_rune_circle.png",
-		"size": [96, 96],
-		"bbox": [16, 25, 81, 79]
-	},
-	"rpg/props/rooms/exit_portal": {
-		"path": "res://assets/migrated/rpg/props/rooms/exit_portal.png",
-		"size": [64, 80],
-		"bbox": [4, 5, 57, 78]
-	},
-	"rpg/props/rooms/exit_stairs": {
-		"path": "res://assets/migrated/rpg/props/rooms/exit_stairs.png",
-		"size": [128, 128],
-		"bbox": [17, 2, 98, 128]
-	},
-	"rpg/props/rooms/miniboss_arena_seal": {
-		"path": "res://assets/migrated/rpg/props/rooms/miniboss_arena_seal.png",
-		"size": [192, 192],
-		"bbox": [15, 15, 177, 177]
-	},
-	"rpg/props/rooms/pocket_float_platform": {
-		"path": "res://assets/migrated/rpg/props/rooms/pocket_float_platform.png",
-		"size": [128, 128],
-		"bbox": [18, 27, 110, 106]
-	},
-	"rpg/props/rooms/secret_false_wall": {
-		"path": "res://assets/migrated/rpg/props/rooms/secret_false_wall.png",
-		"size": [128, 128],
-		"bbox": [25, 5, 103, 123]
-	},
-	"rpg/props/rooms/secret_wall_switch": {
-		"path": "res://assets/migrated/rpg/props/rooms/secret_wall_switch.png",
-		"size": [48, 64],
-		"bbox": [15, 16, 35, 48]
-	},
-	"rpg/props/rooms/starting_waystone": {
-		"path": "res://assets/migrated/rpg/props/rooms/starting_waystone.png",
-		"size": [128, 128],
-		"bbox": [38, 8, 90, 120]
-	},
-	"rpg/props/rooms/trap_pressure_plate": {
-		"path": "res://assets/migrated/rpg/props/rooms/trap_pressure_plate.png",
-		"size": [96, 96],
-		"bbox": [15, 14, 81, 82]
-	},
-	"rpg/props/rooms/treasure_floor_accent": {
-		"path": "res://assets/migrated/rpg/props/rooms/treasure_floor_accent.png",
-		"size": [128, 128],
-		"bbox": [20, 19, 108, 108]
-	},
-	"rpg/props/rooms/treasure_gold_pile": {
-		"path": "res://assets/migrated/rpg/props/rooms/treasure_gold_pile.png",
-		"size": [64, 64],
-		"bbox": [4, 6, 60, 58]
-	},
-	"rpg/vfx/bosses/arena_warning": {
-		"path": "res://assets/migrated/rpg/vfx/bosses/arena_warning.png",
-		"size": [64, 64],
-		"bbox": [4, 3, 61, 61]
-	},
-	"rpg/vfx/bosses/boss_attack_warning": {
-		"path": "res://assets/migrated/rpg/vfx/bosses/boss_attack_warning.png",
-		"size": [64, 64],
-		"bbox": [11, 7, 53, 56]
-	},
-	"rpg/vfx/bosses/boss_death": {
-		"path": "res://assets/migrated/rpg/vfx/bosses/boss_death.png",
-		"size": [96, 96],
-		"bbox": [6, 5, 89, 88]
 	},
 	"rpg/vfx/bosses/boss_phase_change": {
 		"path": "res://assets/migrated/rpg/vfx/bosses/boss_phase_change.png",
@@ -845,46 +651,6 @@ const STATIC := {
 		"path": "res://assets/migrated/rpg/vfx/bosses/boss_spawn.png",
 		"size": [96, 96],
 		"bbox": [10, 0, 87, 92]
-	},
-	"rpg/vfx/bosses/rift_opening": {
-		"path": "res://assets/migrated/rpg/vfx/bosses/rift_opening.png",
-		"size": [64, 96],
-		"bbox": [2, 1, 62, 95]
-	},
-	"rpg/vfx/bosses/summon_effect": {
-		"path": "res://assets/migrated/rpg/vfx/bosses/summon_effect.png",
-		"size": [64, 64],
-		"bbox": [13, 3, 52, 61]
-	},
-	"rpg/vfx/magic/cyan_magic_burst": {
-		"path": "res://assets/migrated/rpg/vfx/magic/cyan_magic_burst.png",
-		"size": [48, 48],
-		"bbox": [7, 4, 43, 43]
-	},
-	"rpg/vfx/magic/fire": {
-		"path": "res://assets/migrated/rpg/vfx/magic/fire.png",
-		"size": [64, 64],
-		"bbox": [6, 2, 58, 61]
-	},
-	"rpg/vfx/magic/rift_energy_burst": {
-		"path": "res://assets/migrated/rpg/vfx/magic/rift_energy_burst.png",
-		"size": [64, 64],
-		"bbox": [11, 7, 49, 57]
-	},
-	"rpg/vfx/magic/violet_magic_burst": {
-		"path": "res://assets/migrated/rpg/vfx/magic/violet_magic_burst.png",
-		"size": [48, 48],
-		"bbox": [3, 5, 44, 43]
-	},
-	"rpg/vfx/rewards/chest_sparkle": {
-		"path": "res://assets/migrated/rpg/vfx/rewards/chest_sparkle.png",
-		"size": [64, 64],
-		"bbox": [6, 3, 61, 61]
-	},
-	"rpg/vfx/rewards/essence_collect": {
-		"path": "res://assets/migrated/rpg/vfx/rewards/essence_collect.png",
-		"size": [48, 48],
-		"bbox": [5, 5, 42, 43]
 	},
 	"rpg/vfx/rewards/heal": {
 		"path": "res://assets/migrated/rpg/vfx/rewards/heal.png",
@@ -911,16 +677,6 @@ const STATIC := {
 		"size": [32, 32],
 		"bbox": [4, 2, 29, 30]
 	},
-	"rpg/vfx/rewards/relic_pickup": {
-		"path": "res://assets/migrated/rpg/vfx/rewards/relic_pickup.png",
-		"size": [64, 64],
-		"bbox": [9, 6, 57, 57]
-	},
-	"rpg/vfx/combat/armor_hit": {
-		"path": "res://assets/migrated/rpg/vfx/combat/armor_hit.png",
-		"size": [48, 48],
-		"bbox": [5, 0, 41, 39]
-	},
 	"rpg/vfx/combat/blood_hit": {
 		"path": "res://assets/migrated/rpg/vfx/combat/blood_hit.png",
 		"size": [48, 48],
@@ -935,16 +691,6 @@ const STATIC := {
 		"path": "res://assets/migrated/rpg/vfx/combat/critical_hit.png",
 		"size": [64, 64],
 		"bbox": [5, 6, 57, 58]
-	},
-	"rpg/vfx/combat/electric_arc": {
-		"path": "res://assets/migrated/rpg/vfx/combat/electric_arc.png",
-		"size": [64, 48],
-		"bbox": [3, 3, 61, 45]
-	},
-	"rpg/vfx/combat/energy_impact": {
-		"path": "res://assets/migrated/rpg/vfx/combat/energy_impact.png",
-		"size": [64, 64],
-		"bbox": [4, 4, 59, 60]
 	},
 	"rpg/vfx/combat/explosion_fire": {
 		"path": "res://assets/migrated/rpg/vfx/combat/explosion_fire.png",
@@ -961,85 +707,25 @@ const STATIC := {
 		"size": [48, 48],
 		"bbox": [10, 7, 37, 42]
 	},
-	"rpg/vfx/combat/poison_cloud": {
-		"path": "res://assets/migrated/rpg/vfx/combat/poison_cloud.png",
-		"size": [64, 48],
-		"bbox": [5, 2, 59, 45]
-	},
 	"rpg/vfx/combat/shield_hit": {
 		"path": "res://assets/migrated/rpg/vfx/combat/shield_hit.png",
 		"size": [64, 64],
 		"bbox": [8, 5, 57, 58]
-	},
-	"rpg/vfx/combat/spore_burst": {
-		"path": "res://assets/migrated/rpg/vfx/combat/spore_burst.png",
-		"size": [64, 48],
-		"bbox": [8, 5, 56, 43]
 	},
 	"rpg/vfx/weapons/muzzle_flash": {
 		"path": "res://assets/migrated/rpg/vfx/weapons/muzzle_flash.png",
 		"size": [48, 48],
 		"bbox": [2, 1, 45, 47]
 	},
-	"rpg/vfx/weapons/muzzle_flash_rifle": {
-		"path": "res://assets/migrated/rpg/vfx/weapons/muzzle_flash_rifle.png",
-		"size": [64, 64],
-		"bbox": [6, 6, 58, 56]
-	},
-	"rpg/vfx/weapons/muzzle_flash_shotgun": {
-		"path": "res://assets/migrated/rpg/vfx/weapons/muzzle_flash_shotgun.png",
-		"size": [64, 64],
-		"bbox": [8, 16, 56, 48]
-	},
-	"rpg/vfx/weapons/projectile_trail": {
-		"path": "res://assets/migrated/rpg/vfx/weapons/projectile_trail.png",
-		"size": [64, 32],
-		"bbox": [0, 9, 62, 23]
-	},
-	"rpg/vfx/movement/dash_streak": {
-		"path": "res://assets/migrated/rpg/vfx/movement/dash_streak.png",
-		"size": [64, 32],
-		"bbox": [0, 8, 61, 22]
-	},
-	"rpg/vfx/movement/player_spawn": {
-		"path": "res://assets/migrated/rpg/vfx/movement/player_spawn.png",
-		"size": [64, 64],
-		"bbox": [14, 4, 50, 60]
-	},
-	"rpg/vfx/movement/speed_streak": {
-		"path": "res://assets/migrated/rpg/vfx/movement/speed_streak.png",
-		"size": [64, 64],
-		"bbox": [0, 21, 64, 40]
-	},
-	"rpg/vfx/movement/teleport": {
-		"path": "res://assets/migrated/rpg/vfx/movement/teleport.png",
-		"size": [48, 64],
-		"bbox": [9, 0, 39, 62]
-	},
-	"rpg/props/rift/arcane_device": {
-		"path": "res://assets/migrated/rpg/props/rift/arcane_device.png",
-		"size": [96, 128],
-		"bbox": [16, 10, 80, 119]
-	},
 	"rpg/props/rift/dimensional_fragment": {
 		"path": "res://assets/migrated/rpg/props/rift/dimensional_fragment.png",
 		"size": [64, 64],
 		"bbox": [5, 4, 59, 61]
 	},
-	"rpg/props/rift/dimensional_gate": {
-		"path": "res://assets/migrated/rpg/props/rift/dimensional_gate.png",
-		"size": [128, 128],
-		"bbox": [32, 13, 97, 110]
-	},
 	"rpg/props/rift/floating_crystals": {
 		"path": "res://assets/migrated/rpg/props/rift/floating_crystals.png",
 		"size": [96, 96],
 		"bbox": [28, 8, 68, 88]
-	},
-	"rpg/props/rift/floating_pillar": {
-		"path": "res://assets/migrated/rpg/props/rift/floating_pillar.png",
-		"size": [96, 160],
-		"bbox": [13, 11, 80, 142]
 	},
 	"rpg/props/rift/rift_anchor": {
 		"path": "res://assets/migrated/rpg/props/rift/rift_anchor.png",
@@ -1051,21 +737,6 @@ const STATIC := {
 		"size": [96, 96],
 		"bbox": [8, 8, 86, 88]
 	},
-	"rpg/props/organic/alien_growth": {
-		"path": "res://assets/migrated/rpg/props/organic/alien_growth.png",
-		"size": [96, 96],
-		"bbox": [7, 0, 90, 91]
-	},
-	"rpg/props/organic/cocoon": {
-		"path": "res://assets/migrated/rpg/props/organic/cocoon.png",
-		"size": [96, 128],
-		"bbox": [29, 0, 67, 118]
-	},
-	"rpg/props/organic/egg_sac": {
-		"path": "res://assets/migrated/rpg/props/organic/egg_sac.png",
-		"size": [96, 96],
-		"bbox": [5, 11, 91, 89]
-	},
 	"rpg/props/organic/giant_root": {
 		"path": "res://assets/migrated/rpg/props/organic/giant_root.png",
 		"size": [96, 128],
@@ -1076,35 +747,15 @@ const STATIC := {
 		"size": [48, 64],
 		"bbox": [5, 7, 43, 59]
 	},
-	"rpg/props/organic/organic_doorway": {
-		"path": "res://assets/migrated/rpg/props/organic/organic_doorway.png",
-		"size": [96, 128],
-		"bbox": [4, 4, 92, 124]
-	},
 	"rpg/props/organic/plant_nest": {
 		"path": "res://assets/migrated/rpg/props/organic/plant_nest.png",
 		"size": [128, 128],
 		"bbox": [15, 16, 113, 115]
 	},
-	"rpg/props/organic/poison_pool": {
-		"path": "res://assets/migrated/rpg/props/organic/poison_pool.png",
-		"size": [96, 96],
-		"bbox": [6, 6, 90, 90]
-	},
-	"rpg/props/organic/spore_pods": {
-		"path": "res://assets/migrated/rpg/props/organic/spore_pods.png",
-		"size": [64, 64],
-		"bbox": [11, 12, 53, 52]
-	},
 	"rpg/props/organic/thorny_vegetation": {
 		"path": "res://assets/migrated/rpg/props/organic/thorny_vegetation.png",
 		"size": [64, 48],
 		"bbox": [8, 3, 57, 42]
-	},
-	"rpg/props/organic/toxic_vines": {
-		"path": "res://assets/migrated/rpg/props/organic/toxic_vines.png",
-		"size": [96, 96],
-		"bbox": [6, 0, 90, 90]
 	},
 	"rpg/props/crystals/cyan_crystal_cluster": {
 		"path": "res://assets/migrated/rpg/props/crystals/cyan_crystal_cluster.png",
@@ -1116,25 +767,10 @@ const STATIC := {
 		"size": [48, 64],
 		"bbox": [2, 2, 46, 61]
 	},
-	"rpg/props/lab/blast_door": {
-		"path": "res://assets/migrated/rpg/props/lab/blast_door.png",
-		"size": [96, 128],
-		"bbox": [21, 37, 76, 90]
-	},
-	"rpg/props/lab/broken_generator": {
-		"path": "res://assets/migrated/rpg/props/lab/broken_generator.png",
-		"size": [96, 128],
-		"bbox": [5, 3, 92, 125]
-	},
 	"rpg/props/lab/cable_bundle": {
 		"path": "res://assets/migrated/rpg/props/lab/cable_bundle.png",
 		"size": [96, 96],
 		"bbox": [33, 0, 62, 89]
-	},
-	"rpg/props/lab/containment_unit": {
-		"path": "res://assets/migrated/rpg/props/lab/containment_unit.png",
-		"size": [96, 128],
-		"bbox": [10, 6, 86, 120]
 	},
 	"rpg/props/lab/destroyed_terminal": {
 		"path": "res://assets/migrated/rpg/props/lab/destroyed_terminal.png",
@@ -1151,11 +787,6 @@ const STATIC := {
 		"size": [96, 96],
 		"bbox": [12, 13, 82, 83]
 	},
-	"rpg/props/lab/lab_sliding_door": {
-		"path": "res://assets/migrated/rpg/props/lab/lab_sliding_door.png",
-		"size": [96, 128],
-		"bbox": [20, 16, 76, 118]
-	},
 	"rpg/props/lab/med_equipment": {
 		"path": "res://assets/migrated/rpg/props/lab/med_equipment.png",
 		"size": [128, 96],
@@ -1165,11 +796,6 @@ const STATIC := {
 		"path": "res://assets/migrated/rpg/props/lab/pipes.png",
 		"size": [96, 96],
 		"bbox": [6, 6, 91, 91]
-	},
-	"rpg/props/lab/security_gate": {
-		"path": "res://assets/migrated/rpg/props/lab/security_gate.png",
-		"size": [96, 128],
-		"bbox": [24, 15, 72, 110]
 	},
 	"rpg/props/lab/server_rack": {
 		"path": "res://assets/migrated/rpg/props/lab/server_rack.png",
@@ -1251,50 +877,15 @@ const STATIC := {
 		"size": [48, 48],
 		"bbox": [4, 2, 43, 45]
 	},
-	"rpg/props/story/guardian_statue": {
-		"path": "res://assets/migrated/rpg/props/story/guardian_statue.png",
-		"size": [64, 96],
-		"bbox": [11, 2, 55, 94]
-	},
-	"rpg/props/story/power_generator": {
-		"path": "res://assets/migrated/rpg/props/story/power_generator.png",
-		"size": [64, 64],
-		"bbox": [3, 1, 60, 62]
-	},
 	"rpg/props/story/sci_fi_terminal": {
 		"path": "res://assets/migrated/rpg/props/story/sci_fi_terminal.png",
 		"size": [48, 48],
 		"bbox": [9, 4, 40, 42]
 	},
-	"rpg/props/story/stone_altar_relic": {
-		"path": "res://assets/migrated/rpg/props/story/stone_altar_relic.png",
-		"size": [48, 64],
-		"bbox": [2, 9, 46, 60]
-	},
-	"rpg/props/dungeon/banner": {
-		"path": "res://assets/migrated/rpg/props/dungeon/banner.png",
-		"size": [96, 128],
-		"bbox": [3, 6, 93, 122]
-	},
-	"rpg/props/dungeon/bench": {
-		"path": "res://assets/migrated/rpg/props/dungeon/bench.png",
-		"size": [96, 96],
-		"bbox": [6, 16, 90, 80]
-	},
 	"rpg/props/dungeon/books_scroll": {
 		"path": "res://assets/migrated/rpg/props/dungeon/books_scroll.png",
 		"size": [64, 64],
 		"bbox": [6, 4, 58, 60]
-	},
-	"rpg/props/dungeon/broken_statue": {
-		"path": "res://assets/migrated/rpg/props/dungeon/broken_statue.png",
-		"size": [128, 128],
-		"bbox": [7, 8, 121, 120]
-	},
-	"rpg/props/dungeon/broken_table": {
-		"path": "res://assets/migrated/rpg/props/dungeon/broken_table.png",
-		"size": [96, 96],
-		"bbox": [7, 7, 89, 90]
 	},
 	"rpg/props/dungeon/candles": {
 		"path": "res://assets/migrated/rpg/props/dungeon/candles.png",
@@ -1306,55 +897,25 @@ const STATIC := {
 		"size": [96, 96],
 		"bbox": [12, 18, 84, 80]
 	},
-	"rpg/props/dungeon/corpse": {
-		"path": "res://assets/migrated/rpg/props/dungeon/corpse.png",
-		"size": [96, 96],
-		"bbox": [11, 11, 80, 87]
-	},
-	"rpg/props/dungeon/torn_banner": {
-		"path": "res://assets/migrated/rpg/props/dungeon/torn_banner.png",
-		"size": [96, 128],
-		"bbox": [4, 5, 92, 122]
-	},
 	"rpg/props/dungeon2/bone_heap": {
 		"path": "res://assets/migrated/rpg/props/dungeon2/bone_heap.png",
 		"size": [96, 64],
 		"bbox": [7, 1, 88, 62]
-	},
-	"rpg/props/dungeon2/bookshelf": {
-		"path": "res://assets/migrated/rpg/props/dungeon2/bookshelf.png",
-		"size": [80, 80],
-		"bbox": [16, 2, 64, 77]
 	},
 	"rpg/props/dungeon2/brazier": {
 		"path": "res://assets/migrated/rpg/props/dungeon2/brazier.png",
 		"size": [48, 64],
 		"bbox": [9, 3, 38, 58]
 	},
-	"rpg/props/dungeon2/dry_fountain": {
-		"path": "res://assets/migrated/rpg/props/dungeon2/dry_fountain.png",
-		"size": [96, 80],
-		"bbox": [11, 6, 83, 72]
-	},
 	"rpg/props/dungeon2/guardian_statue": {
 		"path": "res://assets/migrated/rpg/props/dungeon2/guardian_statue.png",
 		"size": [48, 96],
 		"bbox": [7, 3, 41, 92]
 	},
-	"rpg/props/dungeon2/iron_cage": {
-		"path": "res://assets/migrated/rpg/props/dungeon2/iron_cage.png",
-		"size": [64, 80],
-		"bbox": [2, 3, 61, 76]
-	},
 	"rpg/props/dungeon2/lantern_post": {
 		"path": "res://assets/migrated/rpg/props/dungeon2/lantern_post.png",
 		"size": [32, 80],
 		"bbox": [3, 4, 30, 75]
-	},
-	"rpg/props/dungeon2/low_wall_cover": {
-		"path": "res://assets/migrated/rpg/props/dungeon2/low_wall_cover.png",
-		"size": [96, 48],
-		"bbox": [9, 3, 86, 45]
 	},
 	"rpg/props/dungeon2/rift_crystal_pillar": {
 		"path": "res://assets/migrated/rpg/props/dungeon2/rift_crystal_pillar.png",
@@ -1366,30 +927,10 @@ const STATIC := {
 		"size": [80, 80],
 		"bbox": [3, 2, 77, 79]
 	},
-	"rpg/props/dungeon2/rubble_large": {
-		"path": "res://assets/migrated/rpg/props/dungeon2/rubble_large.png",
-		"size": [96, 64],
-		"bbox": [5, 3, 91, 61]
-	},
-	"rpg/props/dungeon2/rune_altar": {
-		"path": "res://assets/migrated/rpg/props/dungeon2/rune_altar.png",
-		"size": [64, 64],
-		"bbox": [6, 2, 58, 63]
-	},
 	"rpg/props/dungeon2/sarcophagus": {
 		"path": "res://assets/migrated/rpg/props/dungeon2/sarcophagus.png",
 		"size": [96, 64],
 		"bbox": [19, 3, 75, 62]
-	},
-	"rpg/props/dungeon2/spike_barricade": {
-		"path": "res://assets/migrated/rpg/props/dungeon2/spike_barricade.png",
-		"size": [96, 48],
-		"bbox": [15, 0, 81, 47]
-	},
-	"rpg/props/dungeon2/stalagmites": {
-		"path": "res://assets/migrated/rpg/props/dungeon2/stalagmites.png",
-		"size": [80, 64],
-		"bbox": [8, 2, 70, 61]
 	},
 	"rpg/props/dungeon2/weapon_rack": {
 		"path": "res://assets/migrated/rpg/props/dungeon2/weapon_rack.png",
@@ -1401,45 +942,10 @@ const STATIC := {
 		"size": [48, 56],
 		"bbox": [9, 7, 41, 49]
 	},
-	"rpg/props/containers/broken_barrel": {
-		"path": "res://assets/migrated/rpg/props/containers/broken_barrel.png",
-		"size": [48, 56],
-		"bbox": [2, 8, 46, 49]
-	},
-	"rpg/props/containers/broken_crate": {
-		"path": "res://assets/migrated/rpg/props/containers/broken_crate.png",
-		"size": [48, 56],
-		"bbox": [3, 9, 44, 45]
-	},
 	"rpg/props/containers/crate": {
 		"path": "res://assets/migrated/rpg/props/containers/crate.png",
 		"size": [48, 56],
 		"bbox": [5, 9, 43, 47]
-	},
-	"rpg/props/pickups/coin_stack": {
-		"path": "res://assets/migrated/rpg/props/pickups/coin_stack.png",
-		"size": [48, 48],
-		"bbox": [7, 9, 42, 39]
-	},
-	"rpg/props/pickups/essence_shard": {
-		"path": "res://assets/migrated/rpg/props/pickups/essence_shard.png",
-		"size": [32, 32],
-		"bbox": [8, 6, 24, 26]
-	},
-	"rpg/props/pickups/health_orb": {
-		"path": "res://assets/migrated/rpg/props/pickups/health_orb.png",
-		"size": [32, 32],
-		"bbox": [7, 5, 25, 28]
-	},
-	"rpg/props/traps/spike_trap": {
-		"path": "res://assets/migrated/rpg/props/traps/spike_trap.png",
-		"size": [64, 48],
-		"bbox": [4, 3, 60, 44]
-	},
-	"rpg/props/traps/swinging_blade_trap": {
-		"path": "res://assets/migrated/rpg/props/traps/swinging_blade_trap.png",
-		"size": [64, 48],
-		"bbox": [22, 5, 47, 37]
 	},
 	"rpg/props/rubble/bone_debris": {
 		"path": "res://assets/migrated/rpg/props/rubble/bone_debris.png",
@@ -1456,105 +962,25 @@ const STATIC := {
 		"size": [48, 48],
 		"bbox": [3, 11, 44, 36]
 	},
-	"rpg/props/lighting/brazier": {
-		"path": "res://assets/migrated/rpg/props/lighting/brazier.png",
-		"size": [96, 96],
-		"bbox": [19, 9, 77, 91]
-	},
-	"rpg/props/lighting/broken_street_lamp": {
-		"path": "res://assets/migrated/rpg/props/lighting/broken_street_lamp.png",
-		"size": [128, 128],
-		"bbox": [45, 9, 81, 121]
-	},
-	"rpg/props/lighting/dark_street_lamp": {
-		"path": "res://assets/migrated/rpg/props/lighting/dark_street_lamp.png",
-		"size": [48, 96],
-		"bbox": [16, 2, 32, 91]
-	},
-	"rpg/props/lighting/emergency_sci_light": {
-		"path": "res://assets/migrated/rpg/props/lighting/emergency_sci_light.png",
-		"size": [96, 96],
-		"bbox": [27, 10, 65, 86]
-	},
-	"rpg/props/lighting/iron_lamp": {
-		"path": "res://assets/migrated/rpg/props/lighting/iron_lamp.png",
-		"size": [64, 96],
-		"bbox": [11, 0, 51, 93]
-	},
-	"rpg/props/lighting/large_brazier": {
-		"path": "res://assets/migrated/rpg/props/lighting/large_brazier.png",
-		"size": [128, 128],
-		"bbox": [27, 14, 102, 102]
-	},
 	"rpg/props/lighting/magic_lamp_cyan": {
 		"path": "res://assets/migrated/rpg/props/lighting/magic_lamp_cyan.png",
 		"size": [48, 80],
 		"bbox": [10, 4, 40, 74]
-	},
-	"rpg/props/lighting/standing_torch": {
-		"path": "res://assets/migrated/rpg/props/lighting/standing_torch.png",
-		"size": [48, 80],
-		"bbox": [15, 2, 33, 77]
-	},
-	"rpg/props/lighting/torch_bracket_pair": {
-		"path": "res://assets/migrated/rpg/props/lighting/torch_bracket_pair.png",
-		"size": [64, 64],
-		"bbox": [8, 6, 56, 59]
-	},
-	"rpg/props/lighting/torch_wall": {
-		"path": "res://assets/migrated/rpg/props/lighting/torch_wall.png",
-		"size": [48, 64],
-		"bbox": [12, 4, 34, 60]
 	},
 	"rpg/props/lighting/violet_rift_lamp": {
 		"path": "res://assets/migrated/rpg/props/lighting/violet_rift_lamp.png",
 		"size": [96, 96],
 		"bbox": [31, 8, 66, 90]
 	},
-	"rpg/props/structures/boss_gate": {
-		"path": "res://assets/migrated/rpg/props/structures/boss_gate.png",
-		"size": [96, 96],
-		"bbox": [21, 15, 77, 81]
-	},
 	"rpg/props/structures/broken_column": {
 		"path": "res://assets/migrated/rpg/props/structures/broken_column.png",
 		"size": [48, 64],
 		"bbox": [7, 5, 41, 59]
 	},
-	"rpg/props/structures/event_pedestal": {
-		"path": "res://assets/migrated/rpg/props/structures/event_pedestal.png",
-		"size": [48, 48],
-		"bbox": [2, 2, 46, 45]
-	},
-	"rpg/props/structures/lever": {
-		"path": "res://assets/migrated/rpg/props/structures/lever.png",
-		"size": [40, 48],
-		"bbox": [12, 15, 28, 32]
-	},
-	"rpg/props/structures/ruined_arch": {
-		"path": "res://assets/migrated/rpg/props/structures/ruined_arch.png",
-		"size": [96, 128],
-		"bbox": [15, 15, 81, 108]
-	},
-	"rpg/props/structures/stone_arch": {
-		"path": "res://assets/migrated/rpg/props/structures/stone_arch.png",
-		"size": [96, 128],
-		"bbox": [3, 6, 93, 124]
-	},
 	"rpg/props/structures/stone_column": {
 		"path": "res://assets/migrated/rpg/props/structures/stone_column.png",
 		"size": [48, 80],
 		"bbox": [10, 5, 36, 75]
-	},
-	"rpg/props/structures/stone_dungeon_door": {
-		"path": "res://assets/migrated/rpg/props/structures/stone_dungeon_door.png",
-		"size": [64, 80],
-		"bbox": [4, 4, 57, 77]
-	},
-	"rpg/props/structures/treasure_pedestal": {
-		"path": "res://assets/migrated/rpg/props/structures/treasure_pedestal.png",
-		"size": [48, 48],
-		"bbox": [5, 2, 43, 47]
 	},
 	"rpg/decals/bone_dust": {
 		"path": "res://assets/migrated/rpg/decals/bone_dust.png",
@@ -1606,130 +1032,15 @@ const STATIC := {
 		"size": [32, 64],
 		"bbox": [3, 5, 29, 55]
 	},
-	"vida/interior/bakery_display": {
-		"path": "res://assets/migrated/vida/interior/bakery_display.png",
-		"size": [128, 96],
-		"bbox": [19, 6, 109, 91]
-	},
-	"vida/interior/bathroom": {
-		"path": "res://assets/migrated/vida/interior/bathroom.png",
-		"size": [128, 96],
-		"bbox": [3, 3, 114, 87]
-	},
-	"vida/interior/bed": {
-		"path": "res://assets/migrated/vida/interior/bed.png",
-		"size": [64, 64],
-		"bbox": [6, 3, 58, 59]
-	},
-	"vida/interior/bed_front": {
-		"path": "res://assets/migrated/vida/interior/bed_front.png",
-		"size": [128, 96],
-		"bbox": [11, 12, 117, 87]
-	},
-	"vida/interior/bookcase": {
-		"path": "res://assets/migrated/vida/interior/bookcase.png",
-		"size": [128, 96],
-		"bbox": [30, 10, 99, 88]
-	},
 	"vida/interior/bookcase_front": {
 		"path": "res://assets/migrated/vida/interior/bookcase_front.png",
 		"size": [128, 96],
 		"bbox": [19, 12, 109, 88]
 	},
-	"vida/interior/cafe_bar": {
-		"path": "res://assets/migrated/vida/interior/cafe_bar.png",
-		"size": [160, 96],
-		"bbox": [9, 1, 145, 93]
-	},
-	"vida/interior/cafe_table": {
-		"path": "res://assets/migrated/vida/interior/cafe_table.png",
-		"size": [96, 96],
-		"bbox": [3, 15, 90, 80]
-	},
-	"vida/interior/checkout": {
-		"path": "res://assets/migrated/vida/interior/checkout.png",
-		"size": [128, 96],
-		"bbox": [16, 10, 107, 85]
-	},
-	"vida/interior/desk": {
-		"path": "res://assets/migrated/vida/interior/desk.png",
-		"size": [96, 96],
-		"bbox": [7, 8, 84, 84]
-	},
-	"vida/interior/dining": {
-		"path": "res://assets/migrated/vida/interior/dining.png",
-		"size": [96, 96],
-		"bbox": [9, 12, 85, 80]
-	},
-	"vida/interior/grill": {
-		"path": "res://assets/migrated/vida/interior/grill.png",
-		"size": [128, 96],
-		"bbox": [11, 6, 116, 93]
-	},
-	"vida/interior/hospital_bed": {
-		"path": "res://assets/migrated/vida/interior/hospital_bed.png",
-		"size": [128, 96],
-		"bbox": [15, 17, 108, 83]
-	},
-	"vida/interior/ice_cream_counter": {
-		"path": "res://assets/migrated/vida/interior/ice_cream_counter.png",
-		"size": [128, 96],
-		"bbox": [17, 24, 112, 83]
-	},
-	"vida/interior/kitchen": {
-		"path": "res://assets/migrated/vida/interior/kitchen.png",
-		"size": [96, 64],
-		"bbox": [17, 5, 74, 60]
-	},
-	"vida/interior/market_fridge": {
-		"path": "res://assets/migrated/vida/interior/market_fridge.png",
-		"size": [96, 96],
-		"bbox": [17, 4, 74, 90]
-	},
-	"vida/interior/market_shelf": {
-		"path": "res://assets/migrated/vida/interior/market_shelf.png",
-		"size": [96, 96],
-		"bbox": [10, 4, 83, 93]
-	},
 	"vida/interior/market_shelf_front": {
 		"path": "res://assets/migrated/vida/interior/market_shelf_front.png",
 		"size": [128, 96],
 		"bbox": [18, 15, 108, 83]
-	},
-	"vida/interior/reception": {
-		"path": "res://assets/migrated/vida/interior/reception.png",
-		"size": [128, 96],
-		"bbox": [16, 47, 108, 84]
-	},
-	"vida/interior/shelf": {
-		"path": "res://assets/migrated/vida/interior/shelf.png",
-		"size": [96, 96],
-		"bbox": [21, 3, 69, 92]
-	},
-	"vida/interior/sofa": {
-		"path": "res://assets/migrated/vida/interior/sofa.png",
-		"size": [96, 64],
-		"bbox": [13, 5, 82, 61]
-	},
-	"vida/interior/sofa_front": {
-		"path": "res://assets/migrated/vida/interior/sofa_front.png",
-		"size": [128, 96],
-		"bbox": [2, 21, 125, 79]
-	},
-	"vida/interior/tv": {
-		"path": "res://assets/migrated/vida/interior/tv.png",
-		"size": [96, 64],
-		"bbox": [9, 2, 88, 63]
-	},
-	"vida/interior/tv_back": {
-		"path": "res://assets/migrated/vida/interior/tv_back.png",
-		"size": [128, 96],
-		"bbox": [9, 20, 119, 88]
-	},
-	"vida/interior/wardrobe": {
-		"path": "res://assets/migrated/vida/interior/wardrobe.png",
-		"size": [96, 96],
-		"bbox": [14, 4, 74, 89]
 	}
 }
 

@@ -20,17 +20,17 @@
 "vida": 435
 },
 "stats": {
-"rpg_sheets_migrate": 95,
-"rpg_sheets_reserve": 18,
-"rpg_reserve": 287,
+"rpg_sheets_migrate": 87,
+"rpg_sheets_reserve": 26,
+"rpg_reserve": 391,
 "rpg_dup": 19,
-"rpg_migrate": 179,
 "rpg_discard": 64,
+"rpg_migrate": 75,
 "rpg_weapon_oriented": 18,
 "vida_sheets_migrate": 7,
-"vida_reserve": 234,
+"vida_reserve": 257,
 "vida_dup": 4,
-"vida_migrate": 29,
+"vida_migrate": 6,
 "vida_sheet_src": 173
 },
 "items": [
@@ -430,32 +430,32 @@
 "path": "assets/generated/playables/portraits/beetle_cyborg_portrait.png",
 "oid": "f45b0084b0fe5fc57535a5f1cc341e8144d0d290",
 "bytes": 4528,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/ui/portraits/beetle_cyborg_portrait.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/ui/portraits/beetle_cyborg_portrait.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/playables/portraits/combat_android_portrait.png",
 "oid": "867fd873bd42efc979c42390e152579ba1fad44d",
 "bytes": 5942,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/ui/portraits/combat_android_portrait.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/ui/portraits/combat_android_portrait.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/playables/portraits/human_ranger_portrait.png",
 "oid": "871db3045aeee20b6ca8311b3b73cb6035890dc6",
 "bytes": 3399,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/ui/portraits/human_ranger_portrait.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/ui/portraits/human_ranger_portrait.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/playables/portraits/mutant_striker_portrait.png",
 "oid": "9010ff15f39a9f23cb9277fe6c49a6035db73c82",
 "bytes": 6161,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/ui/portraits/mutant_striker_portrait.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/ui/portraits/mutant_striker_portrait.png"
 },
 {
 "src": "rpg",
@@ -15761,40 +15761,40 @@
 "path": "assets/generated/rooms/boss_arena_pillar.png",
 "oid": "3bd4b812f035eee20d231301013154af2849b6d5",
 "bytes": 19453,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/rooms/boss_arena_pillar.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/rooms/boss_arena_pillar.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/rooms/boss_arena_seal.png",
 "oid": "581fd65b37ec24e17c0d3442f1f51921b4821620",
 "bytes": 6278,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/rooms/boss_arena_seal.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/rooms/boss_arena_seal.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/rooms/challenge_obelisk.png",
 "oid": "fcaa353319837a0ecc2de3a0ca6ee4a5d54a1dad",
 "bytes": 2164,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/rooms/challenge_obelisk.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/rooms/challenge_obelisk.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/rooms/challenge_rune_plate.png",
 "oid": "c9ee8f3f30be0e6c4b44985f0f8eb01854d300f6",
 "bytes": 10373,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/rooms/challenge_rune_plate.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/rooms/challenge_rune_plate.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/rooms/combat_blood_decal.png",
 "oid": "0d0df001d20088bb0648b0d531cd154420706a65",
 "bytes": 2439,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/rooms/combat_blood_decal.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/rooms/combat_blood_decal.png"
 },
 {
 "src": "rpg",
@@ -15809,152 +15809,152 @@
 "path": "assets/generated/rooms/dimensional_pocket_anomaly.png",
 "oid": "92c131684e941615ed68e723a3449fa026189d1e",
 "bytes": 4645,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/rooms/dimensional_pocket_anomaly.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/rooms/dimensional_pocket_anomaly.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/rooms/elite_dais.png",
 "oid": "434ab7b9844460880581af6f7eb44e96ae51c590",
 "bytes": 5625,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/rooms/elite_dais.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/rooms/elite_dais.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/rooms/elite_floor_marker.png",
 "oid": "022f1631cd45fee58ada84f3288fde8bfd606e7a",
 "bytes": 5953,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/rooms/elite_floor_marker.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/rooms/elite_floor_marker.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/rooms/entrance_archway.png",
 "oid": "159558c5668885aa9deed2a415a8966f89ff7930",
 "bytes": 2778,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/rooms/entrance_archway.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/rooms/entrance_archway.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/rooms/event_artifact_stone.png",
 "oid": "2f8cca6795b7c48d3e11747f55f0b0a2757a9a47",
 "bytes": 5251,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/rooms/event_artifact_stone.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/rooms/event_artifact_stone.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/rooms/event_rune_circle.png",
 "oid": "d4625208ac7b1bd88e0103b4cb4d89117e992a41",
 "bytes": 4119,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/rooms/event_rune_circle.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/rooms/event_rune_circle.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/rooms/exit_portal.png",
 "oid": "78e9e54e91c84483011c3ff6810106c4a513915e",
 "bytes": 3645,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/rooms/exit_portal.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/rooms/exit_portal.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/rooms/exit_stairs.png",
 "oid": "4453d023f47056bc0ce604c0507f908c32789282",
 "bytes": 6026,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/rooms/exit_stairs.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/rooms/exit_stairs.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/rooms/miniboss_arena_seal.png",
 "oid": "a385708e6ac50e97d8bacfe33e6d002527db1b67",
 "bytes": 36037,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/rooms/miniboss_arena_seal.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/rooms/miniboss_arena_seal.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/rooms/pocket_float_platform.png",
 "oid": "8ce7fc02e98c7308f6c7dd10d8e9ac714ff03894",
 "bytes": 5724,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/rooms/pocket_float_platform.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/rooms/pocket_float_platform.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/rooms/secret_false_wall.png",
 "oid": "4e844965a03f59045f95857f5655f7b31d4bbb10",
 "bytes": 4080,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/rooms/secret_false_wall.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/rooms/secret_false_wall.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/rooms/secret_wall_switch.png",
 "oid": "9409c08f4fb96f23cd3377693663f4f3e276ac9e",
 "bytes": 834,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/rooms/secret_wall_switch.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/rooms/secret_wall_switch.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/rooms/starting_waystone.png",
 "oid": "e5233f9c25487678a6e976d1c78f211a2d93c0c5",
 "bytes": 3097,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/rooms/starting_waystone.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/rooms/starting_waystone.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/rooms/trap_pressure_plate.png",
 "oid": "2a8678d905a236e21e1237373218cdb2931d0148",
 "bytes": 6068,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/rooms/trap_pressure_plate.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/rooms/trap_pressure_plate.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/rooms/treasure_floor_accent.png",
 "oid": "a1e51607937ba593553869e841a2b88a99ecf424",
 "bytes": 8292,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/rooms/treasure_floor_accent.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/rooms/treasure_floor_accent.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/rooms/treasure_gold_pile.png",
 "oid": "ea2fc889dc75ed8174c8acbada21f5ba57e1fc2e",
 "bytes": 4515,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/rooms/treasure_gold_pile.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/rooms/treasure_gold_pile.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/vfx/bosses/arena_warning.png",
 "oid": "3ec6e7fb9541bf70534a43b7e78f2874e60d9a11",
 "bytes": 4001,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/vfx/bosses/arena_warning.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/vfx/bosses/arena_warning.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/vfx/bosses/boss_attack_warning.png",
 "oid": "cd0f255f604b896721a75d8002f556a849f3231b",
 "bytes": 1011,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/vfx/bosses/boss_attack_warning.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/vfx/bosses/boss_attack_warning.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/vfx/bosses/boss_death.png",
 "oid": "740b9dc6a23bd118405bd434e6040fc02d6862a4",
 "bytes": 5117,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/vfx/bosses/boss_death.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/vfx/bosses/boss_death.png"
 },
 {
 "src": "rpg",
@@ -15977,64 +15977,64 @@
 "path": "assets/generated/vfx/bosses/rift_opening.png",
 "oid": "4e11fe7ecbe79c204d903ac29de5dc19563cd6be",
 "bytes": 3237,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/vfx/bosses/rift_opening.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/vfx/bosses/rift_opening.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/vfx/bosses/summon_effect.png",
 "oid": "96b0fda8e70a6b56be3eed03b517f87a351ff485",
 "bytes": 2485,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/vfx/bosses/summon_effect.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/vfx/bosses/summon_effect.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/vfx/magic/cyan_magic_burst.png",
 "oid": "37bb62a3ac4b33a93929c0a490114356fb2aaa52",
 "bytes": 1526,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/vfx/magic/cyan_magic_burst.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/vfx/magic/cyan_magic_burst.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/vfx/magic/fire.png",
 "oid": "d99db7d9aa23e19bab47dbbb92530067f2a478c4",
 "bytes": 1316,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/vfx/magic/fire.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/vfx/magic/fire.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/vfx/magic/rift_energy_burst.png",
 "oid": "fc481b62ffe5949a8fd2c5351cfe5967226936c0",
 "bytes": 1977,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/vfx/magic/rift_energy_burst.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/vfx/magic/rift_energy_burst.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/vfx/magic/violet_magic_burst.png",
 "oid": "16073ddb4b516b675a64ed9739865a6f639c2b8a",
 "bytes": 1615,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/vfx/magic/violet_magic_burst.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/vfx/magic/violet_magic_burst.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/vfx/rewards/chest_sparkle.png",
 "oid": "d4e51014f8ca4a4c825d709595b96058d96abe5c",
 "bytes": 4072,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/vfx/rewards/chest_sparkle.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/vfx/rewards/chest_sparkle.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/vfx/rewards/essence_collect.png",
 "oid": "5e0ec27ffb4b301da0230a7f15a03ad4b82b83fa",
 "bytes": 1398,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/vfx/rewards/essence_collect.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/vfx/rewards/essence_collect.png"
 },
 {
 "src": "rpg",
@@ -16081,16 +16081,16 @@
 "path": "assets/generated/vfx/rewards/relic_pickup.png",
 "oid": "386582d5fe516aa3f7c4b8a41ba40510f9fbaaf7",
 "bytes": 2610,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/vfx/rewards/relic_pickup.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/vfx/rewards/relic_pickup.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/vfx/combat/armor_hit.png",
 "oid": "53cce7b26f0f56b9e26ed82d3717521a216291bb",
 "bytes": 1106,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/vfx/combat/armor_hit.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/vfx/combat/armor_hit.png"
 },
 {
 "src": "rpg",
@@ -16121,16 +16121,16 @@
 "path": "assets/generated/vfx/combat/electric_arc.png",
 "oid": "f15b2bf6d02b92bfe723e2a8cd8cd96b4c7f70cb",
 "bytes": 1031,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/vfx/combat/electric_arc.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/vfx/combat/electric_arc.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/vfx/combat/energy_impact.png",
 "oid": "d3fd865533d6407ade382a7a5e51301e7f9eb622",
 "bytes": 1806,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/vfx/combat/energy_impact.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/vfx/combat/energy_impact.png"
 },
 {
 "src": "rpg",
@@ -16161,8 +16161,8 @@
 "path": "assets/generated/vfx/combat/poison_cloud.png",
 "oid": "67d555eb5bb62380e5ee65741dfe78448b03510e",
 "bytes": 3244,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/vfx/combat/poison_cloud.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/vfx/combat/poison_cloud.png"
 },
 {
 "src": "rpg",
@@ -16177,8 +16177,8 @@
 "path": "assets/generated/vfx/combat/spore_burst.png",
 "oid": "d7f12fac7a58fd593da694db741985e4e568e85e",
 "bytes": 1802,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/vfx/combat/spore_burst.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/vfx/combat/spore_burst.png"
 },
 {
 "src": "rpg",
@@ -16193,56 +16193,56 @@
 "path": "assets/generated/vfx/weapons/muzzle_flash_rifle.png",
 "oid": "4c83836cb0acdd7ef94c4c29046643e41ce76734",
 "bytes": 1281,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/vfx/weapons/muzzle_flash_rifle.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/vfx/weapons/muzzle_flash_rifle.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/vfx/weapons/muzzle_flash_shotgun.png",
 "oid": "d10e6f6ac4654dd33b3a41ce04f995c8fa1e6488",
 "bytes": 1385,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/vfx/weapons/muzzle_flash_shotgun.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/vfx/weapons/muzzle_flash_shotgun.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/vfx/weapons/projectile_trail.png",
 "oid": "57794df01faed3c16467b4bb3c98341829167faa",
 "bytes": 951,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/vfx/weapons/projectile_trail.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/vfx/weapons/projectile_trail.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/vfx/movement/dash_streak.png",
 "oid": "90a5c705d07caaaa69a5a4f70de81090403611c6",
 "bytes": 1236,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/vfx/movement/dash_streak.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/vfx/movement/dash_streak.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/vfx/movement/player_spawn.png",
 "oid": "65b3cef77fb5769767fd16e0489de2398fda6387",
 "bytes": 984,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/vfx/movement/player_spawn.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/vfx/movement/player_spawn.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/vfx/movement/speed_streak.png",
 "oid": "0042f2e780f25e51cb069a10272e4825359c72e9",
 "bytes": 950,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/vfx/movement/speed_streak.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/vfx/movement/speed_streak.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/vfx/movement/teleport.png",
 "oid": "8694012243f549117642176df10c3feebf9f7a99",
 "bytes": 1343,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/vfx/movement/teleport.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/vfx/movement/teleport.png"
 },
 {
 "src": "rpg",
@@ -16697,8 +16697,8 @@
 "path": "assets/generated/props/rift/arcane_device.png",
 "oid": "f1d8d8bc669820c63d04f91dcaf42e606c2b2525",
 "bytes": 3793,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/rift/arcane_device.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/rift/arcane_device.png"
 },
 {
 "src": "rpg",
@@ -16713,8 +16713,8 @@
 "path": "assets/generated/props/rift/dimensional_gate.png",
 "oid": "7f3bdabfb1bc9bc24663083a363306d941b40915",
 "bytes": 5952,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/rift/dimensional_gate.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/rift/dimensional_gate.png"
 },
 {
 "src": "rpg",
@@ -16729,8 +16729,8 @@
 "path": "assets/generated/props/rift/floating_pillar.png",
 "oid": "526aa16b3ca8f404cbdb046fafdf74c6180ecbb0",
 "bytes": 4910,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/rift/floating_pillar.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/rift/floating_pillar.png"
 },
 {
 "src": "rpg",
@@ -16753,24 +16753,24 @@
 "path": "assets/generated/props/organic/alien_growth.png",
 "oid": "ee5263065a67ddd21b0fce0399a2729af09fcab9",
 "bytes": 4994,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/organic/alien_growth.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/organic/alien_growth.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/props/organic/cocoon.png",
 "oid": "109ef966b9cc3668f5b0ed3147f7fbf788c8b45b",
 "bytes": 3568,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/organic/cocoon.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/organic/cocoon.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/props/organic/egg_sac.png",
 "oid": "9ffa94cfed8c94244a50c6a38165c0818974e3a9",
 "bytes": 7200,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/organic/egg_sac.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/organic/egg_sac.png"
 },
 {
 "src": "rpg",
@@ -16793,8 +16793,8 @@
 "path": "assets/generated/props/organic/organic_doorway.png",
 "oid": "105113111466a3c09d5c21f2c4352f22d01a081c",
 "bytes": 8278,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/organic/organic_doorway.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/organic/organic_doorway.png"
 },
 {
 "src": "rpg",
@@ -16809,16 +16809,16 @@
 "path": "assets/generated/props/organic/poison_pool.png",
 "oid": "6641542bd69f366bba3ebab5d4a0d19e578e88d0",
 "bytes": 5766,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/organic/poison_pool.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/organic/poison_pool.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/props/organic/spore_pods.png",
 "oid": "ece76a866bf1d56181af1bd6d0810d9f19cb806b",
 "bytes": 1816,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/organic/spore_pods.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/organic/spore_pods.png"
 },
 {
 "src": "rpg",
@@ -16833,8 +16833,8 @@
 "path": "assets/generated/props/organic/toxic_vines.png",
 "oid": "c4d8ad364275e9d598e460bbc38a9633840d4f8a",
 "bytes": 7426,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/organic/toxic_vines.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/organic/toxic_vines.png"
 },
 {
 "src": "rpg",
@@ -16857,16 +16857,16 @@
 "path": "assets/generated/props/lab/blast_door.png",
 "oid": "07bec67e253b00f7b6b5565fc98a23dd62b8f6c9",
 "bytes": 2342,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/lab/blast_door.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/lab/blast_door.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/props/lab/broken_generator.png",
 "oid": "889b243b7bf2b775f4e86dfb1f23e3aab817e55d",
 "bytes": 8704,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/lab/broken_generator.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/lab/broken_generator.png"
 },
 {
 "src": "rpg",
@@ -16881,8 +16881,8 @@
 "path": "assets/generated/props/lab/containment_unit.png",
 "oid": "2f88313b7d1ece9881bb192bd864f30e3d9facb2",
 "bytes": 4872,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/lab/containment_unit.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/lab/containment_unit.png"
 },
 {
 "src": "rpg",
@@ -16913,8 +16913,8 @@
 "path": "assets/generated/props/lab/lab_sliding_door.png",
 "oid": "93ff2780d6efcbc305a3d7dc28ed3281b26e64b2",
 "bytes": 1307,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/lab/lab_sliding_door.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/lab/lab_sliding_door.png"
 },
 {
 "src": "rpg",
@@ -16937,8 +16937,8 @@
 "path": "assets/generated/props/lab/security_gate.png",
 "oid": "44ce6c9a55f9462b2c4beccf311e5a2b149b3b11",
 "bytes": 1592,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/lab/security_gate.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/lab/security_gate.png"
 },
 {
 "src": "rpg",
@@ -17073,16 +17073,16 @@
 "path": "assets/generated/props/story/guardian_statue.png",
 "oid": "417b731ffa3198ab822d469d08976a17e21b974a",
 "bytes": 5150,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/story/guardian_statue.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/story/guardian_statue.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/props/story/power_generator.png",
 "oid": "28d3e4ad924b61442ee6cdff24f8dfd11b58ac20",
 "bytes": 4701,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/story/power_generator.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/story/power_generator.png"
 },
 {
 "src": "rpg",
@@ -17097,24 +17097,24 @@
 "path": "assets/generated/props/story/stone_altar_relic.png",
 "oid": "8c30297126adbce9d7e415bc4a272d6b4c8235d4",
 "bytes": 2890,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/story/stone_altar_relic.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/story/stone_altar_relic.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/props/dungeon/banner.png",
 "oid": "1e9d1fd38f5f679cdbc4afdd504c4d0ed52cc405",
 "bytes": 3287,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/dungeon/banner.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/dungeon/banner.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/props/dungeon/bench.png",
 "oid": "bfd96fe0210434e7381f25a74bb89b6002e276ca",
 "bytes": 3431,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/dungeon/bench.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/dungeon/bench.png"
 },
 {
 "src": "rpg",
@@ -17129,16 +17129,16 @@
 "path": "assets/generated/props/dungeon/broken_statue.png",
 "oid": "f4e7db5c098e0dfaaf69c2923014c0bcbb94244c",
 "bytes": 8763,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/dungeon/broken_statue.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/dungeon/broken_statue.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/props/dungeon/broken_table.png",
 "oid": "dc6437890154cfb3e365785488b2e20da5f9bd2f",
 "bytes": 2596,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/dungeon/broken_table.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/dungeon/broken_table.png"
 },
 {
 "src": "rpg",
@@ -17161,16 +17161,16 @@
 "path": "assets/generated/props/dungeon/corpse.png",
 "oid": "13cb11cef11646748ae0d43849ceaf4af97b6fb2",
 "bytes": 3962,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/dungeon/corpse.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/dungeon/corpse.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/props/dungeon/torn_banner.png",
 "oid": "4428f46b9674ddf247baeaf1f8c389adb03b169a",
 "bytes": 3900,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/dungeon/torn_banner.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/dungeon/torn_banner.png"
 },
 {
 "src": "rpg",
@@ -17185,8 +17185,8 @@
 "path": "assets/generated/props/dungeon2/bookshelf.png",
 "oid": "cfbc45b6684b1efef8ee72c5200080395e532ede",
 "bytes": 6176,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/dungeon2/bookshelf.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/dungeon2/bookshelf.png"
 },
 {
 "src": "rpg",
@@ -17201,8 +17201,8 @@
 "path": "assets/generated/props/dungeon2/dry_fountain.png",
 "oid": "f793b8562d1e0f1cd638d737f7015207a4b77320",
 "bytes": 8029,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/dungeon2/dry_fountain.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/dungeon2/dry_fountain.png"
 },
 {
 "src": "rpg",
@@ -17217,8 +17217,8 @@
 "path": "assets/generated/props/dungeon2/iron_cage.png",
 "oid": "c2dcf80b9af9a9aa400b27152937cf6be5694fa8",
 "bytes": 8372,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/dungeon2/iron_cage.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/dungeon2/iron_cage.png"
 },
 {
 "src": "rpg",
@@ -17233,8 +17233,8 @@
 "path": "assets/generated/props/dungeon2/low_wall_cover.png",
 "oid": "480c76231bf65ca35b48c716b482cd117c19c01a",
 "bytes": 6042,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/dungeon2/low_wall_cover.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/dungeon2/low_wall_cover.png"
 },
 {
 "src": "rpg",
@@ -17257,16 +17257,16 @@
 "path": "assets/generated/props/dungeon2/rubble_large.png",
 "oid": "f0602890981b5d75c587963d1862ceb26e482b30",
 "bytes": 4942,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/dungeon2/rubble_large.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/dungeon2/rubble_large.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/props/dungeon2/rune_altar.png",
 "oid": "cc17f27877fa8d40eff4c61e17a3ea6aa75dbacf",
 "bytes": 5248,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/dungeon2/rune_altar.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/dungeon2/rune_altar.png"
 },
 {
 "src": "rpg",
@@ -17281,16 +17281,16 @@
 "path": "assets/generated/props/dungeon2/spike_barricade.png",
 "oid": "d0591aada4ec4a4d059b09eadd4f484c6076cdf3",
 "bytes": 5057,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/dungeon2/spike_barricade.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/dungeon2/spike_barricade.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/props/dungeon2/stalagmites.png",
 "oid": "932c7530f80946b15a12dd65ad7596428fecb2e7",
 "bytes": 4898,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/dungeon2/stalagmites.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/dungeon2/stalagmites.png"
 },
 {
 "src": "rpg",
@@ -17313,16 +17313,16 @@
 "path": "assets/generated/props/containers/broken_barrel.png",
 "oid": "b147caf1f54c530d54e7470e86845cfc7b251ebf",
 "bytes": 2331,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/containers/broken_barrel.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/containers/broken_barrel.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/props/containers/broken_crate.png",
 "oid": "3765d2238b6c4dfbac22d604d1c9a1aacfdfe452",
 "bytes": 2448,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/containers/broken_crate.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/containers/broken_crate.png"
 },
 {
 "src": "rpg",
@@ -17337,40 +17337,40 @@
 "path": "assets/generated/props/pickups/coin_stack.png",
 "oid": "c1912a5d0c38d3f6f00592db598f2331b25f23b2",
 "bytes": 1725,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/pickups/coin_stack.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/pickups/coin_stack.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/props/pickups/essence_shard.png",
 "oid": "3c5dcbfca704b632ddae424362399488053e9279",
 "bytes": 647,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/pickups/essence_shard.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/pickups/essence_shard.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/props/pickups/health_orb.png",
 "oid": "681ee9b2150b604652069a0a1692c7ff1ed32857",
 "bytes": 802,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/pickups/health_orb.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/pickups/health_orb.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/props/traps/spike_trap.png",
 "oid": "5e4cfb26fbe1d06a5062e657622795a621d6c422",
 "bytes": 2928,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/traps/spike_trap.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/traps/spike_trap.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/props/traps/swinging_blade_trap.png",
 "oid": "476b25516911ffbea8adeacb9254019effdb28c0",
 "bytes": 725,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/traps/swinging_blade_trap.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/traps/swinging_blade_trap.png"
 },
 {
 "src": "rpg",
@@ -17401,48 +17401,48 @@
 "path": "assets/generated/props/lighting/brazier.png",
 "oid": "d609ba727fa74a5683efde19d1b9c84750d34570",
 "bytes": 3569,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/lighting/brazier.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/lighting/brazier.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/props/lighting/broken_street_lamp.png",
 "oid": "5000ba15ae91969ee4ae285c571f10c9aa3182db",
 "bytes": 2885,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/lighting/broken_street_lamp.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/lighting/broken_street_lamp.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/props/lighting/dark_street_lamp.png",
 "oid": "0cd4c335fa111ad85221035be679ee649afeca6a",
 "bytes": 827,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/lighting/dark_street_lamp.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/lighting/dark_street_lamp.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/props/lighting/emergency_sci_light.png",
 "oid": "532779e8eed05a641568782245d51db20c20ca7c",
 "bytes": 1663,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/lighting/emergency_sci_light.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/lighting/emergency_sci_light.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/props/lighting/iron_lamp.png",
 "oid": "9be6b26c90c2d3069840269705c81d1de3be647e",
 "bytes": 2968,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/lighting/iron_lamp.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/lighting/iron_lamp.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/props/lighting/large_brazier.png",
 "oid": "fdf7fe192f5246e379c91255a4243caf6ed9f3dd",
 "bytes": 4351,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/lighting/large_brazier.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/lighting/large_brazier.png"
 },
 {
 "src": "rpg",
@@ -17457,24 +17457,24 @@
 "path": "assets/generated/props/lighting/standing_torch.png",
 "oid": "551cae24152268ef308065a2cf2fc7c0b27cd415",
 "bytes": 1171,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/lighting/standing_torch.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/lighting/standing_torch.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/props/lighting/torch_bracket_pair.png",
 "oid": "b0be75220b152a7a6735b08c4a36ccc625eacff3",
 "bytes": 3497,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/lighting/torch_bracket_pair.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/lighting/torch_bracket_pair.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/props/lighting/torch_wall.png",
 "oid": "457423155a15a0a0a8240530ae70389c845a9a3d",
 "bytes": 1140,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/lighting/torch_wall.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/lighting/torch_wall.png"
 },
 {
 "src": "rpg",
@@ -17489,8 +17489,8 @@
 "path": "assets/generated/props/structures/boss_gate.png",
 "oid": "3d2d3742ec5a1f022624d7c9a3153dc48c261175",
 "bytes": 4744,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/structures/boss_gate.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/structures/boss_gate.png"
 },
 {
 "src": "rpg",
@@ -17505,32 +17505,32 @@
 "path": "assets/generated/props/structures/event_pedestal.png",
 "oid": "c5dd305440f61f2e8c1c4545ebb45ddc9889dd8f",
 "bytes": 2327,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/structures/event_pedestal.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/structures/event_pedestal.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/props/structures/lever.png",
 "oid": "e1972124c986d0c5260ac3dfed6447c3abc4cec1",
 "bytes": 515,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/structures/lever.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/structures/lever.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/props/structures/ruined_arch.png",
 "oid": "8b2b4c8f11b7db4ae5a5413268dca0c326358db5",
 "bytes": 2423,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/structures/ruined_arch.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/structures/ruined_arch.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/props/structures/stone_arch.png",
 "oid": "5ad2e9486bd6833630c573666c3e181b5f6b46e6",
 "bytes": 4381,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/structures/stone_arch.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/structures/stone_arch.png"
 },
 {
 "src": "rpg",
@@ -17545,16 +17545,16 @@
 "path": "assets/generated/props/structures/stone_dungeon_door.png",
 "oid": "47ab3e6a7742dd286e099fc81247037426da6a6a",
 "bytes": 4247,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/structures/stone_dungeon_door.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/structures/stone_dungeon_door.png"
 },
 {
 "src": "rpg",
 "path": "assets/generated/props/structures/treasure_pedestal.png",
 "oid": "061a8d8c101cabb6c3cdb6302204baca537a962f",
 "bytes": 1727,
-"decision": "migrate",
-"dest": "assets/migrated/rpg/props/structures/treasure_pedestal.png"
+"decision": "reserve",
+"dest": "asset_bank/reserve/rpg/props/structures/treasure_pedestal.png"
 },
 {
 "src": "rpg",
@@ -20286,40 +20286,35 @@
 "path": "assets/interior/bakery_display.png",
 "oid": "802505c6eb1ad178bc8ac67fd6c3eacff6b39192",
 "bytes": 3649,
-"decision": "migrate",
-"dest": "assets/migrated/vida/interior/bakery_display.png"
+"decision": "reserve:asset_bank/bundles"
 },
 {
 "src": "vida",
 "path": "assets/interior/bathroom.png",
 "oid": "c142bf4f02d95ff88c8778f749926e8bfd21da03",
 "bytes": 9555,
-"decision": "migrate",
-"dest": "assets/migrated/vida/interior/bathroom.png"
+"decision": "reserve:asset_bank/bundles"
 },
 {
 "src": "vida",
 "path": "assets/interior/bed.png",
 "oid": "28cb27350f22a51d745b3cabeaf0c1baf429c2bf",
 "bytes": 4054,
-"decision": "migrate",
-"dest": "assets/migrated/vida/interior/bed.png"
+"decision": "reserve:asset_bank/bundles"
 },
 {
 "src": "vida",
 "path": "assets/interior/bed_front.png",
 "oid": "4389de87bc5d0a5f7e125fd55bea1d5233c14eaa",
 "bytes": 2055,
-"decision": "migrate",
-"dest": "assets/migrated/vida/interior/bed_front.png"
+"decision": "reserve:asset_bank/bundles"
 },
 {
 "src": "vida",
 "path": "assets/interior/bookcase.png",
 "oid": "c491fda99282471d609ab7b606561450a7f3f596",
 "bytes": 3202,
-"decision": "migrate",
-"dest": "assets/migrated/vida/interior/bookcase.png"
+"decision": "reserve:asset_bank/bundles"
 },
 {
 "src": "vida",
@@ -20334,88 +20329,77 @@
 "path": "assets/interior/cafe_bar.png",
 "oid": "3ad8bebeed211edc87be99a1eb5ab0bd17bbe76f",
 "bytes": 21426,
-"decision": "migrate",
-"dest": "assets/migrated/vida/interior/cafe_bar.png"
+"decision": "reserve:asset_bank/bundles"
 },
 {
 "src": "vida",
 "path": "assets/interior/cafe_table.png",
 "oid": "46ca63a0eb057a23c2eb640bf6e357615fe555c0",
 "bytes": 9073,
-"decision": "migrate",
-"dest": "assets/migrated/vida/interior/cafe_table.png"
+"decision": "reserve:asset_bank/bundles"
 },
 {
 "src": "vida",
 "path": "assets/interior/checkout.png",
 "oid": "6f15cdc831485ed2bdd32eac0a51cec74398ac6a",
 "bytes": 7865,
-"decision": "migrate",
-"dest": "assets/migrated/vida/interior/checkout.png"
+"decision": "reserve:asset_bank/bundles"
 },
 {
 "src": "vida",
 "path": "assets/interior/desk.png",
 "oid": "5bbde7f148a910eb1997d710d6fe41026b213063",
 "bytes": 9764,
-"decision": "migrate",
-"dest": "assets/migrated/vida/interior/desk.png"
+"decision": "reserve:asset_bank/bundles"
 },
 {
 "src": "vida",
 "path": "assets/interior/dining.png",
 "oid": "8726e4f52d9c582d9d543377746d047c7b81e234",
 "bytes": 8062,
-"decision": "migrate",
-"dest": "assets/migrated/vida/interior/dining.png"
+"decision": "reserve:asset_bank/bundles"
 },
 {
 "src": "vida",
 "path": "assets/interior/grill.png",
 "oid": "e95aa154fb8ff83840b07e9b22401663c850495f",
 "bytes": 4153,
-"decision": "migrate",
-"dest": "assets/migrated/vida/interior/grill.png"
+"decision": "reserve:asset_bank/bundles"
 },
 {
 "src": "vida",
 "path": "assets/interior/hospital_bed.png",
 "oid": "c359abbe0c93376485274d3ec7bd3bd92c6267c2",
 "bytes": 5399,
-"decision": "migrate",
-"dest": "assets/migrated/vida/interior/hospital_bed.png"
+"decision": "reserve:asset_bank/bundles"
 },
 {
 "src": "vida",
 "path": "assets/interior/ice_cream_counter.png",
 "oid": "485b96aef1c67ffbad4d5e529059a9a4767b4e82",
 "bytes": 1410,
-"decision": "migrate",
-"dest": "assets/migrated/vida/interior/ice_cream_counter.png"
+"decision": "reserve:asset_bank/bundles"
 },
 {
 "src": "vida",
 "path": "assets/interior/kitchen.png",
 "oid": "15d862eabe02fef891c94b2b37dc15dae8be5b94",
 "bytes": 4784,
-"decision": "migrate",
-"dest": "assets/migrated/vida/interior/kitchen.png"
+"decision": "reserve:asset_bank/bundles"
 },
 {
 "src": "vida",
 "path": "assets/interior/market_fridge.png",
 "oid": "57f2dbc4cdf17cdcb5f200655c3ce01a9d0830fb",
 "bytes": 10174,
-"decision": "migrate",
-"dest": "assets/migrated/vida/interior/market_fridge.png"
+"decision": "reserve:asset_bank/bundles"
 },
 {
 "src": "vida",
 "path": "assets/interior/market_shelf.png",
 "oid": "f5393725296047d1c3c9dafab54faeac1273ae7d",
 "bytes": 14275,
-"decision": "migrate",
-"dest": "assets/migrated/vida/interior/market_shelf.png"
+"decision": "reserve:asset_bank/bundles"
 },
 {
 "src": "vida",
@@ -20430,56 +20414,49 @@
 "path": "assets/interior/reception.png",
 "oid": "9a07b7a04d17f5616ee2a677a3a1f8d9c8c42359",
 "bytes": 2382,
-"decision": "migrate",
-"dest": "assets/migrated/vida/interior/reception.png"
+"decision": "reserve:asset_bank/bundles"
 },
 {
 "src": "vida",
 "path": "assets/interior/shelf.png",
 "oid": "9f16c84f312b0f8f676dd1e628f4928a32f8c390",
 "bytes": 9019,
-"decision": "migrate",
-"dest": "assets/migrated/vida/interior/shelf.png"
+"decision": "reserve:asset_bank/bundles"
 },
 {
 "src": "vida",
 "path": "assets/interior/sofa.png",
 "oid": "afd9515fb5e8912070a5d39cbd005c590d3bb395",
 "bytes": 5411,
-"decision": "migrate",
-"dest": "assets/migrated/vida/interior/sofa.png"
+"decision": "reserve:asset_bank/bundles"
 },
 {
 "src": "vida",
 "path": "assets/interior/sofa_front.png",
 "oid": "7a1fd39b669ea6e06b93e4f3bb3913a819b814cd",
 "bytes": 4920,
-"decision": "migrate",
-"dest": "assets/migrated/vida/interior/sofa_front.png"
+"decision": "reserve:asset_bank/bundles"
 },
 {
 "src": "vida",
 "path": "assets/interior/tv.png",
 "oid": "1988ab7162b47de63984c68127d2c98e4528c87d",
 "bytes": 7677,
-"decision": "migrate",
-"dest": "assets/migrated/vida/interior/tv.png"
+"decision": "reserve:asset_bank/bundles"
 },
 {
 "src": "vida",
 "path": "assets/interior/tv_back.png",
 "oid": "5a9bbe29fa3d65fd45d701321726d62c2521af15",
 "bytes": 2806,
-"decision": "migrate",
-"dest": "assets/migrated/vida/interior/tv_back.png"
+"decision": "reserve:asset_bank/bundles"
 },
 {
 "src": "vida",
 "path": "assets/interior/wardrobe.png",
 "oid": "5f5d7c9f016d2c832b6e74d6abd016d4c954cc69",
 "bytes": 5369,
-"decision": "migrate",
-"dest": "assets/migrated/vida/interior/wardrobe.png"
+"decision": "reserve:asset_bank/bundles"
 },
 {
 "src": "vida",

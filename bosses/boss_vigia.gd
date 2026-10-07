@@ -244,7 +244,8 @@ func _think(dt: float) -> void:
 				game.fx.burst(hit_center(), 14, 260.0, _pc(), 0.4)
 				game.fx.ring(hit_center(), 10.0, 80.0, _pc(), 0.25, 4.0)
 		ST_BLINK_OUT:
-			fade = 0.0
+			if not (blink_done and st >= 0.5):
+				fade = 0.0   # (antes se reseteaba cada frame y el jefe quedaba invisible e intargeteable para siempre)
 			if not blink_done and st >= 0.35:
 				blink_done = true
 				position = blink_to

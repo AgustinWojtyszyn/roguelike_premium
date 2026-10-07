@@ -8,17 +8,17 @@
   "vida": 5
  },
  "stats": {
-  "rpg_sheets_migrate": 95,
-  "rpg_sheets_reserve": 18,
-  "rpg_reserve": 287,
+  "rpg_sheets_migrate": 87,
+  "rpg_sheets_reserve": 26,
+  "rpg_reserve": 391,
   "rpg_dup": 19,
-  "rpg_migrate": 179,
   "rpg_discard": 64,
+  "rpg_migrate": 75,
   "rpg_weapon_oriented": 18,
   "vida_sheets_migrate": 7,
-  "vida_reserve": 234,
+  "vida_reserve": 257,
   "vida_dup": 4,
-  "vida_migrate": 29,
+  "vida_migrate": 6,
   "vida_sheet_src": 173
  },
  "sources": {
@@ -37,6 +37,6 @@
    "head": "5d5192da4b258d36a330ef84f5617269ab9d0530"
   }
  },
- "static_migrated": 208,
- "anim_sets": 12
+ "static_migrated": 81,
+ "anim_sets": 11
 }

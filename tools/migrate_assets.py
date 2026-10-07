@@ -43,7 +43,7 @@ RPG_ANIM_CHARS = {
     "enemies/enemy_iron_beetle": ("enemies/iron_beetle", "migrate"),
     "enemies/enemy_orb_stalker": ("enemies/orb_stalker", "migrate"),
     "enemies/enemy_raptor": ("enemies/raptor", "migrate"),
-    "enemies/enemy_root_vine": ("enemies/root_vine", "migrate"),
+    "enemies/enemy_root_vine": ("enemies/root_vine", "reserve"),
     "bosses/boss_rift_warden": ("bosses/rift_warden", "migrate"),
     "bosses/boss_trex": ("bosses/trex", "reserve"),
 }
@@ -169,6 +169,26 @@ def build_weapon_art(src_pick_dir, out_dir):
 
 def res_path_global(abs_path):
     return "res://" + os.path.relpath(abs_path, ROOT).replace(os.sep, "/")
+
+
+def used_static_ids():
+    """Ids de estaticos que el runtime realmente referencia (perfiles, cofres, VFX, decoracion, HOME).
+    Solo estos se migran a assets/migrated; el resto de lo util queda en asset_bank/reserve."""
+    import re
+    ids = set()
+    srcs = ["visual/visual_profiles.gd", "game/chest.gd", "game/fx.gd"]
+    for rel in srcs:
+        txt = open(os.path.join(ROOT, rel)).read()
+        for m in re.finditer(r'"((?:rpg|vida)/[A-Za-z0-9_/]+)"', txt):
+            ids.add(m.group(1))
+        if rel.endswith("fx.gd"):
+            for m in re.finditer(r'"((?:combat|weapons|rewards|bosses|magic|movement)/[a-z_]+)"', txt):
+                ids.add("rpg/vfx/" + m.group(1))
+        if rel.endswith("chest.gd"):
+            for m in re.finditer(r'"([a-z]+_chest)"', txt):
+                ids.add("rpg/chests/" + m.group(1))
+                ids.add("rpg/chests/" + m.group(1) + "_open")
+    return ids
 
 
 def md5(b):
@@ -359,6 +379,7 @@ def main():
     rpg_head = sh(rpg, "git", "rev-parse", "HEAD")
     vida_head = sh(vida, "git", "rev-parse", "HEAD")
 
+    USED = used_static_ids()
     inv_r = audit_rpg(rpg)
     inv_v = audit_vida(vida)
     audited = {"rpg": len(inv_r), "vida": len(inv_v)}
@@ -434,12 +455,14 @@ def main():
                     break
             tail = "" if tail == "." else tail
             name = fn
+            sid = "rpg/" + dest + ("/" + tail if tail else "") + "/" + os.path.splitext(fn)[0]
+            if state == "migrate" and sid not in USED:
+                state = "reserve"   # util pero sin uso en el runtime todavia: queda documentado en reserve
             outp = os.path.join(mig if state == "migrate" else res, "rpg", dest, tail, name)
             os.makedirs(os.path.dirname(outp), exist_ok=True)
             if fn.lower().endswith(".json"):
                 continue
             shutil.copyfile(full, outp)
-            sid = "rpg/" + dest + ("/" + tail if tail else "") + "/" + os.path.splitext(fn)[0]
             seen_hash[h] = sid
             entry["decision"] = state
             entry["dest"] = os.path.relpath(outp, ROOT).replace(os.sep, "/")
@@ -552,6 +575,9 @@ def main():
                 decisions.append(entry)
                 stats["vida_dup"] += 1
                 continue
+            _sid = "vida/" + (dest or "x") + "/" + os.path.splitext(os.path.basename(rel))[0]
+            if state == "migrate" and _sid not in USED:
+                state = "reserve"
             if state != "migrate":
                 # sin uso aun: ya esta guardado sin perdida en asset_bank/bundles (import VIDA completo); solo se inventaria
                 seen_hash[h] = "vida/" + (dest or "x") + "/" + os.path.splitext(os.path.basename(rel))[0]
