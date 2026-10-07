@@ -69,7 +69,11 @@ func log_stage(stage: int, detail: String) -> void:
 
 
 func _parse_args() -> void:
-	for a in OS.get_cmdline_user_args() + OS.get_cmdline_args():
+	var extra := PackedStringArray()
+	# Solo builds debug: argumentos desde user://boot_args.txt (tools/adb_run.sh lo escribe con run-as; los extras de intent no llegan bien)
+	if OS.is_debug_build() and FileAccess.file_exists("user://boot_args.txt"):
+		extra = FileAccess.get_file_as_string("user://boot_args.txt").strip_edges().split(" ", false)
+	for a in OS.get_cmdline_user_args() + OS.get_cmdline_args() + extra:
 		if not a.begins_with("--"):
 			continue
 		var kv := a.substr(2).split("=", true, 1)

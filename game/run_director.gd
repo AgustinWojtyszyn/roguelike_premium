@@ -27,6 +27,12 @@ var chests: Array[Chest] = []
 var rng := RandomNumberGenerator.new()
 var fade: ColorRect
 var fade_layer: CanvasLayer
+# ---- modos alternativos (ver ModeRules)
+var surv_wave := 0              # supervivencia: ultima oleada lanzada
+var surv_phase := 0
+var surv_pending_phase := -1    # fase a la que se pasa cuando se cierre el selector de perk
+var rush_wait := -1.0           # boss rush: cuenta atras de la zona de preparacion
+var _rush_last_sec := -1
 
 
 func _ready() -> void:
@@ -44,7 +50,15 @@ func _ready() -> void:
 
 func begin(start_stage: int = 0) -> void:
 	rng.seed = game.run.seed_v + 77
-	plan = DungeonGenerator.generate(game.chapter, game.run.seed_v, Catalog.rooms, Catalog.encounters)
+	match game.mode_id:
+		ModeRules.SURVIVAL:
+			plan = [ModeRules.survival_stage(0)]
+			surv_phase = 0
+			surv_wave = 0
+		ModeRules.BOSS_RUSH:
+			plan = ModeRules.boss_rush_plan(Catalog.rooms)
+		_:
+			plan = DungeonGenerator.generate(game.chapter, game.run.seed_v, Catalog.rooms, Catalog.encounters)
 	_load_stage(clampi(start_stage, 0, plan.size() - 1), true)
 
 
@@ -104,6 +118,14 @@ func _load_stage(i: int, instant: bool) -> void:
 	stage = i
 	game.run.stage_idx = i
 	var st: Dictionary = plan[i]
+	if st.has("chapter") and game.chapter.id != st["chapter"]:
+		game.chapter = Catalog.chapter(st["chapter"])
+		game.run.chapter = game.chapter
+		AudioMgr.play_music(game.chapter.music)
+	if game.mode_id == ModeRules.SURVIVAL:
+		game.hp_scale = game.chapter.difficulty * ModeRules.difficulty_scale(surv_wave + 1, surv_phase)
+	elif st.has("chapter"):
+		game.hp_scale = game.chapter.difficulty
 	var def: RoomDef = Catalog.rooms[st["room"]]
 	var room := Room.new()
 	game.room = room
@@ -158,6 +180,19 @@ func _load_stage(i: int, instant: bool) -> void:
 		col = Color("ffd24a")
 	game.hud.banner(title, 2.4, sub, col)
 	fade.modulate.a = 1.0 if instant else fade.modulate.a
+	_fade_in_settled()
+
+
+## El horneado del suelo de la sala nueva se renderiza en los primeros frames: se mantiene la pantalla negra unos frames
+## y el fundido de entrada empieza DESPUES, asi el tiron del horneado no se ve ni come el fundido ni el input.
+const SETTLE_FRAMES := 3
+
+func _fade_in_settled() -> void:
+	var my_token := token
+	for i in SETTLE_FRAMES:
+		await get_tree().process_frame
+	if my_token != token:
+		return
 	var tw := create_tween()
 	tw.tween_property(fade, "modulate:a", 0.0, 0.45)
 
@@ -190,6 +225,16 @@ func __process_impl(delta: float) -> void:
 		return
 	if transition or game.over:
 		return
+	if rush_wait > 0.0:
+		rush_wait -= dt
+		var sec := int(ceil(rush_wait))
+		if sec != _rush_last_sec and sec in [8, 5, 3, 2, 1]:
+			_rush_last_sec = sec
+			game.hud.toast("SIGUIENTE JEFE EN %d" % sec, Color("ff7a9a"))
+		if rush_wait <= 0.0:
+			rush_wait = -1.0
+			_leave()
+		return
 	var room := game.room
 	if not entered:
 		enter_t += dt
@@ -215,6 +260,9 @@ func _begin_encounter_delayed() -> void:
 func _begin_encounter() -> void:
 	var st: Dictionary = plan[stage]
 	in_combat = true
+	if st["kind"] == "survival":
+		_start_survival_wave()
+		return
 	if st["kind"] == "boss" and Catalog.bosses.has(game.chapter.boss):
 		_spawn_boss()
 		return
@@ -240,6 +288,9 @@ func _start_wave(i: int) -> void:
 
 
 func _update_waves(dt: float) -> void:
+	if plan[stage]["kind"] == "survival":
+		_update_survival(dt)
+		return
 	if plan[stage]["kind"] == "boss" and Catalog.bosses.has(game.chapter.boss):
 		return
 	wave_clock += dt
@@ -285,7 +336,7 @@ func _pick_spawn() -> int:
 	return best
 
 
-func _try_spawn(id: String) -> bool:
+func _try_spawn(id: String, elite: bool = false) -> bool:
 	var room := game.room
 	var h := _pick_spawn()
 	if h < 0:
@@ -302,7 +353,7 @@ func _try_spawn(id: String) -> bool:
 	get_tree().create_timer(lead).timeout.connect(func():
 		if t != token or game.over:
 			return
-		var e := spawn_enemy_at(id, pos, false)
+		var e := spawn_enemy_at(id, pos, elite)
 		game.fx.burst(pos, 14, 240.0, col.lightened(0.3), 0.5)
 		game.fx.puff(pos, Vector2(0, -20), 24.0, Color(col, 0.4), 0.7, 2.4)
 		game.fx.ring(pos, 6.0, 52.0, col.lightened(0.5), 0.35, 4.0)
@@ -322,7 +373,10 @@ func spawn_enemy_at(id: String, pos: Vector2, force_elite: bool) -> Enemy:
 	var e: Enemy = (load(data.script_path) as GDScript).new()
 	e.data = data
 	var st: Dictionary = plan[stage]
-	if (st["elite"] or force_elite or (st["kind"] == "boss" and not Catalog.bosses.has(game.chapter.boss))) and not elite_done and data.elite_ok and data.threat >= 1.4:
+	var all_elite: bool = game.mods.get("all_elite", false)
+	if all_elite and data.elite_ok and st["kind"] != "boss":
+		e.elite = true
+	elif (st["elite"] or force_elite or (st["kind"] == "boss" and not Catalog.bosses.has(game.chapter.boss))) and not elite_done and data.elite_ok and data.threat >= 1.4:
 		e.elite = true
 		elite_done = true
 	game.ysort.add_child(e)
@@ -424,6 +478,14 @@ func _clear_stage() -> void:
 
 func perk_closed() -> void:
 	perk_busy = false
+	if surv_pending_phase >= 0:
+		var ph := surv_pending_phase
+		surv_pending_phase = -1
+		_survival_phase_change(ph)
+		return
+	if game.mode_id == ModeRules.BOSS_RUSH:
+		_rush_start_wait()
+		return
 	_open_exit()
 
 
@@ -447,6 +509,8 @@ func _leave() -> void:
 	if stage + 1 >= plan.size():
 		return
 	_load_stage(stage + 1, false)
+	for i in SETTLE_FRAMES + 1:
+		await get_tree().process_frame
 	game.input_locked = false
 	transition = false
 
@@ -458,6 +522,9 @@ func _boss_defeated(e: Enemy) -> void:
 			o._start_dying(Vector2.RIGHT)
 	game.run.bosses += 1
 	game.run.rooms += 1
+	if game.mode_id == ModeRules.BOSS_RUSH and stage < plan.size() - 1:
+		_rush_intermission(e)
+		return
 	_finish_chapter(e)
 
 
@@ -485,3 +552,110 @@ func on_player_died() -> void:
 	end_t = 1.9
 	AudioMgr.stop_hum()
 	game.hud.banner("", 0.1)
+
+
+# ------------------------------------------------------------------ SUPERVIVENCIA
+func _start_survival_wave() -> void:
+	surv_wave += 1
+	game.run.wave = surv_wave
+	surv_phase = ModeRules.phase_of_wave(surv_wave)
+	game.hp_scale = game.chapter.difficulty * ModeRules.difficulty_scale(surv_wave, surv_phase)
+	elite_done = false
+	next_wave_t = -1.0
+	wave_i = surv_wave - 1
+	wave_clock = 0.0
+	for u in ModeRules.survival_wave(surv_wave, rng):
+		pending.append([u["id"], u["delay"], u["elite"]])
+	game.hud.banner("OLEADA %d" % surv_wave, 1.4, game.chapter.display_name, game.chapter.accent.lightened(0.6))
+	game.sfx.play("wave", -2.0)
+	if surv_wave > 1:
+		game.pickups.drop_energy(game.room.floor_rect.get_center(), 14.0)
+		if game.player.hp < game.player.max_hp and rng.randf() < 0.5:
+			game.pickups.drop_heart(game.room.floor_rect.get_center() + Vector2(rng.randf_range(-80, 80), rng.randf_range(-40, 40)))
+
+
+func _update_survival(dt: float) -> void:
+	wave_clock += dt
+	var i := pending.size() - 1
+	while i >= 0:
+		pending[i][1] -= dt
+		if pending[i][1] <= 0.0:
+			if _try_spawn(pending[i][0], pending[i][2]):
+				pending.remove_at(i)
+			else:
+				pending[i][1] = 0.3
+		i -= 1
+	var alive := game.enemies.size() + pending.size()
+	# la siguiente oleada empieza cuando queda poca gente: presion continua, sin esperas largas
+	if pending.is_empty() and alive <= 1 and next_wave_t < 0.0 and not game.over:
+		next_wave_t = 1.0
+	if next_wave_t >= 0.0:
+		next_wave_t -= dt
+		if next_wave_t <= 0.0:
+			next_wave_t = -1.0
+			_survival_next()
+
+
+func _survival_next() -> void:
+	var n := surv_wave + 1
+	var phase := ModeRules.phase_of_wave(n)
+	if phase != surv_phase:
+		# fin de fase: se cura algo, se elige una mejora y se pasa a la arena de la siguiente familia
+		game.player.heal(2)
+		game.hud.banner("FASE SUPERADA", 1.6, "", Color("ffe27a"))
+		surv_pending_phase = phase
+		perk_busy = true
+		var t := token
+		get_tree().create_timer(1.2).timeout.connect(func():
+			if t == token and not game.over:
+				game.offer_perk("clear"))
+		return
+	_start_survival_wave()
+
+
+func _survival_phase_change(phase: int) -> void:
+	transition = true
+	game.input_locked = true
+	var tw := create_tween()
+	tw.tween_property(fade, "modulate:a", 1.0, 0.28)
+	await tw.finished
+	surv_phase = phase
+	plan.append(ModeRules.survival_stage(phase))
+	_load_stage(plan.size() - 1, false)
+	for i in SETTLE_FRAMES + 1:
+		await get_tree().process_frame
+	game.input_locked = false
+	transition = false
+
+
+# ------------------------------------------------------------------ BOSS RUSH
+## Tras cada jefe (menos el ultimo): recuperacion parcial, dos armas para elegir, mejora y una cuenta atras de preparacion.
+func _rush_intermission(e: Enemy) -> void:
+	cleared = true
+	in_combat = false
+	game.hud.boss = null
+	game.slow_enemies(0.25, 1.2)
+	game.sfx.play("victory", -4.0)
+	game.hud.banner("JEFE DERROTADO", 2.4, "Prepárate para el siguiente", Color("ffe27a"))
+	var at := e.hit_center()
+	game.pickups.drop_coins(at, (Catalog.bosses[game.chapter.boss] as BossData).coins)
+	var pl := game.player
+	pl.heal(2)
+	pl.add_shield(1)
+	pl.add_energy(60.0)
+	var c := game.room.floor_rect.get_center()
+	game.pickups.drop_weapon(c + Vector2(-90, 70), roll_weapon(1, 4))
+	game.pickups.drop_weapon(c + Vector2(90, 70), roll_weapon(1, 4))
+	game.pickups.drop_heart(c + Vector2(0, 90))
+	AudioMgr.play_music(game.chapter.music)
+	perk_busy = true
+	var t := token
+	get_tree().create_timer(1.6).timeout.connect(func():
+		if t == token and not game.over:
+			game.offer_perk("clear"))
+
+
+func _rush_start_wait() -> void:
+	rush_wait = 12.0
+	_rush_last_sec = -1
+	game.hud.banner("PREPARACIÓN", 1.6, "Elige un arma · recoge tus recompensas", Color("9fffe8"))

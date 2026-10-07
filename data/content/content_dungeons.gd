@@ -65,6 +65,77 @@ static func _chapter(id: String, nm: String, sub: String, theme: String, order: 
 	return c
 
 
+## Las salas de combate se compactan: menos caminata y mas presion por metro cuadrado. Se escalan suelo, posiciones de props/bloques,
+## spawns y decoracion; las huellas de los props conservan su tamano (los objetos no se encogen).
+const COMPACT_K := 0.86
+
+
+static func _scale_val(v: Variant, k: float) -> Variant:
+	if v is Vector2:
+		return (v as Vector2) * k
+	if v is Rect2:
+		var r: Rect2 = v
+		return Rect2(r.position * k, r.size * k)
+	if v is PackedVector2Array:
+		var out := PackedVector2Array()
+		for p in v:
+			out.append(p * k)
+		return out
+	if v is Array:
+		var a: Array = []
+		for e in v:
+			a.append(_scale_val(e, k))
+		return a
+	if v is Dictionary:
+		var d := {}
+		for key in v:
+			d[key] = _scale_val(v[key], k)
+		return d
+	return v
+
+
+static func _compact(r: RoomDef, k: float) -> void:
+	r.size = r.size * k
+	var blocks: Array = []
+	for b in r.blocks:
+		var nb: Array = (b as Array).duplicate()
+		for j in 4:
+			nb[j] = float(nb[j]) * k
+		blocks.append(nb)
+	r.blocks = blocks
+	var props: Array = []
+	for p in r.props:
+		var np: Array = (p as Array).duplicate()
+		np[1] = float(np[1]) * k
+		np[2] = float(np[2]) * k
+		props.append(np)
+	r.props = props
+	var sp: Array[Vector2] = []
+	for v in r.spawns:
+		sp.append(v * k)
+	r.spawns = sp
+	var dec := {}
+	for key in r.decor:
+		var val: Variant = r.decor[key]
+		dec[key] = val if key in ["emblem", "lane", "carpet", "no_screens"] else _scale_val(val, k)
+	r.decor = dec
+
+
+## Arena compacta y simetrica: 4 columnas en diagonal, 2 piezas grandes laterales y 4 pequenas; 8 puntos de aparicion en el perimetro.
+static func _arena(id: String, nm: String, theme: String, big: Array, mid: Array, small: Array) -> RoomDef:
+	var props: Array = []
+	for sx in [-1, 1]:
+		for sy in [-1, 1]:
+			props.append([mid[0], sx * 190 - int(mid[1]) / 2, sy * 100 - int(mid[2]) / 2, mid[1], mid[2]])
+			props.append([small[0], sx * 100 - int(small[1]) / 2, sy * 205 - int(small[2]) / 2, small[1], small[2]])
+		props.append([big[0], sx * 330 - int(big[1]) / 2, -int(big[2]) / 2, big[1], big[2]])
+	return _room(id, nm, theme, Vector2(980, 620), "survival", {
+		"entry_sides": Array([], TYPE_STRING, "", null), "exit_sides": Array([], TYPE_STRING, "", null), "props": props,
+		"spawns": _sp([Vector2(-405, -225), Vector2(405, -225), Vector2(-405, 225), Vector2(405, 225), Vector2(0, -245), Vector2(0, 245), Vector2(-425, 0), Vector2(425, 0)]),
+		"decor": {"stains": 7, "litter": 22},
+	})
+
+
 static func rooms() -> Array[RoomDef]:
 	var L: Array[RoomDef] = []
 	# ---------------------------------------------------------------- CAPITULO 1
@@ -128,7 +199,7 @@ static func rooms() -> Array[RoomDef]:
 			["crate_l", 120, 200, 100, 56], ["crate_s", 230, 232, 44, 34], ["barrel", 90, 150, 30, 22],
 			["terminal", -120, -354, 84, 34], ["barrier_v", -180, 40, 22, 160], ["barrel", 400, 160, 30, 22], ["crate_s", 500, 240, 44, 34],
 		],
-		"spawns": _sp([Vector2(-560, 250), Vector2(560, 270), Vector2(-120, -240), Vector2(200, -60), Vector2(-560, -60), Vector2(450, 100)]),
+		"spawns": _sp([Vector2(-560, 250), Vector2(560, 300), Vector2(-120, -240), Vector2(200, -60), Vector2(-560, -60), Vector2(450, 100)]),
 		"decor": {"lane": true, "stains": 10, "litter": 34, "hazard": [Rect2(-620, 270, 520, 14)]},
 	}))
 	L.append(_room("coolant_plant", "Planta de Refrigeración", "tech", Vector2(1250, 640), "combat", {
@@ -212,7 +283,7 @@ static func rooms() -> Array[RoomDef]:
 		"entry_sides": ["W", "E"], "exit_sides": ["E", "W"],
 		"props": [
 			["statue", -430, -240, 56, 36], ["statue", 380, -240, 56, 36], ["column", -140, -110, 40, 34], ["column", 100, 100, 40, 34],
-			["weapon_rack", -470, 90, 90, 26], ["weapon_rack", 400, -60, 90, 26], ["wood_crate", -300, 170, 40, 30], ["wood_barrel", -340, 215, 28, 22], ["wood_crate", 340, 190, 40, 30], ["wood_barrel", 300, -170, 28, 22],
+			["weapon_rack", -470, 90, 90, 26], ["weapon_rack", 400, -130, 90, 26], ["wood_crate", -300, 170, 40, 30], ["wood_barrel", -340, 215, 28, 22], ["wood_crate", 340, 190, 40, 30], ["wood_barrel", 300, -170, 28, 22],
 		],
 		"spawns": _sp([Vector2(-560, -200), Vector2(560, -200), Vector2(-560, 200), Vector2(560, 200), Vector2(0, -260), Vector2(0, 270)]),
 		"decor": {"emblem": "sigil", "stains": 9, "litter": 22},
@@ -291,6 +362,14 @@ static func rooms() -> Array[RoomDef]:
 		"spawns": _sp([Vector2(-540, -300), Vector2(540, -300), Vector2(-540, 300), Vector2(540, 300), Vector2(0, -330), Vector2(0, 340)]),
 		"decor": {"emblem": "tri", "stains": 8, "litter": 10},
 	}))
+	# ---------------------------------------------------------------- ARENAS DE SUPERVIVENCIA (una por familia, sin pasillos)
+	L.append(_arena("arena_tech", "Arena Cinder", "tech", ["crate_l", 100, 56], ["pillar", 40, 34], ["barrel", 30, 22]))
+	L.append(_arena("arena_aztec", "Arena del Sol", "aztec", ["statue", 56, 36], ["column", 40, 34], ["urn", 28, 22]))
+	L.append(_arena("arena_castle", "Arena del Foso", "castle", ["weapon_rack", 90, 26], ["column", 40, 34], ["wood_barrel", 28, 22]))
+	L.append(_arena("arena_anomaly", "Arena de la Grieta", "anomaly", ["crystal", 60, 36], ["orb_pillar", 40, 34], ["rift_stone", 50, 34]))
+	for r in L:
+		if r.kind == "combat":
+			_compact(r, COMPACT_K)
 	return L
 
 

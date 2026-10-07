@@ -228,7 +228,7 @@ func paint_wall_run(ci: CanvasItem, room: Room, run: Dictionary) -> void:
 			ci.draw_rect(Rect2(x0, edge - 16, w, 16), Color("0b0f1a"))
 			var hx := x0
 			while hx < x1:
-				if int(hx / 12.0) % 2 == 0:
+				if int(hx / 12.0) % 2 == 0 and x1 - hx > 14.0:
 					ci.draw_colored_polygon(PackedVector2Array([Vector2(hx, edge - 2), Vector2(hx + 8, edge - 14), Vector2(minf(hx + 14, x1), edge - 14), Vector2(minf(hx + 6, x1), edge - 2)]), Color("c98a22"))
 				hx += 12.0
 			ci.draw_rect(Rect2(x0, edge - 17, w, 2), Color(1, 1, 1, 0.15))

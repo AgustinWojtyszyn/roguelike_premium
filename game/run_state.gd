@@ -26,6 +26,10 @@ var weapons_seen: Array[String] = []
 var damaged_in_room := false
 var shots_fired: int = 0
 var won := false
+var mode: String = "campaign"
+var wave: int = 0              # supervivencia: oleada alcanzada
+var damage_taken: int = 0      # boss rush: dano total recibido
+var challenge: String = ""
 # estadisticas agregadas de perks
 var mods: Dictionary = {}
 var hooks: Dictionary = {}
@@ -109,6 +113,7 @@ func summary(stages_cleared: int) -> Dictionary:
 		"stages": stages_cleared, "rooms": rooms, "kills": kills, "kills_cat": kills_cat,
 		"chests": chests, "perks": perks_picked, "bosses": bosses, "nodamage_rooms": nodamage_rooms,
 		"coins": coins, "time": time, "weapons_seen": weapons_seen,
+		"mode": mode, "wave": wave, "damage_taken": damage_taken, "challenge": challenge,
 	}
 
 

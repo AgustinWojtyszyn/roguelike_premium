@@ -58,6 +58,9 @@ var ft_samples: PackedFloat32Array = PackedFloat32Array()   # --frametimes: ms p
 var _boot_first_frame := true
 var cam_extra := Vector2.ZERO
 var _dbg_t := -1.0
+var mode_id: String = ModeRules.CAMPAIGN
+var challenge_id := ""
+var mods: Dictionary = {}     # reglas del modo Desafio (ver ModeRules.CHALLENGES)
 var _spawn_dbg := ""   # --spawn=id,id,...: vitrina de enemigos para revision visual
 var stall_t := 0.0          # segundos sin bajas con enemigos vivos: rompe empates (escudos + reparadores)
 
@@ -87,7 +90,17 @@ func _ready() -> void:
 	var cid: String = str(params.get("character", Boot.get_arg("char", Profile.p.selected_character())))
 	var chid: String = str(params.get("chapter", Boot.get_arg("chapter", Profile.p.data.get("selected_chapter", "ch1"))))
 	var seed_v: int = int(params.get("seed", int(Boot.get_arg("seed", str(randi())))))
+	mode_id = str(params.get("mode", Boot.get_arg("mode", ModeRules.CAMPAIGN)))
+	if not ModeRules.ORDER.has(mode_id):
+		mode_id = ModeRules.CAMPAIGN
+	challenge_id = str(params.get("challenge", Boot.get_arg("challenge", "")))
+	if mode_id == ModeRules.CHALLENGE and ModeRules.CHALLENGES.has(challenge_id):
+		mods = (ModeRules.CHALLENGES[challenge_id]["mods"] as Dictionary).duplicate()
+	elif mode_id == ModeRules.CHALLENGE:
+		mode_id = ModeRules.CAMPAIGN
 	var cdata := Catalog.character(cid)
+	if mode_id == ModeRules.SURVIVAL or mode_id == ModeRules.BOSS_RUSH:
+		chid = Catalog.chapter_order[0]
 	chapter = Catalog.chapter(chid)
 	if chapter == null:
 		chapter = Catalog.chapter("ch1")
@@ -100,6 +113,9 @@ func _ready() -> void:
 			if Catalog.perks.has(pid):
 				run.add_perk(Catalog.perks[pid], Catalog.perks)
 	run.recompute(Catalog.perks)
+	run.mode = mode_id
+	if mods.get("one_weapon", false):
+		run.weapons = [run.weapons[0]]
 	ysort = Node2D.new()
 	ysort.y_sort_enabled = true
 	add_child(ysort)
@@ -120,7 +136,14 @@ func _ready() -> void:
 	var look := _look_for(cdata)
 	player.build(self, run, look)
 	player.skin_bullet = _skin_bullet(cdata)
+	if mods.has("hp_cap"):
+		player.max_hp = mini(player.max_hp, int(mods["hp_cap"]))
+		player.hp = player.max_hp
+	if mods.get("no_shield", false):
+		player.max_shield = 0
+		player.shield = 0
 	AssetCatalog.prewarm(chapter, look, Catalog.weapons.keys())
+	_gpu_warm()
 	for cid2 in Profile.p.data["cosmetics_owned"]:
 		if str(cid2).begins_with("trail_"):
 			player.trail_col = Color("ff9a4a") if cid2 == "trail_ember" else Color("8fe8ff")
@@ -552,3 +575,29 @@ func _notification(what: int) -> void:
 	if what == NOTIFICATION_APPLICATION_PAUSED or what == NOTIFICATION_APPLICATION_FOCUS_OUT:
 		if is_inside_tree() and director != null and not over and not bot:
 			request_pause()
+
+
+## Dibuja una vez cada tipo de primitiva / material / proyectil con el telon negro puesto, para que el primer disparo o impacto
+## reales no compilen pipelines de la GPU en pleno combate (en Vulkan movil cada variante nueva cuesta ~40 ms la primera vez).
+func _gpu_warm() -> void:
+	var c := player.position + Vector2(0, -20)
+	fx.spark(c, Vector2.RIGHT, 2, 100.0, Color.WHITE, 0.06)
+	fx.burst(c, 2, 100.0, Color.WHITE, 0.06)
+	fx.puff(c, Vector2.ZERO, 8.0, Color(1, 1, 1, 0.5), 0.06)
+	fx.ring(c, 4.0, 10.0, Color.WHITE, 0.06)
+	fx.flash(c, 10.0, Color.WHITE, 0.06)
+	fx.muzzle(c, 0.0, 0.5, Color.WHITE)
+	fx.shard(c, Vector2.ZERO, 10.0, Color.WHITE, 2.0)
+	fx.casing(c, Vector2.RIGHT)
+	fx.arc(c, 0.0, 10.0, Color.WHITE, 0.06)
+	fx.bolt(c, c + Vector2(20, 0), Color.WHITE, 0.06)
+	fx.beam(c, c + Vector2(20, 0), Color.WHITE, 0.06)
+	fx.slash_arc(c, 0.0, 10.0, 1.0, Color.WHITE)
+	fx.add_decal(c, 0, 6.0, Color.BLACK)
+	fx.add_decal(c, 1, 6.0, Color.BLACK)
+	for v in Fx.USED_VFX:
+		fx.sprite(v, c, 8.0, 12.0, 0.06, Color.WHITE, 0.0, false)
+		fx.sprite(v, c, 8.0, 12.0, 0.06, Color.WHITE, 0.0, true)
+	for st in Bullets.Style.values():
+		var b := bullets.fire(c, Vector2.RIGHT, 0.0, 0.05, 0.0, st, 0)
+		b.col = Color.WHITE

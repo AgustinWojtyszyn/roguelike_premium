@@ -20,8 +20,9 @@
 "vida": 435
 },
 "stats": {
-"rpg_sheets_migrate": 87,
+"rpg_sheets_migrate": 67,
 "rpg_sheets_reserve": 26,
+"rpg_hero_variants": 7,
 "rpg_reserve": 391,
 "rpg_dup": 19,
 "rpg_discard": 64,

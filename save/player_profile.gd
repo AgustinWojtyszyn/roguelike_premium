@@ -40,6 +40,13 @@ static func default_data() -> Dictionary:
 		"perm_perks": {},
 		"settings": {"music": true, "sfx": true, "music_vol": 0.8, "sfx_vol": 1.0, "vibration": true, "show_fps": false, "quality": "auto", "aim_assist": true},
 		"flags": {"seen_news": 0},
+		"selected_mode": "campaign",
+		"selected_challenge": "one_weapon",
+		"records": {
+			"survival": {"best_wave": 0, "best_score": 0, "best_time": 0.0, "best_kills": 0, "runs": 0},
+			"bossrush": {"best_bosses": 0, "best_time": 0.0, "least_damage": -1, "clears": 0, "runs": 0},
+			"challenges": {},
+		},
 	}
 
 

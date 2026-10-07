@@ -403,6 +403,7 @@ func take_damage(n: int, dir: Vector2, knock: float = 120.0) -> void:
 	run.damaged_in_room = true
 	shield_delay = 1.6 if data.passive_id == "immovable" else 2.8
 	shield_tick = 0.0
+	game.run.damage_taken += whole
 	var absorbed := mini(shield, whole)
 	var rest := whole - absorbed
 	if absorbed > 0:

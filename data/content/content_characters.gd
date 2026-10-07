@@ -44,7 +44,7 @@ static func build() -> Array[CharacterData]:
 		"ability_cost": 80, "ability_cd": 20.0,
 		"passive_id": "triage", "passive_name": "TRIAJE", "passive_desc": "Los botiquines curan 1 punto extra.",
 		"start_weapon": "chispa", "side_weapon": "pulsar", "recommended_weapon": "colmena",
-		"look": {"base": Color("dfe8f2"), "light": Color("ffffff"), "glow": Color("5fffc8"), "accent": Color("ff4f6a"),
+		"look": {"visual": "sera", "base": Color("dfe8f2"), "light": Color("ffffff"), "glow": Color("5fffc8"), "accent": Color("ff4f6a"),
 			"head": "medic", "torso": "suit", "back": "medpack", "shoulder_style": "plain", "scarf": null, "hs": 1.08, "w": 0.9, "h": 0.97},
 		"unlock": {"type": "coins", "price": 1100}, "order": 2,
 	}))
@@ -55,7 +55,7 @@ static func build() -> Array[CharacterData]:
 		"ability_cost": 70, "ability_cd": 16.0,
 		"passive_id": "scrapper", "passive_name": "CHATARRERA", "passive_desc": "Romper cajas y barriles suelta monedas y energía.",
 		"start_weapon": "gota", "side_weapon": "chispa", "recommended_weapon": "pomelo",
-		"look": {"base": Color("e8a824"), "light": Color("ffd96a"), "glow": Color("36e0d0"), "accent": Color("36e0d0"),
+		"look": {"visual": "orla", "base": Color("e8a824"), "light": Color("ffd96a"), "glow": Color("36e0d0"), "accent": Color("36e0d0"),
 			"head": "goggles", "torso": "armor", "back": "toolbox", "shoulder_style": "pads", "scarf": null, "hs": 1.04, "w": 1.0},
 		"unlock": {"type": "coins", "price": 1200}, "order": 3,
 	}))
@@ -66,7 +66,7 @@ static func build() -> Array[CharacterData]:
 		"ability_cost": 40, "ability_cd": 10.0,
 		"passive_id": "eagle_eye", "passive_name": "OJO DE ÁGUILA", "passive_desc": "+18% de probabilidad de golpe crítico.",
 		"start_weapon": "aguja", "side_weapon": "chispa", "recommended_weapon": "riel_q",
-		"look": {"base": Color("a48b5c"), "light": Color("e6d3a2"), "glow": Color("ff5a4a"), "accent": Color("ff5a4a"),
+		"look": {"visual": "halo", "base": Color("a48b5c"), "light": Color("e6d3a2"), "glow": Color("ff5a4a"), "accent": Color("ff5a4a"),
 			"head": "sniper", "torso": "hunter", "back": "rifle_sling", "shoulder_style": "plain", "scarf": Color("c9b380"), "hs": 1.0, "h": 1.04, "w": 0.92},
 		"unlock": {"type": "coins", "price": 1500}, "order": 4,
 	}))
@@ -77,7 +77,7 @@ static func build() -> Array[CharacterData]:
 		"ability_cost": 50, "ability_cd": 10.0,
 		"passive_id": "deflect", "passive_name": "REFLEJO DE ACERO", "passive_desc": "Cada tajo desvía los proyectiles enemigos cercanos.",
 		"start_weapon": "filo_z", "side_weapon": "chispa", "recommended_weapon": "garra",
-		"look": {"base": Color("2a2a3c"), "light": Color("8a8aa8"), "glow": Color("ff3a5a"), "accent": Color("ff3a5a"),
+		"look": {"visual": "sable", "base": Color("2a2a3c"), "light": Color("8a8aa8"), "glow": Color("ff3a5a"), "accent": Color("ff3a5a"),
 			"head": "horned", "torso": "hunter", "back": "cape", "shoulder_style": "spikes", "scarf": Color("ff3a5a"), "hs": 1.0, "h": 1.02, "w": 0.92},
 		"unlock": {"type": "coins", "price": 3200}, "order": 5,
 	}))
@@ -88,7 +88,7 @@ static func build() -> Array[CharacterData]:
 		"ability_cost": 55, "ability_cd": 13.0,
 		"passive_id": "ether_step", "passive_name": "PASO ETÉREO", "passive_desc": "12% de probabilidad de ignorar un impacto.",
 		"start_weapon": "rebote", "side_weapon": "chispa", "recommended_weapon": "anomalia",
-		"look": {"base": Color("4a2f7a"), "light": Color("b9a0ff"), "glow": Color("ff4fd8"), "accent": Color("ff4fd8"),
+		"look": {"visual": "nyx", "base": Color("4a2f7a"), "light": Color("b9a0ff"), "glow": Color("ff4fd8"), "accent": Color("ff4fd8"),
 			"head": "hood", "torso": "robe", "back": "ring", "shoulder_style": "none", "scarf": null, "hs": 1.02, "w": 0.94},
 		"unlock": {"type": "coins", "price": 3400}, "order": 6,
 	}))
@@ -110,7 +110,7 @@ static func build() -> Array[CharacterData]:
 		"ability_cost": 60, "ability_cd": 15.0,
 		"passive_id": "immovable", "passive_name": "INAMOVIBLE", "passive_desc": "Inmune al empuje. El escudo empieza a regenerarse antes.",
 		"start_weapon": "mastin", "side_weapon": "chispa", "recommended_weapon": "pomelo",
-		"look": {"base": Color("8a3a32"), "light": Color("d9b8a0"), "glow": Color("ff8a3d"), "accent": Color("ff8a3d"),
+		"look": {"visual": "basalto", "base": Color("8a3a32"), "light": Color("d9b8a0"), "glow": Color("ff8a3d"), "accent": Color("ff8a3d"),
 			"head": "heavy", "torso": "heavy", "back": "tanks", "shoulder_style": "big", "scarf": null, "hs": 1.0, "h": 0.94, "w": 1.22},
 		"unlock": {"type": "coins", "price": 4200}, "order": 8,
 	}))
@@ -121,7 +121,7 @@ static func build() -> Array[CharacterData]:
 		"ability_cost": 90, "ability_cd": 18.0,
 		"passive_id": "arcane_flow", "passive_name": "FLUJO ARCANO", "passive_desc": "Las armas de energía cuestan un 30% menos.",
 		"start_weapon": "relampago", "side_weapon": "chispa", "recommended_weapon": "riel_q",
-		"look": {"base": Color("2a3a8a"), "light": Color("e8d28a"), "glow": Color("4fd8ff"), "accent": Color("ffd24a"),
+		"look": {"visual": "ilex", "base": Color("2a3a8a"), "light": Color("e8d28a"), "glow": Color("4fd8ff"), "accent": Color("ffd24a"),
 			"head": "crown", "torso": "robe", "back": "orbs", "shoulder_style": "none", "scarf": null, "hs": 1.02, "w": 0.96},
 		"unlock": {"type": "coins", "price": 7500}, "order": 9,
 	}))

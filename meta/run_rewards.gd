@@ -14,6 +14,10 @@ static func apply(profile: PlayerProfile, summary: Dictionary, chapter: ChapterD
 	if won and chapter != null:
 		bonus_coins = chapter.coin_reward
 		xp += chapter.xp_reward
+	var mode := str(summary.get("mode", "campaign"))
+	if mode != "campaign":
+		bonus_coins = mode_bonus(summary)
+		xp = int(kills * 0.5) + int(summary.get("wave", 0)) * 6 + int(summary.get("bosses", 0)) * 60
 	profile.add_coins(coins + bonus_coins)
 	profile.data["xp_total"] = int(profile.data["xp_total"]) + xp
 	profile.data["pass"]["xp"] = int(profile.data["pass"]["xp"]) + xp
@@ -38,7 +42,9 @@ static func apply(profile: PlayerProfile, summary: Dictionary, chapter: ChapterD
 	profile.data["characters"][cid] = cs
 	for w in summary.get("weapons_seen", []):
 		profile.data["weapons_seen"][w] = true
-	if chapter != null:
+	if mode != "campaign":
+		record_mode(profile, summary)
+	elif chapter != null:
 		var chs := profile.chapter_state(chapter.id)
 		chs["best_stage"] = maxi(int(chs.get("best_stage", 0)), int(summary.get("stages", 0)))
 		if won:
@@ -61,3 +67,53 @@ static func apply(profile: PlayerProfile, summary: Dictionary, chapter: ChapterD
 		MissionSystem.record(profile, catalog_missions, "wins_char:" + cid, 1)
 	profile.touch()
 	return {"coins": coins, "bonus_coins": bonus_coins, "xp": xp}
+
+
+## Monedas extra de los modos alternativos (la campana usa chapter.coin_reward).
+static func mode_bonus(summary: Dictionary) -> int:
+	var won: bool = summary.get("won", false)
+	match str(summary.get("mode", "campaign")):
+		"survival":
+			return int(summary.get("wave", 0)) * 6 + int(summary.get("kills", 0)) / 3
+		"bossrush":
+			return int(summary.get("bosses", 0)) * 60 + (200 if won else 0)
+		"challenge":
+			if won:
+				var ch: Dictionary = ModeRules.CHALLENGES.get(str(summary.get("challenge", "")), {})
+				return int(120.0 * float(ch.get("bonus", 1.0)))
+	return 0
+
+
+## Mejores marcas por modo (se guardan en profile.data["records"]).
+static func record_mode(profile: PlayerProfile, summary: Dictionary) -> void:
+	var rec: Dictionary = profile.data["records"]
+	var time := float(summary.get("time", 0.0))
+	match str(summary.get("mode", "campaign")):
+		"survival":
+			var r: Dictionary = rec["survival"]
+			var wave := int(summary.get("wave", 0))
+			var score := ModeRules.survival_score(int(summary.get("kills", 0)), wave, time)
+			r["runs"] = int(r["runs"]) + 1
+			r["best_wave"] = maxi(int(r["best_wave"]), wave)
+			r["best_score"] = maxi(int(r["best_score"]), score)
+			r["best_kills"] = maxi(int(r["best_kills"]), int(summary.get("kills", 0)))
+			r["best_time"] = maxf(float(r["best_time"]), time)
+		"bossrush":
+			var r2: Dictionary = rec["bossrush"]
+			r2["runs"] = int(r2["runs"]) + 1
+			r2["best_bosses"] = maxi(int(r2["best_bosses"]), int(summary.get("bosses", 0)))
+			if summary.get("won", false):
+				r2["clears"] = int(r2["clears"]) + 1
+				var bt := float(r2["best_time"])
+				r2["best_time"] = time if bt <= 0.0 else minf(bt, time)
+				var dmg := int(summary.get("damage_taken", 0))
+				var ld := int(r2["least_damage"])
+				r2["least_damage"] = dmg if ld < 0 else mini(ld, dmg)
+		"challenge":
+			var cid := str(summary.get("challenge", ""))
+			var cs: Dictionary = rec["challenges"].get(cid, {"cleared": 0, "runs": 0, "best_stage": 0})
+			cs["runs"] = int(cs["runs"]) + 1
+			cs["best_stage"] = maxi(int(cs["best_stage"]), int(summary.get("stages", 0)))
+			if summary.get("won", false):
+				cs["cleared"] = int(cs["cleared"]) + 1
+			rec["challenges"][cid] = cs

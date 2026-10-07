@@ -8,18 +8,6 @@ const ANIMS := {
 		"state": "migrate",
 		"bbox": [35, 13, 72, 88],
 		"anims": {
-			"attack": {
-				"sheet": "res://assets/migrated/rpg/characters/human_ranger/attack.png",
-				"dirs": ["south", "east", "north", "west"],
-				"counts": [9, 9, 9, 9],
-				"cell": [108, 108]
-			},
-			"dash": {
-				"sheet": "res://assets/migrated/rpg/characters/human_ranger/dash.png",
-				"dirs": ["south", "east", "north", "west"],
-				"counts": [7, 7, 7, 7],
-				"cell": [108, 108]
-			},
 			"death": {
 				"sheet": "res://assets/migrated/rpg/characters/human_ranger/death.png",
 				"dirs": ["south", "east", "north", "west"],
@@ -50,18 +38,6 @@ const ANIMS := {
 		"state": "migrate",
 		"bbox": [31, 15, 65, 90],
 		"anims": {
-			"attack": {
-				"sheet": "res://assets/migrated/rpg/characters/combat_android/attack.png",
-				"dirs": ["south"],
-				"counts": [7],
-				"cell": [108, 108]
-			},
-			"dash": {
-				"sheet": "res://assets/migrated/rpg/characters/combat_android/dash.png",
-				"dirs": ["south"],
-				"counts": [6],
-				"cell": [96, 96]
-			},
 			"death": {
 				"sheet": "res://assets/migrated/rpg/characters/combat_android/death.png",
 				"dirs": ["south"],
@@ -85,30 +61,6 @@ const ANIMS := {
 				"dirs": ["south", "east", "north", "west"],
 				"counts": [8, 8, 8, 8],
 				"cell": [96, 96]
-			},
-			"hurt_alt": {
-				"sheet": "res://assets/migrated/rpg/characters/combat_android/hurt_alt.png",
-				"dirs": ["south"],
-				"counts": [3],
-				"cell": [560, 112]
-			},
-			"attack_alt": {
-				"sheet": "res://assets/migrated/rpg/characters/combat_android/attack_alt.png",
-				"dirs": ["south"],
-				"counts": [3],
-				"cell": [784, 112]
-			},
-			"dash_alt": {
-				"sheet": "res://assets/migrated/rpg/characters/combat_android/dash_alt.png",
-				"dirs": ["south"],
-				"counts": [3],
-				"cell": [576, 96]
-			},
-			"idle_alt": {
-				"sheet": "res://assets/migrated/rpg/characters/combat_android/idle_alt.png",
-				"dirs": ["south"],
-				"counts": [3],
-				"cell": [560, 112]
 			}
 		}
 	},
@@ -116,18 +68,6 @@ const ANIMS := {
 		"state": "migrate",
 		"bbox": [44, 19, 83, 109],
 		"anims": {
-			"attack": {
-				"sheet": "res://assets/migrated/rpg/characters/beetle_cyborg/attack.png",
-				"dirs": ["south"],
-				"counts": [7],
-				"cell": [128, 128]
-			},
-			"dash": {
-				"sheet": "res://assets/migrated/rpg/characters/beetle_cyborg/dash.png",
-				"dirs": ["south"],
-				"counts": [7],
-				"cell": [128, 128]
-			},
 			"death": {
 				"sheet": "res://assets/migrated/rpg/characters/beetle_cyborg/death.png",
 				"dirs": ["south"],
@@ -151,30 +91,6 @@ const ANIMS := {
 				"dirs": ["south", "east", "north", "west"],
 				"counts": [7, 9, 9, 9],
 				"cell": [132, 132]
-			},
-			"hurt_alt": {
-				"sheet": "res://assets/migrated/rpg/characters/beetle_cyborg/hurt_alt.png",
-				"dirs": ["south"],
-				"counts": [3],
-				"cell": [660, 132]
-			},
-			"attack_alt": {
-				"sheet": "res://assets/migrated/rpg/characters/beetle_cyborg/attack_alt.png",
-				"dirs": ["south"],
-				"counts": [3],
-				"cell": [924, 132]
-			},
-			"dash_alt": {
-				"sheet": "res://assets/migrated/rpg/characters/beetle_cyborg/dash_alt.png",
-				"dirs": ["south"],
-				"counts": [3],
-				"cell": [924, 132]
-			},
-			"idle_alt": {
-				"sheet": "res://assets/migrated/rpg/characters/beetle_cyborg/idle_alt.png",
-				"dirs": ["south"],
-				"counts": [3],
-				"cell": [660, 132]
 			}
 		}
 	},
@@ -182,18 +98,6 @@ const ANIMS := {
 		"state": "migrate",
 		"bbox": [34, 18, 74, 95],
 		"anims": {
-			"attack": {
-				"sheet": "res://assets/migrated/rpg/characters/mutant_striker/attack.png",
-				"dirs": ["south"],
-				"counts": [7],
-				"cell": [112, 112]
-			},
-			"dash": {
-				"sheet": "res://assets/migrated/rpg/characters/mutant_striker/dash.png",
-				"dirs": ["south"],
-				"counts": [7],
-				"cell": [112, 112]
-			},
 			"death": {
 				"sheet": "res://assets/migrated/rpg/characters/mutant_striker/death.png",
 				"dirs": ["south"],
@@ -217,30 +121,6 @@ const ANIMS := {
 				"dirs": ["south", "east", "north", "west"],
 				"counts": [7, 9, 9, 9],
 				"cell": [116, 116]
-			},
-			"hurt_alt": {
-				"sheet": "res://assets/migrated/rpg/characters/mutant_striker/hurt_alt.png",
-				"dirs": ["south"],
-				"counts": [3],
-				"cell": [580, 116]
-			},
-			"attack_alt": {
-				"sheet": "res://assets/migrated/rpg/characters/mutant_striker/attack_alt.png",
-				"dirs": ["south"],
-				"counts": [3],
-				"cell": [812, 116]
-			},
-			"dash_alt": {
-				"sheet": "res://assets/migrated/rpg/characters/mutant_striker/dash_alt.png",
-				"dirs": ["south"],
-				"counts": [3],
-				"cell": [812, 116]
-			},
-			"idle_alt": {
-				"sheet": "res://assets/migrated/rpg/characters/mutant_striker/idle_alt.png",
-				"dirs": ["south"],
-				"counts": [3],
-				"cell": [580, 116]
 			}
 		}
 	},
@@ -577,6 +457,216 @@ const ANIMS := {
 				"dirs": ["east", "north", "west"],
 				"counts": [9, 9, 9],
 				"cell": [228, 228]
+			}
+		}
+	},
+	"rpg/characters/sera": {
+		"state": "migrate",
+		"bbox": [35, 13, 72, 88],
+		"anims": {
+			"death": {
+				"sheet": "res://assets/migrated/rpg/characters/sera/death.png",
+				"dirs": ["south", "east", "north", "west"],
+				"counts": [9, 9, 9, 9],
+				"cell": [108, 108]
+			},
+			"hurt": {
+				"sheet": "res://assets/migrated/rpg/characters/sera/hurt.png",
+				"dirs": ["south", "east", "north", "west"],
+				"counts": [7, 7, 7, 7],
+				"cell": [108, 108]
+			},
+			"idle": {
+				"sheet": "res://assets/migrated/rpg/characters/sera/idle.png",
+				"dirs": ["south", "south-east", "east", "north-east", "north", "north-west", "west", "south-west"],
+				"counts": [9, 9, 9, 9, 9, 9, 9, 9],
+				"cell": [108, 108]
+			},
+			"walk": {
+				"sheet": "res://assets/migrated/rpg/characters/sera/walk.png",
+				"dirs": ["south", "south-east", "east", "north-east", "north", "north-west", "west", "south-west"],
+				"counts": [9, 9, 9, 9, 9, 9, 9, 9],
+				"cell": [108, 108]
+			}
+		}
+	},
+	"rpg/characters/orla": {
+		"state": "migrate",
+		"bbox": [35, 13, 72, 88],
+		"anims": {
+			"death": {
+				"sheet": "res://assets/migrated/rpg/characters/orla/death.png",
+				"dirs": ["south", "east", "north", "west"],
+				"counts": [9, 9, 9, 9],
+				"cell": [108, 108]
+			},
+			"hurt": {
+				"sheet": "res://assets/migrated/rpg/characters/orla/hurt.png",
+				"dirs": ["south", "east", "north", "west"],
+				"counts": [7, 7, 7, 7],
+				"cell": [108, 108]
+			},
+			"idle": {
+				"sheet": "res://assets/migrated/rpg/characters/orla/idle.png",
+				"dirs": ["south", "south-east", "east", "north-east", "north", "north-west", "west", "south-west"],
+				"counts": [9, 9, 9, 9, 9, 9, 9, 9],
+				"cell": [108, 108]
+			},
+			"walk": {
+				"sheet": "res://assets/migrated/rpg/characters/orla/walk.png",
+				"dirs": ["south", "south-east", "east", "north-east", "north", "north-west", "west", "south-west"],
+				"counts": [9, 9, 9, 9, 9, 9, 9, 9],
+				"cell": [108, 108]
+			}
+		}
+	},
+	"rpg/characters/halo": {
+		"state": "migrate",
+		"bbox": [35, 13, 72, 88],
+		"anims": {
+			"death": {
+				"sheet": "res://assets/migrated/rpg/characters/halo/death.png",
+				"dirs": ["south", "east", "north", "west"],
+				"counts": [9, 9, 9, 9],
+				"cell": [108, 108]
+			},
+			"hurt": {
+				"sheet": "res://assets/migrated/rpg/characters/halo/hurt.png",
+				"dirs": ["south", "east", "north", "west"],
+				"counts": [7, 7, 7, 7],
+				"cell": [108, 108]
+			},
+			"idle": {
+				"sheet": "res://assets/migrated/rpg/characters/halo/idle.png",
+				"dirs": ["south", "south-east", "east", "north-east", "north", "north-west", "west", "south-west"],
+				"counts": [9, 9, 9, 9, 9, 9, 9, 9],
+				"cell": [108, 108]
+			},
+			"walk": {
+				"sheet": "res://assets/migrated/rpg/characters/halo/walk.png",
+				"dirs": ["south", "south-east", "east", "north-east", "north", "north-west", "west", "south-west"],
+				"counts": [9, 9, 9, 9, 9, 9, 9, 9],
+				"cell": [108, 108]
+			}
+		}
+	},
+	"rpg/characters/sable": {
+		"state": "migrate",
+		"bbox": [31, 15, 65, 90],
+		"anims": {
+			"death": {
+				"sheet": "res://assets/migrated/rpg/characters/sable/death.png",
+				"dirs": ["south"],
+				"counts": [7],
+				"cell": [96, 96]
+			},
+			"hurt": {
+				"sheet": "res://assets/migrated/rpg/characters/sable/hurt.png",
+				"dirs": ["south"],
+				"counts": [6],
+				"cell": [96, 96]
+			},
+			"idle": {
+				"sheet": "res://assets/migrated/rpg/characters/sable/idle.png",
+				"dirs": ["south"],
+				"counts": [8],
+				"cell": [96, 96]
+			},
+			"walk": {
+				"sheet": "res://assets/migrated/rpg/characters/sable/walk.png",
+				"dirs": ["south", "east", "north", "west"],
+				"counts": [8, 8, 8, 8],
+				"cell": [96, 96]
+			}
+		}
+	},
+	"rpg/characters/nyx": {
+		"state": "migrate",
+		"bbox": [31, 15, 65, 90],
+		"anims": {
+			"death": {
+				"sheet": "res://assets/migrated/rpg/characters/nyx/death.png",
+				"dirs": ["south"],
+				"counts": [7],
+				"cell": [96, 96]
+			},
+			"hurt": {
+				"sheet": "res://assets/migrated/rpg/characters/nyx/hurt.png",
+				"dirs": ["south"],
+				"counts": [6],
+				"cell": [96, 96]
+			},
+			"idle": {
+				"sheet": "res://assets/migrated/rpg/characters/nyx/idle.png",
+				"dirs": ["south"],
+				"counts": [8],
+				"cell": [96, 96]
+			},
+			"walk": {
+				"sheet": "res://assets/migrated/rpg/characters/nyx/walk.png",
+				"dirs": ["south", "east", "north", "west"],
+				"counts": [8, 8, 8, 8],
+				"cell": [96, 96]
+			}
+		}
+	},
+	"rpg/characters/ilex": {
+		"state": "migrate",
+		"bbox": [31, 15, 65, 90],
+		"anims": {
+			"death": {
+				"sheet": "res://assets/migrated/rpg/characters/ilex/death.png",
+				"dirs": ["south"],
+				"counts": [7],
+				"cell": [96, 96]
+			},
+			"hurt": {
+				"sheet": "res://assets/migrated/rpg/characters/ilex/hurt.png",
+				"dirs": ["south"],
+				"counts": [6],
+				"cell": [96, 96]
+			},
+			"idle": {
+				"sheet": "res://assets/migrated/rpg/characters/ilex/idle.png",
+				"dirs": ["south"],
+				"counts": [8],
+				"cell": [96, 96]
+			},
+			"walk": {
+				"sheet": "res://assets/migrated/rpg/characters/ilex/walk.png",
+				"dirs": ["south", "east", "north", "west"],
+				"counts": [8, 8, 8, 8],
+				"cell": [96, 96]
+			}
+		}
+	},
+	"rpg/characters/basalto": {
+		"state": "migrate",
+		"bbox": [34, 18, 74, 95],
+		"anims": {
+			"death": {
+				"sheet": "res://assets/migrated/rpg/characters/basalto/death.png",
+				"dirs": ["south"],
+				"counts": [7],
+				"cell": [112, 112]
+			},
+			"hurt": {
+				"sheet": "res://assets/migrated/rpg/characters/basalto/hurt.png",
+				"dirs": ["south"],
+				"counts": [7],
+				"cell": [112, 112]
+			},
+			"idle": {
+				"sheet": "res://assets/migrated/rpg/characters/basalto/idle.png",
+				"dirs": ["south"],
+				"counts": [7],
+				"cell": [112, 112]
+			},
+			"walk": {
+				"sheet": "res://assets/migrated/rpg/characters/basalto/walk.png",
+				"dirs": ["south", "east", "north", "west"],
+				"counts": [7, 9, 9, 9],
+				"cell": [116, 116]
 			}
 		}
 	},

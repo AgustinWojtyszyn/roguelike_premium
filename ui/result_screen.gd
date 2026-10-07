@@ -28,13 +28,16 @@ func _ready() -> void:
 	var run := game.run
 	var next_ch := ""
 	var idx := Catalog.chapter_order.find(game.chapter.id)
+	if game.mode_id != ModeRules.CAMPAIGN:
+		idx = -1
 	if won and idx >= 0 and idx + 1 < Catalog.chapter_order.size():
 		next_ch = Catalog.chapter_order[idx + 1]
 	var was_unlocked: bool = p.chapter_state(next_ch).get("unlocked", false) if next_ch != "" else true
 	lv_before = p.account_level()
 	pass_before = PassSystem.level_info(p, Catalog.season)
+	run.challenge = game.challenge_id
 	summary = run.summary(game.director.stages_cleared())
-	rewards = RunRewards.apply(p, summary, game.chapter, Catalog.missions, next_ch)
+	rewards = RunRewards.apply(p, summary, game.chapter if game.mode_id == ModeRules.CAMPAIGN else null, Catalog.missions, next_ch)
 	lv_after = p.account_level()
 	pass_after = PassSystem.level_info(p, Catalog.season)
 	if next_ch != "" and not was_unlocked:
@@ -62,7 +65,7 @@ func _ready() -> void:
 	_layout()
 	AudioMgr.stop_hum()
 	if game.bot:
-		print("RESULTADO: victoria=%s kills=%d salas=%d monedas=%d xp=%d etapa=%d" % [won, summary["kills"], summary["rooms"], int(rewards["coins"]) + int(rewards["bonus_coins"]), int(rewards["xp"]), game.director.stage + 1])
+		print("RESULTADO: victoria=%s kills=%d salas=%d monedas=%d xp=%d etapa=%d modo=%s oleada=%d jefes=%d" % [won, summary["kills"], summary["rooms"], int(rewards["coins"]) + int(rewards["bonus_coins"]), int(rewards["xp"]), game.director.stage + 1, game.mode_id, int(summary.get("wave", 0)), int(summary.get("bosses", 0))])
 		get_tree().create_timer(0.3, true, false, true).timeout.connect(func(): get_tree().quit())
 	AudioMgr.ui("victory" if won else "defeat", -2.0)
 	if won:
@@ -73,7 +76,10 @@ func _ready() -> void:
 
 func _again() -> void:
 	AudioMgr.stop_hum()
-	Router.goto("run", {"character": game.run.character.id, "chapter": game.chapter.id, "seed": randi()}, game.chapter.accent.darkened(0.7))
+	var first_ch: String = game.chapter.id
+	if game.mode_id == ModeRules.SURVIVAL or game.mode_id == ModeRules.BOSS_RUSH:
+		first_ch = Catalog.chapter_order[0]
+	Router.goto("run", {"character": game.run.character.id, "chapter": first_ch, "seed": randi(), "mode": game.mode_id, "challenge": game.challenge_id}, game.chapter.accent.darkened(0.7))
 
 
 func _layout() -> void:
@@ -120,9 +126,18 @@ func _draw() -> void:
 	# titulo
 	var tk := Gfx.ease_out(clampf(_t * 2.4, 0.0, 1.0))
 	var title := "¡VICTORIA!" if won else "RUN TERMINADA"
+	if game.mode_id == ModeRules.SURVIVAL:
+		title = "SUPERVIVENCIA"
 	var ts := int(78.0 * (0.7 + 0.3 * tk))
 	UiKit.text(self, Vector2(0, 112.0), title, ts, Color(accent.lightened(0.35), tk), 1, vs.x, 14.0)
 	var sub := "%s completado" % game.chapter.display_name if won else "Llegaste a la etapa %d de %d" % [game.director.stage + 1, game.director.plan.size()]
+	match game.mode_id:
+		ModeRules.SURVIVAL:
+			sub = "Oleada %d · puntuación %s" % [int(summary.get("wave", 0)), UiKit.format_int(ModeRules.survival_score(int(summary["kills"]), int(summary.get("wave", 0)), float(summary["time"])))]
+		ModeRules.BOSS_RUSH:
+			sub = ("¡Los 4 jefes derrotados!" if won else "Jefes derrotados: %d / 4" % int(summary["bosses"])) + "  ·  daño recibido %d" % int(summary.get("damage_taken", 0))
+		ModeRules.CHALLENGE:
+			sub = "Desafío: %s" % ModeRules.CHALLENGES.get(game.challenge_id, {}).get("name", "")
 	UiKit.text(self, Vector2(0, 152.0), sub, 24, Color(UiKit.TEXT, tk), 1, vs.x, 6.0)
 	# personaje
 	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
@@ -149,7 +164,7 @@ func _draw() -> void:
 	UiIcons.draw(self, "coin", Vector2(pr.position.x + 46.0, ry), 18.0, Color("ffd24a"))
 	UiKit.text(self, Vector2(pr.position.x + 78.0, ry + 11.0), "+%s" % UiKit.format_int(int(round(coin_total * ck))), 36, Color("fff0b0"), 0, -1.0, 6.0)
 	if int(rewards.get("bonus_coins", 0)) > 0:
-		UiKit.text(self, Vector2(pr.position.x + 78.0, ry + 34.0), "incluye bono de capítulo +%d" % int(rewards["bonus_coins"]), 14, UiKit.DIM, 0, -1.0, 2.0, false)
+		UiKit.text(self, Vector2(pr.position.x + 78.0, ry + 34.0), ("incluye bono de capítulo +%d" if game.mode_id == ModeRules.CAMPAIGN else "incluye bono de modo +%d") % int(rewards["bonus_coins"]), 14, UiKit.DIM, 0, -1.0, 2.0, false)
 	# XP + nivel de cuenta
 	var xy := ry + 72.0
 	var xp_got := int(rewards.get("xp", 0))

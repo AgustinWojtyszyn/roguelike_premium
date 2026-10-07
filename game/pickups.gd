@@ -76,6 +76,9 @@ func drop_shield(pos: Vector2) -> void:
 
 
 func drop_weapon(pos: Vector2, id: String, lock_t: float = 0.0) -> void:
+	if game.mods.get("one_weapon", false):
+		drop_coins(pos, 25)
+		return
 	var it := _new(K.WEAPON, pos, Vector2.from_angle(randf() * TAU) * randf_range(20.0, 60.0), 1.0)
 	it.id = id
 	it.life = 600.0

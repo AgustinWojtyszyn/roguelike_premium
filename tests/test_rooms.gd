@@ -43,7 +43,7 @@ func run(t) -> void:
 	var checked := 0
 	for rid in Catalog.rooms:
 		var def: RoomDef = Catalog.rooms[rid]
-		var sides_in: Array = def.entry_sides if not def.entry_sides.is_empty() else ["W"]
+		var sides_in: Array = [""] if def.kind == "survival" else (def.entry_sides if not def.entry_sides.is_empty() else ["W"])
 		var sides_out: Array = def.exit_sides if not def.exit_sides.is_empty() else [""]
 		for ein in sides_in:
 			for eout in sides_out:

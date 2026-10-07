@@ -56,6 +56,8 @@ func _ready() -> void:
 func fire(pos: Vector2, dir: Vector2, speed: float, life: float, dmg: float, style: int, team: int, pierce: int = 0, knock: float = 0.0) -> B:
 	if list.size() >= MAX_BULLETS:
 		return _spare   # saturado: el proyectil se descarta (objeto comodin fuera de la lista)
+	if team == 1 and game.mods.has("enemy_bullet_speed"):
+		speed *= float(game.mods["enemy_bullet_speed"])
 	var b: B = _free.pop_back() if not _free.is_empty() else B.new()
 	b.pos = pos
 	b.vel = dir * speed

@@ -14,6 +14,10 @@ var char_prev: GButton
 var char_next: GButton
 var gear_btn: GButton
 var nav: Array[NavButton] = []
+var mode_btn: GButton
+var chal_btn: GButton
+var mode_id: String = ModeRules.CAMPAIGN
+var challenge_id: String = "one_weapon"
 var mission_chip: GButton
 var pass_chip: GButton
 var gift_chip: GButton
@@ -42,6 +46,12 @@ func _ready() -> void:
 		chapter_id = "ch1"
 	life = HomeLife.new()
 	add_child(life)
+	mode_id = str(p.data.get("selected_mode", ModeRules.CAMPAIGN))
+	if not ModeRules.ORDER.has(mode_id):
+		mode_id = ModeRules.CAMPAIGN
+	challenge_id = str(p.data.get("selected_challenge", "one_weapon"))
+	if not ModeRules.CHALLENGES.has(challenge_id):
+		challenge_id = "one_weapon"
 	rig = CharacterRig.new()
 	add_child(rig)
 	rig.z_index = 0
@@ -75,6 +85,14 @@ func _make_buttons() -> void:
 	char_next.pressed.connect(func(): _cycle_char(1))
 	for b in [chap_prev, chap_next, char_prev, char_next]:
 		add_child(b)
+	mode_btn = GButton.make("", GButton.Style.SECONDARY, "")
+	mode_btn.font_size = 22
+	mode_btn.pressed.connect(_cycle_mode)
+	add_child(mode_btn)
+	chal_btn = GButton.make("", GButton.Style.GHOST, "")
+	chal_btn.font_size = 18
+	chal_btn.pressed.connect(_cycle_challenge)
+	add_child(chal_btn)
 	gear_btn = GButton.make("", GButton.Style.ICON, "gear")
 	gear_btn.pressed.connect(_open_settings)
 	add_child(gear_btn)
@@ -138,6 +156,10 @@ func _layout() -> void:
 	chap_next.size = Vector2(54, 54)
 	chap_prev.position = Vector2(vs.x - 372.0 - safe.z, vs.y - 208.0 - safe.w)
 	chap_next.position = Vector2(vs.x - 76.0 - safe.z, vs.y - 208.0 - safe.w)
+	mode_btn.size = Vector2(350, 56)
+	mode_btn.position = Vector2(vs.x - 372.0 - safe.z, vs.y - 276.0 - safe.w)
+	chal_btn.size = Vector2(350, 48)
+	chal_btn.position = Vector2(vs.x - 372.0 - safe.z, vs.y - 332.0 - safe.w)
 	mission_chip.size = Vector2(218, 70)
 	mission_chip.position = Vector2(20.0 + safe.x, 106.0 + safe.y)
 	pass_chip.size = Vector2(218, 70)
@@ -175,9 +197,42 @@ func _refresh_badges() -> void:
 	_update_play_state()
 
 
+func _mode_available() -> bool:
+	match mode_id:
+		ModeRules.SURVIVAL:
+			return true
+		ModeRules.BOSS_RUSH:
+			return bool(Profile.p.chapter_state(Catalog.chapter_order[Catalog.chapter_order.size() - 1]).get("unlocked", false))
+	return bool(Profile.p.chapter_state(chapter_id).get("unlocked", false))
+
+
+func _cycle_mode() -> void:
+	var i := ModeRules.ORDER.find(mode_id)
+	mode_id = ModeRules.ORDER[(i + 1) % ModeRules.ORDER.size()]
+	Profile.p.data["selected_mode"] = mode_id
+	Profile.p.touch()
+	AudioMgr.ui("tick", -4.0)
+	_update_play_state()
+
+
+func _cycle_challenge() -> void:
+	var i := ModeRules.CHALLENGE_ORDER.find(challenge_id)
+	challenge_id = ModeRules.CHALLENGE_ORDER[(i + 1) % ModeRules.CHALLENGE_ORDER.size()]
+	Profile.p.data["selected_challenge"] = challenge_id
+	Profile.p.touch()
+	AudioMgr.ui("tick", -4.0)
+	_update_play_state()
+
+
 func _update_play_state() -> void:
 	var chs := Profile.p.chapter_state(chapter_id)
-	var unlocked: bool = chs.get("unlocked", false)
+	var unlocked: bool = _mode_available()
+	mode_btn.label = "MODO: %s" % ModeRules.NAMES[mode_id]
+	var by_chapter := mode_id == ModeRules.CAMPAIGN or mode_id == ModeRules.CHALLENGE
+	chap_prev.visible = by_chapter
+	chap_next.visible = by_chapter
+	chal_btn.visible = mode_id == ModeRules.CHALLENGE
+	chal_btn.label = "REGLA: %s" % ModeRules.CHALLENGES[challenge_id]["name"]
 	play_btn.enabled = unlocked
 	play_btn.label = "JUGAR" if unlocked else "BLOQUEADO"
 	play_btn.icon = "" if unlocked else "lock"
@@ -278,7 +333,8 @@ func _on_play() -> void:
 	AudioMgr.ui("smg", -4.0)
 	var ch := Catalog.chapter(chapter_id)
 	get_tree().create_timer(0.35).timeout.connect(func():
-		Router.goto("run", {"character": p.selected_character(), "chapter": chapter_id, "seed": randi()}, ch.accent.darkened(0.75)))
+		var first := chapter_id if (mode_id == ModeRules.CAMPAIGN or mode_id == ModeRules.CHALLENGE) else Catalog.chapter_order[0]
+		Router.goto("run", {"character": p.selected_character(), "chapter": first, "seed": randi(), "mode": mode_id, "challenge": challenge_id}, ch.accent.darkened(0.75)))
 
 
 func _shots_mode() -> void:
@@ -358,7 +414,30 @@ func _currency(right_top: Vector2, s: String, icon: String, col: Color) -> void:
 	UiKit.text(self, Vector2(r.position.x + 48.0, r.get_center().y + 8.0), s, 24, UiKit.TEXT, 0, w - 58.0, 4.0)
 
 
+## Tarjeta de modo (supervivencia / boss rush): nombre, descripcion corta y mejor marca.
+func _draw_mode_card(vs: Vector2) -> void:
+	var r := Rect2(vs.x - 372.0 - safe.z, vs.y - 208.0 - safe.w, 350.0, 54.0)
+	var ok := _mode_available()
+	var col := Color("ff7a9a") if mode_id == ModeRules.BOSS_RUSH else Color("ffd24a")
+	UiKit.panel(self, r, Color("0b1224", 0.9), Color(col, 0.9 if ok else 0.3), 10.0)
+	var rec: Dictionary = Profile.p.data["records"]
+	var line := ""
+	if not ok:
+		line = "Desbloquea el último capítulo"
+	elif mode_id == ModeRules.SURVIVAL:
+		var s: Dictionary = rec["survival"]
+		line = "MEJOR: oleada %d · %s pts" % [int(s["best_wave"]), UiKit.format_int(int(s["best_score"]))]
+	else:
+		var b: Dictionary = rec["bossrush"]
+		line = "MEJOR: %d/4 jefes" % int(b["best_bosses"]) + ((" · %d:%02d" % [int(float(b["best_time"])) / 60, int(float(b["best_time"])) % 60]) if float(b["best_time"]) > 0.0 else "")
+	UiKit.text(self, Vector2(r.position.x, r.position.y + 21.0), ModeRules.DESCS[mode_id].get_slice(".", 0), 12, Color(col.lightened(0.3), 0.9), 1, r.size.x, 3.0, false)
+	UiKit.text(self, Vector2(r.position.x, r.position.y + 43.0), line, 15, UiKit.TEXT if ok else UiKit.DIM, 1, r.size.x, 3.0)
+
+
 func _draw_chapter_selector(vs: Vector2) -> void:
+	if mode_id == ModeRules.SURVIVAL or mode_id == ModeRules.BOSS_RUSH:
+		_draw_mode_card(vs)
+		return
 	var ch := Catalog.chapter(chapter_id)
 	var unlocked: bool = Profile.p.chapter_state(chapter_id).get("unlocked", false)
 	var idx := Catalog.chapter_order.find(chapter_id) + 1

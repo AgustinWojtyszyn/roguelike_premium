@@ -57,6 +57,39 @@ RPG_POLISH = {
     "polish/raptor_scout": "enemies/raptor",
 }
 
+# Animaciones que usan los jugables (dash/attack sin arma no se usan: Premium no tiene dash y el arma va aparte)
+HERO_ANIMS = {"walk", "idle", "hurt", "death"}
+
+# Variantes de color de los sprites base: los 11 jugables son distintos. id -> (base, dh grados, sat*, val*, proteger piel)
+HERO_VARIANTS = {
+    "sera": ("characters/human_ranger", 115, 0.75, 1.30),
+    "orla": ("characters/human_ranger", -22, 1.45, 1.22),
+    "halo": ("characters/human_ranger", -8, 0.55, 1.18),
+    "sable": ("characters/combat_android", 175, 1.25, 0.50),
+    "nyx": ("characters/combat_android", 105, 1.20, 0.72),
+    "ilex": ("characters/combat_android", -125, 1.25, 1.00),
+    "basalto": ("characters/mutant_striker", 150, 1.30, 0.80),
+}
+
+
+def recolor(im, dh, sm, vm):
+    import numpy as np
+    a = np.array(im.convert("RGBA"))
+    alpha = a[:, :, 3]
+    hsv = np.array(Image.fromarray(a[:, :, :3]).convert("HSV")).astype(np.float32)
+    h = hsv[:, :, 0] * 360.0 / 255.0
+    sat = hsv[:, :, 1] / 255.0
+    val = hsv[:, :, 2] / 255.0
+    skin = (h > 8) & (h < 36) & (sat > 0.2) & (sat < 0.75) & (val > 0.5)
+    move = (sat > 0.18) & ~skin
+    h2 = np.where(move, (h + dh) % 360.0, h)
+    s2 = np.where(move, np.clip(sat * sm, 0, 1), sat)
+    v2 = np.clip(val * vm, 0, 1)
+    out = np.stack([h2 * 255.0 / 360.0, s2 * 255.0, v2 * 255.0], axis=2).astype(np.uint8)
+    rgb = np.array(Image.fromarray(out, "HSV").convert("RGB"))
+    return Image.fromarray(np.dstack([rgb, alpha]), "RGBA")
+
+
 # estaticos de Rpg_new: (prefijo relativo a assets/generated/, destino, estado). Gana el primer prefijo que coincide.
 RPG_STATIC = [
     ("animations/", None, "skip"),
@@ -288,7 +321,7 @@ def median_box(boxes):
     return (cx - w // 2, bot - h, cx - w // 2 + w, bot)
 
 
-def build_animated(src_dir, out_dir, extra_polish=None):
+def build_animated(src_dir, out_dir, extra_polish=None, keep=None):
     """Lee frames de una carpeta de personaje y los empaqueta por animacion."""
     slots = defaultdict(dict)  # anim -> dir -> [paths]
     for root, _, files in os.walk(src_dir):
@@ -306,6 +339,8 @@ def build_animated(src_dir, out_dir, extra_polish=None):
     anims = {}
     boxes = []
     for anim, byd in sorted(slots.items()):
+        if keep is not None and anim not in keep:
+            continue
         frames = {}
         for d, paths in byd.items():
             # una misma ranura puede venir de dos layouts (walk/north y walk_north): gana la de mas frames
@@ -408,8 +443,9 @@ def main():
         src_dir = os.path.join(gen, "animations", srcrel)
         base = mig if state == "migrate" else res
         out_dir = os.path.join(base, "rpg", dest)
-        anims, bb = build_animated(src_dir, out_dir)
-        if dest in RPG_POLISH.values():
+        is_hero = srcrel.startswith("player/") and state == "migrate"
+        anims, bb = build_animated(src_dir, out_dir, keep=HERO_ANIMS if is_hero else None)
+        if dest in RPG_POLISH.values() and not is_hero:
             for pol, d2 in RPG_POLISH.items():
                 if d2 == dest:
                     keys_for_pack_polish(os.path.join(gen, "animations", pol), out_dir, anims)
@@ -418,6 +454,19 @@ def main():
         key = "rpg/" + dest
         manifest["anims"][key] = {"state": state, "bbox": list(bb) if bb else [0, 0, 0, 0], "anims": anims}
         stats["rpg_sheets_" + state] += len(anims)
+    # ----- variantes de color de los jugables
+    for vid, (base, dh, sm, vm) in HERO_VARIANTS.items():
+        bkey = "rpg/" + base
+        b = manifest["anims"][bkey]
+        out_dir = os.path.join(mig, "rpg", "characters", vid)
+        os.makedirs(out_dir, exist_ok=True)
+        anims = {}
+        for an, m in b["anims"].items():
+            src_png = os.path.join(ROOT, m["sheet"][len("res://"):])
+            recolor(Image.open(src_png), dh, sm, vm).save(os.path.join(out_dir, an + ".png"), optimize=True)
+            anims[an] = dict(m, sheet=res_path(os.path.join(out_dir, an + ".png")))
+        manifest["anims"]["rpg/characters/" + vid] = {"state": "migrate", "bbox": b["bbox"], "anims": anims}
+        stats["rpg_hero_variants"] += 1
     # ----- Rpg_new: estaticos (se recorre el checkout de la rama grande + blobs que solo viven en otras ramas)
     covered = set()
     for root, _, files in os.walk(gen):

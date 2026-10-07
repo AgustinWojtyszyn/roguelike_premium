@@ -42,6 +42,8 @@ func _manifest(t) -> void:
 # ------------------------------------------------------------------ perfiles
 func _profiles(t) -> void:
 	for cid in Catalog.characters:
+		t.check(not VisualProfiles.character(str((Catalog.characters[cid] as CharacterData).look.get("visual", ""))).is_empty(), "jugable %s usa sprite (sin poligonos)" % cid)
+	for cid in Catalog.characters:
 		var lk: Dictionary = (Catalog.characters[cid] as CharacterData).look
 		if lk.has("visual"):
 			t.check(not VisualProfiles.character(str(lk["visual"])).is_empty(), "personaje %s: perfil visual '%s' existe" % [cid, lk["visual"]])

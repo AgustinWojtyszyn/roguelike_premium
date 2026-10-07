@@ -65,10 +65,23 @@ static func clear_cache() -> void:
 
 ## Precarga (al empezar la run): sube a GPU y construye los AtlasTexture ANTES del primer frame jugable, para que ningun
 ## enemigo, efecto o arma cause un ttiron de carga a mitad de partida. Solo toca lo que esta run puede usar.
+## Carga (y compila) los scripts de enemigos y jefe del capitulo ahora, no en el primer spawn en pleno combate.
+static func _preload_scripts(chapter: ChapterData) -> void:
+	var ids: Array = []
+	ids.append_array(chapter.enemy_pool)
+	ids.append_array(chapter.elite_pool)
+	for id in ids:
+		if Catalog.enemies.has(id):
+			load((Catalog.enemies[id] as EnemyData).script_path)
+	if Catalog.bosses.has(chapter.boss):
+		load((Catalog.bosses[chapter.boss] as BossData).script_path)
+
+
 static func prewarm(chapter: ChapterData, char_look: Dictionary, weapon_ids: Array) -> void:
 	if not VisualProfiles.sprites_enabled():
 		return
 	var t0 := Time.get_ticks_usec()
+	_preload_scripts(chapter)
 	var set_ids: Array = []
 	var vid := VisualProfiles.character(str(char_look.get("visual", "")))
 	if not vid.is_empty():

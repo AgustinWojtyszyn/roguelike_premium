@@ -177,6 +177,9 @@ func _draw_progress(vs: Vector2) -> void:
 	var d := game.director
 	if d == null or d.plan.is_empty():
 		return
+	if game.mode_id == ModeRules.SURVIVAL:
+		_draw_survival(vs, d)
+		return
 	var n := d.plan.size()
 	var w := 34.0 * float(n) + 24.0
 	var r := Rect2(vs.x * 0.5 - w * 0.5, 14.0 + safe.y, w, 40.0)
@@ -201,6 +204,18 @@ func _draw_progress(vs: Vector2) -> void:
 	# amenazas restantes
 	var left: int = d.threats_left()
 	if left > 0 and d.in_combat and boss == null:
+		UiKit.text(self, Vector2(r.position.x, r.end.y + 20.0), "AMENAZAS  %d" % left, 13, Color(1.0, 0.8, 0.85, 0.9), 1, r.size.x, 3.0)
+
+
+## Supervivencia: oleada, bajas, tiempo y puntuacion en el lugar de los puntos de etapa.
+func _draw_survival(vs: Vector2, d: RunDirector) -> void:
+	var run := game.run
+	var r := Rect2(vs.x * 0.5 - 170.0, 14.0 + safe.y, 340.0, 44.0)
+	UiKit.panel(self, r, Color(0.02, 0.05, 0.1, 0.55), Color(game.chapter.accent, 0.5), 10.0, 1.0, false)
+	var m := int(run.time) / 60
+	UiKit.text(self, Vector2(r.position.x, r.position.y + 28.0), "OLEADA %d   ·   %d BAJAS   ·   %d:%02d" % [maxi(run.wave, 1), run.kills, m, int(run.time) % 60], 17, Color(1, 0.95, 0.8), 1, r.size.x, 4.0)
+	var left: int = d.threats_left()
+	if left > 0 and d.in_combat:
 		UiKit.text(self, Vector2(r.position.x, r.end.y + 20.0), "AMENAZAS  %d" % left, 13, Color(1.0, 0.8, 0.85, 0.9), 1, r.size.x, 3.0)
 
 
