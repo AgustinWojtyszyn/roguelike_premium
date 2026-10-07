@@ -149,6 +149,18 @@ func _paint_glow(c: Part) -> void:
 	Gfx.draw_glow(c, Vector2.ZERO, 54.0 + eye_k * 40.0, Color(_pc(), (0.18 + eye_k * 0.35) * fade))
 
 
+# ------------------------------------------------------------------ sprite (Rift Warden)
+func sprite_phase() -> String:
+	match state:
+		ST_RAIN_WIND, ST_BLINK_WIND, ST_SUMMON, ST_PHASE:
+			return "windup"
+		ST_RAIN, ST_FAN, ST_BLINK_OUT:
+			return "strike"
+		ST_REC:
+			return "recover"
+	return "idle"
+
+
 # ------------------------------------------------------------------ logica
 func _after_spawn() -> void:
 	state = ST_DRIFT
@@ -444,6 +456,8 @@ func _animate(dt: float) -> void:
 	plates_p.position = body_p.position
 	glow_p.position = body_p.position
 	vis.modulate.a = fade if state != S_SPAWN else vis.modulate.a
+	if spr != null:
+		spr.position = Vector2(0, -6 + bob)
 	body_p.rotation = sin(hover * 0.7) * 0.05
 	body_p.queue_redraw()
 	plates_p.queue_redraw()

@@ -38,6 +38,21 @@ func _after_spawn() -> void:
 	next_attack = randf_range(attack_cd_min, attack_cd_max)
 
 
+func sprite_phase() -> String:
+	match state:
+		ST_WIND:
+			return "windup"
+		ST_STRIKE:
+			return "strike"
+		ST_REC:
+			return "recover"
+	return "move" if vel.length() > 14.0 else "idle"
+
+
+func sprite_progress() -> float:
+	return windup_k if state == ST_WIND else -1.0
+
+
 func _release() -> void:
 	if has_slot:
 		game.release_melee(self)

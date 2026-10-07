@@ -57,6 +57,7 @@ var fps_samples: Array[float] = []
 var _boot_first_frame := true
 var cam_extra := Vector2.ZERO
 var _dbg_t := -1.0
+var _spawn_dbg := ""   # --spawn=id,id,...: vitrina de enemigos para revision visual
 var stall_t := 0.0          # segundos sin bajas con enemigos vivos: rompe empates (escudos + reparadores)
 
 
@@ -190,6 +191,8 @@ func _read_args() -> void:
 		quit_at = float(Boot.get_arg("quit"))
 	if Boot.has_flag("zoom"):
 		zoom_arg = float(Boot.get_arg("zoom"))
+	if Boot.has_flag("spawn"):
+		_spawn_dbg = Boot.get_arg("spawn")
 	if Boot.has_flag("touch"):
 		touch_mode = true
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -273,6 +276,14 @@ func __process_impl(delta: float) -> void:
 	if bot:
 		bot_t += rdt
 	_update_camera(rdt)
+	if _spawn_dbg != "" and clock >= 0.6:
+		var ids := _spawn_dbg.split(",")
+		_spawn_dbg = ""
+		for i in ids.size():
+			var id := str(ids[i])
+			if Catalog.enemies.has(id):
+				var a := TAU * float(i) / float(ids.size()) - PI * 0.5
+				director.spawn_enemy_at(id, player.position + Vector2(cos(a) * 250.0, sin(a) * 150.0 + 40.0), false)
 	if _dbg_t >= 0.0 and clock >= _dbg_t:
 		_dbg_t = -1.0
 		var w := str(Boot.get_arg("show", ""))

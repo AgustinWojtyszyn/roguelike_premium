@@ -2,7 +2,7 @@ class_name Fx
 extends Node2D
 ## Particulas, decals y destellos. Todo en dos nodos de dibujo (normal + aditivo).
 
-enum K { SPARK, PUFF, RING, FLASH, SHARD, CASING, STAR, ARC, MOTE, BOLT, BEAM }
+enum K { SPARK, PUFF, RING, FLASH, SHARD, CASING, STAR, ARC, MOTE, BOLT, BEAM, SPRITE }
 
 class P:
 	var kind: int = 0
@@ -22,6 +22,7 @@ class P:
 	var add: bool = false
 	var aux: float = 0.0
 	var target := Vector2.ZERO
+	var tex: Texture2D
 
 class Stain:
 	var pos := Vector2.ZERO
@@ -30,6 +31,9 @@ class Stain:
 	var kind: int = 0
 	var age: float = 0.0
 	var seed: int = 0
+
+## Texturas importadas que usa el juego (las valida tests/test_visual.gd).
+const USED_VFX := ["weapons/muzzle_flash", "combat/critical_hit", "combat/hit_spark", "combat/bullet_impact", "combat/heavy_explosion", "combat/explosion_fire", "combat/shield_hit", "combat/blood_hit", "rewards/heal", "rewards/loot_sparkle", "rewards/loot_glow_rare", "rewards/loot_glow_epic", "rewards/loot_glow_legendary", "bosses/boss_phase_change", "bosses/boss_spawn"]
 
 const MAX_P := 600
 const MAX_DECALS := 70
@@ -90,6 +94,7 @@ func _new(kind: int, pos: Vector2, life: float, col: Color, add: bool) -> P:
 	p.drag = 0.0
 	p.aux = 0.0
 	p.target = Vector2.ZERO
+	p.tex = null
 	p.kind = kind
 	p.pos = pos
 	p.life = life
@@ -138,10 +143,29 @@ func flash(pos: Vector2, r: float, col: Color, life: float = 0.12) -> void:
 
 
 func muzzle(pos: Vector2, ang: float, sc: float, col: Color) -> void:
+	if sprite("weapons/muzzle_flash", pos, 30.0 * sc, 40.0 * sc, 0.07, Color(1, 1, 1, 0.95), ang, true) != null:
+		flash(pos, 22.0 * sc, Color(col, 0.55), 0.08)
+		return
 	var p := _new(K.STAR, pos, 0.06, col, true)
 	p.rot = ang
 	p.size = sc
 	flash(pos, 26.0 * sc, Color(col, 0.7), 0.08)
+
+
+## Efecto con textura importada (assets/migrated/rpg/vfx/<nombre>): una particula del pool, sin nodos nuevos.
+## Devuelve null si el arte no esta disponible (el llamador sigue con su efecto vectorial).
+func sprite(name: String, pos: Vector2, size0: float, size1: float, life: float, col: Color = Color.WHITE, rot: float = 0.0, add: bool = false) -> P:
+	if not VisualProfiles.sprites_enabled():
+		return null
+	var tex := AssetCatalog.tex("rpg/vfx/" + name)
+	if tex == null:
+		return null
+	var p := _new(K.SPRITE, pos, life, col, add)
+	p.tex = tex
+	p.size = size0
+	p.size2 = size1
+	p.rot = rot
+	return p
 
 
 func shard(pos: Vector2, vel: Vector2, vz: float, col: Color, size: float = 3.0, glow_col: Color = Color(0, 0, 0, 0)) -> void:
@@ -347,6 +371,11 @@ func _render_impl(ci: CanvasItem, mode: int) -> void:
 				var fa := minf(1.0, p.life * 2.0)
 				ci.draw_set_transform(sp, p.rot, Vector2.ONE)
 				ci.draw_rect(Rect2(-2.0, -1.0, 4.0, 2.0), Color(p.col, fa))
+				ci.draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
+			K.SPRITE:
+				var sz := lerpf(p.size, p.size2, Gfx.ease_out(t))
+				ci.draw_set_transform(p.pos, p.rot, Vector2.ONE)
+				ci.draw_texture_rect(p.tex, Rect2(-sz * 0.5, -sz * 0.5, sz, sz), false, Color(p.col, p.col.a * minf(1.0, a * 2.2)))
 				ci.draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
 
 

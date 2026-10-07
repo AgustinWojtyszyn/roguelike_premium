@@ -31,6 +31,19 @@ var muzzle_off := Vector2(0, -36)
 var heal_pulse := -1.0
 
 
+func sprite_phase() -> String:
+	match state:
+		ST_OPEN:
+			return "windup"
+		ST_FIRE, ST_HEAL:
+			return "strike"
+	return "idle"
+
+
+func sprite_progress() -> float:
+	return open_k if state == ST_OPEN else -1.0
+
+
 func mass() -> float:
 	return 99.0
 

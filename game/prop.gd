@@ -132,9 +132,11 @@ func __draw_impl() -> void:
 		"barrel":
 			_barrel(f)
 		"tank":
-			_tank(f)
+			if not PropArt._imported(self, kind, f):
+				_tank(f)
 		"terminal":
-			_terminal(f)
+			if not PropArt._imported(self, kind, f):
+				_terminal(f)
 		"pillar":
 			_pillar(f)
 		"barrier_h":

@@ -23,7 +23,7 @@ static func build() -> Array[CharacterData]:
 		"ability_cost": 50, "ability_cd": 12.0,
 		"passive_id": "warm_mag", "passive_name": "CARGADOR CÁLIDO", "passive_desc": "Cada baja recarga un poco de energía.",
 		"start_weapon": "pulsar", "side_weapon": "chispa", "recommended_weapon": "maul12",
-		"look": {},
+		"look": {"visual": "vesper"},
 		"unlock": {"type": "default"}, "order": 0,
 	}))
 	L.append(_c("kiro9", "KIRO-9", "Androide de contención", Rarity.Tier.RARE, {
@@ -33,7 +33,7 @@ static func build() -> Array[CharacterData]:
 		"ability_cost": 60, "ability_cd": 14.0,
 		"passive_id": "self_repair", "passive_name": "AUTORREPARACIÓN", "passive_desc": "El escudo se regenera mucho más rápido.",
 		"start_weapon": "trinca", "side_weapon": "chispa", "recommended_weapon": "relampago",
-		"look": {"base": Color("5c6577"), "light": Color("c9d2e2"), "glow": Color("b8ff3d"), "accent": Color("b8ff3d"),
+		"look": {"visual": "kiro9", "base": Color("5c6577"), "light": Color("c9d2e2"), "glow": Color("b8ff3d"), "accent": Color("b8ff3d"),
 			"head": "dome", "torso": "suit", "back": "array", "shoulder_style": "plain", "scarf": null, "hs": 1.05, "w": 0.97},
 		"unlock": {"type": "coins", "price": 900}, "order": 1,
 	}))
@@ -99,7 +99,7 @@ static func build() -> Array[CharacterData]:
 		"ability_cost": 45, "ability_cd": 11.0,
 		"passive_id": "hunt", "passive_name": "INSTINTO DE CAZA", "passive_desc": "Cada 5 bajas recuperas 1 punto de escudo.",
 		"start_weapon": "brasero", "side_weapon": "garra", "recommended_weapon": "maul12",
-		"look": {"base": Color("3f8a6e"), "light": Color("d8e8c8"), "glow": Color("ffb23d"), "accent": Color("ffb23d"),
+		"look": {"visual": "kraal", "base": Color("3f8a6e"), "light": Color("d8e8c8"), "glow": Color("ffb23d"), "accent": Color("ffb23d"),
 			"head": "alien", "torso": "hunter", "back": "spine", "shoulder_style": "spikes", "scarf": null, "hs": 1.0, "h": 1.08, "w": 0.95, "skin": Color("5fb88a")},
 		"unlock": {"type": "coins", "price": 3600}, "order": 7,
 	}))
@@ -132,7 +132,7 @@ static func build() -> Array[CharacterData]:
 		"ability_cost": 80, "ability_cd": 18.0,
 		"passive_id": "unstable", "passive_name": "INESTABLE", "passive_desc": "Al empezar cada sala recibe un beneficio aleatorio temporal.",
 		"start_weapon": "anomalia", "side_weapon": "chispa", "recommended_weapon": "enjambre",
-		"look": {"base": Color("1c1c2e"), "light": Color("e8e8ff"), "glow": Color("ff4fd8"), "accent": Color("4fffe8"),
+		"look": {"visual": "paradoja", "base": Color("1c1c2e"), "light": Color("e8e8ff"), "glow": Color("ff4fd8"), "accent": Color("4fffe8"),
 			"head": "glitch", "torso": "glitch", "back": "shards", "shoulder_style": "none", "scarf": null, "hs": 1.04, "w": 0.96},
 		"unlock": {"type": "pass", "level": 30}, "order": 10,
 	}))

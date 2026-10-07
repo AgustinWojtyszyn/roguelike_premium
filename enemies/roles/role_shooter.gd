@@ -84,6 +84,21 @@ func _pick_goal() -> void:
 	goal_t = randf_range(1.6, 2.6)
 
 
+func sprite_phase() -> String:
+	match state:
+		ST_WIND:
+			return "windup"
+		ST_FIRE:
+			return "strike"
+		ST_REC:
+			return "recover"
+	return "move" if vel.length() > 14.0 else "idle"
+
+
+func sprite_progress() -> float:
+	return windup_k if state == ST_WIND else -1.0
+
+
 func _think(dt: float) -> void:
 	var pl := game.player
 	var to_p := pl.hit_center() - (position + muzzle_off)

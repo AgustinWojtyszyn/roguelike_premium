@@ -40,6 +40,11 @@ var fmat: ShaderMaterial
 var shadow: Part
 var bar: Part
 
+# ---- presentacion opcional con sprite (arte importado). La logica nunca depende de esto.
+var spr: SpriteActor
+var _sp_phase := ""
+var dying_dur := 0.26
+
 
 func setup(g: Game, pos: Vector2) -> void:
 	game = g
@@ -50,6 +55,7 @@ func setup(g: Game, pos: Vector2) -> void:
 	vis.material = fmat
 	add_child(vis)
 	_build()
+	_try_sprite()
 	hp *= g.hp_scale
 	if elite:
 		hp *= 1.9
@@ -125,6 +131,7 @@ func hurt(dmg: float, dir: Vector2, knock: float, p: Vector2, bkind: int, crit: 
 	if crit:
 		game.fx.spark(p, -dir, 6, 380.0, Color("fff2a0"), 0.3, 1.2)
 		game.fx.ring(p, 3.0, 20.0, Color("fff2a0"), 0.15, 2.0)
+		game.fx.sprite("combat/critical_hit", p, 22.0, 44.0, 0.18, Color.WHITE, 0.0, true)
 	flash = maxf(flash, 0.5)
 	hp_show = 1.5
 	bar.queue_redraw()
@@ -138,6 +145,8 @@ func hurt(dmg: float, dir: Vector2, knock: float, p: Vector2, bkind: int, crit: 
 		fx.puff(p, -dir * 30.0, 6.0, glow_col.lerp(Color(0.5, 0.5, 0.6), 0.5) * Color(1, 1, 1, 0.5), 0.3, 2.0)
 		game.sfx.play("hit", -9.0, 1.0 + randf() * 0.2, 0.1, 0.025)
 	fx.flash(p, 18.0, Color(1, 1, 1, 0.6), 0.07)
+	if not crit:
+		fx.sprite("combat/hit_spark", p, 14.0, 26.0, 0.1, Color.WHITE, randf() * TAU, true)
 	vel += dir * knock * (0.45 if armored else 1.0) / maxf(0.6, mass())
 	_on_hurt(dmg * m)
 	if hp <= 0.0 and state != S_DYING:
@@ -174,6 +183,10 @@ func _explode() -> void:
 	for i in n:
 		var col: Color = chunks[i % chunks.size()]
 		fx.shard(c + Vector2(randf_range(-8, 8), randf_range(-6, 6)), Vector2.from_angle(randf() * TAU) * randf_range(70, 240), randf_range(90, 250), col.lerp(Color.WHITE, randf() * 0.2), randf_range(2.6, 6.0 if big else 4.6), Color(glow_col.r, glow_col.g, glow_col.b, 0.9 if i % 3 == 0 else 0.0))
+	if big:
+		fx.sprite("combat/heavy_explosion", c, 70.0, 140.0, 0.45)
+	else:
+		fx.sprite("combat/explosion_fire", c, 36.0, 74.0, 0.32)
 	fx.add_decal(position, 0, 44.0 if big else 30.0, Color.BLACK)
 	if big:
 		fx.add_decal(position, 1, 60.0, Color.BLACK)
@@ -198,6 +211,7 @@ func __process_impl(delta: float) -> void:
 	hp_show = maxf(0.0, hp_show - dt)
 	if state == S_DYING:
 		_dying(dt)
+		_sprite_tick(dt)
 		return
 	if state == S_SPAWN:
 		var k := clampf(st / spawn_dur, 0.0, 1.0)
@@ -212,11 +226,13 @@ func __process_impl(delta: float) -> void:
 			st = 0.0
 			_after_spawn()
 		_animate(dt)
+		_sprite_tick(dt)
 		fmat.set_shader_parameter("flash", flash)
 		return
 	_think(dt)
 	_integrate(dt)
 	_animate(dt)
+	_sprite_tick(dt)
 	fmat.set_shader_parameter("flash", flash)
 	if hp_show > 0.0:
 		bar.queue_redraw()
@@ -230,17 +246,19 @@ func _after_spawn() -> void:
 
 func _dying(dt: float) -> void:
 	dying_t += dt
-	var k := dying_t / 0.26
+	var k := dying_t / dying_dur
 	vis.position = Vector2(randf_range(-2, 2), randf_range(-2, 2))
 	flash = 1.0 if int(dying_t * 40.0) % 2 == 0 else 0.4
+	if spr != null:
+		flash *= 0.45
 	fmat.set_shader_parameter("flash", flash)
-	vis.rotation = sin(dying_t * 60.0) * 0.12 * (1.0 + k)
+	vis.rotation = 0.0 if spr != null else sin(dying_t * 60.0) * 0.12 * (1.0 + k)
 	vel = vel.move_toward(Vector2.ZERO, 500.0 * dt)
 	position = Gfx.push_out(position + vel * dt, radius, game.room.rects)
 	if int(dying_t * 40.0) % 3 == 0:
 		game.fx.spark(position + hit_off, Vector2.UP, 1, 160.0, glow_col, 0.2, 3.0)
 	_animate(dt)
-	if dying_t >= 0.26:
+	if dying_t >= dying_dur:
 		_explode()
 
 
@@ -288,3 +306,63 @@ func _integrate(dt: float) -> void:
 		np = pl.position + d.normalized() * min_d
 	position = Gfx.push_out(np, radius, game.room.rects)
 	vel *= maxf(0.0, 1.0 - 2.0 * dt) if stun > 0.0 else 1.0
+
+
+# =====================================================================  SPRITE OPCIONAL
+## Si hay perfil visual para este enemigo y el arte carga, oculta el dibujo procedural y muestra el sprite.
+## Si algo falla, no se toca nada: el enemigo sigue con su render original.
+func _try_sprite() -> void:
+	if not VisualProfiles.sprites_enabled():
+		return
+	var prof := VisualProfiles.enemy(kind_name)
+	if prof.is_empty():
+		return
+	var made := SpriteActor.create(vis, prof)
+	if made == null:
+		return
+	spr = made
+	if prof.has("tint"):
+		spr.self_modulate = prof["tint"]
+	for ch in vis.get_children():
+		if ch != spr:
+			(ch as CanvasItem).visible = false
+	if shadow != null:
+		shadow.scale = Vector2.ONE * float(prof.get("shadow", 1.0))
+	dying_dur = float(prof.get("death_dur", 0.42))
+	if prof.has("bar_y"):
+		bar_y = float(prof["bar_y"])
+
+
+## Fase logica actual para el sprite: idle, move, windup, strike, recover. Los roles la sobreescriben.
+func sprite_phase() -> String:
+	return "move" if vel.length() > 14.0 else "idle"
+
+
+## Progreso 0..1 de la fase si esta sincronizada con un temporizador de IA (anticipacion), o -1 para animar libremente.
+func sprite_progress() -> float:
+	return -1.0
+
+
+func _sprite_tick(dt: float) -> void:
+	if spr == null:
+		return
+	var phase := "death" if state == S_DYING else sprite_phase()
+	if phase != _sp_phase:
+		_sp_phase = phase
+		var once := phase in ["windup", "strike", "recover", "death"]
+		spr.rate = 1.0
+		spr.reverse = false
+		spr.play(phase, true, not once)
+	# direccion respecto al jugador en el marco "mirando": x siempre positiva (el espejo lo hace vis.scale.x)
+	var to_p := game.player.position - position
+	if state == S_DYING:
+		to_p = Vector2(1, 0.4)
+	spr.set_dir_vec(Vector2(absf(to_p.x), to_p.y))
+	var k := sprite_progress()
+	if phase == "death":
+		spr.set_progress(clampf(dying_t / dying_dur, 0.0, 0.999))
+	elif k >= 0.0 and phase == "windup":
+		spr.set_progress(minf(k, 0.999))
+	else:
+		spr.rate = clampf(vel.length() / maxf(speed, 1.0), 0.5, 1.6) if phase == "move" else 1.0
+		spr.tick(dt)

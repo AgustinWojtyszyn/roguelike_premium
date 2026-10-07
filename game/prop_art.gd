@@ -26,7 +26,39 @@ const STATS := {
 }
 
 
+## Dibuja el prop con arte importado si hay perfil y la textura carga; si no, devuelve false (dibujo procedural).
+static func _imported(p: Prop, kind: String, f: Rect2) -> bool:
+	if not VisualProfiles.sprites_enabled():
+		return false
+	var pr := VisualProfiles.prop(kind)
+	if pr.is_empty():
+		return false
+	var arts: Array = pr["art"]
+	var id: String = arts[p.seed_v % arts.size()]
+	var tex := AssetCatalog.tex(id)
+	if tex == null:
+		return false
+	var info: Dictionary = AssetManifest.STATIC.get(AssetManifest.ALIASES.get(id, id), {})
+	var bb: Array = info.get("bbox", [0, 0, tex.get_width(), tex.get_height()])
+	var bw := maxf(1.0, float(bb[2]) - float(bb[0]))
+	var bh := maxf(1.0, float(bb[3]) - float(bb[1]))
+	var s := 1.0
+	var hmul := float(pr.get("hmul", 1.0))
+	if pr["fit"] == "w":
+		s = minf(f.size.x * 1.05 / bw, p.h * 1.4 / bh)
+	else:
+		s = minf(p.h * hmul / bh, maxf(f.size.x, 40.0) * 1.7 / bw)
+	p.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST if absf(s - roundf(s)) < 0.08 else CanvasItem.TEXTURE_FILTER_LINEAR
+	var base_y := f.end.y - f.size.y * 0.18
+	var cx := f.position.x + f.size.x * 0.5
+	p._shadow(f, 6.0)
+	p.draw_texture_rect_region(tex, Rect2(cx - bw * s * 0.5, base_y - bh * s, bw * s, bh * s), Rect2(float(bb[0]), float(bb[1]), bw, bh))
+	return true
+
+
 static func paint(p: Prop, kind: String, f: Rect2) -> void:
+	if _imported(p, kind, f):
+		return
 	match kind:
 		"block":
 			p.game.room.theme.paint_block(p, f, p.h, p.style, p.tt)

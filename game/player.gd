@@ -410,6 +410,7 @@ func take_damage(n: int, dir: Vector2, knock: float = 120.0) -> void:
 		shield -= absorbed
 		game.sfx.play("shield_hit", -2.0)
 		game.fx.ring(hit_center(), 8.0, 38.0, Color("8fe8ff"), 0.25, 3.0)
+		game.fx.sprite("combat/shield_hit", hit_center(), 30.0, 52.0, 0.22, Color(1, 1, 1, 0.9), 0.0, true)
 		if had > 0 and shield == 0:
 			game.sfx.play("shield_break", -2.0)
 			game.fx.burst(hit_center(), 14, 260.0, Color("8fe8ff"), 0.4)
@@ -419,6 +420,7 @@ func take_damage(n: int, dir: Vector2, knock: float = 120.0) -> void:
 		game.sfx.play("hurt", -2.0)
 		game.fx.burst(hit_center(), 10, 260.0, Color("9fe9ff"), 0.35)
 		game.fx.ring(hit_center(), 6.0, 34.0, Color("bff3ff"), 0.22, 3.0)
+		game.fx.sprite("combat/blood_hit", hit_center() + Vector2(0, 8), 26.0, 40.0, 0.3, Color(1, 1, 1, 0.9))
 	inv = 1.0 if rest > 0 else 0.7
 	rig.flash = 1.0
 	if OS.has_feature("mobile") and bool(Profile.p.setting("vibration")):

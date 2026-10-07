@@ -62,6 +62,7 @@ func _open() -> void:
 	game.fx.burst(c, 22, 320.0, col, 0.5)
 	game.fx.ring(c, 8.0, 80.0, col, 0.35, 4.0)
 	game.fx.flash(c, 100.0, Color(col, 0.8), 0.2)
+	game.fx.sprite({"coin": "rewards/loot_sparkle", "weapon": "rewards/loot_glow_rare", "perk": "rewards/loot_glow_epic", "rare": "rewards/loot_glow_legendary"}[kind], c + Vector2(0, -6), 30.0, 70.0, 0.55, Color(1, 1, 1, 0.9), 0.0, true)
 	game.sfx.play("chest", -2.0)
 	game.shake(0.15)
 	game.run.chests += 1
@@ -82,10 +83,53 @@ func _open() -> void:
 	game.hud.toast({"coin": "¡MONEDAS!", "weapon": "¡ARMA!", "perk": "¡PERK!", "rare": "¡TESORO RARO!"}[kind], col)
 
 
+## Arte importado por tipo (cerrado / abierto). En el capitulo de anomalias usa las variantes dimensional y corrupta.
+const ART := {"coin": "common_chest", "weapon": "uncommon_chest", "perk": "epic_chest", "rare": "legendary_chest"}
+const ART_ANOMALY := {"weapon": "dimensional_chest", "perk": "corrupted_chest", "rare": "rare_chest"}
+const ART_SCALE := 1.1
+const ART_BASE_Y := 41.0   # fila (en el PNG de 48x48) donde apoya la base del cofre
+
+
+func _art_id() -> String:
+	if game != null and game.chapter != null and game.chapter.theme == "anomaly" and ART_ANOMALY.has(kind):
+		return ART_ANOMALY[kind]
+	return ART.get(kind, "")
+
+
+func _draw_art(cols: Array) -> bool:
+	if not VisualProfiles.sprites_enabled():
+		return false
+	var id := _art_id()
+	var closed := AssetCatalog.tex("rpg/chests/" + id)
+	var open_t := AssetCatalog.tex("rpg/chests/" + id + "_open")
+	if closed == null or open_t == null:
+		return false
+	var tex: Texture2D = open_t if opened else closed
+	var scl := 1.0 + pop * 0.12
+	var sz := tex.get_size() * ART_SCALE
+	draw_set_transform(Vector2(0, 2), 0.0, Vector2(scl, 2.0 - scl))
+	if open_k > 0.0:
+		Gfx.draw_glow(self, Vector2(0, -16), 26.0 + open_k * 22.0, Color(cols[2], 0.55 * open_k))
+	draw_texture_rect(tex, Rect2(-sz.x * 0.5, -ART_BASE_Y * ART_SCALE, sz.x, sz.y), false)
+	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
+	if not opened:
+		var p := 0.5 + 0.5 * sin(t * 3.0 + position.x)
+		Gfx.draw_glow(self, Vector2(0, -12), 38.0, Color(cols[2], 0.12 + 0.1 * p))
+		_draw_hold_ring(cols)
+	return true
+
+
+func _draw_hold_ring(cols: Array) -> void:
+	if hold > 0.0:
+		draw_arc(Vector2(0, -12), 32.0, -PI * 0.5, -PI * 0.5 + TAU * clampf(hold / 0.35, 0.0, 1.0), 24, Color(cols[2], 0.95), 4.0, true)
+
+
 func _draw() -> void:
 	var cols: Array = COLS[kind]
 	var ink := Gfx.INK
 	Gfx.draw_glow(self, Vector2(0, 2), 36.0, Color(0, 0, 0, 0.5))
+	if _draw_art(cols):
+		return
 	var w := 44.0
 	var bh := 24.0
 	var scl := 1.0 + pop * 0.12

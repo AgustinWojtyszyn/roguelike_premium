@@ -183,6 +183,7 @@ func _collect(it: Item) -> bool:
 			if pl.hp >= pl.max_hp:
 				return false
 			pl.heal(1 + (1 if pl.passive_is("triage") else 0))
+			game.fx.sprite("rewards/heal", pl.hit_center() + Vector2(0, -12), 22.0, 38.0, 0.45, Color(1, 1, 1, 0.95), 0.0, true)
 		K.SHIELD:
 			if pl.shield >= pl.max_shield:
 				return false
@@ -197,6 +198,7 @@ func _pickup_weapon(it: Item, idx: int) -> void:
 	var old := pl.equip_weapon(it.id)
 	game.fx.ring(it.pos, 4.0, 46.0, Rarity.color(it.tier), 0.35, 3.0)
 	game.fx.burst(it.pos, 14, 220.0, Rarity.color(it.tier), 0.5)
+	game.fx.sprite("rewards/loot_sparkle", it.pos, 24.0, 56.0, 0.4, Color(1, 1, 1, 0.95), 0.0, true)
 	game.hud.toast("%s" % Catalog.weapon(it.id).display_name, Rarity.color(it.tier))
 	_remove(idx)
 	if old != "":

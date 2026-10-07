@@ -39,6 +39,21 @@ func dmg_mult(_dir: Vector2) -> float:
 	return 1.5 if state == ST_STUN else 1.0
 
 
+func sprite_phase() -> String:
+	match state:
+		ST_REAR:
+			return "windup"
+		ST_CHARGE:
+			return "strike"
+		ST_STUN, ST_REC:
+			return "recover"
+	return "move" if vel.length() > 14.0 else "idle"
+
+
+func sprite_progress() -> float:
+	return rear_k if state == ST_REAR else -1.0
+
+
 func _think(dt: float) -> void:
 	var pl := game.player
 	var to_p := pl.position - position

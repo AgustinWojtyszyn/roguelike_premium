@@ -106,10 +106,25 @@ var _prev_aim_y: float = 99.0
 var _auto_t: float = 0.0
 var _redraw_t: float = 0.0
 
+# ---- modo sprite (arte importado). Si el perfil o el arte fallan, build() usa el render procedural de siempre.
+var sprite_mode := false
+var spr: SpriteActor
+var sprof: Dictionary = {}
+var _hurt_t := 0.0
+var _prev_flash := 0.0
+var _pivot_behind := false
+var _last_step_idx := -1
+
 
 func build(look: Dictionary, w: WeaponData, show_shadow: bool = true) -> void:
 	lk = resolve_look(look)
 	weapon = w
+	sprite_mode = false
+	spr = null
+	var vp := VisualProfiles.character(str(lk.get("visual", "")))
+	if not vp.is_empty() and VisualProfiles.sprites_enabled():
+		if _build_sprite(vp, show_shadow):
+			return
 	var sw: float = lk["w"]
 	var sh: float = lk["h"]
 	if show_shadow:
@@ -155,10 +170,12 @@ func set_weapon(w: WeaponData) -> void:
 	swap_t = 1.0
 	arm_b.queue_redraw()
 	wnode.queue_redraw()
+	if sprite_mode:
+		_pivot_set_behind(false)
 
 
 func muzzle_world() -> Vector2:
-	return pivot.to_global(wnode.position + weapon.muzzle)
+	return pivot.to_global(wnode.position + weapon.muzzle * wnode.scale.x)
 
 
 func hit_center_local() -> Vector2:
@@ -701,6 +718,9 @@ func animate(dt: float) -> void:
 
 
 func _animate_impl(dt: float) -> void:
+	if sprite_mode:
+		_animate_sprite(dt)
+		return
 	t += dt
 	var spd := vel.length()
 	var amp := clampf(spd / SPEED_REF, 0.0, 1.0)
@@ -804,6 +824,9 @@ func start_death(dir: Vector2) -> void:
 	dead = true
 	death_t = 0.0
 	death_dirv = dir
+	if sprite_mode:
+		_sprite_start_death(dir)
+		return
 	var tw := create_tween().set_parallel(true)
 	tw.tween_property(head, "position", head.position + Vector2(-dir.x * 34.0, 12.0), 0.5).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	tw.tween_property(head, "rotation", -dir.x * 2.8, 0.5)
@@ -812,6 +835,9 @@ func start_death(dir: Vector2) -> void:
 
 
 func update_dead(dt: float) -> void:
+	if sprite_mode:
+		_sprite_update_dead(dt)
+		return
 	t += dt
 	death_t += dt
 	flash = maxf(0.0, flash - dt * 5.0)
@@ -826,3 +852,162 @@ func update_dead(dt: float) -> void:
 	vis.modulate.a = clampf(1.0 - (death_t - 1.6) / 0.8, 0.35, 1.0)
 	arm_b.visible = false
 	arm_f.visible = false
+
+
+# =====================================================================  MODO SPRITE (arte importado)
+## Construye la version con sprite. Conserva: sombra, vis (flash/alpha), pivot (apuntado), wnode (arma, recoil, muzzle),
+## manos, eventos de pasos, muerte. Devuelve false (y no deja nada a medias) si el arte no esta disponible.
+func _build_sprite(vp: Dictionary, show_shadow: bool) -> bool:
+	var probe := AssetCatalog.anim_set(str(vp.get("set", "")))
+	if probe == null:
+		return false
+	sprof = vp
+	if show_shadow:
+		shadow = Part.make(self, _paint_shadow)
+	vis = Node2D.new()
+	fmat = Gfx.flash_material()
+	vis.material = fmat
+	add_child(vis)
+	body = Node2D.new()
+	body.use_parent_material = true
+	vis.add_child(body)
+	spr = SpriteActor.create(body, vp)
+	if spr == null:
+		# limpieza: volver a procedural
+		vis.queue_free()
+		if shadow != null:
+			shadow.queue_free()
+			shadow = null
+		vis = null
+		body = null
+		return false
+	sprite_mode = true
+	var anc: Vector2 = vp.get("weapon_anchor", Vector2(0, -28))
+	pivot = Node2D.new()
+	pivot.use_parent_material = true
+	pivot.position = anc
+	vis.add_child(pivot)
+	arm_b = Part.make(pivot, _paint_hand_back)
+	wnode = Part.make(pivot, _paint_weapon, WEAPON_POS)
+	wnode.scale = Vector2.ONE * float(vp.get("weapon_scale", VisualProfiles.CHAR_WEAPON_SCALE))
+	arm_f = Part.make(pivot, _paint_hand_front)
+	return true
+
+
+func _paint_hand_back(c: Part) -> void:
+	pass
+
+
+func _paint_hand_front(c: Part) -> void:
+	_hand(c, wnode.position + Vector2(0.5, 1.0) * wnode.scale.x, false)
+
+
+func _hand(c: Part, p: Vector2, back: bool) -> void:
+	var col: Color = sprof.get("hand", Color("d9a77a"))
+	c.draw_circle(p, 2.9, Gfx.INK)
+	c.draw_circle(p, 2.0, col.darkened(0.3) if back else col)
+
+
+func _pivot_set_behind(behind: bool) -> void:
+	if behind == _pivot_behind:
+		return
+	_pivot_behind = behind
+	vis.move_child(pivot, 0 if behind else vis.get_child_count() - 1)
+
+
+func _animate_sprite(dt: float) -> void:
+	t += dt
+	var spd := vel.length()
+	var amp := clampf(spd / SPEED_REF, 0.0, 1.0)
+	var moving := spd > 25.0
+	face_vis = move_toward(face_vis, face, dt * 16.0)
+	# --- direccion del sprite: sigue al apuntado, con histeresis para que no parpadee en los bordes
+	var aset := spr.aset
+	var cand := aset.best_dir(spr.anim, aim)
+	if cand != spr.dir:
+		var cur: Vector2 = AnimSet.DIR_VEC.get(spr.dir, Vector2.DOWN)
+		var nw: Vector2 = AnimSet.DIR_VEC[cand]
+		if not aset.dirs_of(spr.anim).has(spr.dir) or aim.dot(nw) > aim.dot(cur) + 0.14:
+			spr.set_dir_vec(nw)
+	# --- animacion
+	_hurt_t = maxf(0.0, _hurt_t - dt)
+	if flash > _prev_flash + 0.5 and (aset.dirs_of(spr.resolve("hurt")).size() >= 4):
+		_hurt_t = 0.24
+		spr.play("hurt", true, false)
+	_prev_flash = flash
+	if _hurt_t <= 0.0:
+		var from_walk: bool = sprof.get("idle_from_walk", false)
+		if moving:
+			spr.play("walk")
+			spr.rate = clampf(spd / SPEED_REF, 0.55, 1.35)
+			spr.reverse = vel.normalized().dot(aim) < -0.35
+		elif from_walk:
+			spr.play("walk")
+			spr.rate = 0.0
+			if spr.idx != 0:
+				spr.idx = 0
+				spr._apply()
+		else:
+			spr.play("idle")
+			spr.rate = 1.0
+			spr.reverse = false
+	spr.tick(dt)
+	# --- eventos de pasos (apoyo de cada pie: inicio y mitad del ciclo)
+	if moving and spr.anim == spr.resolve("walk"):
+		var n := aset.frame_count(spr.anim, spr.dir)
+		var half := n / 2
+		if (spr.idx == 0 or spr.idx == half) and spr.idx != _last_step_idx:
+			_last_step_idx = spr.idx
+			stepped.emit(amp)
+		elif spr.idx != 0 and spr.idx != half:
+			_last_step_idx = -1
+	else:
+		_last_step_idx = -1
+	# --- arma: mismo contrato que el rig procedural (apuntado, recoil, cambio de arma, tajo melee)
+	var bob := 0.0
+	var breath := sin(t * 2.3) * 0.6 * (1.0 - amp)
+	var anc: Vector2 = sprof.get("weapon_anchor", Vector2(0, -28))
+	pivot.position = anc + Vector2(0, breath * 0.3)
+	pivot.rotation = aim.angle()
+	pivot.scale.y = face
+	_pivot_set_behind(aim.y < -0.55)
+	var kk := kick * kick
+	swap_t = maxf(0.0, swap_t - dt * 5.0)
+	swing = maxf(0.0, swing - dt * 7.0)
+	var melee: bool = weapon.category == "melee"
+	wnode.position = WEAPON_POS + Vector2(-kk * weapon.kick, 0.0) + Vector2(0, sin(t * 2.3) * 0.4 * (1.0 - amp))
+	if melee:
+		wnode.position += Vector2(swing * 8.0, 0)
+		wnode.rotation = lerpf(-0.9, 0.8, 1.0 - swing) * (1.0 if swing > 0.0 else 0.0) + (-0.2 if swing <= 0.0 else 0.0) + swap_t * swap_t * 1.1
+	else:
+		wnode.rotation = -kk * 0.16 + swap_t * swap_t * 1.1
+	arm_b.queue_redraw()
+	arm_f.queue_redraw()
+	wnode.queue_redraw()
+	vis.position = -aim * kk * 1.8
+	flash = maxf(0.0, flash - dt * 7.0)
+	fmat.set_shader_parameter("flash", flash)
+	vis.modulate.a = alpha
+	if shadow != null:
+		shadow.scale = Vector2(float(sprof.get("shadow", 1.0)) * (1.0 - bob * 0.01), 1.0)
+
+
+func _sprite_start_death(dir: Vector2) -> void:
+	spr.rate = 1.0
+	spr.reverse = false
+	spr.set_dir_vec(dir)
+	spr.play("death", true, false)
+	arm_b.visible = false
+	arm_f.visible = false
+	var tw := create_tween().set_parallel(true)
+	tw.tween_property(pivot, "position", pivot.position + Vector2(dir.x * 22.0, 14.0), 0.4).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	tw.tween_property(pivot, "rotation", pivot.rotation + 2.0, 0.4)
+
+
+func _sprite_update_dead(dt: float) -> void:
+	t += dt
+	death_t += dt
+	flash = maxf(0.0, flash - dt * 5.0)
+	fmat.set_shader_parameter("flash", flash)
+	spr.tick(dt)
+	vis.modulate.a = clampf(1.0 - (death_t - 1.6) / 0.8, 0.35, 1.0)

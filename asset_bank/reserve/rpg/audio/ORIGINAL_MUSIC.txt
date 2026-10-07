@@ -1,0 +1,14 @@
+RPG NEW — ORIGINAL MUSIC
+
+The in-game music is synthesized by scripts/core/original_music_library.gd.
+
+Cues:
+- refuge: calm menu/refuge loop
+- dungeon: exploration/combat loop
+- warden: boss loop
+
+The tracks use no third-party recordings, samples, vocals, stems or imported melodies.
+They are generated once per cue as small 8-bit mono PCM buffers at 11025 Hz and then cached.
+Playback does not synthesize audio per frame, keeping runtime CPU cost intentionally low for Android.
+
+The existing sound effects under assets/audio/kenney remain CC0 and keep their original license files.

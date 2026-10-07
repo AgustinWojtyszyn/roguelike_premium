@@ -35,4 +35,5 @@ func _check_phase() -> void:
 			ph = i
 	if ph != phase:
 		phase = ph
+		game.fx.sprite("bosses/boss_phase_change", hit_center(), 120.0, 260.0, 0.8, Color(1, 1, 1, 0.9), 0.0, true)
 		_on_phase_change(ph)

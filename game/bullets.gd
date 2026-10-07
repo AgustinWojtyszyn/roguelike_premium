@@ -352,6 +352,7 @@ func _impact(b: B, p: Vector2, n: Vector2, prop) -> void:
 		return
 	fx.spark(p, n, 5 if b.style != Style.RAIL else 9, 260.0, col, 0.22, 0.9)
 	fx.flash(p, 14.0 if b.style != Style.RAIL else 24.0, Color(col, 0.7), 0.1)
+	fx.sprite("combat/hit_spark" if prop == null else "combat/bullet_impact", p, 12.0, 24.0 if b.style != Style.RAIL else 36.0, 0.12, Color(1, 1, 1, 0.9), n.angle(), true)
 	fx.puff(p + n * 3.0, n * 30.0, 6.0, Color(0.55, 0.6, 0.72, 0.35), 0.35, 2.2)
 	if b.team == 0 and randf() < 0.5:
 		fx.add_decal(p + Vector2(0, 14), 0, 9.0, Color.BLACK)

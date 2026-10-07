@@ -89,6 +89,9 @@ func _teardown() -> void:
 	if game.room != null:
 		for p in game.room.props:
 			p.queue_free()
+		for d in game.room.standing:
+			if is_instance_valid(d):
+				d.queue_free()
 		game.room.queue_free()
 	pending.clear()
 	spawn_busy.clear()
@@ -341,6 +344,7 @@ func _spawn_boss() -> void:
 	game.hud.boss = b
 	game.hud.boss_frac_lag = 1.0
 	AudioMgr.play_music("boss")
+	game.fx.sprite("bosses/boss_spawn", pos + Vector2(0, -6), 150.0, 190.0, 1.6, Color(1, 1, 1, 0.9), 0.0, true)
 	game.hud.banner(bd.display_name, 2.6, bd.title, Color("ff7a9a"))
 	game.sfx.play("roar", -2.0)
 	game.shake(0.4)

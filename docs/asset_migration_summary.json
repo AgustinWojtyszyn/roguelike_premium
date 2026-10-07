@@ -1,0 +1,42 @@
+{
+ "audited": {
+  "rpg": 2441,
+  "vida": 435
+ },
+ "dup_paths": {
+  "rpg": 171,
+  "vida": 5
+ },
+ "stats": {
+  "rpg_sheets_migrate": 95,
+  "rpg_sheets_reserve": 18,
+  "rpg_reserve": 287,
+  "rpg_dup": 19,
+  "rpg_migrate": 179,
+  "rpg_discard": 64,
+  "rpg_weapon_oriented": 18,
+  "vida_sheets_migrate": 7,
+  "vida_reserve": 234,
+  "vida_dup": 4,
+  "vida_migrate": 29,
+  "vida_sheet_src": 173
+ },
+ "sources": {
+  "rpg": {
+   "repo": "AgustinWojtyszyn/Rpg_new",
+   "head_checkout": "cb0abd70e7ef7aefced6542c0ac1bda83f92e4c8",
+   "refs": [
+    "origin/main",
+    "origin/soulknight-polish-pass",
+    "origin/discard/enemy-families-v2",
+    "origin/discard/pre-astra-single-room-v2"
+   ]
+  },
+  "vida": {
+   "repo": "AgustinWojtyszyn/Life--simulador-de-vida",
+   "head": "5d5192da4b258d36a330ef84f5617269ab9d0530"
+  }
+ },
+ "static_migrated": 208,
+ "anim_sets": 12
+}

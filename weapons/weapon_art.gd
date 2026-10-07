@@ -4,6 +4,8 @@ extends RefCounted
 ## `heat` (0..1) enciende los nucleos; `t` anima piezas vivas (drones, arcos, aspas).
 
 static func paint(ci: CanvasItem, w: WeaponData, heat: float = 0.0, t: float = 0.0) -> void:
+	if _paint_imported(ci, w, heat):
+		return
 	var pal: Dictionary = w.palette
 	var glow: Color = pal.get("glow", w.color)
 	match w.art:
@@ -26,6 +28,26 @@ static func paint(ci: CanvasItem, w: WeaponData, heat: float = 0.0, t: float = 0
 		"flamer": _flamer(ci, pal, glow, heat, t)
 		"sniper": _sniper(ci, pal, glow, heat)
 		_: _pulsar(ci, heat)
+
+
+## Arte importado (normalizado: eje a +x, agarre en el origen). La escala sale de `muzzle.x` para que la punta del arte
+## coincida con el punto de disparo del arma Premium. Devuelve false (y se usa el dibujo vectorial) si falta algo.
+static func _paint_imported(ci: CanvasItem, w: WeaponData, heat: float) -> bool:
+	if not VisualProfiles.sprites_enabled() or not AssetManifest.ORIENTED.has(w.id):
+		return false
+	var info: Dictionary = AssetManifest.ORIENTED[w.id]
+	var tex := AssetCatalog.load_tex(info["path"])
+	if tex == null:
+		return false
+	var sz: Array = info["size"]
+	var gp: Array = info["grip"]
+	var reach := float(info["tip"]) - float(gp[0])
+	var s := clampf(maxf(w.muzzle.x, 18.0) / maxf(reach, 1.0), 0.12, 0.6) * float(VisualProfiles.WEAPON_ART_SCALE)
+	ci.draw_texture_rect(tex, Rect2(-float(gp[0]) * s, -float(gp[1]) * s, float(sz[0]) * s, float(sz[1]) * s), false)
+	if heat > 0.05:
+		var glow: Color = w.palette.get("glow", w.color)
+		Gfx.draw_glow(ci, w.muzzle * 0.8, 9.0 + 6.0 * heat, Color(glow.r, glow.g, glow.b, 0.45 * heat))
+	return true
 
 
 static func _c(pal: Dictionary, key: String, d: Color) -> Color:

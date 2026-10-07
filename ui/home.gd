@@ -5,6 +5,7 @@ extends Control
 
 var t: float = 0.0
 var rig: CharacterRig
+var life: HomeLife
 var hero_hit: GButton
 var play_btn: GButton
 var chap_prev: GButton
@@ -39,6 +40,8 @@ func _ready() -> void:
 	chapter_id = str(p.data.get("selected_chapter", "ch1"))
 	if Catalog.chapter(chapter_id) == null:
 		chapter_id = "ch1"
+	life = HomeLife.new()
+	add_child(life)
 	rig = CharacterRig.new()
 	add_child(rig)
 	rig.z_index = 0
@@ -112,6 +115,8 @@ func _layout() -> void:
 	hero_pos = Vector2(vs.x * 0.5, vs.y * 0.62)
 	rig.position = hero_pos
 	rig.scale = Vector2.ONE * hero_scale
+	if life != null and (life.vs != vs or life.walkers.is_empty()):
+		life.build(vs, hero_pos, Catalog.chapter(chapter_id).accent)
 	hero_hit.size = Vector2(300, 400) * sc
 	hero_hit.position = hero_pos - Vector2(150, 330) * sc
 	char_prev.size = Vector2(60, 90)
@@ -185,6 +190,7 @@ func _cycle_chapter(d: int) -> void:
 	chapter_id = order[i]
 	Profile.p.data["selected_chapter"] = chapter_id
 	Profile.p.touch()
+	life.retint(Catalog.chapter(chapter_id).accent)
 	_update_play_state()
 
 
@@ -240,11 +246,13 @@ func _open(key: String) -> void:
 	screen.closed.connect(_on_screen_closed)
 	add_child(screen)
 	rig.visible = false
+	life.set_active(false)
 
 
 func _on_screen_closed() -> void:
 	screen = null
 	rig.visible = true
+	life.set_active(true)
 	_refresh_hero()
 	_refresh_badges()
 

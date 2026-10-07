@@ -27,6 +27,7 @@ var runs: Array[Dictionary] = []
 var rects: Array[Rect2] = []
 var bullet_rects: Array = []
 var props: Array[Prop] = []
+var standing: Array[Node] = []   # decoracion alta sin colision (RoomDecor); se libera con la sala
 var spawns: Array[Vector2] = []
 var spawn_open: PackedFloat32Array = PackedFloat32Array()
 var spawn_target: PackedFloat32Array = PackedFloat32Array()
@@ -111,6 +112,7 @@ func build(g: Game, d: RoomDef, entry: String, exit: String, sd: int = 0) -> voi
 	seal_glow_node = _make_layer(6, -23, true)
 	_spawn_props()
 	_rebuild_rects()
+	RoomDecor.spawn_standing(self, game.ysort)
 	if Boot.has_flag("hide"):
 		for h in str(Boot.get_arg("hide")).split(","):
 			match h:

@@ -39,6 +39,7 @@ func paint_floor(ci: CanvasItem, room: Room) -> void:
 		_floor_panels(ci, R, 4242 + idx * 17)
 		idx += 1
 	_floor_extras(ci, room)
+	RoomDecor.paint_floor(ci, room)
 
 
 func _floor_panels(_ci: CanvasItem, _R: Rect2, _seed: int) -> void:
