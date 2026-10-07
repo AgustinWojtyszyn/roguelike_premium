@@ -7,8 +7,6 @@ extends Node2D
 signal stepped(strength: float)
 
 const SPEED_REF := 262.0
-const PLACEHOLDER_TEX := preload("res://assets/dev/player_placeholder.png")
-
 var lk: Dictionary = {}
 var weapon: WeaponData
 var vel := Vector2.ZERO
@@ -99,7 +97,7 @@ func build(look: Dictionary, w: WeaponData, _show_shadow: bool = true) -> void:
 func _build_placeholder() -> void:
 	is_placeholder = true
 	_placeholder = Sprite2D.new()
-	_placeholder.texture = PLACEHOLDER_TEX
+	_placeholder.texture = load("res://assets/dev/player_placeholder.png") as Texture2D
 	_placeholder.centered = true
 	_placeholder.position = Vector2(0, -36)
 	_placeholder.scale = Vector2.ONE * 0.72
