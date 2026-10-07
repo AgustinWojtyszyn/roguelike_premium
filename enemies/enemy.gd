@@ -289,10 +289,12 @@ func steer(dir: Vector2, spd: float, dt: float, accel: float = 1100.0) -> void:
 			continue
 		var d := position - o.position
 		var l := d.length()
-		var min_d: float = radius + o.radius + 22.0
+		var min_d: float = radius + o.radius + 30.0
 		if l < min_d and l > 0.01:
 			sep += d / l * (1.0 - l / min_d)
-	target += sep * 150.0
+			if l < radius + o.radius:
+				position += d / l * ((radius + o.radius - l) * 0.3)   # nunca se apilan: se empujan fuera del solape
+	target += sep * 230.0
 	vel = vel.move_toward(target, accel * dt)
 
 
@@ -350,6 +352,10 @@ func _sprite_tick(dt: float) -> void:
 	if phase != _sp_phase:
 		_sp_phase = phase
 		var once := phase in ["windup", "strike", "recover", "death"]
+		if phase == "windup":
+			# anticipacion legible: destello + aro breve en el instante en que arranca el ataque
+			flash = maxf(flash, 0.6)
+			game.fx.ring(position + hit_off, 8.0, 30.0, glow_col, 0.22, 2.5)
 		spr.rate = 1.0
 		spr.reverse = false
 		spr.play(phase, true, not once)
@@ -364,5 +370,10 @@ func _sprite_tick(dt: float) -> void:
 	elif k >= 0.0 and phase == "windup":
 		spr.set_progress(minf(k, 0.999))
 	else:
-		spr.rate = clampf(vel.length() / maxf(speed, 1.0), 0.5, 1.6) if phase == "move" else 1.0
+		if phase == "move":
+			var nfr := float(maxi(1, spr.aset.frame_count(spr.anim, spr.dir)))
+			var wfps := maxf(1.0, spr.fps_of(spr.anim))
+			spr.rate = clampf(vel.length() / (0.9 * float(spr.prof.get("height", 50.0))) * nfr / wfps, 0.4, 30.0 / wfps)
+		else:
+			spr.rate = 1.0
 		spr.tick(dt)

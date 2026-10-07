@@ -119,6 +119,7 @@ var _anchor_init := false
 var _hand: Part
 var _last_heat := -1.0
 var _arm_grip := Vector2(9999, 9999)
+var _prev_spd := 0.0
 
 
 func build(look: Dictionary, w: WeaponData, show_shadow: bool = true) -> void:
@@ -923,20 +924,13 @@ func _shoulder_for(grip: Vector2) -> Vector2:
 	return Vector2(grip.x * 0.3, grip.y - 10.0 * _k())
 
 
-func _paint_arm_sprite(c: Part) -> void:
-	if _arm_grip.x > 9000.0:
-		return
-	var sh := _shoulder_for(_anchor_cur)
-	var elb := Gfx.elbow(sh, _arm_grip, 8.0 * _k(), 8.0 * _k(), 1.0 if face >= 0.0 else -1.0)
-	var col: Color = sprof.get("sleeve", Color("5a5a3a"))
-	var pts := PackedVector2Array([sh, elb, _arm_grip])
-	c.draw_polyline(pts, Gfx.INK, 5.2, true)
-	c.draw_polyline(pts, col, 3.0, true)
+func _paint_arm_sprite(_c: Part) -> void:
+	pass   # el brazo es el del propio sprite: el arma se ancla a SU mano (ver weapon_anchor por direccion)
 
 
 func _paint_hand_sprite(c: Part) -> void:
 	var col: Color = sprof.get("hand", Color("d9a77a"))
-	var r := 2.9 / maxf(wnode.scale.x, 0.1)
+	var r := 2.1 / maxf(wnode.scale.x, 0.1)
 	c.draw_circle(Vector2.ZERO, r, Gfx.INK)
 	c.draw_circle(Vector2.ZERO, r * 0.7, col)
 
@@ -977,7 +971,10 @@ func _animate_sprite(dt: float) -> void:
 		var from_walk: bool = sprof.get("idle_from_walk", false)
 		if moving:
 			spr.play("walk")
-			spr.rate = clampf(spd / SPEED_REF, 0.55, 1.35)
+			# cadencia atada a la velocidad real (zancada ~0.85 x altura): los pies no patinan; tope ~30 fps para no hacer judder a 60 Hz
+			var nfr := float(maxi(1, aset.frame_count(spr.anim, spr.dir)))
+			var wfps := maxf(1.0, spr.fps_of(spr.anim))
+			spr.rate = clampf(spd / (0.85 * float(sprof.get("height", 64.0))) * nfr / wfps, 0.4, 30.0 / wfps)
 			spr.reverse = vel.normalized().dot(aim) < -0.35
 		elif from_walk:
 			spr.play("walk")
@@ -1002,6 +999,13 @@ func _animate_sprite(dt: float) -> void:
 	else:
 		_last_step_idx = -1
 	# --- arma: ancla por direccion (suavizada al cambiar de direccion) + bamboleo del cuerpo que lleva la mano
+	# peso del movimiento: inclinacion hacia donde corre y estiramiento al arrancar/frenar (el sprite pivota sobre los pies)
+	var lean_t := clampf(vel.x / SPEED_REF, -1.0, 1.0) * 0.07
+	body.rotation = lerpf(body.rotation, lean_t, clampf(dt * 12.0, 0.0, 1.0))
+	var acc := absf(spd - _prev_spd) / maxf(dt, 0.001)
+	_prev_spd = spd
+	var sq := clampf(acc / 6000.0, 0.0, 0.06)
+	body.scale = body.scale.lerp(Vector2(1.0 - sq * 0.5, 1.0 + sq), clampf(dt * 14.0, 0.0, 1.0))
 	var tgt := _anchor_for(spr.dir)
 	if not _anchor_init:
 		_anchor_cur = tgt

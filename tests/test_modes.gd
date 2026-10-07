@@ -9,7 +9,9 @@ func _frames(t, n: int) -> void:
 func run(t) -> void:
 	_waves(t)
 	_records(t)
+	_hazard_zones(t)
 	await _integration(t)
+	await _hazards(t)
 
 
 func _waves(t) -> void:
@@ -130,4 +132,38 @@ func _integration(t) -> void:
 	var b := g5.bullets.fire(Vector2.ZERO, Vector2.RIGHT, 100.0, 1.0, 1.0, Bullets.Style.PULSE, 1)
 	t.check(b.vel.length() > 135.0, "desafio Balas Rapidas: proyectil enemigo mas veloz (%.0f)" % b.vel.length())
 	g5.queue_free()
+	await _frames(t, 2)
+
+
+func _hazard_zones(t) -> void:
+	for st_i in 4:
+		var def: RoomDef = Catalog.rooms[ModeRules.survival_stage(st_i)["room"]]
+		for z in ArenaHazard.ZONES:
+			t.check(def.size.x * -0.5 + 60.0 < z.position.x and z.end.x < def.size.x * 0.5 - 60.0, "%s: zona de peligro dentro de la arena" % def.id)
+			for p in def.props:
+				var pr := Rect2(float(p[1]), float(p[2]), float(p[3]), float(p[4]))
+				t.check(not pr.intersects(z), "%s: el prop %s no solapa una zona de peligro" % [def.id, p[0]])
+			for sp in def.spawns:
+				t.check(not z.grow(40.0).has_point(sp), "%s: ningun spawn dentro de una zona de peligro" % def.id)
+
+
+func _hazards(t) -> void:
+	var g := _make(t, {"seed": "3", "mode": "survival", "idle": "1"})
+	await _frames(t, 20)
+	var hz: Array = []
+	for c in g.room.get_children():
+		if c is ArenaHazard:
+			hz.append(c)
+	t.eq(hz.size(), 3, "la arena de supervivencia tiene 3 peligros")
+	g.director.entered = true
+	g.director.in_combat = true
+	var h: ArenaHazard = hz[2]
+	g.player.position = h.rect.get_center() + Vector2(0, 4)
+	g.player.inv = 0.0
+	var hp0 := g.player.hp + g.player.shield
+	h.state = ArenaHazard.ACTIVE
+	h.st = 0.0
+	await _frames(t, 6)
+	t.check(g.player.hp + g.player.shield < hp0, "el peligro activo dana al jugador que lo pisa")
+	g.queue_free()
 	await _frames(t, 2)

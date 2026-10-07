@@ -153,6 +153,8 @@ func _load_stage(i: int, instant: bool) -> void:
 	pl.aim = dir.normalized()
 	game.cam_extra = Vector2.ZERO
 	game._snap_camera()
+	if st["kind"] == "survival":
+		ArenaHazard.spawn_all(game, room, room)
 	if st["kind"] == "cache":
 		_spawn_chests(def)
 		cleared = true
