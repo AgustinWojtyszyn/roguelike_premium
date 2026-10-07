@@ -48,3 +48,6 @@ Do not convert 11 heroes at once. First prove:
 - 60 FPS target on Android unchanged.
 
 Only after the slice passes visual + performance review should the pipeline batch the rest.
+
+## Validation baseline — 2026-10-07
+Commit `977f62e268c74cb206c020294d6e824fdfd3c760` passed the repository's Godot 4.7.2 import, headless smoke runs, full GDScript/Python validation suite, and Android APK export in GitHub Actions. The Android emulator cold-start stage still fails on SwiftShader/Vulkan presentation (`VkResult error 5`); the same stage is already failing on the current `main` commit `0bb8aa00c345636a921f1b694eb329bc287f507c`, so it is not a regression introduced by this asset-rebuild branch.
