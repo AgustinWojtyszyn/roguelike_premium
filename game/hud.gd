@@ -22,6 +22,7 @@ var redraw_t: float = 0.0
 var boss: Node = null
 var boss_frac_lag: float = 1.0
 var time_tint: float = 0.0
+var safe := Vector4.ZERO
 
 
 func _ready() -> void:
@@ -79,6 +80,8 @@ func _process(delta: float) -> void:
 	_reticle.queue_redraw()
 	# Redibujo dirigido por cambios (con un latido de 15 Hz para las animaciones suaves)
 	redraw_t -= delta
+	safe = SafeArea.margins(self)
+	HudRects.safe = safe
 	var sig := _signature()
 	var active := banner_t > 0.0 or toast_t > 0.0 or damage_flash > 0.0 or energy_flash > 0.0 or coin_k > 0.0 or game.input.touch_move_id != -1 or game.input.touch_aim_id != -1
 	if sig != _last_sig or active or redraw_t <= 0.0:
@@ -117,6 +120,8 @@ func _draw_all() -> void:
 	if game.enemy_time < 0.99:
 		draw_texture_rect(vignette, Rect2(Vector2.ZERO, vs), false, Color(0.3, 0.9, 1.0, 0.5 * (1.0 - game.enemy_time)))
 	_draw_vitals()
+	if bool(Profile.p.setting("show_fps")):
+		UiKit.text(self, Vector2(26.0 + safe.x, 112.0 + safe.y), "%d FPS" % int(Engine.get_frames_per_second()), 14, Color(0.7, 1, 0.8, 0.9), 0, -1.0, 3.0)
 	_draw_progress(vs)
 	_draw_top_right(vs)
 	_draw_boss(vs)
@@ -130,7 +135,7 @@ func _draw_all() -> void:
 
 func _draw_vitals() -> void:
 	var pl := game.player
-	var p := Vector2(22, 18)
+	var p := Vector2(22.0 + safe.x, 18.0 + safe.y)
 	var w := 250.0
 	UiKit.panel(self, Rect2(p, Vector2(w, 74)), Color(0.02, 0.05, 0.1, 0.6), Color(0.25, 0.9, 0.85, 0.45), 10.0, 1.0, false)
 	# vida: un segmento por punto
@@ -174,7 +179,7 @@ func _draw_progress(vs: Vector2) -> void:
 		return
 	var n := d.plan.size()
 	var w := 34.0 * float(n) + 24.0
-	var r := Rect2(vs.x * 0.5 - w * 0.5, 14.0, w, 40.0)
+	var r := Rect2(vs.x * 0.5 - w * 0.5, 14.0 + safe.y, w, 40.0)
 	UiKit.panel(self, r, Color(0.02, 0.05, 0.1, 0.55), Color(0.25, 0.9, 0.85, 0.4), 10.0, 1.0, false)
 	for i in n:
 		var c := Vector2(r.position.x + 28.0 + float(i) * 34.0, r.position.y + 20.0)
@@ -208,7 +213,7 @@ func _draw_top_right(vs: Vector2) -> void:
 	# monedas
 	var coin_txt := UiKit.format_int(game.run.coins)
 	var tw := UiKit.text_width(coin_txt, 20)
-	var r := Rect2(pr.position.x - tw - 62.0, 22.0, tw + 50.0, 40.0)
+	var r := Rect2(pr.position.x - tw - 62.0, 22.0 + safe.y, tw + 50.0, 40.0)
 	UiKit.pill(self, r, Color(0.02, 0.05, 0.1, 0.62), Color(1.0, 0.82, 0.3, 0.6), 2.0)
 	var s := 12.0 + coin_k * 4.0
 	UiIcons.draw(self, "coin", Vector2(r.position.x + 22.0, r.get_center().y), s, Color("ffd24a"))
@@ -219,7 +224,7 @@ func _draw_boss(vs: Vector2) -> void:
 	if boss == null or not is_instance_valid(boss):
 		return
 	var w := minf(560.0, vs.x * 0.5)
-	var r := Rect2(vs.x * 0.5 - w * 0.5, 100.0, w, 18.0)
+	var r := Rect2(vs.x * 0.5 - w * 0.5, 100.0 + safe.y, w, 18.0)
 	var col: Color = boss.accent_color()
 	UiKit.text(self, Vector2(r.position.x, r.position.y - 6.0), boss.title_text(), 18, col.lightened(0.5), 1, w, 4.0)
 	draw_rect(r.grow(3.0), UiKit.INK)
@@ -236,7 +241,7 @@ func _draw_boss(vs: Vector2) -> void:
 
 func _draw_weapons_pc(vs: Vector2) -> void:
 	var pl := game.player
-	var base := Vector2(24, vs.y - 92)
+	var base := Vector2(24 + safe.x, vs.y - 92 - safe.w)
 	for i in pl.slots.size():
 		var wd := pl.slots[i].data
 		var r := Rect2(base + Vector2(float(i) * 150.0, 0), Vector2(142, 64))
@@ -252,7 +257,7 @@ func _draw_weapons_pc(vs: Vector2) -> void:
 	var cost := ("  ·  %.1f EN" % (wd.energy_cost * pl.energy_cost_mult())) if wd.energy_cost > 0.0 else ""
 	UiKit.text(self, base + Vector2(2, -8), "%s  ·  %s%s" % [wd.display_name, wd.sub, cost], 14, Color(0.85, 0.97, 1.0, 0.95), 0, -1.0, 3.0)
 	# habilidad
-	var ab := Vector2(vs.x - 150.0, vs.y - 92.0)
+	var ab := Vector2(vs.x - 150.0 - safe.z, vs.y - 92.0 - safe.w)
 	_ability_chip(Rect2(ab, Vector2(126, 64)))
 
 
@@ -315,11 +320,11 @@ func _draw_reticle(ci: Control) -> void:
 
 
 func _draw_touch(vs: Vector2) -> void:
-	var lo := game.input.touch_move_o if game.input.touch_move_id != -1 else Vector2(150, vs.y - 150)
+	var lo := game.input.touch_move_o if game.input.touch_move_id != -1 else Vector2(150.0 + safe.x, vs.y - 150.0 - safe.w)
 	var lk := game.input.touch_move_p if game.input.touch_move_id != -1 else lo
 	var la := 0.5 if game.input.touch_move_id != -1 else 0.22
 	_stick(lo, lk, la)
-	var ro := game.input.touch_aim_o if game.input.touch_aim_id != -1 else Vector2(vs.x - 160, vs.y - 120)
+	var ro := game.input.touch_aim_o if game.input.touch_aim_id != -1 else Vector2(vs.x - 170, vs.y - 112)
 	var rk := game.input.touch_aim_p if game.input.touch_aim_id != -1 else ro
 	var ra := 0.5 if game.input.touch_aim_id != -1 else 0.22
 	_stick(ro, rk, ra, true)

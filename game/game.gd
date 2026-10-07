@@ -116,6 +116,10 @@ func _ready() -> void:
 	var look := _look_for(cdata)
 	player.build(self, run, look)
 	player.skin_bullet = _skin_bullet(cdata)
+	for cid2 in Profile.p.data["cosmetics_owned"]:
+		if str(cid2).begins_with("trail_"):
+			player.trail_col = Color("ff9a4a") if cid2 == "trail_ember" else Color("8fe8ff")
+			break
 	if bot or god:
 		god = god
 	Boot.log_stage(5, "player ready")
@@ -147,6 +151,7 @@ func _ready() -> void:
 			player.visible = false
 	cam_pos = player.position
 	_snap_camera()
+	AudioMgr.request_music_build("boss")
 	AudioMgr.play_music(chapter.music)
 	AudioMgr.start_hum()
 	Boot.log_stage(8, "ready complete nodes=%d memory=%d" % [get_tree().get_node_count(), OS.get_static_memory_usage()])
@@ -256,7 +261,7 @@ func __process_impl(delta: float) -> void:
 	if not over:
 		run.time += rdt
 	if Boot.has_flag("debug") and int(clock * 2.0) != int((clock - rdt) * 2.0) and int(clock) % 5 == 0:
-		print("[t=%.0f] etapa=%d entered=%s combat=%s cleared=%s enemies=%d pend=%d wave=%d seal=%.2f pos=%s hp=%d kills=%d" % [clock, director.stage, director.entered, director.in_combat, director.cleared, enemies.size(), director.pending.size(), director.wave_i, room.seal_open, str(player.position.round()), player.hp, run.kills])
+		print("[t=%.0f] etapa=%d entered=%s combat=%s cleared=%s enemies=%d pend=%d wave=%d seal=%.2f pos=%s hp=%d kills=%d" % [clock, director.stage, director.entered, director.in_combat, director.cleared, enemies.size(), director.pending.size(), director.wave_i, room.seal_open, str(player.position.round()), player.hp, run.kills] + (" boss=%d%% state=%d" % [int(director.boss.hp_frac() * 100.0), director.boss.state] if director.boss_alive() else ""))
 	if bot:
 		bot_t += rdt
 	_update_camera(rdt)

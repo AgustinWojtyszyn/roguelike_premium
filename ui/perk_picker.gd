@@ -25,6 +25,7 @@ func _ready() -> void:
 	offers = RunState.roll_perk_offer(rng, Catalog.perks, game.run.perks, 3, luck)
 	skip_btn = GButton.make("SALTAR  +20", GButton.Style.GHOST, "coin")
 	skip_btn.font_size = 20
+	skip_btn.icon_col = Color("ffd24a")
 	skip_btn.pressed.connect(_skip)
 	add_child(skip_btn)
 	cancel_btn = GButton.make("ATRÁS", GButton.Style.GHOST)

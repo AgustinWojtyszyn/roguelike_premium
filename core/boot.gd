@@ -19,12 +19,17 @@ func _enter_tree() -> void:
 
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	if OS.has_feature("mobile"):
+		Engine.max_fps = 60        # objetivo 60 FPS estables: sin gastar bateria/calor a 90-120 Hz
 	if args.has("snap"):
 		for v in str(args["snap"]).split(","):
 			_snaps.append(float(v))
 		_snap_dir = str(args.get("snapdir", "/tmp/snaps"))
 	if args.has("exit"):
 		_exit_at = float(args["exit"])
+	elif args.has("quit"):
+		_exit_at = float(args["quit"]) + 1.0     # alias: las escenas que no lo gestionan (menu) tambien terminan
 	if OS.is_debug_build() and OS.has_feature("android"):
 		RenderingServer.frame_post_draw.connect(func(): log_stage(10, "first rendered frame"), CONNECT_ONE_SHOT)
 

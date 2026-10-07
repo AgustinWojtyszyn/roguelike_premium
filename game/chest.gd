@@ -25,7 +25,8 @@ static func make(g: Game, k: String, pos: Vector2) -> Chest:
 	c.game = g
 	c.kind = k
 	c.position = pos
-	c.foot = Rect2(pos.x - 22.0, pos.y - 14.0, 44.0, 16.0)
+	c.foot = Rect2(pos.x - 26.0, pos.y - 16.0, 52.0, 18.0)
+	c.scale = Vector2(1.25, 1.25)
 	return c
 
 

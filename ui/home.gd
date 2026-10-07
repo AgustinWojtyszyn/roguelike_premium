@@ -26,6 +26,7 @@ var _launch_t: float = 0.0
 var _kick_t: float = 0.0
 var _news_new := true
 var _lv_anim: float = 0.0
+var safe := Vector4.ZERO
 
 
 func _ready() -> void:
@@ -104,6 +105,7 @@ func _make_buttons() -> void:
 
 
 func _layout() -> void:
+	safe = SafeArea.margins(self)
 	var vs := size
 	var sc := clampf(vs.y / 720.0, 0.7, 1.4)
 	hero_scale = 4.0 * sc
@@ -117,26 +119,26 @@ func _layout() -> void:
 	char_prev.position = hero_pos + Vector2(-280.0 * sc - 30.0, -190.0 * sc)
 	char_next.position = hero_pos + Vector2(280.0 * sc - 30.0, -190.0 * sc)
 	gear_btn.size = Vector2(66, 62)
-	gear_btn.position = Vector2(vs.x - 88.0, 14.0)
+	gear_btn.position = Vector2(vs.x - 88.0 - safe.z, 14.0 + safe.y)
 	# navegacion inferior
-	var nav_w := vs.x - 420.0 - 40.0
+	var nav_w := vs.x - 420.0 - 40.0 - safe.x - safe.z
 	var gap := 8.0
 	var bw := minf(150.0, (nav_w - gap * 5.0) / 6.0)
 	for i in nav.size():
 		nav[i].size = Vector2(bw, 96)
-		nav[i].position = Vector2(20.0 + float(i) * (bw + gap), vs.y - 112.0)
+		nav[i].position = Vector2(20.0 + safe.x + float(i) * (bw + gap), vs.y - 112.0 - safe.w)
 	play_btn.size = Vector2(350, 112)
-	play_btn.position = Vector2(vs.x - 372.0, vs.y - 136.0)
+	play_btn.position = Vector2(vs.x - 372.0 - safe.z, vs.y - 136.0 - safe.w)
 	chap_prev.size = Vector2(54, 54)
 	chap_next.size = Vector2(54, 54)
-	chap_prev.position = Vector2(vs.x - 372.0, vs.y - 208.0)
-	chap_next.position = Vector2(vs.x - 76.0, vs.y - 208.0)
+	chap_prev.position = Vector2(vs.x - 372.0 - safe.z, vs.y - 208.0 - safe.w)
+	chap_next.position = Vector2(vs.x - 76.0 - safe.z, vs.y - 208.0 - safe.w)
 	mission_chip.size = Vector2(218, 70)
-	mission_chip.position = Vector2(20, 106)
+	mission_chip.position = Vector2(20.0 + safe.x, 106.0 + safe.y)
 	pass_chip.size = Vector2(218, 70)
-	pass_chip.position = Vector2(20, 186)
+	pass_chip.position = Vector2(20.0 + safe.x, 186.0 + safe.y)
 	gift_chip.size = Vector2(218, 70)
-	gift_chip.position = Vector2(vs.x - 238.0, 106)
+	gift_chip.position = Vector2(vs.x - 238.0 - safe.z, 106.0 + safe.y)
 
 
 func _refresh_hero() -> void:
@@ -322,7 +324,7 @@ func _draw() -> void:
 func _draw_profile(vs: Vector2) -> void:
 	var p := Profile.p
 	var lv := p.account_level()
-	var r := Rect2(20, 16, 330, 76)
+	var r := Rect2(20.0 + safe.x, 16.0 + safe.y, 330, 76)
 	UiKit.panel(self, r, Color("0b1224", 0.85), Color(UiKit.EDGE, 0.6), 14.0)
 	var cc := Vector2(r.position.x + 40.0, r.get_center().y)
 	draw_circle(cc, 30.0, Color("162244"))
@@ -334,8 +336,8 @@ func _draw_profile(vs: Vector2) -> void:
 	UiKit.bar(self, br, _lv_anim, Color("3fb8ff"))
 	UiKit.text(self, Vector2(br.position.x, br.end.y + 12.0), "XP %d / %d" % [int(lv["into"]), int(lv["need"])], 11, UiKit.DIM, 0, -1.0, 2.0, false)
 	# monedas / gemas
-	_currency(Vector2(vs.x - 100.0, 22.0), UiKit.format_int(p.coins()), "coin", Color("ffd24a"))
-	_currency(Vector2(vs.x - 100.0 - 188.0, 22.0), UiKit.format_int(p.gems()), "gem", UiKit.GEM)
+	_currency(Vector2(vs.x - 100.0 - safe.z, 22.0 + safe.y), UiKit.format_int(p.coins()), "coin", Color("ffd24a"))
+	_currency(Vector2(vs.x - 100.0 - 188.0 - safe.z, 22.0 + safe.y), UiKit.format_int(p.gems()), "gem", UiKit.GEM)
 
 
 func _currency(right_top: Vector2, s: String, icon: String, col: Color) -> void:
@@ -350,10 +352,14 @@ func _draw_chapter_selector(vs: Vector2) -> void:
 	var ch := Catalog.chapter(chapter_id)
 	var unlocked: bool = Profile.p.chapter_state(chapter_id).get("unlocked", false)
 	var idx := Catalog.chapter_order.find(chapter_id) + 1
-	var r := Rect2(vs.x - 372.0 + 62.0, vs.y - 208.0, 350.0 - 124.0, 54.0)
+	var r := Rect2(vs.x - 372.0 + 62.0 - safe.z, vs.y - 208.0 - safe.w, 350.0 - 124.0, 54.0)
 	UiKit.panel(self, r, Color("0b1224", 0.9), Color(ch.accent, 0.9 if unlocked else 0.3), 10.0)
 	UiKit.text(self, Vector2(r.position.x, r.position.y + 22.0), "CAPÍTULO %d" % idx, 13, Color(ch.accent.lightened(0.3), 0.9), 1, r.size.x, 3.0)
-	UiKit.text(self, Vector2(r.position.x, r.position.y + 44.0), ch.display_name if unlocked else "BLOQUEADO", 17, UiKit.TEXT if unlocked else UiKit.DIM, 1, r.size.x, 3.0)
+	var line := ch.display_name
+	if not unlocked:
+		var req := Catalog.chapter(ch.unlock_requires)
+		line = ("Completa: %s" % req.display_name) if req != null else "BLOQUEADO"
+	UiKit.text(self, Vector2(r.position.x, r.position.y + 44.0), line, 15 if unlocked else 13, UiKit.TEXT if unlocked else UiKit.DIM, 1, r.size.x, 3.0)
 
 
 func _draw_mission_chip(ci: CanvasItem, r: Rect2) -> void:

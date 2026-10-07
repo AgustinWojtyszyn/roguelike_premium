@@ -42,6 +42,7 @@ var whirl_next: float = 0.0
 var room_buff := ""
 var regen_t: float = 0.0
 var skin_bullet := Color(0, 0, 0, 0)
+var trail_col := Color(0, 0, 0, 0)
 var aura: Part
 
 
@@ -354,6 +355,8 @@ func _animate(dt: float) -> void:
 
 
 func _on_step(strength: float) -> void:
+	if trail_col.a > 0.0:
+		game.fx.spark(position + Vector2(-vel.x * 0.03, -2), Vector2(-vel.x, -30).normalized(), 4, 140.0, trail_col, 0.35, 0.9)
 	game.fx.puff(position + Vector2(randf_range(-4, 4), -1), Vector2(-vel.x * 0.1, -8), 6.0, Color(0.6, 0.66, 0.8, 0.28), 0.4, 2.2)
 	game.sfx.play("step", -16.0, 1.0, 0.15, 0.06)
 
@@ -418,6 +421,8 @@ func take_damage(n: int, dir: Vector2, knock: float = 120.0) -> void:
 		game.fx.ring(hit_center(), 6.0, 34.0, Color("bff3ff"), 0.22, 3.0)
 	inv = 1.0 if rest > 0 else 0.7
 	rig.flash = 1.0
+	if OS.has_feature("mobile") and bool(Profile.p.setting("vibration")):
+		Input.vibrate_handheld(45 if rest > 0 else 20)
 	if data.passive_id != "immovable" and not has_buff("bulwark"):
 		vel += dir * knock
 	game.shake(0.45 if rest > 0 else 0.25)

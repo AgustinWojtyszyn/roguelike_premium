@@ -352,7 +352,7 @@ static func bosses() -> Array[BossData]:
 	b.title = "Custodio del Núcleo"
 	b.chapter = "ch1"
 	b.script_path = "res://bosses/boss_custodio.gd"
-	b.hp = 520.0
+	b.hp = 900.0
 	b.phases = [1.0, 0.62, 0.3]
 	b.accent = Color("ff4fa8")
 	b.coins = 60

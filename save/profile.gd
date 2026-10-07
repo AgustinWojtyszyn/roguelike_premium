@@ -19,6 +19,11 @@ func _ready() -> void:
 	if Boot.has_flag("fresh"):
 		path = "user://profile_test.json"
 	reload()
+	if Boot.has_flag("unlockall"):
+		for id in Catalog.char_order:
+			p.unlock_character(id)
+		for id in Catalog.chapter_order:
+			p.unlock_chapter(id)
 
 
 func reload() -> void:

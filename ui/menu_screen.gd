@@ -39,7 +39,8 @@ func _build() -> void:
 
 func _relayout() -> void:
 	back_btn.size = Vector2(76, 62)
-	back_btn.position = Vector2(18, 14)
+	var sm := SafeArea.margins(self)
+	back_btn.position = Vector2(18.0 + sm.x, 14.0)
 	_layout()
 
 
@@ -97,11 +98,13 @@ func _draw_header(k: float) -> void:
 	draw_rect(Rect2(0, HEADER_H - 3.0, size.x, 3.0), Color(accent, 0.6))
 	# flecha volver dibujada sobre el boton
 	draw_colored_polygon(PackedVector2Array([Vector2(60, 28), Vector2(36, 45), Vector2(60, 62)]), Color(0, 0, 0, 0))
-	UiKit.text(self, Vector2(108.0, 56.0), title, 38, UiKit.TEXT, 0, -1.0, 7.0)
+	var smx := SafeArea.margins(self).x
+	UiKit.text(self, Vector2(108.0 + smx, 56.0), title, 38, UiKit.TEXT, 0, -1.0, 7.0)
 	# monedas y gemas
 	var p := Profile.p
-	_pill(Vector2(size.x - 24.0, 22.0), UiKit.format_int(p.coins()), "coin", Color("ffd24a"))
-	_pill(Vector2(size.x - 24.0 - 190.0, 22.0), UiKit.format_int(p.gems()), "gem", UiKit.GEM)
+	var smz := SafeArea.margins(self).z
+	_pill(Vector2(size.x - 24.0 - smz, 22.0), UiKit.format_int(p.coins()), "coin", Color("ffd24a"))
+	_pill(Vector2(size.x - 24.0 - 190.0 - smz, 22.0), UiKit.format_int(p.gems()), "gem", UiKit.GEM)
 
 
 func _pill(right_top: Vector2, s: String, icon: String, col: Color) -> void:

@@ -256,7 +256,8 @@ func _update_waves(dt: float) -> void:
 		next_wave_t -= dt
 		if next_wave_t <= 0.0:
 			_start_wave(wave_i + 1)
-	if alive == 0 and wave_i == waves.size() - 1 and not cleared and not game.over:
+	alive = game.enemies.size() + pending.size()   # recalcular: _start_wave pudo anadir enemigos pendientes
+	if alive == 0 and wave_i == waves.size() - 1 and next_wave_t < 0.0 and not cleared and not game.over:
 		_clear_stage()
 
 
@@ -318,7 +319,7 @@ func spawn_enemy_at(id: String, pos: Vector2, force_elite: bool) -> Enemy:
 	var e: Enemy = (load(data.script_path) as GDScript).new()
 	e.data = data
 	var st: Dictionary = plan[stage]
-	if (st["elite"] or force_elite) and not elite_done and data.elite_ok and data.threat >= 1.4:
+	if (st["elite"] or force_elite or (st["kind"] == "boss" and not Catalog.bosses.has(game.chapter.boss))) and not elite_done and data.elite_ok and data.threat >= 1.4:
 		e.elite = true
 		elite_done = true
 	game.ysort.add_child(e)

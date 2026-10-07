@@ -83,7 +83,7 @@ func _process(delta: float) -> void:
 func _draw() -> void:
 	draw_rect(Rect2(Vector2.ZERO, size), Color(0.01, 0.02, 0.05, 0.62 * _anim))
 	var pw := 460.0
-	var ph := 420.0 if not confirm else 260.0
+	var ph := 372.0 if not confirm else 260.0
 	var pr := Rect2((size.x - pw) * 0.5, size.y * 0.5 - (150.0 if not confirm else 100.0), pw, ph)
 	UiKit.panel(self, pr, UiKit.PANEL, Color(UiKit.EDGE, 0.7), 18.0, _anim)
 	if confirm:

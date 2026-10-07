@@ -127,6 +127,35 @@ func run(t) -> void:
 		t.check(not (run.perks.has(o.id) and not o.stackable), "la oferta no repite perks no apilables ya tomados")
 	t.eq(ids.size(), 3, "oferta sin duplicados")
 
+	# ------------------------------------------------------------------ regresion: la sala no se despeja con una oleada pendiente
+	g.director._load_stage(0, true)
+	await _frames(t, 3)
+	g.input.auto_walk = null
+	var d := g.director
+	d.entered = true
+	d.cleared = false
+	d.in_combat = true
+	d.waves = [[["skitter", 0.0]], [["skitter", 0.0], ["skitter", 0.3]]]
+	d.pending.clear()
+	d._start_wave(0)
+	var premature := false
+	var spawned_second := false
+	for i in 900:
+		await t.process_frame
+		for e in g.enemies.duplicate():
+			if e.state != Enemy.S_DYING:
+				e.hp = 0.0
+				e._start_dying(Vector2.RIGHT)
+		if d.wave_i == 1:
+			spawned_second = true
+		if d.cleared and (d.pending.size() > 0 or d.wave_i < 1):
+			premature = true
+			break
+		if d.cleared:
+			break
+	t.check(not premature, "la sala no se marca despejada con oleadas pendientes")
+	t.check(spawned_second and d.cleared, "tras eliminar todas las oleadas la sala se despeja")
+
 	# ------------------------------------------------------------------ transicion de etapa (cambio de sala)
 	var room_before := g.room
 	g.director._load_stage(1, true)

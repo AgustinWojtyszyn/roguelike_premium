@@ -262,13 +262,16 @@ static func _claws(ci: CanvasItem, pal: Dictionary, glow: Color, heat: float) ->
 	var ink := Gfx.INK
 	var body := _c(pal, "body", Color("d8e0ee"))
 	var dark := _c(pal, "dark", Color("3a4258"))
-	Gfx.grrect(ci, Rect2(-6, -5, 14, 10), 3.0, dark.lightened(0.1), dark, ink, 2.0)
-	ci.draw_rect(Rect2(-3, -1.5, 8, 3.0), glow)
-	for sy in [-1.0, 1.0]:
-		var pts := PackedVector2Array([Vector2(7, sy * 2.0), Vector2(26, sy * 1.5), Vector2(34, sy * 3.8), Vector2(26, sy * 5.0), Vector2(7, sy * 6.0)])
-		Gfx.gpoly(ci, pts, body, body.darkened(0.35), ink, 1.8)
-		ci.draw_line(Vector2(9, sy * 3.6), Vector2(30, sy * 3.7), Color(1, 1, 1, 0.8), 1.2, true)
-	Gfx.draw_glow(ci, Vector2(22, 0), 14.0, Color(glow, 0.15 + heat * 0.3))
+	# punos con guarda de nudillos y tres cuchillas curvas por mano
+	Gfx.grrect(ci, Rect2(-8, -7, 18, 14), 4.0, dark.lightened(0.15), dark, ink, 2.0)
+	ci.draw_rect(Rect2(-4, -2, 11, 4), glow.lerp(Color.WHITE, heat * 0.6))
+	Gfx.rrect(ci, Rect2(8, -9, 5, 18), 2.0, dark.lightened(0.3), ink, 1.6)
+	for k in 3:
+		var y := -6.0 + float(k) * 6.0
+		var pts := PackedVector2Array([Vector2(12, y - 1.6), Vector2(26, y - 2.6 - float(k) * 0.4), Vector2(38 - float(k) * 3.0, y + 1.0), Vector2(26, y + 1.4), Vector2(12, y + 2.2)])
+		Gfx.gpoly(ci, pts, body, body.darkened(0.4), ink, 1.6)
+		ci.draw_line(Vector2(14, y), Vector2(34 - float(k) * 3.0, y + 0.4), Color(1, 1, 1, 0.75), 1.1, true)
+	Gfx.draw_glow(ci, Vector2(26, 0), 18.0, Color(glow, 0.12 + heat * 0.35))
 
 
 static func _nest(ci: CanvasItem, pal: Dictionary, glow: Color, heat: float, t: float) -> void:
