@@ -30,7 +30,7 @@ func _ready() -> void:
 
 
 func build(size: Vector2, hero_feet: Vector2, tint: Color) -> void:
-	if not VisualProfiles.sprites_enabled():
+	if not VisualProfiles.sprites_enabled() or not VisualProfiles.HOME_LIFE_ENABLED:
 		return
 	vs = size
 	accent = tint

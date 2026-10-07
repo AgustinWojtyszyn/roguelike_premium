@@ -40,6 +40,13 @@ static func _count(spec: Dictionary, rng: RandomNumberGenerator, area_k: float) 
 static func paint_floor(ci: CanvasItem, room: Room) -> void:
 	if not VisualProfiles.sprites_enabled():
 		return
+	var t0 := Time.get_ticks_usec()
+	_paint_floor(ci, room)
+	if Boot.has_flag("frametimes"):
+		print("  [decor] suelo %.2f ms" % (float(Time.get_ticks_usec() - t0) / 1000.0))
+
+
+static func _paint_floor(ci: CanvasItem, room: Room) -> void:
 	var dec := VisualProfiles.decor(room.def.theme)
 	if dec.is_empty():
 		return

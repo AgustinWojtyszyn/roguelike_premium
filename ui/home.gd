@@ -114,7 +114,7 @@ func _layout() -> void:
 	hero_scale = 4.0 * sc
 	hero_pos = Vector2(vs.x * 0.5, vs.y * 0.62)
 	rig.position = hero_pos
-	rig.scale = Vector2.ONE * hero_scale
+	rig.scale = Vector2.ONE * hero_scale * rig.menu_k()
 	if life != null and (life.vs != vs or life.walkers.is_empty()):
 		life.build(vs, hero_pos, Catalog.chapter(chapter_id).accent)
 	hero_hit.size = Vector2(300, 400) * sc
@@ -160,6 +160,7 @@ func _refresh_hero() -> void:
 	rig.build(look, Catalog.weapon(c.start_weapon), false)
 	rig.auto = true
 	rig.kick = 0.0
+	rig.scale = Vector2.ONE * hero_scale * rig.menu_k()
 
 
 func _refresh_badges() -> void:
@@ -210,9 +211,9 @@ func _cycle_char(d: int) -> void:
 
 
 func _pop_hero() -> void:
-	rig.scale = Vector2.ONE * hero_scale * 0.88
+	rig.scale = Vector2.ONE * hero_scale * rig.menu_k() * 0.88
 	var tw := create_tween()
-	tw.tween_property(rig, "scale", Vector2.ONE * hero_scale, 0.28).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tw.tween_property(rig, "scale", Vector2.ONE * hero_scale * rig.menu_k(), 0.28).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	AudioMgr.ui("swap", -4.0)
 	var c := Catalog.character(Profile.p.selected_character())
 	_kick_t = 0.5

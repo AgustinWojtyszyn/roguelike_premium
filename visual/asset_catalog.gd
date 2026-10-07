@@ -6,14 +6,18 @@ extends RefCounted
 static var _tex: Dictionary = {}        # path -> Texture2D (o null si fallo)
 static var _sets: Dictionary = {}       # set_id -> AnimSet (o null)
 static var _warned: Dictionary = {}
+static var _log_loads := false   # se activa tras el prewarm con --frametimes: cualquier carga a mitad de run queda a la vista
 
 
 static func load_tex(path: String) -> Texture2D:
 	if _tex.has(path):
 		return _tex[path]
 	var t: Texture2D = null
+	var t0 := Time.get_ticks_usec()
 	if ResourceLoader.exists(path):
 		t = load(path) as Texture2D
+	if _log_loads:
+		print("  [carga] %.1f ms  %s" % [float(Time.get_ticks_usec() - t0) / 1000.0, path])
 	if t == null and not _warned.has(path):
 		_warned[path] = true
 		push_warning("AssetCatalog: no carga %s" % path)
@@ -57,3 +61,55 @@ static func anim_set(id: String) -> AnimSet:
 static func clear_cache() -> void:
 	_tex.clear()
 	_sets.clear()
+
+
+## Precarga (al empezar la run): sube a GPU y construye los AtlasTexture ANTES del primer frame jugable, para que ningun
+## enemigo, efecto o arma cause un ttiron de carga a mitad de partida. Solo toca lo que esta run puede usar.
+static func prewarm(chapter: ChapterData, char_look: Dictionary, weapon_ids: Array) -> void:
+	if not VisualProfiles.sprites_enabled():
+		return
+	var t0 := Time.get_ticks_usec()
+	var set_ids: Array = []
+	var vid := VisualProfiles.character(str(char_look.get("visual", "")))
+	if not vid.is_empty():
+		set_ids.append(vid["set"])
+	var kinds: Array = []
+	kinds.append_array(chapter.enemy_pool)
+	kinds.append_array(chapter.elite_pool)
+	kinds.append(chapter.boss)
+	# invocaciones y refuerzos que pueden aparecer en cualquier capitulo
+	for k in kinds:
+		var pr := VisualProfiles.enemy(str(k))
+		if not pr.is_empty():
+			set_ids.append(pr["set"])
+	var done := {}
+	for sid in set_ids:
+		if done.has(sid):
+			continue
+		done[sid] = true
+		var s := anim_set(sid)
+		if s != null:
+			for a in s.anim_names():
+				s.frames(a, "south")   # construye y carga la hoja de esa animacion
+	for v in Fx.USED_VFX:
+		tex("rpg/vfx/" + v)
+	for wid in weapon_ids:
+		if AssetManifest.ORIENTED.has(wid):
+			load_tex(AssetManifest.ORIENTED[wid]["path"])
+	for k in Chest.ART.values():
+		tex("rpg/chests/" + k)
+		tex("rpg/chests/" + k + "_open")
+	if chapter.theme == "anomaly":
+		for k in Chest.ART_ANOMALY.values():
+			tex("rpg/chests/" + k)
+			tex("rpg/chests/" + k + "_open")
+	var dec := VisualProfiles.decor(chapter.theme)
+	for grp in ["floor", "stand"]:
+		for spec in dec.get(grp, []):
+			tex(spec["art"])
+	for kind in VisualProfiles.PROPS:
+		for art in VisualProfiles.PROPS[kind]["art"]:
+			tex(art)
+	_log_loads = Boot.has_flag("frametimes")
+	if Boot.has_flag("perf") or Boot.has_flag("frametimes"):
+		print("PREWARM %.1f ms (%d texturas, %d sets)" % [float(Time.get_ticks_usec() - t0) / 1000.0, _tex.size(), done.size()])

@@ -114,6 +114,11 @@ var _hurt_t := 0.0
 var _prev_flash := 0.0
 var _pivot_behind := false
 var _last_step_idx := -1
+var _anchor_cur := Vector2.ZERO
+var _anchor_init := false
+var _hand: Part
+var _last_heat := -1.0
+var _arm_grip := Vector2(9999, 9999)
 
 
 func build(look: Dictionary, w: WeaponData, show_shadow: bool = true) -> void:
@@ -856,7 +861,8 @@ func update_dead(dt: float) -> void:
 
 # =====================================================================  MODO SPRITE (arte importado)
 ## Construye la version con sprite. Conserva: sombra, vis (flash/alpha), pivot (apuntado), wnode (arma, recoil, muzzle),
-## manos, eventos de pasos, muerte. Devuelve false (y no deja nada a medias) si el arte no esta disponible.
+## eventos de pasos, muerte. El arma se ancla a la MANO del sprite segun el personaje y la direccion (perfil `weapon_anchor`),
+## con un brazo corto del hombro a la empunadura para que se vea agarrada. Devuelve false (sin dejar nada a medias) si falla.
 func _build_sprite(vp: Dictionary, show_shadow: bool) -> bool:
 	var probe := AssetCatalog.anim_set(str(vp.get("set", "")))
 	if probe == null:
@@ -873,7 +879,6 @@ func _build_sprite(vp: Dictionary, show_shadow: bool) -> bool:
 	vis.add_child(body)
 	spr = SpriteActor.create(body, vp)
 	if spr == null:
-		# limpieza: volver a procedural
 		vis.queue_free()
 		if shadow != null:
 			shadow.queue_free()
@@ -882,37 +887,70 @@ func _build_sprite(vp: Dictionary, show_shadow: bool) -> bool:
 		body = null
 		return false
 	sprite_mode = true
-	var anc: Vector2 = vp.get("weapon_anchor", Vector2(0, -28))
+	_anchor_init = false
+	arm_b = Part.make(vis, _paint_arm_sprite)      # brazo que agarra (en el espacio del cuerpo, no gira con el apuntado)
 	pivot = Node2D.new()
 	pivot.use_parent_material = true
-	pivot.position = anc
+	pivot.position = _anchor_for(spr.dir)
 	vis.add_child(pivot)
-	arm_b = Part.make(pivot, _paint_hand_back)
-	wnode = Part.make(pivot, _paint_weapon, WEAPON_POS)
-	wnode.scale = Vector2.ONE * float(vp.get("weapon_scale", VisualProfiles.CHAR_WEAPON_SCALE))
-	arm_f = Part.make(pivot, _paint_hand_front)
+	wnode = Part.make(pivot, _paint_weapon, Vector2.ZERO)
+	wnode.scale = Vector2.ONE * float(vp.get("weapon_scale", VisualProfiles.CHAR_WEAPON_SCALE)) * _k()
+	_hand = Part.make(wnode, _paint_hand_sprite)
+	arm_f = _hand
 	return true
 
 
-func _paint_hand_back(c: Part) -> void:
-	pass
+## Ancla (punto de empunadura, relativo a los pies) para una direccion. `weapon_anchor` puede ser un Vector2 fijo o un
+## diccionario direccion -> Vector2 (con "default").
+func _anchor_for(d: String) -> Vector2:
+	var a: Variant = sprof.get("weapon_anchor", Vector2(0, -28))
+	if a is Dictionary:
+		return (a as Dictionary).get(d, (a as Dictionary).get("default", Vector2(0, -28))) * _k()
+	return (a as Vector2) * _k()
 
 
-func _paint_hand_front(c: Part) -> void:
-	_hand(c, wnode.position + Vector2(0.5, 1.0) * wnode.scale.x, false)
+## Razon altura actual / altura de referencia con la que se calibraron anclas y arma (todo escala con el sprite).
+func _k() -> float:
+	return float(sprof.get("height", 64.0)) / float(sprof.get("anchor_ref", sprof.get("height", 64.0)))
 
 
-func _hand(c: Part, p: Vector2, back: bool) -> void:
+## Escala extra de presentacion en menus (HOME, coleccion): el sprite es mas alto que el rig procedural y alli sobra tamano.
+func menu_k() -> float:
+	return float(sprof.get("menu_k", 1.0)) if sprite_mode else 1.0
+
+
+func _shoulder_for(grip: Vector2) -> Vector2:
+	return Vector2(grip.x * 0.3, grip.y - 10.0 * _k())
+
+
+func _paint_arm_sprite(c: Part) -> void:
+	if _arm_grip.x > 9000.0:
+		return
+	var sh := _shoulder_for(_anchor_cur)
+	var elb := Gfx.elbow(sh, _arm_grip, 8.0 * _k(), 8.0 * _k(), 1.0 if face >= 0.0 else -1.0)
+	var col: Color = sprof.get("sleeve", Color("5a5a3a"))
+	var pts := PackedVector2Array([sh, elb, _arm_grip])
+	c.draw_polyline(pts, Gfx.INK, 5.2, true)
+	c.draw_polyline(pts, col, 3.0, true)
+
+
+func _paint_hand_sprite(c: Part) -> void:
 	var col: Color = sprof.get("hand", Color("d9a77a"))
-	c.draw_circle(p, 2.9, Gfx.INK)
-	c.draw_circle(p, 2.0, col.darkened(0.3) if back else col)
+	var r := 2.9 / maxf(wnode.scale.x, 0.1)
+	c.draw_circle(Vector2.ZERO, r, Gfx.INK)
+	c.draw_circle(Vector2.ZERO, r * 0.7, col)
 
 
 func _pivot_set_behind(behind: bool) -> void:
 	if behind == _pivot_behind:
 		return
 	_pivot_behind = behind
-	vis.move_child(pivot, 0 if behind else vis.get_child_count() - 1)
+	if behind:
+		vis.move_child(arm_b, 0)
+		vis.move_child(pivot, 1)
+	else:
+		vis.move_child(arm_b, vis.get_child_count() - 1)
+		vis.move_child(pivot, vis.get_child_count() - 1)
 
 
 func _animate_sprite(dt: float) -> void:
@@ -963,27 +1001,39 @@ func _animate_sprite(dt: float) -> void:
 			_last_step_idx = -1
 	else:
 		_last_step_idx = -1
-	# --- arma: mismo contrato que el rig procedural (apuntado, recoil, cambio de arma, tajo melee)
+	# --- arma: ancla por direccion (suavizada al cambiar de direccion) + bamboleo del cuerpo que lleva la mano
+	var tgt := _anchor_for(spr.dir)
+	if not _anchor_init:
+		_anchor_cur = tgt
+		_anchor_init = true
+	_anchor_cur = _anchor_cur.lerp(tgt, clampf(dt * 16.0, 0.0, 1.0))
 	var bob := 0.0
-	var breath := sin(t * 2.3) * 0.6 * (1.0 - amp)
-	var anc: Vector2 = sprof.get("weapon_anchor", Vector2(0, -28))
-	pivot.position = anc + Vector2(0, breath * 0.3)
+	if spr.anim == spr.resolve("walk") and moving:
+		bob = -absf(sin(float(spr.idx) / float(maxi(1, aset.frame_count(spr.anim, spr.dir))) * TAU)) * 1.6 * float(sprof.get("height", 60.0)) / 60.0
+	var breath := sin(t * 2.3) * 0.5 * (1.0 - amp)
+	pivot.position = _anchor_cur + Vector2(0, bob + breath)
 	pivot.rotation = aim.angle()
 	pivot.scale.y = face
-	_pivot_set_behind(aim.y < -0.55)
+	_pivot_set_behind(aim.y < -0.55 and absf(aim.x) > 0.3)
 	var kk := kick * kick
 	swap_t = maxf(0.0, swap_t - dt * 5.0)
 	swing = maxf(0.0, swing - dt * 7.0)
 	var melee: bool = weapon.category == "melee"
-	wnode.position = WEAPON_POS + Vector2(-kk * weapon.kick, 0.0) + Vector2(0, sin(t * 2.3) * 0.4 * (1.0 - amp))
+	wnode.position = Vector2(-kk * weapon.kick * wnode.scale.x, 0.0)
 	if melee:
 		wnode.position += Vector2(swing * 8.0, 0)
 		wnode.rotation = lerpf(-0.9, 0.8, 1.0 - swing) * (1.0 if swing > 0.0 else 0.0) + (-0.2 if swing <= 0.0 else 0.0) + swap_t * swap_t * 1.1
 	else:
 		wnode.rotation = -kk * 0.16 + swap_t * swap_t * 1.1
-	arm_b.queue_redraw()
-	arm_f.queue_redraw()
-	wnode.queue_redraw()
+	# el dibujo del arma importada es estatico: solo se redibuja si cambia el calor (brillo) o el arma; el resto es transformacion
+	if heat != _last_heat or heat > 0.01:
+		_last_heat = heat
+		wnode.queue_redraw()
+	# brazo: del hombro a la empunadura real (en el espacio de vis); se redibuja solo si la mano se movio
+	var grip := pivot.position + (wnode.position * Vector2(1, face)).rotated(pivot.rotation)
+	if grip.distance_squared_to(_arm_grip) > 0.04 or _arm_grip.x > 9000.0:
+		_arm_grip = grip
+		arm_b.queue_redraw()
 	vis.position = -aim * kk * 1.8
 	flash = maxf(0.0, flash - dt * 7.0)
 	fmat.set_shader_parameter("flash", flash)
@@ -998,7 +1048,7 @@ func _sprite_start_death(dir: Vector2) -> void:
 	spr.set_dir_vec(dir)
 	spr.play("death", true, false)
 	arm_b.visible = false
-	arm_f.visible = false
+	_hand.visible = false
 	var tw := create_tween().set_parallel(true)
 	tw.tween_property(pivot, "position", pivot.position + Vector2(dir.x * 22.0, 14.0), 0.4).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	tw.tween_property(pivot, "rotation", pivot.rotation + 2.0, 0.4)

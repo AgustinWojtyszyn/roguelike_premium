@@ -12,6 +12,7 @@ func run(t) -> void:
 	_static_art(t)
 	_fallbacks(t)
 	await _rig_modes(t)
+	await _anchors(t)
 	await _game_integration(t)
 
 
@@ -225,3 +226,37 @@ func _game_integration(t) -> void:
 	t.check(g.fx.ps.size() <= Fx.MAX_P, "el pool de Fx sigue acotado")
 	g.queue_free()
 	await _frames(t, 2)
+
+
+## El arma debe caer sobre la mano del sprite en cada direccion: ancla definida para las 8 direcciones, dentro de la silueta,
+## y la punta visual (muzzle_world) coherente con el apuntado.
+func _anchors(t) -> void:
+	t.check(not VisualProfiles.HOME_LIFE_ENABLED, "HOME limpio: HomeLife desactivado")
+	var host := Node2D.new()
+	t.root.add_child(host)
+	for vid in VisualProfiles.CHARACTERS:
+		var vp: Dictionary = VisualProfiles.CHARACTERS[vid]
+		var a: Dictionary = vp["weapon_anchor"]
+		for d in AnimSet.DIR_VEC:
+			t.check(a.has(d), "perfil %s: ancla de arma para %s" % [vid, d])
+			var v: Vector2 = a.get(d, a["default"])
+			t.check(absf(v.x) <= 20.0 and v.y < -20.0 and v.y > -45.0, "perfil %s/%s: ancla dentro de la silueta (%s)" % [vid, d, str(v)])
+		var rig := CharacterRig.new()
+		host.add_child(rig)
+		var look := {"visual": vid}
+		rig.build(look, Catalog.weapon("pulsar"), false)
+		t.check(rig.sprite_mode, "rig %s en modo sprite" % vid)
+		for d in AnimSet.DIR_VEC:
+			var aim: Vector2 = AnimSet.DIR_VEC[d]
+			rig.aim = aim
+			rig.face = 1.0 if aim.x >= 0.0 else -1.0
+			for i in 30:
+				rig.animate(1.0 / 60.0)
+			var m := rig.muzzle_world()
+			var local := rig.to_local(m)
+			var grip := rig.to_local(rig.pivot.global_position)
+			t.check(local.distance_to(grip) > 8.0 and local.distance_to(grip) < 45.0, "rig %s/%s: la punta del arma esta cerca de la mano (%.1f px)" % [vid, d, local.distance_to(grip)])
+			t.check((local - grip).normalized().dot(aim) > 0.98, "rig %s/%s: el muzzle sale en la direccion de apuntado" % [vid, d])
+			t.check(grip.y < -20.0 and grip.y > -60.0, "rig %s/%s: empunadura a altura de torso (%.1f)" % [vid, d, grip.y])
+		rig.queue_free()
+	host.queue_free()

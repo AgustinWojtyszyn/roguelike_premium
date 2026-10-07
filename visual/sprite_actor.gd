@@ -29,7 +29,7 @@ static func create(parent: Node, profile: Dictionary) -> SpriteActor:
 	a.aset = s
 	a.prof = profile
 	a.centered = false
-	a.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
+	a.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST if profile.get("filter", "linear") == "nearest" else CanvasItem.TEXTURE_FILTER_LINEAR
 	a.use_parent_material = true
 	var h: float = float(profile.get("height", 56.0))
 	var bh := maxf(1.0, float(s.bbox.size.y))

@@ -7,20 +7,28 @@ extends RefCounted
 ## Ajuste global del tamano del arte de armas importado (1.0 = la punta cae justo en `muzzle`).
 const WEAPON_ART_SCALE := 1.0
 
-const CHAR_WEAPON_SCALE := 0.72
+## HomeLife (NPC y props de VIDA) queda DESACTIVADO en el HOME: el menu debe ser limpio y centrado en el heroe.
+## El codigo y los assets se conservan; poner true para volver a mostrarlo.
+const HOME_LIFE_ENABLED := false
+
+const CHAR_WEAPON_SCALE := 0.66
 
 const CHAR_FPS := {"default": 10.0, "walk": 12.0, "idle": 6.0, "attack": 16.0, "hurt": 16.0, "death": 12.0}
 
 ## id de `look["visual"]` -> perfil. weapon_anchor: punto del hombro (relativo a los pies) donde gira el arma.
 const CHARACTERS := {
-	"vesper": {"set": "rpg/characters/human_ranger", "height": 54.0, "weapon_anchor": Vector2(0, -29), "fps": CHAR_FPS,
-		"shadow": 1.0, "hand": Color("d9a77a")},
-	"kiro9": {"set": "rpg/characters/combat_android", "height": 56.0, "weapon_anchor": Vector2(0, -30), "fps": CHAR_FPS,
-		"idle_from_walk": true, "shadow": 1.0, "hand": Color("9fb1c9")},
-	"kraal": {"set": "rpg/characters/beetle_cyborg", "height": 58.0, "weapon_anchor": Vector2(0, -31), "fps": CHAR_FPS,
-		"idle_from_walk": true, "shadow": 1.1, "hand": Color("d58a2c")},
-	"paradoja": {"set": "rpg/characters/mutant_striker", "height": 56.0, "weapon_anchor": Vector2(0, -30), "fps": CHAR_FPS,
-		"idle_from_walk": true, "shadow": 1.1, "hand": Color("c99a76")},
+	"vesper": {"set": "rpg/characters/human_ranger", "height": 75.0, "anchor_ref": 64.0, "filter": "nearest", "menu_k": 0.8, "fps": CHAR_FPS, "shadow": 1.0, "hand": Color("d9a77a"), "sleeve": Color("5b5a3a"),
+		"weapon_anchor": {"south": Vector2(11, -30), "south-east": Vector2(13, -29), "east": Vector2(13, -29), "north-east": Vector2(12, -32),
+			"north": Vector2(11, -31), "north-west": Vector2(-12, -32), "west": Vector2(-13, -29), "south-west": Vector2(-13, -29), "default": Vector2(0, -30)}},
+	"kiro9": {"set": "rpg/characters/combat_android", "height": 75.0, "anchor_ref": 64.0, "filter": "nearest", "menu_k": 0.8, "fps": CHAR_FPS, "idle_from_walk": true, "shadow": 1.0, "hand": Color("9fb1c9"), "sleeve": Color("5d6b82"),
+		"weapon_anchor": {"south": Vector2(10, -32), "south-east": Vector2(11, -32), "east": Vector2(12, -32), "north-east": Vector2(12, -32),
+			"north": Vector2(10, -33), "north-west": Vector2(-12, -32), "west": Vector2(-12, -32), "south-west": Vector2(-12, -32), "default": Vector2(0, -32)}},
+	"kraal": {"set": "rpg/characters/beetle_cyborg", "height": 81.0, "anchor_ref": 66.0, "menu_k": 0.76, "fps": CHAR_FPS, "idle_from_walk": true, "weapon_scale": 0.5, "shadow": 1.1, "hand": Color("d58a2c"), "sleeve": Color("3a3340"),
+		"weapon_anchor": {"south": Vector2(11, -30), "south-east": Vector2(13, -29), "east": Vector2(13, -29), "north-east": Vector2(12, -32),
+			"north": Vector2(11, -31), "north-west": Vector2(-12, -32), "west": Vector2(-13, -29), "south-west": Vector2(-13, -29), "default": Vector2(0, -30)}},
+	"paradoja": {"set": "rpg/characters/mutant_striker", "height": 77.0, "anchor_ref": 64.0, "filter": "nearest", "menu_k": 0.78, "fps": CHAR_FPS, "idle_from_walk": true, "shadow": 1.1, "hand": Color("c99a76"), "sleeve": Color("c99a76"),
+		"weapon_anchor": {"south": Vector2(11, -30), "south-east": Vector2(13, -29), "east": Vector2(13, -29), "north-east": Vector2(12, -32),
+			"north": Vector2(11, -31), "north-west": Vector2(-12, -32), "west": Vector2(-13, -29), "south-west": Vector2(-13, -29), "default": Vector2(0, -30)}},
 }
 
 

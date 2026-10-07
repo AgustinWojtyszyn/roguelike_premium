@@ -54,6 +54,7 @@ var shot_dir := "/tmp/shots"
 var shot_i := 0
 var quit_at := -1.0
 var fps_samples: Array[float] = []
+var ft_samples: PackedFloat32Array = PackedFloat32Array()   # --frametimes: ms por frame real (p50/p95/p99/max + picos)
 var _boot_first_frame := true
 var cam_extra := Vector2.ZERO
 var _dbg_t := -1.0
@@ -119,6 +120,7 @@ func _ready() -> void:
 	var look := _look_for(cdata)
 	player.build(self, run, look)
 	player.skin_bullet = _skin_bullet(cdata)
+	AssetCatalog.prewarm(chapter, look, Catalog.weapons.keys())
 	for cid2 in Profile.p.data["cosmetics_owned"]:
 		if str(cid2).begins_with("trail_"):
 			player.trail_col = Color("ff9a4a") if cid2 == "trail_ember" else Color("8fe8ff")
@@ -254,6 +256,10 @@ func __process_impl(delta: float) -> void:
 	if clock > 1.0:
 		fps_samples.append(Engine.get_frames_per_second())
 		_perf_acc(rdt)
+		if Boot.has_flag("frametimes"):
+			ft_samples.append(delta * 1000.0)
+			if delta > 0.034:
+				print("  [pico] t=%.1f  %.1f ms" % [clock, delta * 1000.0])
 	if hs_timer > 0.0:
 		hs_timer -= rdt
 		if hs_timer <= 0.0:
@@ -309,6 +315,14 @@ func __process_impl(delta: float) -> void:
 			avg += f
 		avg /= maxf(1.0, float(fps_samples.size()))
 		print("FPS medio: %.1f  kills: %d  hp: %d  etapa: %d  victoria: %s  nodos: %d" % [avg, run.kills, player.hp, director.stage, str(victory), get_tree().get_node_count()])
+		if Boot.has_flag("frametimes") and ft_samples.size() > 10:
+			var srt := ft_samples.duplicate()
+			srt.sort()
+			var n := srt.size()
+			var mean := 0.0
+			for v in srt:
+				mean += v
+			print("FRAMETIME ms  medio %.2f  p50 %.2f  p95 %.2f  p99 %.2f  max %.2f  (n=%d, >16.7ms: %d, >33ms: %d)" % [mean / float(n), srt[n / 2], srt[int(n * 0.95)], srt[int(n * 0.99)], srt[n - 1], n, srt.size() - srt.bsearch(16.8), srt.size() - srt.bsearch(33.4)])
 		if Boot.has_flag("perf"):
 			print("PERF  ", perf_report())
 			print(Prof.report(int(_pf["n"])))

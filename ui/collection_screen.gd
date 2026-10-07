@@ -39,7 +39,7 @@ func _layout() -> void:
 	var dx := grid.position.x + grid.size.x + 24.0
 	rig.position = Vector2(dx + 170.0, vs.y * 0.66)
 	rig_scale = clampf(vs.y / 720.0, 0.8, 1.3) * 4.3
-	rig.scale = Vector2.ONE * rig_scale
+	rig.scale = Vector2.ONE * rig_scale * rig.menu_k()
 
 
 func _rebuild_rig() -> void:
@@ -60,9 +60,9 @@ func _rebuild_rig() -> void:
 	rig.build(look, Catalog.weapon(c.start_weapon), false)
 	rig.auto = true
 	rig.kick = 1.0
-	rig.scale = Vector2.ONE * rig_scale * 0.88
+	rig.scale = Vector2.ONE * rig_scale * rig.menu_k() * 0.88
 	var tw := create_tween()
-	tw.tween_property(rig, "scale", Vector2.ONE * rig_scale, 0.25).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tw.tween_property(rig, "scale", Vector2.ONE * rig_scale * rig.menu_k(), 0.25).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 
 
 func _draw_grid(pane: ScrollPane) -> void:
