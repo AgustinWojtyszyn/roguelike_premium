@@ -9,7 +9,8 @@ Staging library for adapting art from the user's previous projects into `rogueli
 
 ## Imported candidate set
 
-No Return: 183 files (~1.3 MB raw)
+No Return: 185 files (~1.4 MB raw)
+- generated bank: 183
 - decals 6
 - enemies 8
 - holding 24
@@ -19,6 +20,7 @@ No Return: 183 files (~1.3 MB raw)
 - tilesets_2_5d 8
 - vfx 16
 - weapons 10
+- fonts 2 (PixelifySans + OFL license, stored under `asset_bank/source_extras/no_return/fonts/`)
 
 VIDA: 557 files (~14.9 MB raw)
 - buildings 63
@@ -33,9 +35,9 @@ VIDA: 557 files (~14.9 MB raw)
 - shaders 2
 - vehicles 94
 
-Total staged source files: **740**.
+Total staged source files: **742**.
 
-The files are stored losslessly in JSON bundles under `asset_bank/bundles/` so this branch can carry the complete source bank without making Godot import hundreds of unused resources. `.gdignore` keeps this entire folder out of Godot's resource scan.
+The 740 art source files are stored losslessly in JSON bundles under `asset_bank/bundles/`. PixelifySans and its OFL license are stored raw under `asset_bank/source_extras/no_return/fonts/`. `.gdignore` keeps this entire folder out of Godot's resource scan.
 
 ## Unpack
 
@@ -43,7 +45,7 @@ The files are stored losslessly in JSON bundles under `asset_bank/bundles/` so t
 python3 tools/extract_asset_bank.py
 ```
 
-This writes exact source bytes to:
+This writes exact bundled source bytes to:
 
 - `asset_bank/unpacked/no_return/`
 - `asset_bank/unpacked/vida/`
@@ -66,4 +68,4 @@ Recommended first targets:
 - No Return: 8-direction playable characters, Bone Guard, weapon art, muzzle flashes, impacts, explosions and projectile trails.
 - VIDA: human walk cycles as bases for zombies/mutants/monsters; hospitals/buildings/interiors/city props for story-mode spaces; vehicles and environment props for future scenarios.
 
-The purpose of this branch is an **asset workbench**, not a gameplay merge.
+The purpose of this bank is an **asset workbench**, not a gameplay dump.
