@@ -54,6 +54,8 @@ godot --headless --path . --script tests/run_tests.gd  # unitarias + integració
 python3 -m unittest tests.test_android_cold_start      # regresión Android (sin dispositivo)
 ```
 
+Todo junto (importa, pruebas GDScript + Python y una partida de humo por capítulo; sin ADB ni dispositivo): `tools/check_all.sh`.
+
 Banco de pruebas de partida (bot) y capturas:
 
 ```bash

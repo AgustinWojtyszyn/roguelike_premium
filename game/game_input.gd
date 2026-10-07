@@ -194,17 +194,21 @@ var _bot_stuck := 0.0
 var _bot_detour := 0.0
 var _bot_detour_dir := Vector2.ZERO
 var _bot_beeline := 0.0
+var _bot_anchor_t := 0.0
 
 
 func _bot_move() -> Vector2:
 	if game.idle:
 		return Vector2.ZERO
-	# desatasco: sin pathfinding, si el bot lleva 1.5 s sin avanzar toma un rodeo aleatorio
+	# desatasco: sin pathfinding, si en 1.5 s el bot no se movio 40 px toma un rodeo (o va en linea recta al enemigo lejano)
 	var dtb := get_process_delta_time()
-	if game.player.position.distance_to(_bot_last) < 10.0 * dtb * 6.0:
-		_bot_stuck += dtb
-	else:
-		_bot_stuck = 0.0
+	_bot_anchor_t += dtb
+	if _bot_anchor_t >= 1.5:
+		_bot_anchor_t = 0.0
+		if game.player.position.distance_to(_bot_last) < 40.0:
+			_bot_stuck = 2.0
+		else:
+			_bot_stuck = 0.0
 		_bot_last = game.player.position
 	if _bot_detour > 0.0:
 		_bot_detour -= dtb
