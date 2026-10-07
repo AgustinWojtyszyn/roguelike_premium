@@ -14,6 +14,14 @@ Rpg_new y VIDA, ver `docs/ASSET_AUDIT.md`) que mejora la presentación sin tocar
 `HOME` → elegir personaje y capítulo → **JUGAR** → 5 etapas (combate, combate, cofres, élite, jefe/final) → perks (tras etapas 2 y 4)
 → resultado con recompensas → `HOME`. Sin dash: la defensa son habilidades, escudo y lectura del enemigo (postura, brillo, partículas).
 
+## Modos de juego
+
+`CAMPAÑA` (20 niveles, 4 capítulos = 4 familias de enemigos que nunca se mezclan) · `SUPERVIVENCIA` (4 arenas propias, oleadas infinitas,
+una fase por familia: eléctrica → azteca → medieval → interdimensional, mejora entre fases) · `BOSS RUSH` (los 4 jefes seguidos con
+zona de preparación: recuperación parcial, 2 armas a elegir y una mejora) · `DESAFÍO` (campaña + una regla: una sola arma, cristal, balas
+rápidas, todos élite). Reglas en `game/mode_rules.gd`; marcas en `profile.data["records"]`. Se eligen en el HOME (botón MODO) o con
+`--mode=survival|bossrush|challenge [--challenge=glass]` para pruebas.
+
 ## Estructura del proyecto
 
 ```

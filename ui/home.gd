@@ -52,6 +52,10 @@ func _ready() -> void:
 	challenge_id = str(p.data.get("selected_challenge", "one_weapon"))
 	if not ModeRules.CHALLENGES.has(challenge_id):
 		challenge_id = "one_weapon"
+	if Boot.has_flag("mode") and ModeRules.ORDER.has(Boot.get_arg("mode")):
+		mode_id = Boot.get_arg("mode")
+	if Boot.has_flag("challenge") and ModeRules.CHALLENGES.has(Boot.get_arg("challenge")):
+		challenge_id = Boot.get_arg("challenge")
 	rig = CharacterRig.new()
 	add_child(rig)
 	rig.z_index = 0

@@ -14,5 +14,15 @@ for ch in ch1 ch2 ch3 ch4; do
   echo "$out" | grep -E "RESULTADO|SCRIPT ERROR|ERROR:" | head -3
   echo "$out" | grep -q "RESULTADO: victoria=true" || fail=1
 done
+echo "== modos alternativos (humo)"
+out=$(timeout 240 godot --headless --path . scenes/run.tscn -- --bot --god --speed=8 --quit=240 --seed=11 --mode=survival --fresh 2>&1)
+echo "$out" | grep -E "FPS medio|SCRIPT ERROR|ERROR:" | head -3
+echo "$out" | grep -q "SCRIPT ERROR" && fail=1
+out=$(timeout 600 godot --headless --path . scenes/run.tscn -- --bot --god --speed=8 --quit=1500 --seed=11 --mode=bossrush --fresh 2>&1)
+echo "$out" | grep -E "RESULTADO|SCRIPT ERROR|ERROR:" | head -3
+echo "$out" | grep -q "jefes=4" || fail=1
+out=$(timeout 300 godot --headless --path . scenes/run.tscn -- --bot --god --speed=8 --quit=900 --seed=11 --mode=challenge --challenge=glass --chapter=ch1 --fresh 2>&1)
+echo "$out" | grep -E "RESULTADO|SCRIPT ERROR|ERROR:" | head -3
+echo "$out" | grep -q "RESULTADO" || fail=1
 [ $fail -eq 0 ] && echo "TODO OK" || echo "HAY FALLOS"
 exit $fail
