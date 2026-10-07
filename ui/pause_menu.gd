@@ -93,3 +93,11 @@ func _draw() -> void:
 		UiKit.text(self, Vector2(pr.position.x, pr.position.y + 56.0), "PAUSA", 40, UiKit.TEXT, 1, pw, 7.0)
 		var c := game.chapter
 		UiKit.text(self, Vector2(pr.position.x, pr.position.y + 84.0), c.display_name, 16, Color(c.accent, 0.9), 1, pw, 3.0)
+
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_WM_GO_BACK_REQUEST and settings == null and is_inside_tree():
+		if confirm:
+			_set_confirm(false)
+		else:
+			_close()

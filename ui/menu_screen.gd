@@ -204,3 +204,14 @@ func _gui_input(e: InputEvent) -> void:
 					AudioMgr.ui("ui_click", -2.0)
 					tap(id)
 					break
+
+
+func _unhandled_key_input(e: InputEvent) -> void:
+	if e is InputEventKey and e.pressed and not e.echo and e.physical_keycode == KEY_ESCAPE:
+		close()
+		get_viewport().set_input_as_handled()
+
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_WM_GO_BACK_REQUEST:
+		close()

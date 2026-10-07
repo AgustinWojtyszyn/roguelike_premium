@@ -393,3 +393,24 @@ func _draw_gift_chip(ci: CanvasItem, r: Rect2) -> void:
 	UiIcons.draw(ci, "gift", Vector2(36, r.get_center().y), 15.0, Color("ffd24a"))
 	UiKit.text(ci, Vector2(64, r.get_center().y - 4.0), "REGALO", 17, UiKit.GOLD, 0, -1.0, 3.0)
 	UiKit.text(ci, Vector2(64, r.get_center().y + 18.0), "¡Reclámalo gratis!", 13, UiKit.TEXT, 0, -1.0, 2.0, false)
+
+
+func _unhandled_input(e: InputEvent) -> void:
+	# Atajos de teclado / mando: Enter o Espacio = JUGAR; Esc cierra la pantalla abierta
+	if screen != null or settings != null or _launching:
+		return
+	if e is InputEventKey and e.pressed and not e.echo:
+		if e.physical_keycode == KEY_ENTER or e.physical_keycode == KEY_KP_ENTER or e.physical_keycode == KEY_SPACE:
+			if play_btn.enabled:
+				_on_play()
+	elif e is InputEventJoypadButton and e.pressed and e.button_index == JOY_BUTTON_A:
+		if play_btn.enabled:
+			_on_play()
+
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_WM_GO_BACK_REQUEST:
+		if settings != null:
+			return      # el panel de ajustes gestiona su propio "atras"
+		if screen == null and not _launching:
+			get_tree().quit()      # atras desde el inicio = salir de la app

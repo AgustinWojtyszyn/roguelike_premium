@@ -134,3 +134,8 @@ func _toggle(key: String, on: bool) -> void:
 		AudioMgr.set_sfx_enabled(on)
 	else:
 		Profile.p.set_setting(key, on)
+
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_WM_GO_BACK_REQUEST:
+		closed.emit()

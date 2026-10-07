@@ -56,7 +56,7 @@ static func ell_pts(c: Vector2, rx: float, ry: float, n: int = 22, rot: float = 
 
 
 static func rr_pts(r: Rect2, rad: float, seg: int = 4) -> PackedVector2Array:
-	rad = minf(rad, minf(r.size.x, r.size.y) * 0.5)
+	rad = maxf(0.05, minf(rad, minf(r.size.x, r.size.y) * 0.5 - 0.04))   # evita puntos coincidentes (poligono degenerado)
 	var pts := PackedVector2Array()
 	var corners := [
 		[Vector2(r.end.x - rad, r.position.y + rad), -PI * 0.5],

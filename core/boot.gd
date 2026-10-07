@@ -55,7 +55,15 @@ func _process(delta: float) -> void:
 		get_tree().quit()
 
 
+var _logged_once: Dictionary = {}
+
+
+## Los marcadores 01 / 09 / 10 son parte del contrato con tools/android_cold_start.py: EXACTAMENTE una vez por proceso.
 func log_stage(stage: int, detail: String) -> void:
+	if stage in [1, 9, 10]:
+		if _logged_once.has(stage):
+			return
+		_logged_once[stage] = true
 	if OS.is_debug_build() and OS.has_feature("android"):
 		print("[BOOT %02d] PID=%d OS=%s ticks=%d %s" % [stage, OS.get_process_id(), OS.get_name(), Time.get_ticks_msec(), detail])
 

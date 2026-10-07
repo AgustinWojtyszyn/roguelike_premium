@@ -4,6 +4,7 @@ config_version=5
 [application]
 
 config/name="Roguelike Premium"
+config/quit_on_go_back=false
 config/icon="res://icon.svg"
 run/main_scene="res://scenes/home.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
