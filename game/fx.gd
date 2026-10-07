@@ -221,6 +221,12 @@ func add_decal(pos: Vector2, kind: int, size: float, col: Color) -> void:
 
 
 func _process(delta: float) -> void:
+	Prof.begin("fx_proc")
+	__process_impl(delta)
+	Prof.end("fx_proc")
+
+
+func __process_impl(delta: float) -> void:
 	var dt := minf(delta, 1.0 / 30.0) * Game.tscale
 	var i := ps.size() - 1
 	while i >= 0:
@@ -265,6 +271,12 @@ func _process(delta: float) -> void:
 
 
 func render(ci: CanvasItem, mode: int) -> void:
+	Prof.begin("fx_render")
+	_render_impl(ci,  mode)
+	Prof.end("fx_render")
+
+
+func _render_impl(ci: CanvasItem, mode: int) -> void:
 	if mode == 2:
 		_render_decals(ci)
 		return

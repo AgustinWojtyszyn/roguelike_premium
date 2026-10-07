@@ -19,7 +19,7 @@ func _frames(t, n: int) -> void:
 
 func run(t) -> void:
 	# ------------------------------------------------------------------ arranque
-	var g := _make_game(t, {"god": "1", "seed": "7", "idle": "1"})
+	var g := _make_game(t, {"god": "1", "seed": "7", "idle": "1", "bot": "1"})
 	await _frames(t, 20)
 	t.check(g.player != null and g.room != null, "la run arranca con jugador y sala")
 	t.check(g.director.plan.size() == 5, "plan de 5 etapas")
@@ -46,17 +46,18 @@ func run(t) -> void:
 		g.player.energy = g.player.max_energy
 		g.player.aim = Vector2.RIGHT
 		g.player.face = 1.0
-		g.player.position = Vector2(150, 0) if wd.category == "melee" else Vector2(0, 0)
-		dummy.position = Vector2(300, 0) if wd.category != "melee" else Vector2(150 + 52, 0)
+		g.player.position = Vector2(0, 0)
+		var dd := 70.0 if wd.category == "melee" else 110.0
+		dummy.position = Vector2(dd, 0)
 		dummy.hp = 100000.0
 		dummy.max_hp = 100000.0
 		dummy.state = 1
 		var hp0 := dummy.hp
 		var frames := 0
-		while frames < 140 and dummy.hp >= hp0:
-			g.player.aim = (dummy.hit_center() - g.player.rig.pivot.global_position).normalized()
+		while frames < 200 and dummy.hp >= hp0:
 			g.player.energy = g.player.max_energy
-			rt.update(1.0 / 60.0, true)
+			g.player.position = Vector2(0, 0)
+			dummy.position = Vector2(dd, 0)
 			await t.process_frame
 			frames += 1
 		if dummy.hp >= hp0:
@@ -78,6 +79,7 @@ func run(t) -> void:
 
 	# ------------------------------------------------------------------ danio, escudo y energia del jugador
 	g.god = false
+	g.bot = false
 	g.player.inv = 0.0
 	g.player.shield = 2
 	g.player.hp = g.player.max_hp
@@ -91,10 +93,13 @@ func run(t) -> void:
 	g.player.inv = 0.0
 	g.player.energy = 0.0
 	var rt2 := WeaponRuntime.new(g.player, Catalog.weapon("lancex"))
-	var hp_before := dummy.hp
-	for i in 30:
-		rt2.update(1.0 / 60.0, true)
-	t.check(g.bullets.list.size() == 0, "sin energia el arma de energia no dispara")
+	g.player.slots[0] = rt2
+	g.bullets.clear_all()
+	var shots0 := g.run.shots_fired
+	for i in 40:
+		g.player.energy = 0.0
+		await t.process_frame
+	t.eq(g.run.shots_fired, shots0, "sin energia el arma de energia no dispara")
 	g.god = true
 
 	# ------------------------------------------------------------------ perks

@@ -42,6 +42,7 @@ var deco_node: Node2D
 var wall_node: Node2D
 var seal_node: Node2D
 var seal_glow_node: Node2D
+var bake: RoomBake
 
 
 class Layer extends Node2D:
@@ -93,15 +94,33 @@ func build(g: Game, d: RoomDef, entry: String, exit: String, sd: int = 0) -> voi
 	var rng := RandomNumberGenerator.new()
 	rng.seed = hash(d.id) + sd
 	dressing = theme.build_dressing(self, rng)
-	floor_node = _make_layer(0, -30, false)
-	wall_node = _make_layer(4, -29, false)
-	lights_node = _make_layer(1, -28, true)
+	if Boot.has_flag("nobake"):
+		floor_node = _make_layer(0, -30, false)
+		wall_node = _make_layer(4, -29, false)
+		lights_node = _make_layer(1, -28, true)
+	else:
+		bake = RoomBake.new()
+		add_child(bake)
+		bake.setup(self, bounds.grow_individual(60.0, 190.0, 60.0, 150.0))
+		floor_node = bake
+		wall_node = bake
+		lights_node = bake
 	spawn_node = _make_layer(2, -26, false)
 	seal_node = _make_layer(5, -25, false)
 	deco_node = _make_layer(3, -24, true)
 	seal_glow_node = _make_layer(6, -23, true)
 	_spawn_props()
 	_rebuild_rects()
+	if Boot.has_flag("hide"):
+		for h in str(Boot.get_arg("hide")).split(","):
+			match h:
+				"floor": floor_node.visible = false
+				"walls": wall_node.visible = false
+				"lights": lights_node.visible = false
+				"deco": deco_node.visible = false
+				"props":
+					for p in props:
+						p.visible = false
 
 
 func _make_layer(mode: int, z: int, additive: bool) -> Node2D:
@@ -421,6 +440,12 @@ var _rebuild_rects_deferred := false
 
 
 func _process(delta: float) -> void:
+	Prof.begin("room_proc")
+	__process_impl(delta)
+	Prof.end("room_proc")
+
+
+func __process_impl(delta: float) -> void:
 	var dt := minf(delta, 1.0 / 30.0)
 	t += dt
 	var changed := false

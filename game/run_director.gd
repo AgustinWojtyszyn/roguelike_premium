@@ -172,6 +172,12 @@ func _spawn_chests(def: RoomDef) -> void:
 
 # ------------------------------------------------------------------ bucle
 func _process(delta: float) -> void:
+	Prof.begin("dir_proc")
+	__process_impl(delta)
+	Prof.end("dir_proc")
+
+
+func __process_impl(delta: float) -> void:
 	var dt := minf(delta, 1.0 / 30.0) * Game.tscale
 	if end_t >= 0.0:
 		end_t -= minf(delta, 1.0 / 30.0)

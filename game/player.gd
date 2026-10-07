@@ -210,6 +210,12 @@ func try_reflect(b: Bullets.B) -> bool:
 
 # ------------------------------------------------------------------ bucle
 func _process(delta: float) -> void:
+	Prof.begin("player_proc")
+	__process_impl(delta)
+	Prof.end("player_proc")
+
+
+func __process_impl(delta: float) -> void:
 	var dt := minf(delta, 1.0 / 30.0) * Game.tscale
 	t += dt
 	if dead:

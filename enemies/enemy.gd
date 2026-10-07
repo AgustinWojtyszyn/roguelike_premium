@@ -184,6 +184,12 @@ func _explode() -> void:
 
 
 func _process(delta: float) -> void:
+	Prof.begin("enemy_proc")
+	__process_impl(delta)
+	Prof.end("enemy_proc")
+
+
+func __process_impl(delta: float) -> void:
 	var dt := minf(delta, 1.0 / 30.0) * Game.tscale * game.enemy_time
 	t += dt
 	st += dt

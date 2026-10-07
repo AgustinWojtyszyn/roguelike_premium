@@ -37,9 +37,11 @@ class B:
 	var seed_v: float = 0.0
 	var target: Enemy = null
 	var enemy_dmg: int = 1
+	var dead := false
 
 var list: Array[B] = []
 var _free: Array[B] = []
+var _spare := B.new()
 var game: Game
 var wall_sfx_t := 0.0
 
@@ -53,7 +55,7 @@ func _ready() -> void:
 
 func fire(pos: Vector2, dir: Vector2, speed: float, life: float, dmg: float, style: int, team: int, pierce: int = 0, knock: float = 0.0) -> B:
 	if list.size() >= MAX_BULLETS:
-		return _free[0] if not _free.is_empty() else B.new()   # saturado: el proyectil se descarta
+		return _spare   # saturado: el proyectil se descarta (objeto comodin fuera de la lista)
 	var b: B = _free.pop_back() if not _free.is_empty() else B.new()
 	b.pos = pos
 	b.vel = dir * speed
@@ -79,6 +81,7 @@ func fire(pos: Vector2, dir: Vector2, speed: float, life: float, dmg: float, sty
 	b.max_speed = 0.0
 	b.target = null
 	b.enemy_dmg = 1
+	b.dead = false
 	b.seed_v = randf() * 10.0
 	b.col = default_color(style)
 	b.trail.clear()
@@ -122,6 +125,8 @@ static func default_color(style: int) -> Color:
 
 func clear_all() -> void:
 	for b in list:
+		b.dead = false
+		b.target = null
 		_free.append(b)
 	list.clear()
 
@@ -129,14 +134,11 @@ func clear_all() -> void:
 ## Borra proyectiles enemigos (p. ej. barrera reactiva). Devuelve cuantos.
 func clear_enemy_bullets(center: Vector2, radius: float) -> int:
 	var n := 0
-	var i := list.size() - 1
-	while i >= 0:
-		var b := list[i]
-		if b.team == 1 and b.pos.distance_squared_to(center) <= radius * radius:
+	for b in list:
+		if not b.dead and b.team == 1 and b.pos.distance_squared_to(center) <= radius * radius:
 			game.fx.burst(b.pos, 3, 100.0, b.col, 0.2)
-			_release(i)
+			b.dead = true
 			n += 1
-		i -= 1
 	return n
 
 
@@ -144,7 +146,7 @@ func clear_enemy_bullets(center: Vector2, radius: float) -> int:
 func reflect_in_radius(center: Vector2, radius: float, dir_hint: Vector2 = Vector2.ZERO, to_player_team: bool = true) -> int:
 	var n := 0
 	for b in list:
-		if b.team == 1 and b.pos.distance_squared_to(center) <= radius * radius:
+		if not b.dead and b.team == 1 and b.pos.distance_squared_to(center) <= radius * radius:
 			var d := -b.vel.normalized() if dir_hint == Vector2.ZERO else dir_hint
 			b.vel = d * maxf(b.vel.length() * 1.2, 520.0)
 			b.team = 0 if to_player_team else 1
@@ -157,25 +159,37 @@ func reflect_in_radius(center: Vector2, radius: float, dir_hint: Vector2 = Vecto
 	return n
 
 
-func _release(i: int) -> void:
-	var b := list[i]
-	b.target = null
-	_free.append(b)
-	var last := list.size() - 1
-	if i != last:
-		list[i] = list[last]
-	list.remove_at(last)
+## Compacta la lista: los proyectiles marcados `dead` vuelven al pool (una sola pasada, segura ante cambios durante el paso).
+func _compact() -> void:
+	var w := 0
+	for r in list.size():
+		var b := list[r]
+		if b.dead:
+			b.target = null
+			_free.append(b)
+		else:
+			list[w] = b
+			w += 1
+	list.resize(w)
 
 
 func _process(delta: float) -> void:
+	Prof.begin("bul_proc")
+	__process_impl(delta)
+	Prof.end("bul_proc")
+
+
+func __process_impl(delta: float) -> void:
 	var dt := minf(delta, 1.0 / 30.0) * Game.tscale
 	wall_sfx_t -= dt
-	var i := list.size() - 1
-	while i >= 0:
+	var n := list.size()
+	for i in n:
 		var b := list[i]
+		if b.dead:
+			continue
 		if _step(b, dt):
-			_release(i)
-		i -= 1
+			b.dead = true
+	_compact()
 	queue_redraw()
 
 
@@ -350,7 +364,15 @@ func _impact(b: B, p: Vector2, n: Vector2, prop) -> void:
 
 # ---------------------------------------------------------------- dibujo
 func _draw() -> void:
+	Prof.begin("bul_draw")
+	__draw_impl()
+	Prof.end("bul_draw")
+
+
+func __draw_impl() -> void:
 	for b in list:
+		if b.dead:
+			continue
 		var d := b.vel.normalized()
 		var col := b.col
 		match b.style:

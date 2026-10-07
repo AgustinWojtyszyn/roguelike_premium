@@ -56,6 +56,7 @@ var quit_at := -1.0
 var fps_samples: Array[float] = []
 var _boot_first_frame := true
 var cam_extra := Vector2.ZERO
+var _dbg_t := -1.0
 
 
 func _enter_tree() -> void:
@@ -72,6 +73,9 @@ func _ready() -> void:
 	if not touch_mode:
 		Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	_read_args()
+	if Boot.has_flag("show"):
+		_dbg_t = 2.0
+	Prof.on = Boot.has_flag("perf")
 	if Boot.has_flag("speed"):
 		Engine.time_scale = float(Boot.get_arg("speed"))
 	sfx = AudioMgr
@@ -135,6 +139,12 @@ func _ready() -> void:
 	director.game = self
 	add_child(director)
 	director.begin(int(Boot.get_arg("stage", "0")))
+	if Boot.has_flag("hide"):
+		var hs := str(Boot.get_arg("hide")).split(",")
+		if "hud" in hs:
+			hud.visible = false
+		if "player" in hs:
+			player.visible = false
 	cam_pos = player.position
 	_snap_camera()
 	AudioMgr.play_music(chapter.music)
@@ -219,6 +229,12 @@ func bot_goal() -> Vector2:
 
 # ---------------------------------------------------------------- bucle
 func _process(delta: float) -> void:
+	Prof.begin("game_proc")
+	__process_impl(delta)
+	Prof.end("game_proc")
+
+
+func __process_impl(delta: float) -> void:
 	if _boot_first_frame:
 		_boot_first_frame = false
 		var vs := get_viewport_rect().size
@@ -227,6 +243,7 @@ func _process(delta: float) -> void:
 	clock += rdt
 	if clock > 1.0:
 		fps_samples.append(Engine.get_frames_per_second())
+		_perf_acc(rdt)
 	if hs_timer > 0.0:
 		hs_timer -= rdt
 		if hs_timer <= 0.0:
@@ -243,6 +260,22 @@ func _process(delta: float) -> void:
 	if bot:
 		bot_t += rdt
 	_update_camera(rdt)
+	if _dbg_t >= 0.0 and clock >= _dbg_t:
+		_dbg_t = -1.0
+		var w := str(Boot.get_arg("show", ""))
+		match w:
+			"pause":
+				request_pause()
+			"perk":
+				offer_perk("chest")
+			"win":
+				run.won = true
+				victory = true
+				over = true
+				show_result(true)
+			"lose":
+				over = true
+				show_result(false)
 	while shots.size() > shot_i and clock >= shots[shot_i]:
 		_save_shot(shot_i)
 		shot_i += 1
@@ -252,7 +285,28 @@ func _process(delta: float) -> void:
 			avg += f
 		avg /= maxf(1.0, float(fps_samples.size()))
 		print("FPS medio: %.1f  kills: %d  hp: %d  etapa: %d  victoria: %s  nodos: %d" % [avg, run.kills, player.hp, director.stage, str(victory), get_tree().get_node_count()])
+		if Boot.has_flag("perf"):
+			print("PERF  ", perf_report())
+			print(Prof.report(int(_pf["n"])))
 		get_tree().quit()
+
+
+var _pf := {"n": 0, "proc": 0.0, "draw": 0.0, "prim": 0.0, "obj": 0.0, "bul": 0.0, "fx": 0.0}
+
+
+func _perf_acc(_dt: float) -> void:
+	_pf["n"] += 1
+	_pf["proc"] += Performance.get_monitor(Performance.TIME_PROCESS) * 1000.0
+	_pf["draw"] += Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME)
+	_pf["prim"] += Performance.get_monitor(Performance.RENDER_TOTAL_PRIMITIVES_IN_FRAME)
+	_pf["obj"] += Performance.get_monitor(Performance.OBJECT_NODE_COUNT)
+	_pf["bul"] += float(bullets.list.size())
+	_pf["fx"] += float(fx.ps.size())
+
+
+func perf_report() -> String:
+	var n := maxf(1.0, float(_pf["n"]))
+	return "script/proceso: %.2f ms  draw calls: %.0f  primitivas: %.0f  nodos: %.0f  proyectiles: %.0f  particulas: %.0f" % [_pf["proc"] / n, _pf["draw"] / n, _pf["prim"] / n, _pf["obj"] / n, _pf["bul"] / n, _pf["fx"] / n]
 
 
 func _save_shot(i: int) -> void:

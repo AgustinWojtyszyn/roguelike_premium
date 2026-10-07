@@ -97,6 +97,12 @@ func weapon_near(p: Vector2, r: float) -> Item:
 
 
 func _process(delta: float) -> void:
+	Prof.begin("pick_proc")
+	__process_impl(delta)
+	Prof.end("pick_proc")
+
+
+func __process_impl(delta: float) -> void:
 	var dt := minf(delta, 1.0 / 30.0) * Game.tscale
 	t += dt
 	var pl := game.player
@@ -198,6 +204,12 @@ func _pickup_weapon(it: Item, idx: int) -> void:
 
 
 func _draw() -> void:
+	Prof.begin("pick_draw")
+	__draw_impl()
+	Prof.end("pick_draw")
+
+
+func __draw_impl() -> void:
 	for it in items:
 		var sp := it.pos - Vector2(0, it.z)
 		var shadow_a := 0.35 * clampf(1.0 - it.z / 50.0, 0.3, 1.0)

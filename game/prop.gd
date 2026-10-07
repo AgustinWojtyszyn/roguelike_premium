@@ -14,6 +14,9 @@ var tt: float = 0.0
 var seed_v: int = 0
 var redraw_t: float = 0.0
 var style: String = ""
+## Sin animacion propia: solo se redibujan al recibir un golpe. Los demas, a 4-8 Hz.
+const STATIC_KINDS := ["crate_l", "crate_s", "barrel", "barrier_h", "barrier_v", "pillar", "stone_block", "urn", "wood_crate", "wood_barrel", "column", "statue", "table", "weapon_rack", "crate_m"]
+const FAST_KINDS := ["tank", "terminal", "reactor", "brazier", "totem", "glyph_pillar", "crystal", "rift_stone", "orb_pillar", "anomaly_box"]
 
 
 static func create(g: Game, k: String, foot_rect: Rect2, st: String = "") -> Prop:
@@ -84,6 +87,12 @@ func _break() -> void:
 
 
 func _process(delta: float) -> void:
+	Prof.begin("prop_proc")
+	__process_impl(delta)
+	Prof.end("prop_proc")
+
+
+func __process_impl(delta: float) -> void:
 	var dt := minf(delta, 1.0 / 30.0)
 	tt += dt
 	pop = maxf(0.0, pop - dt * 6.0)
@@ -102,12 +111,18 @@ func _process(delta: float) -> void:
 	fade = lerpf(fade, target, clampf(dt * 10.0, 0.0, 1.0))
 	modulate.a = fade
 	redraw_t -= dt
-	if redraw_t <= 0.0 or pop > 0.0:
-		redraw_t = 0.12
+	if pop > 0.0 or (redraw_t <= 0.0 and not STATIC_KINDS.has(kind)):
+		redraw_t = 0.12 if FAST_KINDS.has(kind) else 0.25
 		queue_redraw()
 
 
 func _draw() -> void:
+	Prof.begin("prop_draw")
+	__draw_impl()
+	Prof.end("prop_draw")
+
+
+func __draw_impl() -> void:
 	var f := Rect2(foot.position - position, foot.size)
 	match kind:
 		"crate_l":

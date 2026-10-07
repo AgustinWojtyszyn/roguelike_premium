@@ -695,6 +695,12 @@ func _process(delta: float) -> void:
 
 
 func animate(dt: float) -> void:
+	Prof.begin("rig_anim")
+	_animate_impl(dt)
+	Prof.end("rig_anim")
+
+
+func _animate_impl(dt: float) -> void:
 	t += dt
 	var spd := vel.length()
 	var amp := clampf(spd / SPEED_REF, 0.0, 1.0)

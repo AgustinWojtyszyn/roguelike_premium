@@ -18,5 +18,11 @@ static func make(parent: Node, paint: Callable, pos: Vector2 = Vector2.ZERO, add
 
 
 func _draw() -> void:
+	Prof.begin("part_draw")
+	__draw_impl()
+	Prof.end("part_draw")
+
+
+func __draw_impl() -> void:
 	if painter.is_valid():
 		painter.call(self)
