@@ -26,4 +26,16 @@ static func build() -> Array[EnemyData]:
 	L.append(_e("fuse", "DRON BOMBA", "tech", "kamikaze", "res://enemies/fuse.gd", 5.0, 1.0, 1, false))
 	L.append(_e("aegis", "GUARDIA ÉGIDA", "tech", "shield", "res://enemies/aegis.gd", 34.0, 2.5, 2))
 	L.append(_e("mender", "DRON REPARADOR", "tech", "support", "res://enemies/mender.gd", 12.0, 2.0, 2))
+	# ---- Familia 2: civilizacion antigua (azteca tecnologica)
+	L.append(_e("jaguar", "JAGUAR DE OBSIDIANA", "aztec", "charger", "res://enemies/jaguar.gd", 20.0, 2.5, 2))
+	L.append(_e("cerbatana", "CAZADOR DE CERBATANA", "aztec", "shooter", "res://enemies/cerbatana.gd", 11.0, 1.5, 1))
+	L.append(_e("idolo", "ÍDOLO VIGÍA", "aztec", "turret", "res://enemies/idolo.gd", 40.0, 3.5, 3))
+	# ---- Familia 3: fortaleza oscura
+	L.append(_e("caballero", "CABALLERO", "castle", "heavy", "res://enemies/caballero.gd", 40.0, 4.0, 3))
+	L.append(_e("ballestero", "BALLESTERO", "castle", "sniper", "res://enemies/ballestero.gd", 13.0, 2.0, 2))
+	L.append(_e("sabueso", "SABUESO DE GUERRA", "castle", "charger", "res://enemies/sabueso.gd", 12.0, 1.5, 1, false))
+	# ---- Familia 4: interdimensional
+	L.append(_e("fulgor", "FULGOR", "anomaly", "shooter", "res://enemies/fulgor.gd", 15.0, 1.8, 2))
+	L.append(_e("acechador", "ACECHADOR", "anomaly", "charger", "res://enemies/acechador.gd", 26.0, 3.0, 2))
+	L.append(_e("ojo", "OJO DEL VACÍO", "anomaly", "turret", "res://enemies/ojo.gd", 42.0, 3.5, 3))
 	return L

@@ -19,17 +19,26 @@ class Wipe extends Control:
 	var router
 	func _draw() -> void:
 		var k: float = router._k
-		if k <= 0.001:
+		if k <= 0.001 or size.x < 8.0:
 			return
 		var s := size
+		if k >= 0.999:
+			draw_rect(Rect2(Vector2.ZERO, s), router._col)
+			return
 		var skew := s.y * 0.35
 		var reveal: bool = router._reveal
 		var edge := s.x * 1.4 * ((1.0 - k) if reveal else k) - skew
 		var pts: PackedVector2Array
+		var xt := edge + skew
+		var xb := edge - skew
 		if reveal:
-			pts = PackedVector2Array([Vector2(edge + skew, -10), Vector2(s.x + 10, -10), Vector2(s.x + 10, s.y + 10), Vector2(edge - skew, s.y + 10)])
+			if xb >= s.x + 9.0:
+				return
+			pts = PackedVector2Array([Vector2(minf(xt, s.x + 9.0), -10), Vector2(s.x + 10, -10), Vector2(s.x + 10, s.y + 10), Vector2(minf(xb, s.x + 9.0), s.y + 10)])
 		else:
-			pts = PackedVector2Array([Vector2(-10, -10), Vector2(edge + skew, -10), Vector2(edge - skew, s.y + 10), Vector2(-10, s.y + 10)])
+			if xt <= -9.0:
+				return
+			pts = PackedVector2Array([Vector2(-10, -10), Vector2(maxf(xt, -9.0), -10), Vector2(maxf(xb, -9.0), s.y + 10), Vector2(-10, s.y + 10)])
 		draw_colored_polygon(pts, router._col)
 		var line := PackedVector2Array([Vector2(edge + skew, -10), Vector2(edge - skew, s.y + 10)])
 		draw_polyline(line, Color(0.3, 0.95, 0.9, 0.9 * k), 6.0, true)
@@ -43,8 +52,8 @@ func _ready() -> void:
 	_wipe = Wipe.new()
 	_wipe.router = self
 	_wipe.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	_wipe.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	_layer.add_child(_wipe)
+	_wipe.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 
 
 func goto(key: String, p: Dictionary = {}, color: Color = Color("070a13")) -> void:

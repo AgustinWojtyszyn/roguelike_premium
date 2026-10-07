@@ -58,11 +58,9 @@ class Layer extends Node2D:
 			6: room.theme.paint_seal_glow(self, room, room.t)
 
 
-func build(g: Game, d: RoomDef, entry: String, exit: String, sd: int = 0) -> void:
-	game = g
+## Solo geometria (sin nodos): suelo, pasillos, muros solidos. Lo usan `build` y las pruebas de salas.
+func build_geometry(d: RoomDef, entry: String, exit: String) -> void:
 	def = d
-	seed_v = sd
-	theme = RoomTheme.create(d.theme)
 	entry_side = entry
 	exit_side = exit
 	has_exit = exit != ""
@@ -81,6 +79,13 @@ func build(g: Game, d: RoomDef, entry: String, exit: String, sd: int = 0) -> voi
 		bounds = bounds.merge(r)
 	_compute_runs()
 	_build_solids()
+
+
+func build(g: Game, d: RoomDef, entry: String, exit: String, sd: int = 0) -> void:
+	game = g
+	seed_v = sd
+	theme = RoomTheme.create(d.theme)
+	build_geometry(d, entry, exit)
 	spawns = d.spawns.duplicate()
 	spawn_open.resize(spawns.size())
 	spawn_target.resize(spawns.size())

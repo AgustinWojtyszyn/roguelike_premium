@@ -61,7 +61,7 @@ func paint_wall_run(ci: CanvasItem, room: Room, run: Dictionary) -> void:
 		"S":
 			_wall_s(ci, room, a - float(run["ext_a"]), b + float(run["ext_b"]), edge)
 		_:
-			_wall_we(ci, room, side, a, b, edge)
+			_wall_we(ci, room, side, a, b, edge, float(run["ext_a"]), float(run["ext_b"]))
 
 
 func _wall_n(_ci: CanvasItem, _room: Room, _x0: float, _x1: float, _edge: float) -> void:
@@ -72,7 +72,7 @@ func _wall_s(_ci: CanvasItem, _room: Room, _x0: float, _x1: float, _edge: float)
 	pass
 
 
-func _wall_we(_ci: CanvasItem, _room: Room, _side: String, _a: float, _b: float, _edge: float) -> void:
+func _wall_we(_ci: CanvasItem, _room: Room, _side: String, _a: float, _b: float, _edge: float, _ea: float, _eb: float) -> void:
 	pass
 
 

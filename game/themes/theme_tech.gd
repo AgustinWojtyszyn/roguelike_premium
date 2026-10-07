@@ -255,8 +255,8 @@ func paint_wall_run(ci: CanvasItem, room: Room, run: Dictionary) -> void:
 				ci.draw_rect(Rect2(sx + 40, edge + 14, 50, 6), Color("e9a72c", 0.6))
 				sx += 130.0
 		"W", "E":
-			var y0: float = a - 142.0 if run.get("tall_a", true) else a
-			var y1: float = b + 18.0
+			var y0: float = a - (142.0 if ea > 0.0 else 0.0)
+			var y1: float = b + (18.0 if eb > 0.0 else 0.0)
 			var x0: float = edge - 50.0 if side == "W" else edge
 			var wall := Rect2(x0, y0, 50, y1 - y0)
 			Gfx.grect_grad(ci, wall, Color("2f3a5a"), Color("1c2438"))
@@ -273,8 +273,9 @@ func paint_wall_run(ci: CanvasItem, room: Room, run: Dictionary) -> void:
 			ci.draw_rect(Rect2(cdx - 1, y0 + 32.0, 12, y1 - y0 - 32.0), ink)
 			Gfx.grect_grad(ci, Rect2(cdx, y0 + 32.0, 10, y1 - y0 - 32.0), Color("5a6890"), Color("2a3352"))
 			# esquina superior
-			ci.draw_rect(Rect2(x0, y0, 50, 34), Color("56648e"))
-			ci.draw_rect(Rect2(x0, y0, 50, 3), Color(1, 1, 1, 0.25))
+			if ea > 0.0:
+				ci.draw_rect(Rect2(x0, y0, 50, 34), Color("56648e"))
+				ci.draw_rect(Rect2(x0, y0, 50, 3), Color(1, 1, 1, 0.25))
 
 
 func _wall_items(ci: CanvasItem, room: Room, x0: float, x1: float, edge: float) -> void:

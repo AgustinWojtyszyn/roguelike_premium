@@ -8,6 +8,10 @@ var current := ""
 
 
 func _initialize() -> void:
+	await _run_all()
+
+
+func _run_all() -> void:
 	var dir := DirAccess.open("res://tests")
 	var files: Array[String] = []
 	for f in dir.get_files():
@@ -28,7 +32,7 @@ func _initialize() -> void:
 			print("FAIL  %s: no compila" % f)
 			continue
 		var inst = scr.new()
-		inst.run(self)
+		await inst.run(self)
 	print("\n== %d OK, %d FALLOS ==" % [passed, failed])
 	quit(1 if failed > 0 else 0)
 

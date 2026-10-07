@@ -146,8 +146,9 @@ func _load_stage(i: int, instant: bool) -> void:
 		title = game.chapter.display_name
 		sub = game.chapter.subtitle
 	elif st["kind"] == "boss":
-		title = "¡JEFE!"
-		sub = Catalog.bosses[game.chapter.boss].title if Catalog.bosses.has(game.chapter.boss) else ""
+		var has_boss := Catalog.bosses.has(game.chapter.boss)
+		title = "¡JEFE!" if has_boss else "ÚLTIMA ETAPA"
+		sub = Catalog.bosses[game.chapter.boss].title if has_boss else st["name"]
 		col = Color("ff7a9a")
 	elif st["kind"] == "elite":
 		title = "ETAPA %d · ÉLITE" % (i + 1)
@@ -205,7 +206,7 @@ func _begin_encounter_delayed() -> void:
 func _begin_encounter() -> void:
 	var st: Dictionary = plan[stage]
 	in_combat = true
-	if st["kind"] == "boss":
+	if st["kind"] == "boss" and Catalog.bosses.has(game.chapter.boss):
 		_spawn_boss()
 		return
 	var enc: EncounterDef = Catalog.encounters.get(st["encounter"])
@@ -230,7 +231,7 @@ func _start_wave(i: int) -> void:
 
 
 func _update_waves(dt: float) -> void:
-	if plan[stage]["kind"] == "boss":
+	if plan[stage]["kind"] == "boss" and Catalog.bosses.has(game.chapter.boss):
 		return
 	wave_clock += dt
 	var i := pending.size() - 1
@@ -397,6 +398,9 @@ func _clear_stage() -> void:
 		game.pickups.drop_heart(game.player.position + Vector2(20, -10))
 	game.pickups.drop_energy(game.player.position + Vector2(-20, -10), 12.0)
 	PerkEffects.on_room_clear(game)
+	if stage == plan.size() - 1:
+		_finish_chapter(null)
+		return
 	var t := token
 	if plan[stage]["perk_after"]:
 		perk_busy = true
@@ -442,6 +446,11 @@ func _boss_defeated(e: Enemy) -> void:
 			o.hp = 0.0
 			o._start_dying(Vector2.RIGHT)
 	game.run.bosses += 1
+	game.run.rooms += 1
+	_finish_chapter(e)
+
+
+func _finish_chapter(e: Enemy) -> void:
 	game.run.won = true
 	game.victory = true
 	cleared = true
@@ -450,10 +459,11 @@ func _boss_defeated(e: Enemy) -> void:
 	game.slow_enemies(0.2, 1.4)
 	game.sfx.play("victory", -2.0)
 	game.hud.banner("¡CAPÍTULO COMPLETADO!", 3.2, game.chapter.display_name, Color("ffe27a"))
-	var bd: BossData = Catalog.bosses[game.chapter.boss]
-	game.pickups.drop_coins(e.hit_center(), bd.coins)
-	game.pickups.drop_weapon(e.position + Vector2(0, 30), roll_weapon(2, 4))
-	game.pickups.drop_heart(e.position + Vector2(30, 10))
+	var at := e.hit_center() if e != null else game.player.position + Vector2(0, -30)
+	var bonus := (Catalog.bosses[game.chapter.boss] as BossData).coins if e != null else 30
+	game.pickups.drop_coins(at, bonus)
+	game.pickups.drop_weapon(at + Vector2(0, 40), roll_weapon(2, 4))
+	game.pickups.drop_heart(at + Vector2(30, 10))
 	AudioMgr.play_music(game.chapter.music)
 	end_won = true
 	end_t = 3.6

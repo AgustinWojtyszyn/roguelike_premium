@@ -127,9 +127,9 @@ func _wall_s(ci: CanvasItem, room: Room, x0: float, x1: float, edge: float) -> v
 	ci.draw_rect(Rect2(x0, edge, x1 - x0, 3), Color(MAG, 0.5))
 
 
-func _wall_we(ci: CanvasItem, room: Room, side: String, a: float, b: float, edge: float) -> void:
-	var y0 := a - 142.0
-	var y1 := b + 18.0
+func _wall_we(ci: CanvasItem, room: Room, side: String, a: float, b: float, edge: float, ea: float, eb: float) -> void:
+	var y0 := a - (142.0 if ea > 0.0 else 0.0)
+	var y1 := b + (18.0 if eb > 0.0 else 0.0)
 	var x0 := edge - 50.0 if side == "W" else edge
 	Gfx.grect_grad(ci, Rect2(x0, y0, 50, y1 - y0), Color("35206a"), Color("0c0620"))
 	var rng := RandomNumberGenerator.new()
@@ -142,7 +142,8 @@ func _wall_we(ci: CanvasItem, room: Room, side: String, a: float, b: float, edge
 	var ex := edge - 4.0 if side == "W" else edge
 	ci.draw_rect(Rect2(ex, a - 110.0, 4, b - a + 110.0), Color("02000c"))
 	ci.draw_rect(Rect2(ex + (0.0 if side == "W" else 4.0), a - 110.0, 2, b - a + 110.0), Color(CYAN, 0.35))
-	ci.draw_rect(Rect2(x0, y0, 50, 34), Color("4a2a90"))
+	if ea > 0.0:
+		ci.draw_rect(Rect2(x0, y0, 50, 34), Color("4a2a90"))
 
 
 func paint_lights(ci: CanvasItem, room: Room) -> void:

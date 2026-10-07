@@ -50,6 +50,8 @@ func _ready() -> void:
 	AudioMgr.stop_hum()
 	if Boot.has_flag("shots"):
 		_shots_mode()
+	if Boot.has_flag("autoplay"):
+		get_tree().create_timer(1.0).timeout.connect(_on_play)
 	Boot.log_stage(8, "home ready")
 
 

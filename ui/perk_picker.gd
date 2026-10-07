@@ -18,8 +18,6 @@ var _closing := false
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	size = get_viewport_rect().size
-	get_viewport().size_changed.connect(func(): size = get_viewport_rect().size)
 	mouse_filter = Control.MOUSE_FILTER_STOP
 	var rng := RandomNumberGenerator.new()
 	rng.seed = game.run.seed_v * 7 + game.run.stage_idx * 13 + game.run.perks_picked
@@ -42,7 +40,16 @@ func _ready() -> void:
 	resized.connect(_layout)
 	_layout()
 	if game.bot:
-		get_tree().create_timer(0.6, true, false, true).timeout.connect(func(): _choose(0))
+		for k in 6:
+			get_tree().create_timer(0.6 + 0.5 * float(k), true, false, true).timeout.connect(func():
+				if not _closing and is_inside_tree():
+					if _stage == 0:
+						for i in offers.size():
+							if _picked < 0:
+								_choose(i)
+					elif _stage == 1:
+						game.run.replace_perk(0, _pending, Catalog.perks)
+						_finish(_pending))
 
 
 func _layout() -> void:
