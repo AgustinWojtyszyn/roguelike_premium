@@ -34,11 +34,11 @@ static func chapters() -> Array[ChapterData]:
 		"Bajo la estación dormía algo más antiguo: un templo cuyos circuitos son de jade y cuyos guardianes nunca durmieron."))
 	L.append(_chapter("ch3", "FORTALEZA ESCARLATA", "Caballeros · Murallas oscuras", "castle", 2, "ch3", Color("e0405a"),
 		["patio_armas", "gran_salon", "mazmorra", "murallas"], ["armeria_tesoro"], "sala_trono",
-		["caballero", "ballestero", "sabueso"], ["caballero", "ballestero"], "", "drops_ch3", 1.55, "ch2",
+		["caballero", "ballestero", "sabueso"], ["caballero", "ballestero"], "mariscal", "drops_ch3", 1.55, "ch2",
 		"Una fortaleza que no figura en ningún mapa y que cada noche cambia de dueño. Sus caballeros ya no recuerdan por quién luchan."))
 	L.append(_chapter("ch4", "GRIETA INTERDIMENSIONAL", "Anomalías · Realidad inestable", "anomaly", 3, "ch4", Color("ff4fd8"),
 		["fractura", "bucle_gravedad", "camara_espejo", "puente_roto"], ["relicario_vacio"], "nucleo_anomalo",
-		["fulgor", "acechador", "ojo"], ["ojo", "acechador"], "", "drops_ch4", 1.9, "ch3",
+		["fulgor", "acechador", "ojo"], ["ojo", "acechador"], "vigia", "drops_ch4", 1.9, "ch3",
 		"Donde la realidad se rasga, las reglas se doblan. Nada de lo que veas estará mucho tiempo en el mismo sitio."))
 	return L
 
@@ -371,6 +371,30 @@ static func bosses() -> Array[BossData]:
 	x.coins = 80
 	x.guaranteed_loot = "boss_ch1"
 	L.append(x)
+	var m := BossData.new()
+	m.id = "mariscal"
+	m.display_name = "MARISCAL ESCARLATA"
+	m.title = "Señor de la Fortaleza"
+	m.chapter = "ch3"
+	m.script_path = "res://bosses/boss_mariscal.gd"
+	m.hp = 1150.0
+	m.phases = [1.0, 0.64, 0.32]
+	m.accent = Color("e0405a")
+	m.coins = 100
+	m.guaranteed_loot = "boss_ch1"
+	L.append(m)
+	var v := BossData.new()
+	v.id = "vigia"
+	v.display_name = "VIGÍA DE LA GRIETA"
+	v.title = "Guardián de la Fractura"
+	v.chapter = "ch4"
+	v.script_path = "res://bosses/boss_vigia.gd"
+	v.hp = 1250.0
+	v.phases = [1.0, 0.66, 0.33]
+	v.accent = Color("ff4fd8")
+	v.coins = 120
+	v.guaranteed_loot = "boss_ch1"
+	L.append(v)
 	return L
 
 
