@@ -103,7 +103,7 @@ func _think(dt: float) -> void:
 		if pulse_t > 0.5:
 			pulse_t = -1.0
 	if pulse_cd <= 0.0 and n > 0:
-		pulse_cd = 3.6
+		pulse_cd = 4.6
 		pulse_t = 0.0
 		_pulse()
 
@@ -116,7 +116,7 @@ func _pulse() -> void:
 		if e == self or e.state == S_DYING:
 			continue
 		if e.position.distance_to(position) < 170.0 and e.hp < e.max_hp:
-			e.hp = minf(e.max_hp, e.hp + e.max_hp * 0.2)
+			e.hp = minf(e.max_hp, e.hp + e.max_hp * 0.12)
 			e.hp_show = 1.5
 			e.bar.queue_redraw()
 			game.fx.bolt(c, e.hit_center(), glow_col, 0.25)

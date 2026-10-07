@@ -25,6 +25,11 @@ func run(t) -> void:
 	t.check(g.director.plan.size() == 5, "plan de 5 etapas")
 	t.check(g.player.hp == g.player.max_hp, "jugador con vida completa")
 	t.check(g.run.weapons.size() == 2, "dos armas equipadas (inicial + secundaria)")
+	g.stall_t = 0.0
+	t.eq(g.stall_mult(), 1.0, "sin estancamiento el multiplicador anti-empate es 1")
+	g.stall_t = 200.0
+	t.check(g.stall_mult() >= 3.9, "tras mucho tiempo sin bajas el dano sube (rompe empates)")
+	g.stall_t = 0.0
 	var nodes := g.get_tree().get_node_count()
 	t.check(nodes < 400, "cantidad de nodos acotada al inicio (%d)" % nodes)
 

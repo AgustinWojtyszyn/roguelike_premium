@@ -59,7 +59,7 @@ func dmg_mult(dir: Vector2) -> float:
 		return 1.4
 	# el escudo cubre el frente: balas que vienen de cara apenas dañan
 	if shield_up > 0.5 and dir.x * face < -0.2:
-		return 0.12
+		return 0.22
 	return 1.0
 
 

@@ -193,6 +193,7 @@ var _bot_last := Vector2.ZERO
 var _bot_stuck := 0.0
 var _bot_detour := 0.0
 var _bot_detour_dir := Vector2.ZERO
+var _bot_beeline := 0.0
 
 
 func _bot_move() -> Vector2:
@@ -208,12 +209,18 @@ func _bot_move() -> Vector2:
 	if _bot_detour > 0.0:
 		_bot_detour -= dtb
 		return _bot_detour_dir
+	if _bot_beeline > 0.0:
+		_bot_beeline -= dtb
 	if _bot_stuck > 1.5:
 		_bot_stuck = 0.0
 		_bot_last = game.player.position
-		_bot_detour = 1.4
-		_bot_detour_dir = Vector2.from_angle(randf() * TAU)
-		return _bot_detour_dir
+		var far := game.nearest_enemy()
+		if far != null and far.position.distance_to(game.player.position) > 380.0:
+			_bot_beeline = 3.5         # enemigo lejano (torreta en una esquina): ir en linea recta hacia el
+		else:
+			_bot_detour = 1.4
+			_bot_detour_dir = Vector2.from_angle(randf() * TAU)
+			return _bot_detour_dir
 	var nearest := game.nearest_enemy()
 	var v := Vector2.ZERO
 	var p := game.player.position
@@ -230,7 +237,9 @@ func _bot_move() -> Vector2:
 		var dir := to / maxf(d, 0.01)
 		var tang := Vector2(-dir.y, dir.x)
 		v = tang * 0.9
-		if d < 230.0:
+		if _bot_beeline > 0.0 and d > 300.0:
+			v = dir * 1.3
+		elif d < 230.0:
 			v -= dir * 1.0
 		elif d > 340.0:
 			v += dir * 0.6

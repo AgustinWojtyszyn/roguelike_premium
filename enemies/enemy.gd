@@ -52,7 +52,7 @@ func setup(g: Game, pos: Vector2) -> void:
 	_build()
 	hp *= g.hp_scale
 	if elite:
-		hp *= 2.2
+		hp *= 1.9
 		speed *= 1.08
 		big = true
 	bar = Part.make(self, _paint_bar)

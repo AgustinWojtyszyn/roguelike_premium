@@ -57,6 +57,7 @@ var fps_samples: Array[float] = []
 var _boot_first_frame := true
 var cam_extra := Vector2.ZERO
 var _dbg_t := -1.0
+var stall_t := 0.0          # segundos sin bajas con enemigos vivos: rompe empates (escudos + reparadores)
 
 
 func _enter_tree() -> void:
@@ -261,8 +262,12 @@ func __process_impl(delta: float) -> void:
 		enemy_time = lerpf(enemy_time, 1.0, clampf(rdt * 4.0, 0.0, 1.0))
 	if not over:
 		run.time += rdt
+	if not enemies.is_empty() and director != null and director.in_combat:
+		stall_t += rdt * tscale
+	else:
+		stall_t = 0.0
 	if Boot.has_flag("debug") and int(clock * 2.0) != int((clock - rdt) * 2.0) and int(clock) % 5 == 0:
-		print("[t=%.0f] etapa=%d entered=%s combat=%s cleared=%s enemies=%d pend=%d wave=%d seal=%.2f pos=%s hp=%d kills=%d" % [clock, director.stage, director.entered, director.in_combat, director.cleared, enemies.size(), director.pending.size(), director.wave_i, room.seal_open, str(player.position.round()), player.hp, run.kills] + (" boss=%d%% state=%d" % [int(director.boss.hp_frac() * 100.0), director.boss.state] if director.boss_alive() else ""))
+		print("[t=%.0f] etapa=%d entered=%s combat=%s cleared=%s enemies=%d pend=%d wave=%d seal=%.2f pos=%s hp=%d kills=%d" % [clock, director.stage, director.entered, director.in_combat, director.cleared, enemies.size(), director.pending.size(), director.wave_i, room.seal_open, str(player.position.round()), player.hp, run.kills] + (" boss=%d%% state=%d" % [int(director.boss.hp_frac() * 100.0), director.boss.state] if director.boss_alive() else "") + (" [%s pos=%s hp=%.0f st=%d tg=%s]" % [enemies[0].kind_name, str(enemies[0].position.round()), enemies[0].hp, enemies[0].state, str(enemies[0].targetable())] if enemies.size() == 1 else ""))
 	if bot:
 		bot_t += rdt
 	_update_camera(rdt)
@@ -376,14 +381,19 @@ func _update_camera(dt: float) -> void:
 
 
 # ---------------------------------------------------------------- combate: servicios
+## Multiplicador de dano anti-empate: tras 45 s sin bajas el dano sube gradualmente (hasta x4).
+func stall_mult() -> float:
+	return 1.0 + clampf((stall_t - 45.0) / 25.0, 0.0, 3.0)
+
+
 func hit_enemy(en: Enemy, b: Bullets.B, ip: Vector2) -> void:
-	en.hurt(b.dmg, b.vel.normalized(), b.knock, ip, b.style, b.crit, b.cat)
+	en.hurt(b.dmg * stall_mult(), b.vel.normalized(), b.knock, ip, b.style, b.crit, b.cat)
 
 
 func hit_enemy_direct(en: Enemy, dmg: float, dir: Vector2, knock: float, p: Vector2, cat: String = "", crit: bool = false) -> void:
 	if not en.targetable():
 		return
-	en.hurt(dmg, dir, knock, p, 0, crit, cat)
+	en.hurt(dmg * stall_mult(), dir, knock, p, 0, crit, cat)
 
 
 ## Explosion con dano en area. team 0 = del jugador (dana enemigos y props); team 1 = enemiga (dana al jugador).
@@ -436,6 +446,7 @@ func on_enemy_dying(e: Enemy) -> void:
 
 
 func on_enemy_dead(e: Enemy) -> void:
+	stall_t = 0.0
 	run.note_kill(e.last_cat)
 	PerkEffects.on_enemy_killed(self, e)
 	if player.passive_is("warm_mag"):
