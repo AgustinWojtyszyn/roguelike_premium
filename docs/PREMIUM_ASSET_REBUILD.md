@@ -1,7 +1,7 @@
 # RPG Premium — visual rebuild gate
 
 ## Decision
-The legacy playable sprites imported from Rpg_new are **not acceptable as shipping player art**. They provide only idle/walk/hurt/death, lack a real weapon-holding/aiming pose, and require per-direction hand/weapon hacks. They are archived under `asset_bank/legacy_playables/` and must not return to runtime.
+The legacy playable sprites imported from Rpg_new are **not acceptable as shipping player art**. They provide only idle/walk/hurt/death, lack a real weapon-holding/aiming pose, and require per-direction hand/weapon hacks. They were removed from the current runtime tree; `asset_bank/legacy_playables/README.md` documents the decision and Git history retains the old blobs. They must not return to runtime.
 
 The old polygon/procedural playable-character renderer is also considered legacy. Runtime player presentation must become sprite-only (or pre-rendered sprite-only) with a temporary missing-art placeholder during migration.
 

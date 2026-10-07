@@ -18,22 +18,20 @@ func run(t) -> void:
 		t.check(scr != null and scr.can_instantiate(), "enemigo %s instanciable" % id)
 	for id in Catalog.bosses:
 		t.check(ResourceLoader.exists((Catalog.bosses[id] as BossData).script_path), "script de jefe %s existe" % id)
-	# personajes: look completo y sin colisiones de estilo
+	# personajes: contrato data-driven independiente del viejo renderer procedural
+	var visual_ids: Dictionary = {}
 	for id in Catalog.characters:
 		var c: CharacterData = Catalog.characters[id]
-		var lk := CharacterRig.resolve_look(c.look)
-		for key in ["suit", "plate", "helmet", "glow", "head", "torso", "back"]:
-			t.check(lk.has(key), "personaje %s tiene look.%s" % [id, key])
+		var vid := str(c.look.get("visual", ""))
+		t.check(vid != "", "personaje %s tiene look.visual" % id)
+		t.check(not visual_ids.has(vid), "personaje %s tiene visual_id unico (%s)" % [id, vid])
+		visual_ids[vid] = id
 		t.check(c.hp >= 2 and c.hp <= 10, "personaje %s: vida en rango 2-10" % id)
 		t.check(c.shield >= 0 and c.shield <= 10, "personaje %s: escudo 0-10" % id)
 		t.check(c.energy >= 0 and c.energy <= 250, "personaje %s: energia 0-250" % id)
-	# siluetas distintas: ningun par de personajes comparte la misma combinacion de estilos
-	var combos: Dictionary = {}
-	for id in Catalog.characters:
-		var lk := CharacterRig.resolve_look((Catalog.characters[id] as CharacterData).look)
-		var key := "%s|%s|%s" % [lk["head"], lk["torso"], lk["back"]]
-		t.check(not combos.has(key), "silueta unica: %s vs %s (%s)" % [id, combos.get(key, ""), key])
-		combos[key] = id
+		var pr := VisualProfiles.character(vid)
+		if not pr.is_empty():
+			t.check(bool(pr.get("weapon_compatible", false)), "personaje %s: perfil visual aprobado para armas" % id)
 	# armas: mecanicas realmente distintas (no clones con +2 de dano)
 	var sigs: Dictionary = {}
 	for id in Catalog.weapons:

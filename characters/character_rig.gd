@@ -7,7 +7,7 @@ extends Node2D
 signal stepped(strength: float)
 
 const SPEED_REF := 262.0
-const PLACEHOLDER_TEX := preload("res://assets/dev/player_placeholder.svg")
+const PLACEHOLDER_TEX := preload("res://assets/dev/player_placeholder.png")
 
 var lk: Dictionary = {}
 var weapon: WeaponData
