@@ -69,3 +69,10 @@ Recommended first targets:
 - VIDA: human walk cycles as bases for zombies/mutants/monsters; hospitals/buildings/interiors/city props for story-mode spaces; vehicles and environment props for future scenarios.
 
 The purpose of this bank is an **asset workbench**, not a gameplay dump.
+
+
+## Estado de la migración (2da fase)
+
+La capa de arte ya esta cableada al juego: ver `docs/ASSET_AUDIT.md` (auditoria, mapeos y cifras) y `tools/migrate_assets.py`
+(reproduce todo desde los clones de Rpg_new/VIDA). Lo util que aun no tiene uso en una run vive en `asset_bank/reserve/`
+(ignorado por Godot) y se promueve a `assets/migrated/` anadiendolo a `visual/visual_profiles.gd` y volviendo a correr la herramienta.

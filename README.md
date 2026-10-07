@@ -1,7 +1,9 @@
 # Roguelike Premium
 
-Roguelite de acción top-down para **PC + Android** (Godot 4.7, horizontal). Todo el arte, audio, personajes, enemigos, armas y
-mapas son originales y se generan por código (vectores / síntesis): no hay assets de terceros.
+Roguelite de acción top-down para **PC + Android** (Godot 4.7, horizontal). El audio y el arte base (personajes, enemigos, armas,
+salas) se generan por código (vectores / síntesis). Encima hay una **capa de arte importado** (pixel art de los proyectos propios
+Rpg_new y VIDA, ver `docs/ASSET_AUDIT.md`) que mejora la presentación sin tocar la lógica; cada pieza cae al dibujo procedural si falla
+(`--no-sprites` lo fuerza para comparar).
 
 - **PC:** WASD + ratón (clic dispara), `Espacio`/clic derecho = habilidad, `Q`/`E`/rueda/`Tab` = cambiar arma, `1`/`2` = elegir arma, `Esc`/`P` = pausa.
 - **Android:** stick izquierdo mueve, mitad derecha apunta y dispara, botón grande de habilidad, botón de cambio de arma, pausa.
@@ -28,6 +30,9 @@ dungeons/    DungeonGenerator (sala curada + encuentro + semilla)
 game/        Game (raíz de la run), RunDirector (etapas/oleadas), Player, Room (+ temas/), Bullets (pool), Fx, Hud, Pickups, Chest...
 ui/          Home, Colección, Armería, Pase, Misiones, Tienda, Novedades, Pausa, Perk, Resultado, UiKit/GButton/ScrollPane
 audio/       SfxBank (síntesis) + AudioMgr (buses Music/SFX/UI, pools, hilo de síntesis)
+visual/      AssetCatalog (caché de texturas/AnimSets) · VisualProfiles (qué sprite usa cada personaje/enemigo/jefe/prop, escala, anclas, fps)
+             SpriteActor (un Sprite2D animado por dirección) · RoomDecor (decoración contextual por tema)
+assets/migrated/  arte importado y usado (hojas de animación + estáticos) · data/visual/asset_manifest.gd (generado)
 tests/       run_tests.gd + test_*.gd (headless)  ·  test_android_cold_start.py (regresión Android, se conserva)
 tools/       android_cold_start.py (se conserva) · gallery.tscn (revisión visual de personajes y armas)
 ```
