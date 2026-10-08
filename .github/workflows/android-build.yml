@@ -110,6 +110,25 @@ jobs:
           ls -lh build/roguelike_premium.apk
           sha256sum build/roguelike_premium.apk | tee build/roguelike_premium.apk.sha256
 
+      - name: Align and re-sign distributable APK
+        shell: bash
+        run: |
+          set -euxo pipefail
+          TOOLS="$ANDROID_SDK_ROOT/build-tools/35.0.0"
+          mv build/roguelike_premium.apk build/godot-export.apk
+          "$TOOLS/zipalign" -P 16 -f 4 build/godot-export.apk build/aligned-unsigned.apk
+          "$TOOLS/apksigner" sign \\
+            --ks "$HOME/.android/debug.keystore" \\
+            --ks-pass pass:android \\
+            --ks-key-alias androiddebugkey \\
+            --key-pass pass:android \\
+            --v1-signing-enabled true \\
+            --v2-signing-enabled true \\
+            --v3-signing-enabled true \\
+            --out build/roguelike_premium.apk build/aligned-unsigned.apk
+          rm build/godot-export.apk build/aligned-unsigned.apk
+          sha256sum build/roguelike_premium.apk | tee build/roguelike_premium.apk.sha256
+
       - name: Verify Android package and signing
         shell: bash
         run: |
@@ -119,7 +138,8 @@ jobs:
           "$BUILD_TOOLS/apksigner" verify --verbose --print-certs "$APK" | tee build/apk-signature.txt
           "$BUILD_TOOLS/aapt" dump badging "$APK" | tee build/apk-metadata.txt
           grep -F "package: name='com.agustin.rpgpremium'" build/apk-metadata.txt
-          grep -F "launchable-activity:" build/apk-metadata.txt
+          "$BUILD_TOOLS/aapt" dump xmltree "$APK" AndroidManifest.xml | tee build/apk-manifest.txt
+          grep -F "com.godot.game.GodotAppLauncher" build/apk-manifest.txt
           grep -E "native-code:.*'arm64-v8a'" build/apk-metadata.txt
           "$BUILD_TOOLS/zipalign" -c -P 16 4 "$APK"
           python3 - <<'PY'
@@ -141,6 +161,7 @@ jobs:
             build/roguelike_premium.apk.sha256
             build/apk-signature.txt
             build/apk-metadata.txt
+            build/apk-manifest.txt
           if-no-files-found: error
           retention-days: 7
 
