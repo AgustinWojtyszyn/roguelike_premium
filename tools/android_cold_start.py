@@ -9,7 +9,7 @@ import time
 import uuid
 from pathlib import Path
 
-PACKAGE = 'com.agustin.roguelikepremium'
+PACKAGE = 'com.agustin.rpgpremium'
 FOCUS = re.compile(r'(?:topResumedActivity|mResumedActivity|ResumedActivity):?\s*=?.*')
 KEY_LOGS = re.compile(r'AndroidRuntime|ActivityManager|ActivityTaskManager|Godot|godot|libc|DEBUG|DEBUGGERD|crash_dump|vulkan|Vulkan|OpenGL|SurfaceFlinger|wm_|am_proc_|StartupAudit')
 
