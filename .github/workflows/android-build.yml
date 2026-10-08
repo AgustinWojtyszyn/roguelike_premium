@@ -117,15 +117,7 @@ jobs:
           TOOLS="$ANDROID_SDK_ROOT/build-tools/35.0.0"
           mv build/roguelike_premium.apk build/godot-export.apk
           "$TOOLS/zipalign" -P 16 -f 4 build/godot-export.apk build/aligned-unsigned.apk
-          "$TOOLS/apksigner" sign \\
-            --ks "$HOME/.android/debug.keystore" \\
-            --ks-pass pass:android \\
-            --ks-key-alias androiddebugkey \\
-            --key-pass pass:android \\
-            --v1-signing-enabled true \\
-            --v2-signing-enabled true \\
-            --v3-signing-enabled true \\
-            --out build/roguelike_premium.apk build/aligned-unsigned.apk
+          "$TOOLS/apksigner" sign --ks "$HOME/.android/debug.keystore" --ks-pass pass:android --ks-key-alias androiddebugkey --key-pass pass:android --v1-signing-enabled true --v2-signing-enabled true --v3-signing-enabled true --out build/roguelike_premium.apk build/aligned-unsigned.apk
           rm build/godot-export.apk build/aligned-unsigned.apk
           sha256sum build/roguelike_premium.apk | tee build/roguelike_premium.apk.sha256
 
