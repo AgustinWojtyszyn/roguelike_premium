@@ -161,7 +161,7 @@ jobs:
           disable-animations: true
           emulator-options: -no-window -gpu host -no-snapshot -noaudio -no-boot-anim
           script: |
-            set -euxo pipefail
+            set -eu
             adb uninstall com.agustin.rpgpremium || true
             adb install --no-streaming build/roguelike_premium.apk
             adb shell pm path com.agustin.rpgpremium
