@@ -110,6 +110,17 @@ jobs:
           ls -lh build/roguelike_premium.apk
           sha256sum build/roguelike_premium.apk | tee build/roguelike_premium.apk.sha256
 
+      - name: Upload APK
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: roguelike-premium-android
+          path: |
+            build/roguelike_premium.apk
+            build/roguelike_premium.apk.sha256
+          if-no-files-found: error
+          retention-days: 7
+
       - name: Enable KVM
         shell: bash
         run: |
@@ -135,14 +146,3 @@ jobs:
           path: build/android-cold-start/
           if-no-files-found: warn
           retention-days: 14
-
-      - name: Upload APK
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: roguelike-premium-android
-          path: |
-            build/roguelike_premium.apk
-            build/roguelike_premium.apk.sha256
-          if-no-files-found: error
-          retention-days: 7
