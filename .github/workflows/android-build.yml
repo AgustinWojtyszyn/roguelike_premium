@@ -110,14 +110,37 @@ jobs:
           ls -lh build/roguelike_premium.apk
           sha256sum build/roguelike_premium.apk | tee build/roguelike_premium.apk.sha256
 
+      - name: Verify Android package and signing
+        shell: bash
+        run: |
+          set -euxo pipefail
+          APK="build/roguelike_premium.apk"
+          BUILD_TOOLS="$ANDROID_SDK_ROOT/build-tools/35.0.0"
+          "$BUILD_TOOLS/apksigner" verify --verbose --print-certs "$APK" | tee build/apk-signature.txt
+          "$BUILD_TOOLS/aapt" dump badging "$APK" | tee build/apk-metadata.txt
+          grep -F "package: name='com.agustin.rpgpremium'" build/apk-metadata.txt
+          grep -F "launchable-activity:" build/apk-metadata.txt
+          grep -E "native-code:.*'arm64-v8a'" build/apk-metadata.txt
+          "$BUILD_TOOLS/zipalign" -c -P 16 4 "$APK"
+          python3 - <<'PY'
+          import pathlib, zipfile
+          apk = pathlib.Path("build/roguelike_premium.apk")
+          with zipfile.ZipFile(apk) as z:
+              assert z.testzip() is None, "Damaged APK ZIP entry"
+              assert "lib/arm64-v8a/libgodot_android.so" in z.namelist()
+              assert "AndroidManifest.xml" in z.namelist()
+          print("APK archive, ARM64 native engine and manifest OK")
+          PY
+
       - name: Upload APK
-        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: roguelike-premium-android
           path: |
             build/roguelike_premium.apk
             build/roguelike_premium.apk.sha256
+            build/apk-signature.txt
+            build/apk-metadata.txt
           if-no-files-found: error
           retention-days: 7
 
@@ -136,7 +159,13 @@ jobs:
           target: google_apis
           profile: pixel_2
           disable-animations: true
-          script: python3 tools/android_cold_start.py --apk build/roguelike_premium.apk --runs 5 --seconds 20 --out build/android-cold-start
+          emulator-options: -no-window -gpu host -no-snapshot -noaudio -no-boot-anim
+          script: |
+            set -euxo pipefail
+            adb uninstall com.agustin.rpgpremium || true
+            adb install --no-streaming build/roguelike_premium.apk
+            adb shell pm path com.agustin.rpgpremium
+            python3 tools/android_cold_start.py --apk build/roguelike_premium.apk --runs 5 --seconds 20 --out build/android-cold-start
 
       - name: Upload complete startup evidence
         if: always()
