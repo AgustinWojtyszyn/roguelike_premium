@@ -7,8 +7,8 @@ extends RefCounted
 ## Ajuste global del tamano del arte de armas importado (1.0 = la punta cae justo en `muzzle`).
 const WEAPON_ART_SCALE := 1.0
 
-## HomeLife (NPC y props de VIDA) queda DESACTIVADO en el HOME: el menu debe ser limpio y centrado en el heroe.
-## El codigo y los assets se conservan; poner true para volver a mostrarlo.
+## Legacy HomeLife remains disabled. The title screen now uses a single pre-rendered environment
+## and does not instantiate HomeLife or a playable CharacterRig.
 const HOME_LIFE_ENABLED := false
 
 const CHAR_WEAPON_SCALE := 0.66

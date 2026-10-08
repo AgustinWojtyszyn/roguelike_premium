@@ -28,3 +28,13 @@ Red dots on the `weapons` page are the real muzzle (`muzzle_world()`); they must
 ## Performance / memory (measured locally, WSLg GL; Android not measured)
 - Same scene (ch3, bot, 40 s): draw calls 395 -> 366, primitives 8689 -> 8170, prewarm 486 -> 298 ms. West mirroring removed 3/8 of the hero sheets.
 - Raw RGBA8: ~11-13 MB per hero, ~11 MB per humanoid enemy, ~5-7 MB per creature, ~5 MB dungeon+weapons. Union opaque bbox is only 56-73% of the cell: **trimming empty cell area (`premium_pipeline.py pack_asset`, per set `opaque union bbox`) saves 25-45%**, and enabling VRAM compression (ASTC/ETC2) on `assets/premium/**` import presets saves ~4x more. Neither is done yet on purpose (affects all 11 heroes; do it once, in the pipeline).
+
+## Presentation revision — 2026-10-07
+
+The **home no longer displays a combat sprite**. A single offline fortress render provides architectural depth, warm candlelight and a gold focal point. Ivory typography, restrained brass controls and a compact loadout card replace the pedestal, neon rings and duplicate mission/pass/gift panels. All six navigation routes, character/chapter cycling, settings and the mode selector remain accessible. The character card opens the collection.
+
+Vesper is the single new playable benchmark: taller source proportions, smaller head/hands, charcoal hair, slate clothing and burgundy cape. Rig/IK/socket projection and hand masks all see the same transformed source; no hand offsets were introduced. The other ten heroes are not being converted. Sable's existing body stays as the melee acceptance reference. Original weapon models now share a 35° projection and a steel/leather palette.
+
+`patio_armas` retains its cover and collision layout. Larger stone tiles, a burgundy east/west runner, octagonal stone inlay, perimeter trim, soft reflected torch pools and baked directional shadows make the combat center distinct. Destructible props are excluded from baked shadows. All added floor detail is baked by RoomBake; there are no added live lights or gameplay obstacles.
+
+See [the visual review](PREMIUM_PRESENTATION_REVIEW.md) for before/after screenshots, reproduction commands, validation and limits. This revision supersedes the earlier Vesper palette/proportions above; it does not imply that every other hero has been restyled.

@@ -35,3 +35,9 @@ Every derivative has a `manifest.json` next to it (source pack, pinned revision,
 | `assets/premium/dungeon/castle/` | environment | 45 pieces of `Assets/gltf/*.glb` (walls, floor tiles, props, banners, torch) | KayKit Dungeon Remastered 1.0 @ `b0ca9bd` | 3D->2D ortho render (floor top-down, rest 3/4), alpha-cropped with origin anchor |
 
 All Premium derivatives are additionally restyled (toon material, per-mesh palette remap, outline) by `tools/premium_render/style.gd` / `tools/premium_look.py`: see `docs/PREMIUM_ART_DIRECTION.md`. Original models carry the license `Original work (RPG Premium)`.
+
+## Title-screen composition — 2026-10-07
+
+`assets/premium/presentation/fortress.png` is an offline composition of **KayKit Dungeon Remastered 1.0** (same pinned `b0ca9bd` revision, CC0): `pillar`, `banner_patternA_red`, `candle_triple`. The masonry arches, tiled floor, carpet, composition and lighting are original RPG Premium work. Rebuild with `tools/premium_render/render_cover.gd`; the adjacent manifest records source files and provenance. Home loads only the resulting PNG, never the source scene.
+
+The Vesper benchmark now applies source-space proportions `[0.92, 1.26, 0.92]`, head scale `0.65`, hand scale `1.08`, a burgundy cape and slate/leather palette. These are job inputs; grips and hand patches are regenerated from the transformed skeleton. Original Premium weapons were re-rendered at the same 35° camera pitch with coordinated steel/leather materials. Sable and enemy body derivatives are unchanged in this pass.

@@ -7,7 +7,7 @@
  "cell": 256,
  "ss": 3,
  "ppu": 92.0,
- "pitch": 28.0,
+ "pitch": 35.0,
  "feet_frac": 0.5,
  "ppu_game": 34.6,
  "look_kind": "weapon",
@@ -39,10 +39,13 @@
   }
  ],
  "look": {
-  "ground_dark": 0.0,
-  "sat": 0.95,
-  "val": 0.78,
-  "amb_i": 0.5,
-  "rim_i": 0.5
+  "rim_i": 0.3,
+  "amb_i": 0.19,
+  "sat": 0.66,
+  "val": 0.92,
+  "shade_col": "#202d40",
+  "rim_col": "#71acae",
+  "sun_col": "#ffe4b3",
+  "ground_dark": 0.28
  }
 }

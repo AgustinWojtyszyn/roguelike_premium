@@ -104,6 +104,9 @@ func _setup() -> void:
 	vp.render_target_update_mode = SubViewport.UPDATE_ALWAYS
 	get_root().add_child(vp)
 	vp.add_child(root3d)
+	# Source-space proportions also transform the rig sockets and IK, before projection.
+	var proportions: Array = job.get("source_scale", [1.0, 1.0, 1.0])
+	root3d.scale *= Vector3(float(proportions[0]), float(proportions[1]), float(proportions[2]))
 	skel = _find_skel(root3d)
 	for i in skel.get_bone_count():
 		bone_names.append(skel.get_bone_name(i))

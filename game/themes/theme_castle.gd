@@ -129,6 +129,8 @@ func _floor_premium(ci: CanvasItem, R: Rect2, seed_v: int) -> bool:
 	var rng := RandomNumberGenerator.new()
 	rng.seed = seed_v
 	var sc: float = float(base["scale"])
+	if _room != null and _room.def.decor.get("composed", false):
+		sc *= 1.4
 	var tw: float = float((base["size"] as Array)[0]) * sc
 	ci.draw_rect(R, Color("14172a"))
 	var y := R.position.y
@@ -144,12 +146,17 @@ func _floor_premium(ci: CanvasItem, R: Rect2, seed_v: int) -> bool:
 			var h := minf(tw, R.end.y - y)
 			var tex := AssetCatalog.tex(PRE + id)
 			var rot := int(rng.randi() % 4) if id == "floor_tile_small" else 0
+			var tint := FLOOR_TINT
+			if _room != null and _room.def.decor.get("composed", false):
+				var center := _room.floor_rect.get_center()
+				var distance := Vector2(x + tw * 0.5, y + tw * 0.5).distance_to(center)
+				tint = Color("b0b5b2").lerp(Color("566779"), clampf(distance / 590.0, 0.0, 1.0))
 			var src := Rect2(0, 0, w / sc, h / sc)
 			if rot == 0 or w < tw or h < tw:
-				ci.draw_texture_rect_region(tex, Rect2(x, y, w, h), src, FLOOR_TINT)
+				ci.draw_texture_rect_region(tex, Rect2(x, y, w, h), src, tint)
 			else:
 				ci.draw_set_transform(Vector2(x + tw * 0.5, y + tw * 0.5), float(rot) * PI * 0.5, Vector2.ONE)
-				ci.draw_texture_rect(tex, Rect2(-tw * 0.5, -tw * 0.5, tw, tw), false, FLOOR_TINT)
+				ci.draw_texture_rect(tex, Rect2(-tw * 0.5, -tw * 0.5, tw, tw), false, tint)
 				ci.draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
 			x += tw
 		y += tw
@@ -198,7 +205,9 @@ func _floor_extras(ci: CanvasItem, room: Room) -> void:
 	var F := room.floor_rect
 	var dec: Dictionary = room.def.decor
 	var C: Vector2 = dec.get("emblem_pos", F.get_center())
-	if dec.get("emblem", "") == "sigil":
+	if dec.get("composed", false):
+		_benchmark_floor(ci, room)
+	if dec.get("emblem", "") == "sigil" and not dec.get("composed", false):
 		ci.draw_arc(C, 150.0, 0, TAU, 64, Color(0, 0, 0, 0.55), 8.0, true)
 		ci.draw_arc(C, 150.0, 0, TAU, 64, Color(CRIM, 0.45), 2.0, true)
 		ci.draw_arc(C, 118.0, 0, TAU, 56, Color(CRIM, 0.3), 1.6, true)
@@ -233,6 +242,51 @@ func _floor_extras(ci: CanvasItem, room: Room) -> void:
 			ci.draw_rect(Rect2(F.position.x + o, F.position.y, 4.0, F.size.y), Color(0, 0, 0, a * 0.8))
 		if room.exit_side != "E" and room.entry_side != "E":
 			ci.draw_rect(Rect2(F.end.x - o - 4.0, F.position.y, 4.0, F.size.y), Color(0, 0, 0, a * 0.8))
+
+
+## Authored stonework, cloth and directional contact shadows. All of this is in RoomBake.
+func _benchmark_floor(ci: CanvasItem, room: Room) -> void:
+	var f := room.floor_rect
+	var c := f.get_center()
+	var gold := Color("b49b70", 0.48)
+	# A quiet walking lane, visually connecting the east/west combat entrances.
+	var runner := Rect2(f.position.x, c.y - 49, f.size.x, 98)
+	ci.draw_rect(runner, Color("311d2b", 0.84))
+	for y in [c.y - 43, c.y + 43]:
+		ci.draw_line(Vector2(f.position.x,y),Vector2(f.end.x,y),gold,1.5)
+		ci.draw_line(Vector2(f.position.x,y + 4),Vector2(f.end.x,y + 4),Color("0b1019",0.7),1)
+	# Inlaid octagonal dais; no change to walkability or collision.
+	for spec in [[178.0, Color("090f18",0.9)], [173.0, Color("877758",0.65)], [170.0,Color("303e49")], [145.0,Color("54616a",0.7)], [142.0,Color("26333f")]]:
+		var points := PackedVector2Array()
+		for i in 8:
+			points.append(c + Vector2.from_angle(TAU * float(i) / 8.0 + PI / 8.0) * float(spec[0]))
+		ci.draw_colored_polygon(points,spec[1])
+	for i in 8:
+		var dir := Vector2.from_angle(TAU * float(i) / 8.0 + PI / 8.0)
+		ci.draw_line(c + dir * 146,c + dir * 169,Color("121e29"),2)
+		ci.draw_circle(c + dir * 158,2.0,gold)
+	# Restrained heraldic compass, kept below actors and projectiles.
+	for i in 4:
+		var a := TAU * float(i) / 4.0
+		var dir := Vector2.from_angle(a)
+		var side := dir.orthogonal()
+		ci.draw_colored_polygon(PackedVector2Array([c + dir * 100,c + side * 15,c - dir * 12]),Color("7f7762",0.55))
+		ci.draw_colored_polygon(PackedVector2Array([c + dir * 100,c - side * 15,c - dir * 12]),Color("111d2a",0.8))
+	ci.draw_arc(c,108,0,TAU,64,Color(gold,0.32),1,true)
+	# Perimeter border and dark corners frame the playable center.
+	ci.draw_rect(f.grow(-18),Color("080f19",0.4),false,16)
+	ci.draw_rect(f.grow(-29),Color(gold,0.24),false,1)
+	for prop in room.props:
+		# Destructible cover keeps its own live shadow; never bake a ghost after destruction.
+		if prop.kind not in ["column", "statue", "weapon_rack", "table"]:
+			continue
+		var foot: Rect2 = prop.foot
+		var at := foot.get_center()
+		var tall: bool = prop.kind in ["column","statue","weapon_rack"]
+		var reach := Vector2(42,65) if tall else Vector2(20,30)
+		var half := foot.size.x * 0.42
+		var shape := PackedVector2Array([at + Vector2(-half,-3),at + Vector2(half,-3),at + reach + Vector2(half * 0.65,4),at + reach - Vector2(half * 0.65,-4)])
+		ci.draw_polygon(shape,PackedColorArray([Color(0.01,0.02,0.04,0.42),Color(0.01,0.02,0.04,0.42),Color(0.01,0.02,0.04,0),Color(0.01,0.02,0.04,0)]))
 
 
 ## Franja de muro premium: tramos de la pieza `wall` (variantes aleatorias deterministas) entre x0 y x1 con su base en `base_y`.
@@ -432,9 +486,9 @@ func paint_lights(ci: CanvasItem, room: Room) -> void:
 		var v: Vector2 = tp
 		if room.in_exit_gap(v.x, "N"):
 			continue
-		var pts := PackedVector2Array([Vector2(v.x - 20, F.position.y + 2), Vector2(v.x + 20, F.position.y + 2), Vector2(v.x + 160, F.position.y + 220), Vector2(v.x - 160, F.position.y + 220)])
-		var cols := PackedColorArray([Color(1.0, 0.6, 0.25, 0.13), Color(1.0, 0.6, 0.25, 0.13), Color(1.0, 0.6, 0.25, 0.0), Color(1.0, 0.6, 0.25, 0.0)])
-		ci.draw_polygon(pts, cols)
+		# Soft reflected firelight baked once, instead of triangular spotlight cones.
+		Gfx.draw_glow(ci, Vector2(v.x, F.position.y + 24), 155, Color(1.0, 0.56, 0.24, 0.19))
+		Gfx.draw_glow(ci, Vector2(v.x, F.position.y - 30), 68, Color(1.0, 0.7, 0.38, 0.18))
 	for p in room.props:
 		var c := p.foot.get_center()
 		match p.kind:
@@ -452,7 +506,7 @@ func paint_deco(ci: CanvasItem, room: Room, t: float) -> void:
 			Gfx.draw_glow(ci, L["p"], float(L["r"]) * (0.95 + 0.05 * fl), Color(L["col"], float(L["a"]) * fl))
 	var dec: Dictionary = room.def.decor
 	var C: Vector2 = dec.get("emblem_pos", F.get_center())
-	if dec.get("emblem", "") == "sigil":
+	if dec.get("emblem", "") == "sigil" and not dec.get("composed", false):
 		var pulse := 0.5 + 0.5 * sin(t * 1.5)
 		ci.draw_arc(C, 150.0, t * 0.2, t * 0.2 + TAU * 0.7, 48, Color(CRIM, 0.18 + 0.2 * pulse), 3.0, true)
 		Gfx.draw_glow(ci, C, 120.0, Color(CRIM, 0.05 + 0.05 * pulse))

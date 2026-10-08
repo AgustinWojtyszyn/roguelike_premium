@@ -6,7 +6,7 @@
  "source_revision": "original",
  "license": "Original work (RPG Premium)",
  "transformation": "Godot offscreen ortho render (tools/premium_render/render_static.gd) + recorte por alfa; ancla = origen del modelo",
- "job_sha256": "bba2a9619fd2cdf2",
+ "job_sha256": "bb4a47ce5306508e",
  "runtime_path": "res://assets/premium/weapons/",
  "ppu": 92.0,
  "ppu_game": 34.6,
@@ -15,20 +15,20 @@
    "path": "res://assets/premium/weapons/pulsar.png",
    "size": [
     84,
-    41
+    39
    ],
    "bbox": [
     0,
     0,
     84,
-    41
+    39
    ],
    "anchor": [
     29.67,
-    22.33
+    21.33
    ],
    "scale": 0.3760869565217391,
-   "pitch": 28.0,
+   "pitch": 35.0,
    "source_file": "original:pulsar",
    "points": {
     "grip": [
@@ -37,11 +37,11 @@
     ],
     "grip2": [
      27.6,
-     1.42
+     1.32
     ],
     "tip": [
      51.06,
-     -8.24
+     -7.65
     ]
    }
   },
@@ -49,20 +49,20 @@
    "path": "res://assets/premium/weapons/chispa.png",
    "size": [
     44,
-    37
+    35
    ],
    "bbox": [
     0,
     0,
     44,
-    37
+    35
    ],
    "anchor": [
     11.67,
-    21.0
+    20.0
    ],
    "scale": 0.3760869565217391,
-   "pitch": 28.0,
+   "pitch": 35.0,
    "source_file": "original:chispa",
    "points": {
     "grip": [
@@ -71,7 +71,7 @@
     ],
     "tip": [
      28.98,
-     -7.31
+     -6.78
     ]
    }
   },
@@ -79,20 +79,20 @@
    "path": "res://assets/premium/weapons/trinca.png",
    "size": [
     114,
-    41
+    39
    ],
    "bbox": [
     0,
     0,
     114,
-    41
+    39
    ],
    "anchor": [
     39.0,
-    22.33
+    21.33
    ],
    "scale": 0.3760869565217391,
-   "pitch": 28.0,
+   "pitch": 35.0,
    "source_file": "original:trinca",
    "points": {
     "grip": [
@@ -101,11 +101,11 @@
     ],
     "grip2": [
      27.6,
-     1.42
+     1.32
     ],
     "tip": [
      71.3,
-     -8.24
+     -7.65
     ]
    }
   },
@@ -113,20 +113,20 @@
    "path": "res://assets/premium/weapons/maul12.png",
    "size": [
     100,
-    37
+    36
    ],
    "bbox": [
     0,
     0,
     100,
-    37
+    36
    ],
    "anchor": [
     36.33,
-    20.67
+    20.0
    ],
    "scale": 0.3760869565217391,
-   "pitch": 28.0,
+   "pitch": 35.0,
    "source_file": "original:maul12",
    "points": {
     "grip": [
@@ -135,11 +135,11 @@
     ],
     "grip2": [
      27.6,
-     1.83
+     1.7
     ],
     "tip": [
      60.26,
-     -8.33
+     -7.72
     ]
    }
   },
@@ -160,7 +160,7 @@
     20.0
    ],
    "scale": 0.3760869565217391,
-   "pitch": 28.0,
+   "pitch": 35.0,
    "source_file": "original:filo_z",
    "points": {
     "grip": [

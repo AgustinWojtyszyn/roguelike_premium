@@ -5,10 +5,10 @@ extends RefCounted
 ## Y arriba, la cara que mira a camara es +Z. Los puntos `tip` (boca/punta) y `grip2` (mano libre) salen de la geometria,
 ## no de offsets: se proyectan con la camara del render y acaban en el manifest.
 
-const INK := Color("2b3556")       # metal oscuro
-const PLATE := Color("46557c")     # placas
-const EDGE := Color("7586ad")      # cantos claros
-const GRIP := Color("3a3150")      # empuñadura
+const INK := Color("202d36")       # metal oscuro
+const PLATE := Color("465b64")     # placas
+const EDGE := Color("a2aaab")      # cantos claros
+const GRIP := Color("40332c")      # empuñadura
 
 
 static func _mat(c: Color, glow: float = 0.0) -> StandardMaterial3D:
