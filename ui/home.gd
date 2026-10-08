@@ -263,8 +263,7 @@ func _draw() -> void:
 	draw_rect(Rect2(866,460,350,122),Color("0a111b",0.86))
 	draw_line(Vector2(866,460),Vector2(1216,460),Color(gold,0.6),1)
 	UiKit.text(self,Vector2(888,488),"TU COMBATIENTE",11,gold)
-	UiKit.text(self,Vector2(932,533),c.display_name,24,ivory,1,220)
-	UiKit.text(self,Vector2(932,557),Catalog.weapon(c.start_weapon).display_name,12,Color("9fadb9"),1,220)
+	UiKit.text(self,Vector2(932,545),Catalog.weapon(c.start_weapon).display_name,18,ivory,1,220)
 	_draw_profile(Vector2(1280,720))
 	draw_set_transform(Vector2.ZERO)
 	if _launching:

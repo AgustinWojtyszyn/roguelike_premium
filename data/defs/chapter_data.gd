@@ -1,6 +1,6 @@
 class_name ChapterData
 extends Resource
-## Capitulo / mazmorra: tema, 5 etapas, pools de salas y enemigos, jefe y tablas de loot.
+## Capitulo / mazmorra: tema, 8 etapas, pools de salas y enemigos, jefe y tablas de loot.
 
 @export var id: String = ""
 @export var display_name: String = ""
@@ -12,8 +12,8 @@ extends Resource
 @export var accent: Color = Color("27e0cc")
 @export var sky: Color = Color("04060c")
 ## Plan de etapas: tipos "combat" "elite" "cache" "boss". El generador rellena salas/encuentros.
-@export var stage_plan: Array[String] = ["combat", "combat", "cache", "elite", "boss"]
-@export var perk_after: Array[int] = [1, 3]     # indices de etapa (0-based) tras los que se ofrece un perk
+@export var stage_plan: Array[String] = ["combat", "combat", "combat", "cache", "elite", "combat", "elite", "boss"]
+@export var perk_after: Array[int] = [1, 4, 6]     # indices de etapa (0-based) tras los que se ofrece un perk
 @export var room_pool: Array[String] = []
 @export var cache_rooms: Array[String] = []
 @export var boss_room: String = ""

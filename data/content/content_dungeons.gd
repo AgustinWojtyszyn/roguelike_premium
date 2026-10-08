@@ -53,7 +53,11 @@ static func _chapter(id: String, nm: String, sub: String, theme: String, order: 
 	c.order = order
 	c.music = music
 	c.accent = accent
-	c.room_pool = Array(rooms, TYPE_STRING, "", null)
+	var all_rooms: Array = rooms.duplicate()
+	for rid in rooms:
+		if rid != "patio_armas":
+			all_rooms.append(rid + MIRROR_SUFFIX)
+	c.room_pool = Array(all_rooms, TYPE_STRING, "", null)
 	c.cache_rooms = Array(caches, TYPE_STRING, "", null)
 	c.boss_room = boss_room
 	c.enemy_pool = Array(pool, TYPE_STRING, "", null)
@@ -63,6 +67,69 @@ static func _chapter(id: String, nm: String, sub: String, theme: String, order: 
 	c.difficulty = diff
 	c.unlock_requires = req
 	return c
+
+
+const MIRROR_SUFFIX := "_m"
+
+
+## Las salas compuestas a mano (arte horneado en posiciones fijas) no se espejan; el resto gana un gemelo reverso.
+static func mirrorable(r: RoomDef) -> bool:
+	return r.kind == "combat" and not r.decor.get("composed", false)
+
+
+static func _flip_val(v: Variant) -> Variant:
+	if v is Vector2:
+		return Vector2(-v.x, v.y)
+	if v is Rect2:
+		return Rect2(-v.end.x, v.position.y, v.size.x, v.size.y)
+	if v is PackedVector2Array:
+		var out := PackedVector2Array()
+		for p in v:
+			out.append(Vector2(-p.x, p.y))
+		return out
+	if v is Array:
+		var a: Array = []
+		for e in v:
+			a.append(_flip_val(e))
+		return a
+	if v is Dictionary:
+		var d := {}
+		for key in v:
+			d[key] = _flip_val(v[key])
+		return d
+	return v
+
+
+static func _flip_side(s: String) -> String:
+	return "E" if s == "W" else ("W" if s == "E" else s)
+
+
+## Gemelo reverso (espejo horizontal): misma sala con bloques, props, apariciones, decorado y puertas invertidos en X.
+static func _mirror(r: RoomDef) -> RoomDef:
+	var m := RoomDef.new()
+	m.id = r.id + MIRROR_SUFFIX
+	m.display_name = r.display_name + " · Reverso"
+	m.theme = r.theme
+	m.size = r.size
+	m.kind = r.kind
+	m.threat_min = r.threat_min
+	m.threat_max = r.threat_max
+	for b in r.blocks:
+		var nb: Array = (b as Array).duplicate()
+		nb[0] = -float(nb[0]) - float(nb[2])
+		m.blocks.append(nb)
+	for p in r.props:
+		var np: Array = (p as Array).duplicate()
+		np[1] = -float(np[1]) - float(np[3])
+		m.props.append(np)
+	for v in r.spawns:
+		m.spawns.append(Vector2(-v.x, v.y))
+	for s in r.entry_sides:
+		m.entry_sides.append(_flip_side(s))
+	for s in r.exit_sides:
+		m.exit_sides.append(_flip_side(s))
+	m.decor = _flip_val(r.decor)
+	return m
 
 
 ## Las salas de combate se compactan: menos caminata y mas presion por metro cuadrado. Se escalan suelo, posiciones de props/bloques,
@@ -389,9 +456,13 @@ static func rooms() -> Array[RoomDef]:
 	L.append(_arena("arena_aztec", "Arena del Sol", "aztec", ["statue", 56, 36], ["column", 40, 34], ["urn", 28, 22]))
 	L.append(_arena("arena_castle", "Arena del Foso", "castle", ["weapon_rack", 90, 26], ["column", 40, 34], ["wood_barrel", 28, 22]))
 	L.append(_arena("arena_anomaly", "Arena de la Grieta", "anomaly", ["crystal", 60, 36], ["orb_pillar", 40, 34], ["rift_stone", 50, 34]))
+	var variants: Array[RoomDef] = []
 	for r in L:
 		if r.kind == "combat":
 			_compact(r, COMPACT_K)
+			if mirrorable(r):
+				variants.append(_mirror(r))
+	L.append_array(variants)
 	return L
 
 
@@ -442,6 +513,19 @@ static func encounters() -> Array[EncounterDef]:
 	L.append(_enc("c4_t2_b", ["ch4"], 2, [[["fulgor", 0.0], ["fulgor", 0.8], ["acechador", 1.6]], [["acechador", 0.0], ["acechador", 1.0], ["ojo", 1.8]], [["fulgor", 0.0], ["fulgor", 0.8], ["fulgor", 1.6], ["acechador", 2.2]]]))
 	L.append(_enc("c4_t3_a", ["ch4"], 3, [[["acechador", 0.0], ["acechador", 1.0], ["fulgor", 1.8], ["fulgor", 2.4]], [["ojo", 0.0], ["acechador", 1.4], ["acechador", 2.2]], [["ojo", 0.0], ["fulgor", 1.0], ["fulgor", 1.6], ["acechador", 2.4]]], ["elite"]))
 	L.append(_enc("c4_t4_a", ["ch4"], 4, [[["acechador", 0.0], ["acechador", 0.8], ["fulgor", 1.4], ["fulgor", 2.0]], [["ojo", 0.0], ["ojo", 1.5], ["acechador", 2.4]], [["acechador", 0.0], ["acechador", 0.6], ["acechador", 1.2], ["fulgor", 1.8], ["fulgor", 2.4]]], ["finale"]))
+	# ---- variedad extra: mas encuentros por tier para que las runs largas no repitan
+	L.append(_enc("c1_t1_d", ["ch1"], 1, [[["fuse", 0.0], ["fuse", 0.6], ["skitter", 1.4]], [["sentry", 0.0], ["lancer", 1.0]]]))
+	L.append(_enc("c1_t2_c", ["ch1"], 2, [[["brute", 0.0], ["skitter", 1.0], ["skitter", 1.6]], [["mender", 0.0], ["aegis", 0.6], ["lancer", 1.6]], [["sentry", 0.0], ["fuse", 1.0], ["fuse", 1.6], ["lancer", 2.4]]]))
+	L.append(_enc("c1_t3_c", ["ch1"], 3, [[["brute", 0.0], ["brute", 1.6], ["mender", 2.4]], [["aegis", 0.0], ["sentry", 0.8], ["lancer", 1.6], ["lancer", 2.2]], [["fuse", 0.0], ["fuse", 0.5], ["fuse", 1.0], ["brute", 1.8], ["skitter", 2.8]]], ["elite"]))
+	L.append(_enc("c2_t1_c", ["ch2"], 1, [[["jaguar", 0.0], ["jaguar", 1.2]], [["cerbatana", 0.0], ["sacerdote", 1.0]]]))
+	L.append(_enc("c2_t2_d", ["ch2"], 2, [[["idolo", 0.0], ["jaguar", 1.0], ["jaguar", 1.6]], [["sacerdote", 0.0], ["sacerdote", 1.4], ["cerbatana", 2.0]], [["jaguar", 0.0], ["jaguar", 0.6], ["jaguar", 1.2], ["cerbatana", 2.0]]]))
+	L.append(_enc("c2_t3_b", ["ch2"], 3, [[["sacerdote", 0.0], ["idolo", 1.0], ["jaguar", 1.8], ["jaguar", 2.4]], [["jaguar", 0.0], ["jaguar", 0.6], ["jaguar", 1.2], ["cerbatana", 1.8]], [["idolo", 0.0], ["idolo", 1.2], ["sacerdote", 2.0], ["cerbatana", 2.6]]], ["elite"]))
+	L.append(_enc("c3_t1_c", ["ch3"], 1, [[["sabueso", 0.0], ["sabueso", 0.6], ["sabueso", 1.2]], [["ballestero", 0.0], ["caballero", 1.4]]]))
+	L.append(_enc("c3_t2_c", ["ch3"], 2, [[["caballero", 0.0], ["caballero", 1.6]], [["sabueso", 0.0], ["sabueso", 0.5], ["ballestero", 1.2], ["ballestero", 1.8]], [["caballero", 0.0], ["sabueso", 1.0], ["sabueso", 1.5], ["ballestero", 2.2]]]))
+	L.append(_enc("c3_t3_b", ["ch3"], 3, [[["ballestero", 0.0], ["ballestero", 0.8], ["ballestero", 1.6], ["caballero", 2.4]], [["caballero", 0.0], ["caballero", 1.0], ["sabueso", 2.0], ["sabueso", 2.6]], [["sabueso", 0.0], ["sabueso", 0.5], ["sabueso", 1.0], ["caballero", 1.8], ["ballestero", 2.6]]], ["elite"]))
+	L.append(_enc("c4_t1_c", ["ch4"], 1, [[["acechador", 0.0], ["acechador", 1.4]], [["fulgor", 0.0], ["ojo", 1.0]]]))
+	L.append(_enc("c4_t2_c", ["ch4"], 2, [[["ojo", 0.0], ["acechador", 1.0], ["acechador", 1.6]], [["fulgor", 0.0], ["fulgor", 0.5], ["fulgor", 1.0], ["fulgor", 1.5]], [["acechador", 0.0], ["ojo", 1.0], ["fulgor", 1.8]]]))
+	L.append(_enc("c4_t3_b", ["ch4"], 3, [[["ojo", 0.0], ["ojo", 1.4], ["fulgor", 2.0], ["fulgor", 2.6]], [["acechador", 0.0], ["acechador", 0.6], ["acechador", 1.2], ["ojo", 2.0]], [["fulgor", 0.0], ["fulgor", 0.6], ["acechador", 1.4], ["acechador", 2.0], ["ojo", 2.6]]], ["elite"]))
 	L.append(_enc("c1_boss_adds", ["ch1"], 4, [[["skitter", 0.0], ["skitter", 0.8]]], ["boss"]))
 	return L
 
