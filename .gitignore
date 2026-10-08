@@ -7,3 +7,4 @@ export_presets.cfg.bak
 shots/
 build/
 __pycache__/
+asset_bank/vendor/quaternius/

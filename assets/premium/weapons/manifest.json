@@ -1,0 +1,177 @@
+{
+ "id": "weapons",
+ "kind": "static_set",
+ "role": "environment",
+ "source_pack": "RPG Premium original models",
+ "source_revision": "original",
+ "license": "Original work (RPG Premium)",
+ "transformation": "Godot offscreen ortho render (tools/premium_render/render_static.gd) + recorte por alfa; ancla = origen del modelo",
+ "job_sha256": "bb4a47ce5306508e",
+ "runtime_path": "res://assets/premium/weapons/",
+ "ppu": 92.0,
+ "ppu_game": 34.6,
+ "items": {
+  "pulsar": {
+   "path": "res://assets/premium/weapons/pulsar.png",
+   "size": [
+    84,
+    39
+   ],
+   "bbox": [
+    0,
+    0,
+    84,
+    39
+   ],
+   "anchor": [
+    29.67,
+    21.33
+   ],
+   "scale": 0.3760869565217391,
+   "pitch": 35.0,
+   "source_file": "original:pulsar",
+   "points": {
+    "grip": [
+     0.0,
+     0.0
+    ],
+    "grip2": [
+     27.6,
+     1.32
+    ],
+    "tip": [
+     51.06,
+     -7.65
+    ]
+   }
+  },
+  "chispa": {
+   "path": "res://assets/premium/weapons/chispa.png",
+   "size": [
+    44,
+    35
+   ],
+   "bbox": [
+    0,
+    0,
+    44,
+    35
+   ],
+   "anchor": [
+    11.67,
+    20.0
+   ],
+   "scale": 0.3760869565217391,
+   "pitch": 35.0,
+   "source_file": "original:chispa",
+   "points": {
+    "grip": [
+     0.0,
+     0.0
+    ],
+    "tip": [
+     28.98,
+     -6.78
+    ]
+   }
+  },
+  "trinca": {
+   "path": "res://assets/premium/weapons/trinca.png",
+   "size": [
+    114,
+    39
+   ],
+   "bbox": [
+    0,
+    0,
+    114,
+    39
+   ],
+   "anchor": [
+    39.0,
+    21.33
+   ],
+   "scale": 0.3760869565217391,
+   "pitch": 35.0,
+   "source_file": "original:trinca",
+   "points": {
+    "grip": [
+     0.0,
+     0.0
+    ],
+    "grip2": [
+     27.6,
+     1.32
+    ],
+    "tip": [
+     71.3,
+     -7.65
+    ]
+   }
+  },
+  "maul12": {
+   "path": "res://assets/premium/weapons/maul12.png",
+   "size": [
+    100,
+    36
+   ],
+   "bbox": [
+    0,
+    0,
+    100,
+    36
+   ],
+   "anchor": [
+    36.33,
+    20.0
+   ],
+   "scale": 0.3760869565217391,
+   "pitch": 35.0,
+   "source_file": "original:maul12",
+   "points": {
+    "grip": [
+     0.0,
+     0.0
+    ],
+    "grip2": [
+     27.6,
+     1.7
+    ],
+    "tip": [
+     60.26,
+     -7.72
+    ]
+   }
+  },
+  "filo_z": {
+   "path": "res://assets/premium/weapons/filo_z.png",
+   "size": [
+    123,
+    40
+   ],
+   "bbox": [
+    0,
+    0,
+    123,
+    40
+   ],
+   "anchor": [
+    23.33,
+    20.0
+   ],
+   "scale": 0.3760869565217391,
+   "pitch": 35.0,
+   "source_file": "original:filo_z",
+   "points": {
+    "grip": [
+     0.0,
+     0.0
+    ],
+    "tip": [
+     92.0,
+     0.0
+    ]
+   }
+  }
+ }
+}

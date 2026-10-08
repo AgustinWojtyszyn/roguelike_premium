@@ -1,0 +1,24 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:372)
+OpenGL API 4.1 (Core Profile) Mesa 23.2.1-1ubuntu3.1~22.04.4 - Compatibility - Using Device: Microsoft - D3D12 (Intel(R) Iris(R) Xe Graphics)
+
+PREWARM 307.4 ms (117 texturas, 4 sets)
+FPS medio: 56.6  kills: 9  hp: 6  etapa: 1  victoria: false  nodos: 119
+PERF  script/proceso: 26.04 ms  draw calls: 368  primitivas: 8121  nodos: 94  proyectiles: 5  particulas: 64
+   hud_draw          0.78 ms/frame  (1172 llamadas)
+   fx_render         0.46 ms/frame  (5967 llamadas)
+   player_proc       0.40 ms/frame  (1988 llamadas)
+   fx_proc           0.21 ms/frame  (1988 llamadas)
+   bul_proc          0.19 ms/frame  (1988 llamadas)
+   enemy_proc        0.16 ms/frame  (3560 llamadas)
+   pick_draw         0.14 ms/frame  (1989 llamadas)
+   game_proc         0.09 ms/frame  (1988 llamadas)
+   part_draw         0.05 ms/frame  (3475 llamadas)
+   prop_proc         0.04 ms/frame  (18031 llamadas)
+   pick_proc         0.04 ms/frame  (1988 llamadas)
+   bul_draw          0.03 ms/frame  (1989 llamadas)
+   prop_draw         0.02 ms/frame  (588 llamadas)
+   room_proc         0.01 ms/frame  (1988 llamadas)
+   dir_proc          0.01 ms/frame  (1988 llamadas)
+

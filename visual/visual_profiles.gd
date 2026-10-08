@@ -2,13 +2,13 @@ class_name VisualProfiles
 extends RefCounted
 ## Perfiles visuales: que sprite usa cada personaje / enemigo / jefe / arma / cofre / prop, con su escala, offset, fps y anclas.
 ## `height` = alto en pixeles de juego de la silueta tipica (la escala sale de ahi, nunca se deforma el sprite).
-## Todo lo que no tenga perfil (o cuyo arte falle al cargar) usa el render procedural original.
+## Jugadores sin perfil aprobado usan placeholder temporal. Enemigos conservan su fallback procedural de seguridad.
 
 ## Ajuste global del tamano del arte de armas importado (1.0 = la punta cae justo en `muzzle`).
 const WEAPON_ART_SCALE := 1.0
 
-## HomeLife (NPC y props de VIDA) queda DESACTIVADO en el HOME: el menu debe ser limpio y centrado en el heroe.
-## El codigo y los assets se conservan; poner true para volver a mostrarlo.
+## Legacy HomeLife remains disabled. The title screen now uses a single pre-rendered environment
+## and does not instantiate HomeLife or a playable CharacterRig.
 const HOME_LIFE_ENABLED := false
 
 const CHAR_WEAPON_SCALE := 0.66
@@ -17,30 +17,15 @@ const CHAR_FPS := {"default": 10.0, "walk": 15.0, "idle": 6.0, "attack": 16.0, "
 
 ## id de `look["visual"]` -> perfil. weapon_anchor: punto del hombro (relativo a los pies) donde gira el arma.
 const CHARACTERS := {
-	"vesper": {"set": "rpg/characters/human_ranger", "height": 75.0, "anchor_ref": 75.0, "filter": "nearest", "menu_k": 0.8, "fps": CHAR_FPS, "shadow": 1.0, "hand": Color("d9a77a"), "sleeve": Color("5b5a3a"),
-		"weapon_anchor": {"south": Vector2(13, -27), "south-east": Vector2(11, -28), "east": Vector2(-1, -26), "north-east": Vector2(13, -26), "north": Vector2(15, -26), "north-west": Vector2(-14, -26), "west": Vector2(-9, -23), "south-west": Vector2(-13, -28), "default": Vector2(0, -26)}},
-	"kiro9": {"set": "rpg/characters/combat_android", "height": 75.0, "anchor_ref": 75.0, "filter": "nearest", "menu_k": 0.8, "fps": CHAR_FPS, "idle_from_walk": true, "shadow": 1.0, "hand": Color("9fb1c9"), "sleeve": Color("5d6b82"),
-		"weapon_anchor": {"south": Vector2(14, -31), "south-east": Vector2(14, -31), "east": Vector2(1, -34), "north-east": Vector2(1, -34), "north": Vector2(15, -31), "north-west": Vector2(-1, -36), "west": Vector2(-1, -36), "south-west": Vector2(-14, -31), "default": Vector2(0, -32)}},
-	"kraal": {"set": "rpg/characters/beetle_cyborg", "height": 81.0, "anchor_ref": 81.0, "menu_k": 0.76, "fps": CHAR_FPS, "idle_from_walk": true, "weapon_scale": 0.5, "shadow": 1.1, "hand": Color("d58a2c"), "sleeve": Color("3a3340"),
-		"weapon_anchor": {"south": Vector2(15, -26), "south-east": Vector2(15, -26), "east": Vector2(0, -27), "north-east": Vector2(0, -27), "north": Vector2(15, -26), "north-west": Vector2(0, -27), "west": Vector2(0, -27), "south-west": Vector2(-15, -26), "default": Vector2(0, -27)}},
-	"paradoja": {"set": "rpg/characters/mutant_striker", "height": 77.0, "anchor_ref": 77.0, "filter": "nearest", "menu_k": 0.78, "fps": CHAR_FPS, "idle_from_walk": true, "shadow": 1.1, "hand": Color("c99a76"), "sleeve": Color("c99a76"),
-		"weapon_anchor": {"south": Vector2(17, -24), "south-east": Vector2(17, -24), "east": Vector2(-4, -22), "north-east": Vector2(-4, -22), "north": Vector2(19, -26), "north-west": Vector2(4, -22), "west": Vector2(4, -22), "south-west": Vector2(-17, -24), "default": Vector2(0, -24)}},
-	"sera": {"set": "rpg/characters/sera", "height": 75.0, "anchor_ref": 75.0, "filter": "nearest", "menu_k": 0.8, "fps": CHAR_FPS, "shadow": 1.0, "hand": Color("d9a77a"), "sleeve": Color("e8eef2"),
-		"weapon_anchor": {"south": Vector2(13, -27), "south-east": Vector2(11, -28), "east": Vector2(-1, -26), "north-east": Vector2(13, -26), "north": Vector2(15, -26), "north-west": Vector2(-14, -26), "west": Vector2(-9, -23), "south-west": Vector2(-13, -28), "default": Vector2(0, -26)}},
-	"orla": {"set": "rpg/characters/orla", "height": 75.0, "anchor_ref": 75.0, "filter": "nearest", "menu_k": 0.8, "fps": CHAR_FPS, "shadow": 1.0, "hand": Color("d9a77a"), "sleeve": Color("a8741c"),
-		"weapon_anchor": {"south": Vector2(13, -27), "south-east": Vector2(11, -28), "east": Vector2(-1, -26), "north-east": Vector2(13, -26), "north": Vector2(15, -26), "north-west": Vector2(-14, -26), "west": Vector2(-9, -23), "south-west": Vector2(-13, -28), "default": Vector2(0, -26)}},
-	"halo": {"set": "rpg/characters/halo", "height": 75.0, "anchor_ref": 75.0, "filter": "nearest", "menu_k": 0.8, "fps": CHAR_FPS, "shadow": 1.0, "hand": Color("d9a77a"), "sleeve": Color("8a7a56"),
-		"weapon_anchor": {"south": Vector2(13, -27), "south-east": Vector2(11, -28), "east": Vector2(-1, -26), "north-east": Vector2(13, -26), "north": Vector2(15, -26), "north-west": Vector2(-14, -26), "west": Vector2(-9, -23), "south-west": Vector2(-13, -28), "default": Vector2(0, -26)}},
-	"sable": {"set": "rpg/characters/sable", "height": 75.0, "anchor_ref": 75.0, "filter": "nearest", "menu_k": 0.8, "fps": CHAR_FPS, "idle_from_walk": true, "shadow": 1.0, "hand": Color("9a8fa0"), "sleeve": Color("2a2230"),
-		"weapon_anchor": {"south": Vector2(14, -31), "south-east": Vector2(14, -31), "east": Vector2(1, -34), "north-east": Vector2(1, -34), "north": Vector2(15, -31), "north-west": Vector2(-1, -36), "west": Vector2(-1, -36), "south-west": Vector2(-14, -31), "default": Vector2(0, -32)}},
-	"nyx": {"set": "rpg/characters/nyx", "height": 75.0, "anchor_ref": 75.0, "filter": "nearest", "menu_k": 0.8, "fps": CHAR_FPS, "idle_from_walk": true, "shadow": 1.0, "hand": Color("9a8fa0"), "sleeve": Color("4a2a6a"),
-		"weapon_anchor": {"south": Vector2(14, -31), "south-east": Vector2(14, -31), "east": Vector2(1, -34), "north-east": Vector2(1, -34), "north": Vector2(15, -31), "north-west": Vector2(-1, -36), "west": Vector2(-1, -36), "south-west": Vector2(-14, -31), "default": Vector2(0, -32)}},
-	"ilex": {"set": "rpg/characters/ilex", "height": 75.0, "anchor_ref": 75.0, "filter": "nearest", "menu_k": 0.8, "fps": CHAR_FPS, "idle_from_walk": true, "shadow": 1.0, "hand": Color("b0a890"), "sleeve": Color("3a4a7a"),
-		"weapon_anchor": {"south": Vector2(14, -31), "south-east": Vector2(14, -31), "east": Vector2(1, -34), "north-east": Vector2(1, -34), "north": Vector2(15, -31), "north-west": Vector2(-1, -36), "west": Vector2(-1, -36), "south-west": Vector2(-14, -31), "default": Vector2(0, -32)}},
-	"basalto": {"set": "rpg/characters/basalto", "height": 88.0, "anchor_ref": 77.0, "weapon_scale": 0.7, "filter": "nearest", "menu_k": 0.78, "fps": CHAR_FPS, "idle_from_walk": true, "shadow": 1.1, "hand": Color("c99a76"), "sleeve": Color("c99a76"),
-		"weapon_anchor": {"south": Vector2(17, -24), "south-east": Vector2(17, -24), "east": Vector2(-4, -22), "north-east": Vector2(-4, -22), "north": Vector2(19, -26), "north-west": Vector2(4, -22), "west": Vector2(4, -22), "south-west": Vector2(-17, -24), "default": Vector2(0, -24)}},
+	# Se llena solo con perfiles aprobados por PREMIUM_ASSET_REBUILD.md.
+	# Mientras un heroe no tenga rig/pose de arma real, CharacterRig muestra un placeholder temporal.
+	# Perfiles pre-renderizados desde rigs 3D CC0 (tools/premium_pipeline.py). El agarre sale de cada frame del set
+	# (hueso handslot del rig fuente): `grip_mode: rig` ancla arma + mano a ese agarre. `scale` = px de juego por px de celda.
+	"vesper": {"set": "premium/characters/vesper", "height": 66.0, "scale": 0.72, "fps": CHAR_FPS, "shadow": 1.0,
+		"weapon_compatible": true, "grip_mode": "rig", "weapon_scale": 0.85, "filter": "linear", "weapon_behind_dirs": ["north"]},
+	"sable": {"set": "premium/characters/sable", "height": 66.0, "scale": 0.72, "fps": CHAR_FPS, "shadow": 1.0,
+		"weapon_compatible": true, "grip_mode": "rig", "weapon_scale": 0.85, "filter": "linear", "weapon_behind_dirs": ["north"]},
 }
-
 
 static func character(visual_id: String) -> Dictionary:
 	return CHARACTERS.get(visual_id, {})
@@ -52,16 +37,20 @@ static func character(visual_id: String) -> Dictionary:
 const ENEMY_FPS := {"default": 10.0, "walk": 11.0, "idle": 6.0, "attack": 14.0, "death": 16.0, "roll": 16.0}
 
 const ENEMIES := {
-	"caballero": {"set": "rpg/enemies/bone_guard", "height": 62.0, "fps": ENEMY_FPS, "shadow": 1.2,
-		"anim_map": {"idle": "shield_idle", "move": "walk", "windup": "bash_windup_alt", "strike": "attack", "recover": "guard_fatigue"}},
-	"sabueso": {"set": "rpg/enemies/raptor", "height": 46.0, "fps": ENEMY_FPS, "tint": Color("ffc89a"), "shadow": 1.0,
-		"anim_map": {"idle": "idle", "move": "walk", "windup": "lunge_windup", "strike": "lunge_attack", "recover": "recovery"}},
+	# Premium (pre-render 3D CC0): esqueleto guerrero KayKit con hoja+escudo montados en handslot; 5 direcciones (el espejo lo hace vis.scale.x).
+	"caballero": {"set": "premium/enemies/skeleton_warrior", "height": 62.0, "scale": 1.0, "fps": ENEMY_FPS, "shadow": 1.2, "death_dur": 0.8,
+		"anim_map": {"idle": "idle", "move": "walk", "windup": "windup", "strike": "attack", "recover": "recover"}},
+	"ballestero": {"set": "premium/enemies/skeleton_crossbow", "height": 62.0, "scale": 1.0, "fps": ENEMY_FPS, "shadow": 1.2, "death_dur": 0.8,
+		"anim_map": {"idle": "idle", "move": "walk", "windup": "windup", "strike": "attack", "recover": "recover"}},
+	"sabueso": {"set": "premium/enemies/imp", "height": 46.0, "scale": 1.15, "fps": ENEMY_FPS, "shadow": 1.0, "death_dur": 0.6,
+		"anim_map": {"idle": "idle", "move": "walk", "windup": "windup", "strike": "attack", "recover": "recover"}},
 	"acechador": {"set": "rpg/enemies/raptor", "height": 56.0, "fps": ENEMY_FPS, "tint": Color("c8a6ff"), "shadow": 1.1,
 		"anim_map": {"idle": "idle", "move": "walk", "windup": "lunge_windup", "strike": "lunge_attack", "recover": "recovery"}},
 	"ojo": {"set": "rpg/enemies/orb_stalker", "height": 70.0, "offset": Vector2(0, -16), "fps": ENEMY_FPS, "shadow": 1.2,
 		"anim_map": {"idle": "idle", "move": "move", "windup": "ranged_windup", "strike": "projectile_attack", "recover": "idle"}},
-	"escarabajo": {"set": "rpg/enemies/iron_beetle", "height": 30.0, "fps": ENEMY_FPS, "tint": Color("9affd0"), "shadow": 0.8,
-		"anim_map": {"idle": "idle", "move": "walk", "windup": "roll_windup_alt", "strike": "roll", "recover": "idle"}},
+	# Premium (pre-render 3D CC0): cangrejo Quaternius, criatura no humanoide.
+	"escarabajo": {"set": "premium/enemies/crab", "height": 34.0, "scale": 0.9, "fps": ENEMY_FPS, "shadow": 0.9, "death_dur": 0.6,
+		"anim_map": {"idle": "idle", "move": "walk", "windup": "windup", "strike": "attack", "recover": "recover"}},
 }
 
 
@@ -110,7 +99,23 @@ const PROPS := {
 }
 
 
-static func prop(kind: String) -> Dictionary:
+## Variantes Premium por tema (arte pre-renderizado desde KayKit Dungeon, CC0). Sustituyen a PROPS solo en ese tema.
+## tint: multiplica el sprite para integrarlo con la paleta oscura del capitulo (gradacion final = pasada de Astra).
+const PROPS_THEMED := {
+	"castle": {
+		"wood_crate": {"art": ["premium/dungeon/castle/box_large", "premium/dungeon/castle/box_stacked", "premium/dungeon/castle/crates_stacked"], "fit": "h", "hmul": 1.15, "tint": Color("d6d2e6")},
+		"wood_barrel": {"art": ["premium/dungeon/castle/barrel_large", "premium/dungeon/castle/barrel_large_decorated", "premium/dungeon/castle/keg_decorated"], "fit": "h", "hmul": 1.15, "tint": Color("d6d2e6")},
+		"table": {"art": ["premium/dungeon/castle/table_long_decorated_A", "premium/dungeon/castle/table_long"], "fit": "w2", "tint": Color("d6d2e6")},
+		"column": {"art": ["premium/dungeon/castle/pillar_decorated"], "fit": "h", "hmul": 1.0, "tint": Color("c4c8e0")},
+		"statue": {"art": ["premium/dungeon/castle/pillar_decorated"], "fit": "h", "hmul": 1.05, "tint": Color("c4c8e0")},
+		"weapon_rack": {"art": ["premium/dungeon/castle/crates_stacked", "premium/dungeon/castle/box_stacked"], "fit": "w2", "tint": Color("d6d2e6")},
+	},
+}
+
+
+static func prop(kind: String, theme: String = "") -> Dictionary:
+	if theme != "" and PROPS_THEMED.has(theme) and PROPS_THEMED[theme].has(kind) and PremiumManifest.STATIC.has(PROPS_THEMED[theme][kind]["art"][0]):
+		return PROPS_THEMED[theme][kind]
 	return PROPS.get(kind, {})
 
 
@@ -120,20 +125,23 @@ static func prop(kind: String) -> Dictionary:
 const DECOR := {
 	"castle": {
 		"floor": [
-			{"art": "rpg/decals/floor_crack", "n": [2, 4], "kind": "decal", "a": 0.4, "s": 1.2},
-			{"art": "rpg/decals/bone_dust", "n": [2, 3], "kind": "decal", "a": 0.7, "s": 1.3},
-			{"art": "rpg/decals/gravel_scatter", "n": [2, 4], "kind": "decal", "a": 0.65, "s": 1.4},
-			{"art": "rpg/props/rubble/stone_rubble", "n": [2, 4], "kind": "obj", "a": 1.0, "s": 0.9},
-			{"art": "rpg/props/rubble/skull_pile", "n": [1, 2], "kind": "obj", "a": 1.0, "s": 0.8},
-			{"art": "rpg/props/rubble/bone_debris", "n": [1, 3], "kind": "obj", "a": 1.0, "s": 0.9},
-			{"art": "rpg/props/dungeon2/bone_heap", "n": [0, 1], "kind": "obj", "a": 1.0, "s": 0.75},
+			{"art": "premium/dungeon/castle/candle_triple", "n": [4, 6], "kind": "obj", "a": 1.0, "h": 30.0, "tint": Color("d6d2e6")},
+			{"art": "premium/dungeon/castle/coin_stack_large", "n": [2, 3], "kind": "obj", "a": 1.0, "h": 28.0},
+			{"art": "premium/dungeon/castle/box_small_decorated", "n": [2, 3], "kind": "obj", "a": 1.0, "h": 40.0, "tint": Color("d6d2e6")},
+			{"art": "premium/dungeon/castle/barrel_small_stack", "n": [2, 3], "kind": "obj", "a": 1.0, "h": 40.0, "tint": Color("d6d2e6")},
+			{"art": "premium/dungeon/castle/stool", "n": [2, 3], "kind": "obj", "a": 1.0, "h": 26.0, "tint": Color("d6d2e6")},
+			{"art": "premium/dungeon/castle/chair", "n": [1, 3], "kind": "obj", "a": 1.0, "h": 42.0, "tint": Color("d6d2e6")},
+			{"art": "premium/dungeon/castle/table_medium_tablecloth_decorated_B", "n": [0, 1], "kind": "obj", "a": 1.0, "h": 52.0, "tint": Color("d6d2e6")},
+			{"art": "rpg/decals/floor_crack", "n": [3, 5], "kind": "decal", "a": 0.35, "s": 1.2},
+			{"art": "rpg/decals/gravel_scatter", "n": [3, 4], "kind": "decal", "a": 0.5, "s": 1.4},
 		],
 		"stand": [
-			{"art": "rpg/props/dungeon/candles", "n": [1, 2], "s": 0.9},
-			{"art": "rpg/props/dungeon2/lantern_post", "n": [1, 2], "s": 0.9},
-			{"art": "rpg/props/dungeon/books_scroll", "n": [0, 1], "s": 0.9},
-			{"art": "rpg/props/dungeon2/sarcophagus", "n": [0, 1], "s": 0.85},
-			{"art": "rpg/props/dungeon/chains_shackles", "n": [0, 1], "s": 0.9},
+			{"art": "premium/dungeon/castle/chest", "n": [1, 2], "h": 52.0, "tint": Color("d6d2e6")},
+			{"art": "premium/dungeon/castle/shelf_small_candles", "n": [2, 3], "h": 44.0, "tint": Color("d6d2e6")},
+			{"art": "premium/dungeon/castle/trunk_large_A", "n": [1, 2], "h": 46.0, "tint": Color("d6d2e6")},
+			{"art": "premium/dungeon/castle/bed_frame", "n": [0, 1], "h": 70.0, "tint": Color("d6d2e6")},
+			{"art": "premium/dungeon/castle/keg_decorated", "n": [1, 2], "h": 60.0, "tint": Color("d6d2e6")},
+			{"art": "premium/dungeon/castle/barrel_large_decorated", "n": [1, 1], "h": 64.0, "tint": Color("d6d2e6")},
 		],
 	},
 	"aztec": {

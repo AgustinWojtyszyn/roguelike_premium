@@ -1,0 +1,51 @@
+{
+ "id": "weapons",
+ "kind": "static_set",
+ "pack": "own",
+ "dir": "",
+ "dest": "weapons",
+ "cell": 256,
+ "ss": 3,
+ "ppu": 92.0,
+ "pitch": 35.0,
+ "feet_frac": 0.5,
+ "ppu_game": 34.6,
+ "look_kind": "weapon",
+ "items": [
+  {
+   "id": "pulsar",
+   "build": "pulsar",
+   "outline_px": 5.0
+  },
+  {
+   "id": "chispa",
+   "build": "chispa",
+   "outline_px": 5.0
+  },
+  {
+   "id": "trinca",
+   "build": "trinca",
+   "outline_px": 5.0
+  },
+  {
+   "id": "maul12",
+   "build": "maul12",
+   "outline_px": 5.0
+  },
+  {
+   "id": "filo_z",
+   "build": "filo_z",
+   "outline_px": 5.0
+  }
+ ],
+ "look": {
+  "rim_i": 0.3,
+  "amb_i": 0.19,
+  "sat": 0.66,
+  "val": 0.92,
+  "shade_col": "#202d40",
+  "rim_col": "#71acae",
+  "sun_col": "#ffe4b3",
+  "ground_dark": 0.28
+ }
+}

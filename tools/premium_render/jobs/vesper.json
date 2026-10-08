@@ -1,0 +1,194 @@
+{
+ "id": "vesper",
+ "kind": "hero_ranged",
+ "pack": "kaykit_adventurers",
+ "source": "Characters/gltf/Rogue.glb",
+ "cell": 144,
+ "ss": 3,
+ "ortho": 3.15,
+ "feet_frac": 0.8,
+ "pitch": 35.0,
+ "hand_layer": true,
+ "hand_radius": 0.15,
+ "hand_patch": 40,
+ "weapon_axis": "fore",
+ "anims": {
+  "idle": {
+   "lower": "Idle",
+   "upper": "1H_Ranged_Aiming",
+   "upper_hold": 0.4,
+   "frames": 4,
+   "loop": true,
+   "weapon_mode": "aim"
+  },
+  "walk": {
+   "lower": "Running_A",
+   "upper": "1H_Ranged_Aiming",
+   "upper_hold": 0.4,
+   "frames": 6,
+   "loop": true,
+   "weapon_mode": "aim"
+  },
+  "hurt": {
+   "lower": "Hit_A",
+   "upper": "Hit_A",
+   "frames": 3,
+   "loop": false,
+   "weapon_mode": "aim"
+  },
+  "death": {
+   "lower": "Death_A",
+   "upper": "Death_A",
+   "frames": 6,
+   "loop": false,
+   "recenter": 1.0,
+   "fit_cell": true,
+   "weapon_mode": "rig"
+  },
+  "idle_2h": {
+   "lower": "Idle",
+   "upper": "1H_Ranged_Aiming",
+   "upper_hold": 0.4,
+   "frames": 4,
+   "loop": true,
+   "weapon_mode": "aim",
+   "ik_left": {
+    "fwd": 0.3,
+    "down": 0.03
+   },
+   "both_hands": true
+  },
+  "walk_2h": {
+   "lower": "Running_A",
+   "upper": "1H_Ranged_Aiming",
+   "upper_hold": 0.4,
+   "frames": 6,
+   "loop": true,
+   "weapon_mode": "aim",
+   "ik_left": {
+    "fwd": 0.3,
+    "down": 0.03
+   },
+   "both_hands": true
+  }
+ },
+ "bone_scale": {
+  "head": 0.65,
+  "hand.r": 1.08,
+  "hand.l": 1.08
+ },
+ "look": {
+  "mesh_look": {
+   "Rogue_Body": {
+    "hsv": [
+     0.15,
+     0.52,
+     0.44
+    ],
+    "sel": [
+     0.28,
+     0.58
+    ]
+   },
+   "Rogue_ArmLeft": {
+    "hsv": [
+     0.15,
+     0.52,
+     0.44
+    ],
+    "sel": [
+     0.28,
+     0.58
+    ]
+   },
+   "Rogue_ArmRight": {
+    "hsv": [
+     0.15,
+     0.52,
+     0.44
+    ],
+    "sel": [
+     0.28,
+     0.58
+    ]
+   },
+   "Rogue_LegLeft": {
+    "hsv": [
+     0.0,
+     0.9,
+     0.62
+    ],
+    "sel": [
+     0.0,
+     0.2
+    ],
+    "vsel": [
+     0.0,
+     0.88
+    ]
+   },
+   "Rogue_LegRight": {
+    "hsv": [
+     0.0,
+     0.9,
+     0.62
+    ],
+    "sel": [
+     0.0,
+     0.2
+    ],
+    "vsel": [
+     0.0,
+     0.88
+    ]
+   },
+   "Rogue_Cape": {
+    "hsv": [
+     0.57,
+     0.68,
+     0.4
+    ],
+    "sel": [
+     0.28,
+     0.58
+    ]
+   },
+   "Rogue_Head": {
+    "hsv": [
+     0.08,
+     0.35,
+     0.35
+    ],
+    "sel": [
+     0.0,
+     0.2
+    ],
+    "vsel": [
+     0.0,
+     0.88
+    ]
+   }
+  },
+  "rim_i": 0.3,
+  "amb_i": 0.19,
+  "sun": 1.2,
+  "sat": 0.66,
+  "val": 0.92,
+  "shade_col": "#202d40",
+  "rim_col": "#71acae",
+  "sun_col": "#ffe4b3",
+  "ground_dark": 0.28
+ },
+ "dirs": [
+  "south",
+  "south-east",
+  "east",
+  "north-east",
+  "north"
+ ],
+ "source_scale": [
+  0.92,
+  1.26,
+  0.92
+ ]
+}

@@ -1,0 +1,20 @@
+{
+  "id": "skeleton_warrior",
+  "kind": "enemy_humanoid",
+  "pack": "kaykit_skeletons",
+  "source": "Characters/gltf/Skeleton_Warrior.glb",
+  "attach": [
+    {"bone": "handslot.r", "file": "Assets/gltf/Skeleton_Blade.gltf"},
+    {"bone": "handslot.l", "file": "Assets/gltf/Skeleton_Shield_Large_A.gltf"}
+  ],
+  "cell": 144, "ss": 3, "ortho": 4.2, "feet_frac": 0.82, "pitch": 35.0,
+  "dirs": ["south", "south-east", "east", "north-east", "north"],
+  "anims": {
+    "idle":    {"lower": "Idle_Combat", "frames": 4, "loop": true},
+    "walk":    {"lower": "Walking_A", "frames": 6, "loop": true},
+    "windup":  {"lower": "1H_Melee_Attack_Chop", "frames": 4, "loop": false, "t0": 0.0, "t1": 0.45},
+    "attack":  {"lower": "1H_Melee_Attack_Chop", "frames": 4, "loop": false, "t0": 0.45, "t1": 0.85},
+    "recover": {"lower": "1H_Melee_Attack_Chop", "frames": 3, "loop": false, "t0": 0.85, "t1": 1.0},
+    "death":   {"lower": "Death_A", "frames": 6, "loop": false, "recenter": 1.0, "fit_cell": true}
+  }
+}

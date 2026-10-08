@@ -30,7 +30,7 @@ const STATS := {
 static func _imported(p: Prop, kind: String, f: Rect2) -> bool:
 	if not VisualProfiles.sprites_enabled():
 		return false
-	var pr := VisualProfiles.prop(kind)
+	var pr := VisualProfiles.prop(kind, p.game.room.theme.id if p.game != null and p.game.room != null and p.game.room.theme != null else "")
 	if pr.is_empty():
 		return false
 	var arts: Array = pr["art"]
@@ -38,21 +38,24 @@ static func _imported(p: Prop, kind: String, f: Rect2) -> bool:
 	var tex := AssetCatalog.tex(id)
 	if tex == null:
 		return false
-	var info: Dictionary = AssetManifest.STATIC.get(AssetManifest.ALIASES.get(id, id), {})
+	var info: Dictionary = AssetCatalog.info(id)
 	var bb: Array = info.get("bbox", [0, 0, tex.get_width(), tex.get_height()])
 	var bw := maxf(1.0, float(bb[2]) - float(bb[0]))
 	var bh := maxf(1.0, float(bb[3]) - float(bb[1]))
 	var s := 1.0
 	var hmul := float(pr.get("hmul", 1.0))
-	if pr["fit"] == "w":
+	if pr["fit"] == "w2":
+		# arte Premium ancho (mesas): manda el ancho de la huella; el alto solo se acota para no invadir la pared
+		s = minf(f.size.x * 1.0 / bw, p.h * 4.0 / bh)
+	elif pr["fit"] == "w":
 		s = minf(f.size.x * 1.05 / bw, p.h * 1.4 / bh)
 	else:
 		s = minf(p.h * hmul / bh, maxf(f.size.x, 40.0) * 1.7 / bw)
-	p.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST if absf(s - roundf(s)) < 0.08 else CanvasItem.TEXTURE_FILTER_LINEAR
+	p.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST if absf(s - roundf(s)) < 0.08 and not pr.has("tint") and not id.begins_with("premium/") else CanvasItem.TEXTURE_FILTER_LINEAR
 	var base_y := f.end.y - f.size.y * 0.18
 	var cx := f.position.x + f.size.x * 0.5
 	p._shadow(f, 6.0)
-	p.draw_texture_rect_region(tex, Rect2(cx - bw * s * 0.5, base_y - bh * s, bw * s, bh * s), Rect2(float(bb[0]), float(bb[1]), bw, bh))
+	p.draw_texture_rect_region(tex, Rect2(cx - bw * s * 0.5, base_y - bh * s, bw * s, bh * s), Rect2(float(bb[0]), float(bb[1]), bw, bh), pr.get("tint", Color.WHITE))
 	return true
 
 

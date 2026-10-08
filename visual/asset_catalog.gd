@@ -29,8 +29,18 @@ static func load_tex(path: String) -> Texture2D:
 static func tex(id: String) -> Texture2D:
 	var sid: String = AssetManifest.ALIASES.get(id, id)
 	if not AssetManifest.STATIC.has(sid):
+		if PremiumManifest.STATIC.has(id):
+			return load_tex(PremiumManifest.STATIC[id]["path"])
 		return null
 	return load_tex(AssetManifest.STATIC[sid]["path"])
+
+
+## Ficha de un estatico (migrado o Premium): {path, size, bbox, ...; Premium ademas anchor/scale}. Vacia si no existe.
+static func info(id: String) -> Dictionary:
+	var sid: String = AssetManifest.ALIASES.get(id, id)
+	if AssetManifest.STATIC.has(sid):
+		return AssetManifest.STATIC[sid]
+	return PremiumManifest.STATIC.get(id, {})
 
 
 static func has_tex(id: String) -> bool:
@@ -52,6 +62,9 @@ static func anim_set(id: String) -> AnimSet:
 	var s: AnimSet = null
 	if AssetManifest.ANIMS.has(id):
 		s = AnimSet.create(id, AssetManifest.ANIMS[id])
+	elif PremiumManifest.SETS.has(id):
+		s = AnimSet.create(id, PremiumManifest.SETS[id])
+	if s != null:
 		if s.first_texture("idle") == null and s.first_texture("walk") == null:
 			s = null
 	_sets[id] = s
@@ -116,6 +129,12 @@ static func prewarm(chapter: ChapterData, char_look: Dictionary, weapon_ids: Arr
 		for k in Chest.ART_ANOMALY.values():
 			tex("rpg/chests/" + k)
 			tex("rpg/chests/" + k + "_open")
+	for kind in VisualProfiles.PROPS_THEMED.get(chapter.theme, {}):
+		for art in VisualProfiles.PROPS_THEMED[chapter.theme][kind]["art"]:
+			tex(art)
+	if chapter.theme == "castle":
+		for art in ThemeCastle.PREMIUM_ART:
+			tex(art)
 	var dec := VisualProfiles.decor(chapter.theme)
 	for grp in ["floor", "stand"]:
 		for spec in dec.get(grp, []):

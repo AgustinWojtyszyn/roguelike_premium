@@ -1,0 +1,242 @@
+{
+ "id": "castle_set",
+ "kind": "static_set",
+ "pack": "kaykit_dungeon",
+ "dir": "Assets/gltf",
+ "dest": "dungeon/castle",
+ "cell": 448,
+ "ppu": 68.0,
+ "pitch": 35.0,
+ "feet_frac": 0.78,
+ "ppu_game": 26.0,
+ "items": [
+  {
+   "id": "wall",
+   "file": "wall.gltf.glb",
+   "kind": "flat"
+  },
+  {
+   "id": "wall_cracked",
+   "file": "wall_cracked.gltf.glb",
+   "kind": "flat"
+  },
+  {
+   "id": "wall_arched",
+   "file": "wall_arched.gltf.glb",
+   "kind": "flat"
+  },
+  {
+   "id": "wall_window_closed",
+   "file": "wall_window_closed.gltf.glb",
+   "kind": "flat"
+  },
+  {
+   "id": "wall_half",
+   "file": "wall_half.gltf.glb",
+   "kind": "flat"
+  },
+  {
+   "id": "wall_corner",
+   "file": "wall_corner.gltf.glb",
+   "kind": "flat"
+  },
+  {
+   "id": "floor_tile_small",
+   "file": "floor_tile_small.gltf.glb",
+   "pitch": 90.0,
+   "feet_frac": 0.5,
+   "pad": 0,
+   "kind": "flat"
+  },
+  {
+   "id": "floor_tile_small_broken_A",
+   "file": "floor_tile_small_broken_A.gltf.glb",
+   "pitch": 90.0,
+   "feet_frac": 0.5,
+   "pad": 0,
+   "kind": "flat"
+  },
+  {
+   "id": "floor_tile_small_broken_B",
+   "file": "floor_tile_small_broken_B.gltf.glb",
+   "pitch": 90.0,
+   "feet_frac": 0.5,
+   "pad": 0,
+   "kind": "flat"
+  },
+  {
+   "id": "floor_tile_small_weeds_A",
+   "file": "floor_tile_small_weeds_A.gltf.glb",
+   "pitch": 90.0,
+   "feet_frac": 0.5,
+   "pad": 0,
+   "kind": "flat"
+  },
+  {
+   "id": "floor_tile_small_decorated",
+   "file": "floor_tile_small_decorated.gltf.glb",
+   "pitch": 90.0,
+   "feet_frac": 0.5,
+   "pad": 0,
+   "kind": "flat"
+  },
+  {
+   "id": "floor_tile_large",
+   "file": "floor_tile_large.gltf.glb",
+   "pitch": 90.0,
+   "feet_frac": 0.5,
+   "pad": 0,
+   "kind": "flat"
+  },
+  {
+   "id": "floor_tile_grate",
+   "file": "floor_tile_grate.gltf.glb",
+   "pitch": 90.0,
+   "feet_frac": 0.5,
+   "pad": 0,
+   "kind": "flat"
+  },
+  {
+   "id": "barrel_large",
+   "file": "barrel_large.gltf.glb"
+  },
+  {
+   "id": "barrel_large_decorated",
+   "file": "barrel_large_decorated.gltf.glb"
+  },
+  {
+   "id": "barrel_small_stack",
+   "file": "barrel_small_stack.gltf.glb"
+  },
+  {
+   "id": "keg_decorated",
+   "file": "keg_decorated.gltf.glb"
+  },
+  {
+   "id": "box_large",
+   "file": "box_large.gltf.glb"
+  },
+  {
+   "id": "box_stacked",
+   "file": "box_stacked.gltf.glb"
+  },
+  {
+   "id": "crates_stacked",
+   "file": "crates_stacked.gltf.glb"
+  },
+  {
+   "id": "box_small_decorated",
+   "file": "box_small_decorated.gltf.glb"
+  },
+  {
+   "id": "column",
+   "file": "column.gltf.glb"
+  },
+  {
+   "id": "pillar_decorated",
+   "file": "pillar_decorated.gltf.glb"
+  },
+  {
+   "id": "table_long",
+   "file": "table_long.gltf.glb",
+   "yaw": 90
+  },
+  {
+   "id": "table_long_decorated_A",
+   "file": "table_long_decorated_A.gltf.glb",
+   "yaw": 90
+  },
+  {
+   "id": "table_medium_tablecloth_decorated_B",
+   "file": "table_medium_tablecloth_decorated_B.gltf.glb",
+   "yaw": 90
+  },
+  {
+   "id": "chair",
+   "file": "chair.gltf.glb",
+   "yaw": 160
+  },
+  {
+   "id": "stool",
+   "file": "stool.gltf.glb"
+  },
+  {
+   "id": "shelf_large",
+   "file": "shelf_large.gltf.glb"
+  },
+  {
+   "id": "shelf_small_candles",
+   "file": "shelf_small_candles.gltf.glb"
+  },
+  {
+   "id": "torch_mounted",
+   "file": "torch_mounted.gltf.glb"
+  },
+  {
+   "id": "torch_lit",
+   "file": "torch_lit.gltf.glb"
+  },
+  {
+   "id": "banner_red",
+   "file": "banner_red.gltf.glb",
+   "kind": "prop"
+  },
+  {
+   "id": "banner_patternA_red",
+   "file": "banner_patternA_red.gltf.glb",
+   "kind": "prop"
+  },
+  {
+   "id": "banner_shield_red",
+   "file": "banner_shield_red.gltf.glb",
+   "kind": "prop"
+  },
+  {
+   "id": "banner_thin_red",
+   "file": "banner_thin_red.gltf.glb",
+   "kind": "prop"
+  },
+  {
+   "id": "sword_shield",
+   "file": "sword_shield.gltf.glb"
+  },
+  {
+   "id": "sword_shield_gold",
+   "file": "sword_shield_gold.gltf.glb"
+  },
+  {
+   "id": "chest",
+   "file": "chest.glb"
+  },
+  {
+   "id": "chest_gold",
+   "file": "chest_gold.glb"
+  },
+  {
+   "id": "candle_triple",
+   "file": "candle_triple.gltf.glb"
+  },
+  {
+   "id": "trunk_large_A",
+   "file": "trunk_large_A.gltf.glb"
+  },
+  {
+   "id": "coin_stack_large",
+   "file": "coin_stack_large.gltf.glb"
+  },
+  {
+   "id": "bed_frame",
+   "file": "bed_frame.gltf.glb"
+  },
+  {
+   "id": "barrier_column",
+   "file": "barrier_column.gltf.glb"
+  },
+  {
+   "id": "wall_pillar",
+   "file": "wall_pillar.gltf.glb",
+   "kind": "flat"
+  }
+ ],
+ "ss": 2
+}

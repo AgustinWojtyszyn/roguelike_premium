@@ -1,0 +1,18 @@
+{
+  "id": "skeleton_crossbow",
+  "kind": "enemy_humanoid",
+  "pack": "kaykit_skeletons",
+  "source": "Characters/gltf/Skeleton_Rogue.glb",
+  "attach": [{"bone": "handslot.r", "file": "Assets/gltf/Skeleton_Crossbow.gltf"}],
+  "cell": 144, "ss": 3, "ortho": 4.2, "feet_frac": 0.82, "pitch": 35.0,
+  "dirs": ["south", "south-east", "east", "north-east", "north"],
+  "look": {"mesh_look": {}},
+  "anims": {
+    "idle":    {"lower": "Idle_B", "frames": 4, "loop": true},
+    "walk":    {"lower": "Walking_A", "frames": 6, "loop": true},
+    "windup":  {"lower": "1H_Ranged_Aiming", "frames": 4, "loop": false, "t0": 0.0, "t1": 0.7},
+    "attack":  {"lower": "1H_Ranged_Shoot", "frames": 4, "loop": false, "t0": 0.0, "t1": 0.6},
+    "recover": {"lower": "1H_Ranged_Reload", "frames": 3, "loop": false, "t0": 0.0, "t1": 0.5},
+    "death":   {"lower": "Death_A", "frames": 6, "loop": false, "recenter": 1.0, "fit_cell": true}
+  }
+}

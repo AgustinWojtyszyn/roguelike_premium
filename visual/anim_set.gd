@@ -13,6 +13,9 @@ var cell := Vector2i(96, 96)
 var bbox := Rect2i()
 var _meta: Dictionary = {}
 var _built: Dictionary = {}     # anim -> {dirs: Array, rows: {dir: Array[Texture2D]}}
+var _grips: Dictionary = {}     # anim -> dir -> [[gx, gy, ang, lgx, lgy, behind], ...] (generado desde el hueso handslot del rig fuente)
+var _hand_built: Dictionary = {}
+var weapon_axis := ""
 
 
 static func create(set_id: String, meta: Dictionary) -> AnimSet:
@@ -21,6 +24,8 @@ static func create(set_id: String, meta: Dictionary) -> AnimSet:
 	s._meta = meta["anims"]
 	var b: Array = meta["bbox"]
 	s.bbox = Rect2i(int(b[0]), int(b[1]), int(b[2]) - int(b[0]), int(b[3]) - int(b[1]))
+	s._grips = meta.get("grips", {})
+	s.weapon_axis = str(meta.get("weapon_axis", ""))
 	for a in s._meta:
 		var c: Array = s._meta[a]["cell"]
 		s.cell = Vector2i(int(c[0]), int(c[1]))
@@ -70,6 +75,50 @@ func _build(anim: String) -> Dictionary:
 	out["dirs"] = dirs
 	_built[anim] = out
 	return out
+
+
+func has_grips() -> bool:
+	return not _grips.is_empty()
+
+
+## Agarre del frame (px de celda relativos a los pies): [gx, gy, ang_deg, lgx, lgy, behind]. Vacio si el set no lo define.
+func grip(anim: String, dir: String, idx: int) -> Array:
+	var per: Dictionary = _grips.get(anim, {})
+	var row: Array = per.get(dir, [])
+	if row.is_empty():
+		return []
+	return row[clampi(idx, 0, row.size() - 1)]
+
+
+func weapon_mode(anim: String) -> String:
+	return str(_meta.get(anim, {}).get("weapon_mode", "aim"))
+
+
+## Parches de la mano que sostiene el arma (se dibujan ENCIMA del arma para que los dedos la envuelvan).
+func hand_frames(anim: String, dir: String) -> Array:
+	if not _meta.has(anim) or not _meta[anim].has("hand"):
+		return []
+	if not _hand_built.has(anim):
+		var m: Dictionary = _meta[anim]["hand"]
+		var tex: Texture2D = AssetCatalog.load_tex(m["sheet"])
+		var rows := {}
+		if tex != null:
+			var c: Array = m["cell"]
+			var cw := int(c[0])
+			var ch := int(c[1])
+			var dirs: Array = _meta[anim]["dirs"]
+			var counts: Array = _meta[anim]["counts"]
+			for r in dirs.size():
+				var fr: Array[Texture2D] = []
+				for i in int(counts[r]):
+					var at := AtlasTexture.new()
+					at.atlas = tex
+					at.region = Rect2(i * cw, r * ch, cw, ch)
+					fr.append(at)
+				rows[dirs[r]] = fr
+		_hand_built[anim] = rows
+	var rows2: Dictionary = _hand_built[anim]
+	return rows2.get(dir, [])
 
 
 ## Direccion disponible mas cercana al vector (con ligero sesgo horizontal para resolver diagonales).

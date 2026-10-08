@@ -1,0 +1,5 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+RESULTADO: victoria=true kills=32 salas=4 monedas=102 xp=177 etapa=5 modo=campaign oleada=0 jefes=1
+WARNING: 15 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)

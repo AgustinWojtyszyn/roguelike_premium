@@ -1,0 +1,150 @@
+{
+ "id": "skeleton_crossbow",
+ "kind": "enemy_humanoid",
+ "role": "enemy",
+ "source_pack": "KayKit Skeletons 1.0",
+ "source_revision": "15b62b9bad122f72926c10fb14d622c73819fa54",
+ "license": "CC0 1.0",
+ "source_file": "Characters/gltf/Skeleton_Rogue.glb",
+ "transformation": "Godot offscreen ortho 3/4 render (tools/premium_render/render_rig.gd), 8 dirs, bone-masked pose blend; grip from rig bone handslot; packed by tools/premium_pipeline.py",
+ "job_sha256": "76389ff39f9fddfb",
+ "runtime_path": "res://assets/premium/enemies/skeleton_crossbow/",
+ "cell": [
+  144,
+  144
+ ],
+ "feet": [
+  72,
+  118.08
+ ],
+ "ppu": 34.2857142857143,
+ "pitch": 35.0,
+ "anims": {
+  "idle": {
+   "sheet": "res://assets/premium/enemies/skeleton_crossbow/idle.png",
+   "dirs": [
+    "south",
+    "south-east",
+    "east",
+    "north-east",
+    "north"
+   ],
+   "counts": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "cell": [
+    144,
+    144
+   ]
+  },
+  "walk": {
+   "sheet": "res://assets/premium/enemies/skeleton_crossbow/walk.png",
+   "dirs": [
+    "south",
+    "south-east",
+    "east",
+    "north-east",
+    "north"
+   ],
+   "counts": [
+    6,
+    6,
+    6,
+    6,
+    6
+   ],
+   "cell": [
+    144,
+    144
+   ]
+  },
+  "windup": {
+   "sheet": "res://assets/premium/enemies/skeleton_crossbow/windup.png",
+   "dirs": [
+    "south",
+    "south-east",
+    "east",
+    "north-east",
+    "north"
+   ],
+   "counts": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "cell": [
+    144,
+    144
+   ]
+  },
+  "attack": {
+   "sheet": "res://assets/premium/enemies/skeleton_crossbow/attack.png",
+   "dirs": [
+    "south",
+    "south-east",
+    "east",
+    "north-east",
+    "north"
+   ],
+   "counts": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "cell": [
+    144,
+    144
+   ]
+  },
+  "recover": {
+   "sheet": "res://assets/premium/enemies/skeleton_crossbow/recover.png",
+   "dirs": [
+    "south",
+    "south-east",
+    "east",
+    "north-east",
+    "north"
+   ],
+   "counts": [
+    3,
+    3,
+    3,
+    3,
+    3
+   ],
+   "cell": [
+    144,
+    144
+   ]
+  },
+  "death": {
+   "sheet": "res://assets/premium/enemies/skeleton_crossbow/death.png",
+   "dirs": [
+    "south",
+    "south-east",
+    "east",
+    "north-east",
+    "north"
+   ],
+   "counts": [
+    6,
+    6,
+    6,
+    6,
+    6
+   ],
+   "cell": [
+    144,
+    144
+   ]
+  }
+ }
+}

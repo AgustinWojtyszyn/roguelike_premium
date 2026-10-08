@@ -10,7 +10,7 @@ grep -q " 0 FALLOS" /tmp/check_tests.log || fail=1
 echo "== regresion Android (sin dispositivo)"; python3 -m unittest tests.test_android_cold_start 2>&1 | tail -2 || fail=1
 for ch in ch1 ch2 ch3 ch4; do
   echo "== partida de humo $ch"
-  out=$(timeout 240 godot --headless --path . scenes/run.tscn -- --bot --god --speed=8 --quit=900 --seed=11 --chapter=$ch --fresh 2>&1)
+  out=$(timeout 480 godot --headless --path . scenes/run.tscn -- --bot --god --speed=8 --quit=1800 --seed=11 --chapter=$ch --fresh 2>&1)
   echo "$out" | grep -E "RESULTADO|SCRIPT ERROR|ERROR:" | head -3
   echo "$out" | grep -q "RESULTADO: victoria=true" || fail=1
 done

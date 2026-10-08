@@ -22,7 +22,7 @@ func run(t) -> void:
 	var g := _make_game(t, {"god": "1", "seed": "7", "idle": "1", "bot": "1"})
 	await _frames(t, 20)
 	t.check(g.player != null and g.room != null, "la run arranca con jugador y sala")
-	t.check(g.director.plan.size() == 5, "plan de 5 etapas")
+	t.check(g.director.plan.size() == 8, "plan de 8 etapas")
 	t.check(g.player.hp == g.player.max_hp, "jugador con vida completa")
 	t.check(g.run.weapons.size() == 2, "dos armas equipadas (inicial + secundaria)")
 	g.stall_t = 0.0

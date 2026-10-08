@@ -1,0 +1,21 @@
+{
+ "id": "fortress_cover",
+ "kind": "presentation",
+ "role": "environment",
+ "source_pack": "KayKit Dungeon Remastered 1.0 + RPG Premium original architecture",
+ "source_revision": "b0ca9bd96a8072ab36a3a5464f00ed1e06a16d07",
+ "license": "CC0 1.0",
+ "runtime_path": "res://assets/premium/presentation/",
+ "transformation": "Deterministic offline Godot perspective composition with source pillars, banners and candles; original masonry, carpet, lighting and framing. tools/premium_render/render_cover.gd. Runtime uses one 2D texture.",
+ "source_files": [
+  "pillar.gltf.glb",
+  "banner_patternA_red.gltf.glb",
+  "candle_triple.gltf.glb"
+ ],
+ "output": "fortress.png",
+ "size": [
+  1920,
+  1080
+ ],
+ "original_work": "Masonry arches, floor, carpet, light rig and composition: RPG Premium original work."
+}

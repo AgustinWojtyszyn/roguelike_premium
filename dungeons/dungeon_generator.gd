@@ -12,6 +12,7 @@ static func generate(chapter: ChapterData, seed_v: int, rooms: Dictionary, encou
 	var plan: Array[Dictionary] = []
 	var used_rooms: Array[String] = []
 	var combat_idx := 0
+	var used_enc: Array[String] = []
 	var need_entry := ""
 	for i in chapter.stage_plan.size():
 		var kind: String = chapter.stage_plan[i]
@@ -39,14 +40,15 @@ static func generate(chapter: ChapterData, seed_v: int, rooms: Dictionary, encou
 		var tier := 0
 		match kind:
 			"combat":
-				tier = 1 if combat_idx == 0 else 2
+				tier = 1 if combat_idx < 2 else 2
 				combat_idx += 1
 			"elite":
 				tier = 3
 			"boss":
 				tier = 4
 		if kind != "cache":
-			enc_id = _pick_encounter(rng, chapter.id, tier, encounters)
+			enc_id = _pick_encounter(rng, chapter.id, tier, encounters, used_enc)
+			used_enc.append(enc_id)
 		plan.append({
 			"kind": kind, "room": room_id, "encounter": enc_id, "elite": kind == "elite",
 			"entry": entry, "exit": exit, "perk_after": i in chapter.perk_after, "name": def.display_name,
@@ -57,6 +59,17 @@ static func generate(chapter: ChapterData, seed_v: int, rooms: Dictionary, encou
 
 static func _pick_room(rng: RandomNumberGenerator, pool: Array[String], rooms: Dictionary, used: Array[String], need_entry: String) -> String:
 	var cands: Array[String] = []
+	var used_base: Array[String] = []
+	for u in used:
+		used_base.append(u.trim_suffix("_m"))
+	# primero salas cuya base (sin gemelo reverso) no haya aparecido; luego cualquier sala sin repetir; luego repetir
+	for id in pool:
+		if used_base.has(id.trim_suffix("_m")):
+			continue
+		if need_entry == "" or need_entry in (rooms[id] as RoomDef).entry_sides:
+			cands.append(id)
+	if not cands.is_empty():
+		return cands[rng.randi_range(0, cands.size() - 1)]
 	for id in pool:
 		if used.has(id):
 			continue
@@ -71,7 +84,7 @@ static func _pick_room(rng: RandomNumberGenerator, pool: Array[String], rooms: D
 	return cands[rng.randi_range(0, cands.size() - 1)]
 
 
-static func _pick_encounter(rng: RandomNumberGenerator, chapter_id: String, tier: int, encounters: Dictionary) -> String:
+static func _pick_encounter(rng: RandomNumberGenerator, chapter_id: String, tier: int, encounters: Dictionary, used_enc: Array[String] = []) -> String:
 	var ids: Array[String] = []
 	for k in encounters:
 		var e: EncounterDef = encounters[k]
@@ -91,4 +104,7 @@ static func _pick_encounter(rng: RandomNumberGenerator, chapter_id: String, tier
 	ids.sort()
 	if ids.is_empty():
 		return ""
+	var fresh: Array[String] = ids.filter(func(k): return not used_enc.has(k))
+	if not fresh.is_empty():
+		ids = fresh
 	return ids[rng.randi_range(0, ids.size() - 1)]
