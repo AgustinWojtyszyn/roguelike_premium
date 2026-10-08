@@ -7,7 +7,7 @@
  "license": "CC0 1.0",
  "source_file": "Characters/gltf/Skeleton_Warrior.glb",
  "transformation": "Godot offscreen ortho 3/4 render (tools/premium_render/render_rig.gd), 8 dirs, bone-masked pose blend; grip from rig bone handslot; packed by tools/premium_pipeline.py",
- "job_sha256": "057744e09f27f7dd",
+ "job_sha256": "bf1c5e86175e17ee",
  "runtime_path": "res://assets/premium/enemies/skeleton_warrior/",
  "cell": [
   144,
@@ -17,7 +17,7 @@
   72,
   118.08
  ],
- "ppu": 36.9230769230769,
+ "ppu": 34.2857142857143,
  "pitch": 35.0,
  "anims": {
   "idle": {

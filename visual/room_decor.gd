@@ -42,6 +42,7 @@ static func paint_floor(ci: CanvasItem, room: Room) -> void:
 		return
 	var t0 := Time.get_ticks_usec()
 	_paint_floor(ci, room)
+	_paint_authored(ci, room)
 	if Boot.has_flag("frametimes"):
 		print("  [decor] suelo %.2f ms" % (float(Time.get_ticks_usec() - t0) / 1000.0))
 
@@ -53,7 +54,11 @@ static func _paint_floor(ci: CanvasItem, room: Room) -> void:
 	var rng := _rng(room, 11)
 	var F := room.floor_rect
 	var area_k := clampf(F.size.x * F.size.y / (1100.0 * 700.0), 0.6, 1.6)
+	var composed: bool = room.def.decor.get("composed", false)
 	for spec in dec.get("floor", []):
+		# sala compuesta a mano: no se esparcen objetos al azar (los pone `authored`); solo manchas/grietas
+		if composed and (spec.get("kind", "obj") != "decal" or str(spec["art"]).contains("gravel")):
+			continue
 		var tex := AssetCatalog.tex(spec["art"])
 		if tex == null:
 			continue
@@ -95,7 +100,7 @@ static func spawn_standing(room: Room, parent: Node2D) -> void:
 		return
 	var dec := VisualProfiles.decor(room.def.theme)
 	var stand: Array = dec.get("stand", [])
-	if stand.is_empty():
+	if stand.is_empty() or room.def.decor.get("composed", false):
 		return
 	var rng := _rng(room, 97)
 	var F := room.floor_rect
@@ -135,3 +140,26 @@ static func spawn_standing(room: Room, parent: Node2D) -> void:
 				parent.add_child(spr)
 				room.standing.append(spr)
 				break
+
+
+## Piezas bajas COMPUESTAS a mano para una sala (def.decor["authored"]): se hornean en el suelo con sombra de contacto.
+## Solo cosas pequeñas y planas: lo alto/solido es un Prop con colision, nunca decoracion horneada.
+static func _paint_authored(ci: CanvasItem, room: Room) -> void:
+	var items: Array = room.def.decor.get("authored", [])
+	for spec in items:
+		var id: String = ThemeCastle.PRE + str(spec["art"]) if room.def.theme == "castle" else str(spec["art"])
+		var tex := AssetCatalog.tex(id)
+		if tex == null:
+			continue
+		var bb: Array = AssetCatalog.info(id).get("bbox", [0, 0, tex.get_width(), tex.get_height()])
+		var bw := float(bb[2]) - float(bb[0])
+		var bh := float(bb[3]) - float(bb[1])
+		var s := float(spec["h"]) / bh
+		var p: Vector2 = spec["p"]
+		var w := bw * s
+		var h := bh * s
+		var flip := -1.0 if bool(spec.get("flip", false)) else 1.0
+		Gfx.draw_glow(ci, p + Vector2(0, -h * 0.08), maxf(w, h) * 0.62, Color(0, 0, 0, 0.42))
+		ci.draw_set_transform(p, 0.0, Vector2(flip, 1.0))
+		ci.draw_texture_rect_region(tex, Rect2(-w * 0.5, -h, w, h), Rect2(float(bb[0]), float(bb[1]), bw, bh), spec.get("tint", ThemeCastle.PROP_TINT))
+		ci.draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)

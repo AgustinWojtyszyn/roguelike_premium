@@ -15,10 +15,11 @@ const PREMIUM_ART := [
 	"premium/dungeon/castle/floor_tile_small_weeds_A", "premium/dungeon/castle/floor_tile_small_decorated", "premium/dungeon/castle/floor_tile_grate",
 	"premium/dungeon/castle/wall", "premium/dungeon/castle/wall_cracked", "premium/dungeon/castle/wall_arched", "premium/dungeon/castle/wall_window_closed",
 	"premium/dungeon/castle/banner_red", "premium/dungeon/castle/banner_patternA_red", "premium/dungeon/castle/banner_shield_red", "premium/dungeon/castle/banner_thin_red",
-	"premium/dungeon/castle/torch_mounted",
+	"premium/dungeon/castle/torch_mounted", "premium/dungeon/castle/sword_shield_gold",
 ]
-const FLOOR_TINT := Color("6b7094")
-const WALL_TINT := Color("8d94bb")
+const PROP_TINT := Color("e3e1f2")
+const FLOOR_TINT := Color("8a90b8")
+const WALL_TINT := Color("a9afd4")
 const FLOOR_VARIANTS := [
 	["floor_tile_small", 0.80], ["floor_tile_small_broken_A", 0.06], ["floor_tile_small_broken_B", 0.05],
 	["floor_tile_small_weeds_A", 0.04], ["floor_tile_small_decorated", 0.03], ["floor_tile_grate", 0.02],
@@ -50,6 +51,19 @@ func build_dressing(room: Room, rng: RandomNumberGenerator) -> Dictionary:
 	var banners: Array[float] = []
 	for i in n - 1:
 		banners.append(F.get_center().x + (float(i) - float(n - 2) * 0.5) * F.size.x / float(n))
+	# piezas de muro compuestas a mano (escudo heraldico, etc.) desplazan antorchas y banderas que choquen con ellas
+	for wi in room.def.decor.get("wall_items", []):
+		var wx: float = F.get_center().x + float(wi["x"])
+		var kt: Array[Vector2] = []
+		for v in torches:
+			if absf(v.x - wx) > 80.0:
+				kt.append(v)
+		torches = kt
+		var kb: Array[float] = []
+		for bx in banners:
+			if absf(bx - wx) > 70.0:
+				kb.append(bx)
+		banners = kb
 	return {"torches": torches, "banners": banners}
 
 
@@ -73,6 +87,41 @@ static func _pick(variants: Array, rng: RandomNumberGenerator) -> String:
 
 
 ## Suelo premium: losetas pre-renderizadas con la rejilla de la propia loseta (se hornea en RoomBake: coste cero en juego).
+var _room: Room
+
+
+func paint_floor(ci: CanvasItem, room: Room) -> void:
+	_room = room
+	super.paint_floor(ci, room)
+
+
+## Variante de loseta segun la zona: ruinas junto a los muros, aro decorado alrededor del sigilo, carril central mas limpio.
+func _zone_variant(p: Vector2, rng: RandomNumberGenerator) -> String:
+	if _room != null and _room.def.decor.get("composed", false):
+		var F := _room.floor_rect
+		var edge := minf(minf(p.x - F.position.x, F.end.x - p.x), minf(p.y - F.position.y, F.end.y - p.y))
+		var c: Vector2 = _room.def.decor.get("emblem_pos", F.get_center())
+		var dc := p.distance_to(c)
+		var r := rng.randf()
+		if dc > 128.0 and dc < 172.0 and r < 0.55:
+			return "floor_tile_small_decorated"
+		if edge < 70.0:
+			if r < 0.16:
+				return "floor_tile_small_broken_A"
+			if r < 0.30:
+				return "floor_tile_small_broken_B"
+			if r < 0.40:
+				return "floor_tile_small_weeds_A"
+		elif absf(p.y - c.y) < 60.0:
+			return "floor_tile_small" if r < 0.97 else "floor_tile_grate"
+		elif r < 0.05:
+			return "floor_tile_small_broken_A"
+		elif r > 0.985:
+			return "floor_tile_grate"
+		return "floor_tile_small"
+	return _pick(FLOOR_VARIANTS, rng)
+
+
 func _floor_premium(ci: CanvasItem, R: Rect2, seed_v: int) -> bool:
 	var base := _pre("floor_tile_small")
 	if base.is_empty():
@@ -86,7 +135,7 @@ func _floor_premium(ci: CanvasItem, R: Rect2, seed_v: int) -> bool:
 	while y < R.end.y - 0.5:
 		var x := R.position.x
 		while x < R.end.x - 0.5:
-			var id := _pick(FLOOR_VARIANTS, rng)
+			var id := _zone_variant(Vector2(x + tw * 0.5, y + tw * 0.5), rng)
 			var inf := _pre(id)
 			if inf.is_empty():
 				inf = base
@@ -225,7 +274,19 @@ func _wall_n(ci: CanvasItem, room: Room, x0: float, x1: float, edge: float) -> v
 				if v0.x > x0 + 24.0 and v0.x < x1 - 24.0:
 					_premium_sprite(ci, "torch_mounted", Vector2(v0.x, edge - 34.0), 1.5, WALL_TINT)
 			var bi := 0
+			var items: Array = room.def.decor.get("wall_items", [])
+			for wi in items:
+				var wx: float = room.floor_rect.get_center().x + float(wi["x"])
+				if wx > x0 + 30.0 and wx < x1 - 30.0:
+					_premium_sprite(ci, str(wi["art"]), Vector2(wx, edge - 44.0), float(wi.get("k", 1.0)), WALL_TINT)
 			for bx0 in d0.get("banners", []):
+				var clash := false
+				for wi in items:
+					if absf(bx0 - (room.floor_rect.get_center().x + float(wi["x"]))) < 70.0:
+						clash = true
+				if clash:
+					bi += 1
+					continue
 				if bx0 > x0 + 40.0 and bx0 < x1 - 40.0:
 					var bid: String = ["banner_red", "banner_patternA_red", "banner_shield_red", "banner_thin_red"][bi % 4]
 					_premium_sprite(ci, bid, Vector2(bx0, edge - 10.0), 1.0, WALL_TINT)
@@ -364,6 +425,9 @@ func _wall_we(ci: CanvasItem, room: Room, side: String, a: float, b: float, edge
 
 func paint_lights(ci: CanvasItem, room: Room) -> void:
 	var F := room.floor_rect
+	for L in room.def.decor.get("lights", []):
+		if not L.get("flicker", false):
+			Gfx.draw_glow(ci, L["p"], float(L["r"]), Color(L["col"], float(L["a"])))
 	for tp in room.dressing.get("torches", []):
 		var v: Vector2 = tp
 		if room.in_exit_gap(v.x, "N"):
@@ -382,6 +446,10 @@ func paint_lights(ci: CanvasItem, room: Room) -> void:
 
 func paint_deco(ci: CanvasItem, room: Room, t: float) -> void:
 	var F := room.floor_rect
+	for L in room.def.decor.get("lights", []):
+		if L.get("flicker", false):
+			var fl := 0.8 + 0.2 * sin(t * 9.0 + float((L["p"] as Vector2).x) * 0.05) + 0.05 * sin(t * 23.0)
+			Gfx.draw_glow(ci, L["p"], float(L["r"]) * (0.95 + 0.05 * fl), Color(L["col"], float(L["a"]) * fl))
 	var dec: Dictionary = room.def.decor
 	var C: Vector2 = dec.get("emblem_pos", F.get_center())
 	if dec.get("emblem", "") == "sigil":

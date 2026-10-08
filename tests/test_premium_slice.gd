@@ -3,6 +3,7 @@ extends RefCounted
 ## locomocion/hurt/death, 8 direcciones, y el arma realmente sobre la mano. Tambien prueba que el gate RECHAZA perfiles defectuosos.
 
 const REQUIRED := ["idle", "walk", "hurt", "death"]
+const EAST5 := ["south", "south-east", "east", "north-east", "north"]
 const EIGHT := ["south", "south-east", "east", "north-east", "north", "north-west", "west", "south-west"]
 
 
@@ -28,8 +29,10 @@ static func profile_errors(vp: Dictionary, s: AnimSet, weapon_category: String) 
 		errs.append("ranged sin pose de apuntado (weapon_mode idle != aim)")
 	for a in s.anim_names():
 		var dirs: Array = s.dirs_of(a)
-		if dirs.size() < 8:
-			errs.append("%s: %d direcciones (<8)" % [a, dirs.size()])
+		# el lado oeste se espeja en runtime: basta el lado este (5 direcciones) siempre que la animacion no sea de un solo sentido
+		for need in EAST5:
+			if not dirs.has(need):
+				errs.append("%s: falta la direccion %s (el oeste se espeja desde el este)" % [a, need])
 		for d in dirs:
 			var n := s.frame_count(a, d)
 			for i in n:
@@ -51,13 +54,13 @@ func run(t) -> void:
 func _synthetic_set(with_grips: bool, anims: Array) -> AnimSet:
 	var am := {}
 	for a in anims:
-		am[a] = {"sheet": "res://nope.png", "dirs": EIGHT, "counts": [1, 1, 1, 1, 1, 1, 1, 1], "cell": [8, 8]}
+		am[a] = {"sheet": "res://nope.png", "dirs": EAST5, "counts": [1, 1, 1, 1, 1], "cell": [8, 8]}
 	var meta := {"bbox": [0, 0, 8, 8], "anims": am}
 	if with_grips:
 		var gr := {}
 		for a in anims:
 			gr[a] = {}
-			for d in EIGHT:
+			for d in EAST5:
 				gr[a][d] = [[0.0, -10.0, 0.0, 0.0, 0.0, 0]]
 		meta["grips"] = gr
 	return AnimSet.create("synthetic", meta)
@@ -91,7 +94,7 @@ func _real_profiles(t) -> void:
 		var errs := profile_errors(vp, AssetCatalog.anim_set(str(vp["set"])), w.category)
 		t.eq(errs.size(), 0, "jugable %s cumple el contrato Premium %s" % [cid, str(errs.slice(0, 3))])
 		t.check(not vp.has("weapon_anchor"), "jugable %s no usa anchors manuales" % cid)
-		var mf := PremiumManifest.SETS.get(str(vp["set"]), {})
+		var mf: Dictionary = PremiumManifest.SETS.get(str(vp["set"]), {})
 		t.check(str(mf.get("source", {}).get("license", "")) == "CC0 1.0", "jugable %s con licencia/procedencia en manifest" % cid)
 	t.check(seen >= 2, "slice: al menos un ranged y un melee jugables")
 
@@ -153,9 +156,13 @@ func _rig_holds_weapon(t) -> void:
 			for i in 6:
 				rig.animate(1.0 / 30.0)
 			var g := rig.spr.aset.grip(rig.spr.anim, rig.spr.dir, rig.spr.idx)
-			var want: Vector2 = rig.spr.position + Vector2(float(g[0]), float(g[1])) * rig.spr.scale.x
-			# el pivote del arma (agarre) coincide con el hueso de la mano de este frame
-			t.check(rig.pivot.position.distance_to(want) < 0.01, "%s dir %d: pivote del arma == agarre del rig" % [cid, k])
+			var mx := -1.0 if rig._mirror else 1.0
+			var want: Vector2 = rig.spr.position + Vector2(float(g[0]) * mx, float(g[1])) * rig.spr.scale.x
+			# la empuñadura del arma (no el eje del cañon) cae sobre el hueso de la mano de este frame
+			var handle: Vector2 = rig.pivot.position + Vector2(0.0, rig._flip * WeaponArt.bore_offset(w) * rig.wnode.scale.x).rotated(rig._grip_rot)
+			t.check(handle.distance_to(want) < 0.01, "%s dir %d: empuñadura del arma == agarre del rig" % [cid, k])
+			t.check(rig.hand_spr.position.distance_to(want) < 0.01, "%s dir %d: puño dibujado sobre el agarre" % [cid, k])
+			t.check(rig.hand_spr.flip_h == rig._mirror and rig.spr.flip_h == rig._mirror, "%s dir %d: cuerpo y mano espejados juntos" % [cid, k])
 			# el muzzle sale a `muzzle.x` del agarre sobre el eje del arma (la punta del arte se escala a esa distancia)
 			rig.kick = 0.0
 			var dist := (rig.muzzle_world() - rig.pivot.global_position).length()
@@ -173,6 +180,8 @@ func _rig_holds_weapon(t) -> void:
 		rig.flash = 1.0
 		rig.animate(1.0 / 60.0)
 		t.check(rig.spr.anim == rig.spr.resolve("hurt"), "%s: hurt reproduce animacion propia" % cid)
+		for i in 24:
+			rig.animate(1.0 / 60.0)   # deja pasar la ventana de hurt (0.24 s)
 		if w.category == "melee":
 			rig.swing = 1.0
 			rig.animate(1.0 / 60.0)
@@ -182,14 +191,18 @@ func _rig_holds_weapon(t) -> void:
 			rig.update_dead(1.0 / 60.0)
 		t.check(rig.spr.anim == rig.spr.resolve("death"), "%s: death reproduce animacion propia" % cid)
 		rig.queue_free()
-	# la punta del arte de arma escalado coincide con el muzzle (arte importado)
-	for wid in ["pulsar", "chispa", "filo_z"]:
-		if AssetManifest.ORIENTED.has(wid):
-			var o: Dictionary = AssetManifest.ORIENTED[wid]
-			var wd := Catalog.weapon(wid)
-			var reach := float(o["tip"]) - float((o["grip"] as Array)[0])
-			var sc := clampf(maxf(wd.muzzle.x, 18.0) / maxf(reach, 1.0), 0.12, 0.6)
-			t.check(absf(reach * sc - maxf(wd.muzzle.x, 18.0)) < 0.5 or sc >= 0.6 or sc <= 0.12, "arma %s: punta del arte == muzzle" % wid)
+	# armas Premium reprocesadas: la punta de la geometria cae en el muzzle del arma y la mano libre existe en las de dos manos
+	for wid in ["pulsar", "chispa", "trinca", "maul12", "filo_z"]:
+		var wd := Catalog.weapon(wid)
+		var info: Dictionary = WeaponArt._premium(wd)
+		t.check(not info.is_empty(), "arma %s: arte Premium presente" % wid)
+		if info.is_empty():
+			continue
+		var sc := WeaponArt._premium_scale(wd, info)
+		var tip_x := float(info["points"]["tip"][0]) * sc
+		t.check(absf(tip_x - maxf(wd.muzzle.x, 18.0)) < 0.5, "arma %s: punta del arte == muzzle (%.1f vs %.1f)" % [wid, tip_x, wd.muzzle.x])
+		var two := wd.category != "pistol" and wd.category != "melee"
+		t.eq(WeaponArt.foregrip(wd) != Vector2.ZERO, two, "arma %s: agarre delantero solo si es de dos manos" % wid)
 	VisualProfiles._enabled = -1
 	host.queue_free()
 	await t.process_frame
@@ -210,7 +223,7 @@ func _enemies_and_room(t) -> void:
 	# procedencia de todo lo Premium estatico
 	for id in PremiumManifest.STATIC:
 		var inf: Dictionary = PremiumManifest.STATIC[id]
-		t.check(str(inf["source"]["license"]) == "CC0 1.0" and str(inf["source"]["revision"]) != "unknown", "estatico %s con licencia y revision" % id)
+		t.check(str(inf["source"]["license"]) in ["CC0 1.0", "Original work (RPG Premium)"] and str(inf["source"]["revision"]) != "unknown", "estatico %s con licencia y revision" % id)
 		t.check(ResourceLoader.exists(inf["path"]), "estatico %s existe" % id)
 	for kind in VisualProfiles.PROPS_THEMED["castle"]:
 		for art in VisualProfiles.PROPS_THEMED["castle"][kind]["art"]:
@@ -228,4 +241,11 @@ func _enemies_and_room(t) -> void:
 			if str(spec["art"]).begins_with("premium/"):
 				deco_min += int(spec["n"][0])
 				deco_max += int(spec["n"][1])
-	t.check(props + deco_min >= 15 and props + deco_max <= 90, "sala patio_armas: densidad curada (%d props + %d..%d decoracion)" % [props, deco_min, deco_max])
+	var authored: Array = room_def.decor.get("authored", [])
+	for sp in authored:
+		t.check(AssetCatalog.has_tex(ThemeCastle.PRE + str(sp["art"])), "patio_armas: pieza compuesta %s existe" % sp["art"])
+	for wi in room_def.decor.get("wall_items", []):
+		t.check(AssetCatalog.has_tex(ThemeCastle.PRE + str(wi["art"])), "patio_armas: pieza de muro %s existe" % wi["art"])
+	t.check(bool(room_def.decor.get("composed", false)) and room_def.decor.get("lights", []).size() >= 3, "patio_armas: sala compuesta con luces localizadas")
+	t.check(props + authored.size() + (room_def.decor.get("wall_items", []) as Array).size() >= 15, "patio_armas: densidad curada (%d props + %d piezas compuestas)" % [props, authored.size()])
+	t.check(room_def.size.x * room_def.size.y <= 1100.0 * 600.0 + 1.0, "patio_armas: compacta (<= 1100x600)")

@@ -14,3 +14,6 @@ assets/premium/
 ```
 
 Playable profiles must satisfy `docs/PREMIUM_ASSET_REBUILD.md` and set `weapon_compatible=true` in `VisualProfiles.CHARACTERS`.
+
+## Generated content (do not edit by hand)
+Everything under `characters/`, `enemies/` and `dungeon/` is produced by `tools/premium_pipeline.py` from `tools/premium_render/jobs/*.json`; each folder carries a `manifest.json` with provenance. Re-run the pipeline instead of touching PNGs.

@@ -7,7 +7,7 @@
     {"bone": "handslot.r", "file": "Assets/gltf/Skeleton_Blade.gltf"},
     {"bone": "handslot.l", "file": "Assets/gltf/Skeleton_Shield_Large_A.gltf"}
   ],
-  "cell": 144, "ss": 3, "ortho": 3.9, "feet_frac": 0.82, "pitch": 35.0,
+  "cell": 144, "ss": 3, "ortho": 4.2, "feet_frac": 0.82, "pitch": 35.0,
   "dirs": ["south", "south-east", "east", "north-east", "north"],
   "anims": {
     "idle":    {"lower": "Idle_Combat", "frames": 4, "loop": true},

@@ -14,7 +14,9 @@ El runtime solo consume PNG 2D + data/visual/premium_manifest.gd (generado).
 """
 import argparse, hashlib, json, math, os, shutil, subprocess, sys
 from pathlib import Path
-from PIL import Image
+from PIL import Image, ImageChops, ImageFilter
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import premium_look  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 JOBS = ROOT / "tools/premium_render/jobs"
@@ -24,6 +26,7 @@ MANIFEST_GD = ROOT / "data/visual/premium_manifest.gd"
 DIRS = ["south", "south-east", "east", "north-east", "north", "north-west", "west", "south-west"]
 
 PACKS = {
+    "own": ("tools/premium_render", "", "RPG Premium original models"),
     "kaykit_adventurers": ("asset_bank/vendor/kaykit_adventurers", "addons/kaykit_character_pack_adventures", "KayKit Adventurers 1.0"),
     "kaykit_skeletons": ("asset_bank/vendor/kaykit_skeletons", "addons/kaykit_character_pack_skeletons", "KayKit Skeletons 1.0"),
     "kaykit_dungeon": ("asset_bank/vendor/kaykit_dungeon", "addons/kaykit_dungeon_remastered", "KayKit Dungeon Remastered 1.0"),
@@ -34,6 +37,8 @@ PACKS = {
 def pack_info(pack):
     rel, sub, name = PACKS[pack]
     base = ROOT / rel
+    if pack == "own":
+        return base, name, "original"
     try:
         rev = subprocess.check_output(["git", "-C", str(base), "rev-parse", "HEAD"], text=True).strip()
     except Exception:
@@ -50,9 +55,9 @@ def render(jid, job):
     static = job["kind"] == "static_set"
     j = dict(job)
     if static:
-        j["items"] = [dict(it, file=str(base / job["dir"] / it["file"])) for it in job["items"]]
+        j["items"] = [it if "build" in it else dict(it, file=str(base / job["dir"] / it["file"])) for it in job["items"]]
         for it in j["items"]:
-            if not Path(it["file"]).exists():
+            if "build" not in it and not Path(it["file"]).exists():
                 sys.exit(f"fuente inexistente: {it['file']}")
     else:
         src = base / job["source"]
@@ -118,6 +123,7 @@ def pack_asset(jid, job, rdir):
             g_dir = []
             for i, rec in enumerate(frames):
                 im = Image.open(rdir / an / f"{d}_{i}.png").convert("RGBA")
+                im = premium_look.stylize(im, "hero" if hero else "enemy", ss)
                 fr = downscale(im, cell)
                 if clipped(fr, cell):
                     clip_errors.append(f"{jid}/{an}/{d}_{i}")
@@ -129,10 +135,11 @@ def pack_asset(jid, job, rdir):
                                   round(rec["grip_l"][0], 1), round(rec["grip_l"][1], 1), 1 if rec.get("behind") else 0])
                 if hsheet is not None:
                     mask = Image.open(rdir / an / f"{d}_{i}_mask.png").convert("L")
-                    a = Image.new("L", im.size, 0)
-                    a.paste(im.split()[3], (0, 0))
-                    from PIL import ImageChops
-                    a = ImageChops.multiply(a, mask)
+                    # la mascara se dilata lo que mide el contorno para que el parche incluya el borde oscuro del puño
+                    mask = mask.point(lambda v: 255 if v > 90 else 0)
+                    for _ in range(int(1.5 * ss) + 1):
+                        mask = mask.filter(ImageFilter.MaxFilter(3))
+                    a = ImageChops.multiply(im.getchannel("A"), mask)
                     himg = im.copy()
                     himg.putalpha(a)
                     cx = (cell * 0.5 + rec["grip"][0]) * ss
@@ -182,29 +189,39 @@ def pack_static(jid, job, rdir):
     base, pname, rev = pack_info(job["pack"])
     items = {}
     bad = []
+    ss = int(meta.get("ss", 1))
     for it in job["items"]:
         iid = it["id"]
         pad = int(it.get("pad", 2))
         im = Image.open(rdir / f"{iid}.png").convert("RGBA")
+        kind = it.get("kind", job.get("look_kind", "prop"))
+        if kind != "none":
+            im = premium_look.stylize(im, kind, ss, it.get("outline_px"))
         bb = im.getchannel("A").point(lambda v: 255 if v > 8 else 0).getbbox()
         if bb is None:
             sys.exit(f"pieza vacia: {iid}")
-        box = (max(0, bb[0] - pad), max(0, bb[1] - pad), min(im.width, bb[2] + pad), min(im.height, bb[3] + pad))
+        pd = pad * ss
+        box = (max(0, bb[0] - pd), max(0, bb[1] - pd), min(im.width, bb[2] + pd), min(im.height, bb[3] + pd))
         if box[0] == 0 or box[1] == 0 or box[2] == im.width or box[3] == im.height:
             bad.append(iid)
             continue
         crop = im.crop(box)
+        if ss > 1:
+            crop = crop.convert("RGBa").resize((max(1, round(crop.width / ss)), max(1, round(crop.height / ss))), Image.LANCZOS).convert("RGBA")
         crop.save(odir / f"{iid}.png", optimize=True)
         a = meta["items"][iid]["anchor"]
-        items[iid] = {
+        rec = {
             "path": f"res://assets/premium/{job['dest']}/{iid}.png", "size": [crop.width, crop.height],
-            "bbox": [0, 0, crop.width, crop.height], "anchor": [a[0] - box[0], a[1] - box[1]],
-            "scale": job["ppu_game"] / job["ppu"], "pitch": meta["items"][iid]["pitch"], "source_file": it["file"],
+            "bbox": [0, 0, crop.width, crop.height], "anchor": [round((a[0] - box[0]) / ss, 2), round((a[1] - box[1]) / ss, 2)],
+            "scale": job["ppu_game"] / job["ppu"], "pitch": meta["items"][iid]["pitch"], "source_file": it.get("file", "original:" + it.get("build", iid)),
         }
+        if "points" in meta["items"][iid]:
+            rec["points"] = {k: [round(v[0] / ss, 2), round(v[1] / ss, 2)] for k, v in meta["items"][iid]["points"].items()}
+        items[iid] = rec
     if bad:
         sys.exit(f"QUALITY GATE: piezas recortadas por el borde del render en {jid} (subir cell o quitarlas): {', '.join(bad)}")
     manifest = {
-        "id": jid, "kind": "static_set", "role": "environment", "source_pack": pname, "source_revision": rev, "license": "CC0 1.0",
+        "id": jid, "kind": "static_set", "role": "environment", "source_pack": pname, "source_revision": rev, "license": "Original work (RPG Premium)" if job["pack"] == "own" else "CC0 1.0",
         "transformation": "Godot offscreen ortho render (tools/premium_render/render_static.gd) + recorte por alfa; ancla = origen del modelo",
         "job_sha256": hashlib.sha256(json.dumps(job, sort_keys=True).encode()).hexdigest()[:16],
         "runtime_path": f"res://assets/premium/{job['dest']}/", "ppu": job["ppu"], "ppu_game": job["ppu_game"], "items": items,

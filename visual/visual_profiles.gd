@@ -22,9 +22,9 @@ const CHARACTERS := {
 	# Perfiles pre-renderizados desde rigs 3D CC0 (tools/premium_pipeline.py). El agarre sale de cada frame del set
 	# (hueso handslot del rig fuente): `grip_mode: rig` ancla arma + mano a ese agarre. `scale` = px de juego por px de celda.
 	"vesper": {"set": "premium/characters/vesper", "height": 66.0, "scale": 0.72, "fps": CHAR_FPS, "shadow": 1.0,
-		"weapon_compatible": true, "grip_mode": "rig", "weapon_scale": 0.5, "filter": "linear"},
+		"weapon_compatible": true, "grip_mode": "rig", "weapon_scale": 0.85, "filter": "linear", "weapon_behind_dirs": ["north"]},
 	"sable": {"set": "premium/characters/sable", "height": 66.0, "scale": 0.72, "fps": CHAR_FPS, "shadow": 1.0,
-		"weapon_compatible": true, "grip_mode": "rig", "weapon_scale": 0.5, "filter": "linear"},
+		"weapon_compatible": true, "grip_mode": "rig", "weapon_scale": 0.85, "filter": "linear", "weapon_behind_dirs": ["north"]},
 }
 
 static func character(visual_id: String) -> Dictionary:
@@ -38,10 +38,12 @@ const ENEMY_FPS := {"default": 10.0, "walk": 11.0, "idle": 6.0, "attack": 14.0, 
 
 const ENEMIES := {
 	# Premium (pre-render 3D CC0): esqueleto guerrero KayKit con hoja+escudo montados en handslot; 5 direcciones (el espejo lo hace vis.scale.x).
-	"caballero": {"set": "premium/enemies/skeleton_warrior", "height": 62.0, "scale": 0.95, "fps": ENEMY_FPS, "shadow": 1.2, "death_dur": 0.8,
+	"caballero": {"set": "premium/enemies/skeleton_warrior", "height": 62.0, "scale": 1.0, "fps": ENEMY_FPS, "shadow": 1.2, "death_dur": 0.8,
 		"anim_map": {"idle": "idle", "move": "walk", "windup": "windup", "strike": "attack", "recover": "recover"}},
-	"sabueso": {"set": "rpg/enemies/raptor", "height": 46.0, "fps": ENEMY_FPS, "tint": Color("ffc89a"), "shadow": 1.0,
-		"anim_map": {"idle": "idle", "move": "walk", "windup": "lunge_windup", "strike": "lunge_attack", "recover": "recovery"}},
+	"ballestero": {"set": "premium/enemies/skeleton_crossbow", "height": 62.0, "scale": 1.0, "fps": ENEMY_FPS, "shadow": 1.2, "death_dur": 0.8,
+		"anim_map": {"idle": "idle", "move": "walk", "windup": "windup", "strike": "attack", "recover": "recover"}},
+	"sabueso": {"set": "premium/enemies/imp", "height": 46.0, "scale": 1.15, "fps": ENEMY_FPS, "shadow": 1.0, "death_dur": 0.6,
+		"anim_map": {"idle": "idle", "move": "walk", "windup": "windup", "strike": "attack", "recover": "recover"}},
 	"acechador": {"set": "rpg/enemies/raptor", "height": 56.0, "fps": ENEMY_FPS, "tint": Color("c8a6ff"), "shadow": 1.1,
 		"anim_map": {"idle": "idle", "move": "walk", "windup": "lunge_windup", "strike": "lunge_attack", "recover": "recovery"}},
 	"ojo": {"set": "rpg/enemies/orb_stalker", "height": 70.0, "offset": Vector2(0, -16), "fps": ENEMY_FPS, "shadow": 1.2,

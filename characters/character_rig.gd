@@ -39,6 +39,8 @@ var scarf_pts: Array[Vector2] = []
 var grip_rig := false
 var hand_spr: Sprite2D
 var _grip_rot := 0.0
+var _flip := 1.0
+var _mirror := false   # los sets Premium traen solo el lado este: el oeste es el espejo (la mano que dispara queda siempre del lado de camara)
 var _atk_active := false
 var _behind := false
 var sprite_mode := false
@@ -196,7 +198,7 @@ func animate(dt: float) -> void:
 	swap_t = maxf(0.0, swap_t - dt * 5.0)
 	swing = maxf(0.0, swing - dt * 7.0)
 	pivot.rotation = _grip_rot if grip_rig else aim.angle()
-	pivot.scale.y = (1.0 if cos(_grip_rot) >= 0.0 else -1.0) if grip_rig else face
+	pivot.scale.y = _flip if grip_rig else face
 	var melee := weapon != null and weapon.category == "melee"
 	wnode.position = Vector2(-kk * weapon.kick * wnode.scale.x, 0.0)
 	if grip_rig:
@@ -219,6 +221,14 @@ func animate(dt: float) -> void:
 func _animate_sprite(dt: float, spd: float, amp: float, moving: bool) -> void:
 	var aset := spr.aset
 	var base_anim := "walk" if moving else ("aim" if spr.has_logical("aim") else "idle")
+	if grip_rig and _two_handed() and spr.has_logical(base_anim + "_2h"):
+		base_anim += "_2h"   # pose con la mano libre en el agarre delantero (IK en el render)
+	var av := aim
+	if grip_rig:
+		if absf(aim.x) > 0.12:
+			_mirror = aim.x < 0.0
+		av = Vector2(absf(aim.x), aim.y)
+		spr.flip_h = _mirror
 	_hurt_t = maxf(0.0, _hurt_t - dt)
 	if flash > _prev_flash + 0.5 and spr.has_logical("hurt"):
 		_hurt_t = 0.24
@@ -227,20 +237,20 @@ func _animate_sprite(dt: float, spd: float, amp: float, moving: bool) -> void:
 	_prev_flash = flash
 	if grip_rig and swing > 0.99 and _hurt_t <= 0.0 and spr.has_logical("attack"):
 		_atk_active = true
-		spr.set_dir_vec(aim)
+		spr.set_dir_vec(av)
 		spr.play("attack", true, false)
 	if _atk_active and spr.finished:
 		_atk_active = false
 	if _hurt_t <= 0.0 and not _atk_active:
 		spr.play(base_anim)
 
-	var cand := aset.best_dir(spr.anim, aim)
+	var cand := aset.best_dir(spr.anim, av)
 	if _atk_active:
 		cand = spr.dir
 	if cand != spr.dir:
 		var cur: Vector2 = AnimSet.DIR_VEC.get(spr.dir, Vector2.DOWN)
 		var nw: Vector2 = AnimSet.DIR_VEC.get(cand, Vector2.DOWN)
-		if not aset.dirs_of(spr.anim).has(spr.dir) or aim.dot(nw) > aim.dot(cur) + 0.12:
+		if not aset.dirs_of(spr.anim).has(spr.dir) or av.dot(nw) > av.dot(cur) + 0.12:
 			spr.set_dir_vec(nw)
 
 	if _atk_active:
@@ -277,20 +287,31 @@ func _animate_sprite(dt: float, spd: float, amp: float, moving: bool) -> void:
 	pivot.position = _anchor_cur + Vector2(0, bob)
 
 
+func _two_handed() -> bool:
+	return weapon != null and weapon.category != "pistol" and weapon.category != "melee"
+
+
 ## Coloca arma y mano desde los metadatos de agarre del frame actual (derivados del rig fuente).
 func _grip_update() -> void:
 	var g: Array = spr.aset.grip(spr.anim, spr.dir, spr.idx)
 	if g.size() < 6:
 		return
 	var sc := spr.scale.x
-	var gp: Vector2 = spr.position + Vector2(float(g[0]), float(g[1])) * sc
-	pivot.position = gp
+	var mx := -1.0 if _mirror else 1.0
+	var gp: Vector2 = spr.position + Vector2(float(g[0]) * mx, float(g[1])) * sc
 	var rot := aim.angle()
 	if spr.aset.weapon_mode(spr.anim) == "rig":
 		var nominal: float = (AnimSet.DIR_VEC.get(spr.dir, Vector2.RIGHT) as Vector2).angle()
-		rot = deg_to_rad(float(g[2])) + angle_difference(nominal, aim.angle())
+		var rig_ang := deg_to_rad(float(g[2]))
+		if _mirror:
+			nominal = PI - nominal
+			rig_ang = PI - rig_ang
+		rot = rig_ang + angle_difference(nominal, aim.angle())
 	_grip_rot = rot
-	var behind := int(g[5]) == 1 and bool(sprof.get("weapon_behind", false))
+	_flip = 1.0 if cos(rot) >= 0.0 else -1.0
+	# el origen del arma es el eje del cañon; el puño (gp) cierra sobre la empuñadura: se compensa la distancia entre ambos
+	pivot.position = gp - Vector2(0.0, _flip * WeaponArt.bore_offset(weapon) * wnode.scale.x).rotated(rot)
+	var behind := int(g[5]) == 1 and (spr.dir in (sprof.get("weapon_behind_dirs", []) as Array))
 	if behind != _behind:
 		_behind = behind
 		vis.move_child(pivot, 0 if behind else body.get_index() + 1)
@@ -299,6 +320,7 @@ func _grip_update() -> void:
 		hand_spr.visible = false
 		return
 	hand_spr.visible = true
+	hand_spr.flip_h = _mirror
 	hand_spr.texture = hf[clampi(spr.idx, 0, hf.size() - 1)]
 	hand_spr.position = gp
 	hand_spr.scale = Vector2(sc, sc)
@@ -320,7 +342,12 @@ func start_death(dir: Vector2) -> void:
 	death_t = 0.0
 	death_dirv = dir
 	if sprite_mode and spr != null and spr.has_logical("death"):
-		spr.set_dir_vec(dir)
+		if grip_rig:
+			_mirror = dir.x < 0.0
+			spr.flip_h = _mirror
+			spr.set_dir_vec(Vector2(absf(dir.x), dir.y))
+		else:
+			spr.set_dir_vec(dir)
 		spr.play("death", true, false)
 	_atk_active = false
 	if pivot != null and not grip_rig:
@@ -337,7 +364,7 @@ func update_dead(dt: float) -> void:
 		if grip_rig:
 			_grip_update()
 			pivot.rotation = _grip_rot
-			pivot.scale.y = 1.0 if cos(_grip_rot) >= 0.0 else -1.0
+			pivot.scale.y = _flip
 			# el arma se suelta con la mano de la caida y se desvanece (no queda flotando junto al cuerpo)
 			var wa := clampf(1.0 - (death_t - 0.1) / 0.3, 0.0, 1.0)
 			pivot.modulate.a = wa

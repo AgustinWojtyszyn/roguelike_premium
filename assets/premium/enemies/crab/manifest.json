@@ -7,7 +7,7 @@
  "license": "CC0 1.0",
  "source_file": "Cute Animated Monsters - Aug 2020/glTF/Crab.gltf",
  "transformation": "Godot offscreen ortho 3/4 render (tools/premium_render/render_rig.gd), 8 dirs, bone-masked pose blend; grip from rig bone handslot; packed by tools/premium_pipeline.py",
- "job_sha256": "87e6fb59701c470b",
+ "job_sha256": "0f97de18bc3c2a09",
  "runtime_path": "res://assets/premium/enemies/crab/",
  "cell": [
   96,

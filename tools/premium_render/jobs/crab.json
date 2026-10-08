@@ -55,8 +55,14 @@
    "fit_cell": true
   }
  },
- "fix_materials": true,
  "ambient_e": 1.1,
  "sun": 1.1,
- "albedo_mul": 2.2
+ "albedo_mul": 1.6,
+ "look": {
+  "hsv": [
+   0.45,
+   1.0,
+   1.0
+  ]
+ }
 }

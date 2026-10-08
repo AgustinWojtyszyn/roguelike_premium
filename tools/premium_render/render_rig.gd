@@ -150,17 +150,8 @@ func _setup() -> void:
 		if show.has(String(m.name)):
 			hidden = false
 		m.visible = not hidden
-	if job.get("fix_materials", false):
-		# Quaternius exporta materiales metalicos: con luz de relleno plana salen casi negros. Se normalizan (no es un retoque artistico).
-		for m in meshes:
-			for si in m.mesh.get_surface_count():
-				var mat := m.get_active_material(si)
-				if mat is StandardMaterial3D:
-					var mm := (mat as StandardMaterial3D).duplicate() as StandardMaterial3D
-					mm.metallic = 0.0
-					mm.roughness = float(job.get("roughness", 0.85))
-					mm.albedo_color = mm.albedo_color * float(job.get("albedo_mul", 1.0))
-					m.set_surface_override_material(si, mm)
+	if job.get("style", true):
+		PremiumStyle.apply(meshes, job.get("look", {}).merged({"albedo_mul": job.get("albedo_mul", 1.0)}))
 	id_mat = ShaderMaterial.new()
 	var sh := Shader.new()
 	sh.code = ID_SHADER
@@ -181,9 +172,7 @@ func _setup() -> void:
 	cam.transform = Transform3D(basis, basis * Vector3(0.0, up_shift, 12.0))
 	var sun := DirectionalLight3D.new()
 	vp.add_child(sun)
-	sun.rotation_degrees = Vector3(-55.0, -35.0, 0.0)
-	sun.light_energy = float(job.get("sun", 1.15))
-	sun.shadow_enabled = false
+	PremiumStyle.setup_light(sun, job.get("look", {}))
 	var env := Environment.new()
 	env.background_mode = Environment.BG_CLEAR_COLOR
 	env.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
@@ -271,6 +260,12 @@ func _apply_pose(lower_pose: Dictionary, upper_pose: Dictionary) -> void:
 	for bi in upper_pose:
 		if upper_idx.has(bi):
 			_set_bone(bi, upper_pose[bi])
+	# proporciones propias (no chibi gratuito): escalas por hueso definidas en el job
+	var bs: Dictionary = job.get("bone_scale", {})
+	for bn in bs:
+		var bi := _bone(String(bn))
+		if bi >= 0:
+			skel.set_bone_pose_scale(bi, skel.get_bone_pose_scale(bi) * float(bs[bn]))
 	skel.force_update_all_bone_transforms()
 
 
@@ -316,6 +311,47 @@ func _fit_in_cell() -> void:
 		skel.force_update_all_bone_transforms()
 
 
+## IK analitico de dos huesos para la mano libre: el hombro/codo/muñeca salen del propio rig; el objetivo es el agarre delantero
+## del arma (distancia `fwd` delante de la mano que dispara). El codo se orienta hacia afuera y abajo (polo).
+func _ik_arm(side: String, target: Vector3) -> void:
+	var ia := _bone("upperarm." + side)
+	var ib := _bone("lowerarm." + side)
+	var ic := _bone("handslot." + side)
+	if ia < 0 or ib < 0 or ic < 0:
+		return
+	var gt := skel.global_transform
+	var a := (gt * skel.get_bone_global_pose(ia)).origin
+	var b := (gt * skel.get_bone_global_pose(ib)).origin
+	var c := (gt * skel.get_bone_global_pose(ic)).origin
+	var l1 := a.distance_to(b)
+	var l2 := b.distance_to(c)
+	var to_t := target - a
+	var d := clampf(to_t.length(), absf(l1 - l2) + 0.01, l1 + l2 - 0.005)
+	var dir := to_t.normalized()
+	var fwd := root3d.global_transform.basis.z.normalized()
+	var left := Vector3.UP.cross(fwd) * (1.0 if side == "l" else -1.0)
+	var hint := left * 0.55 + Vector3.DOWN * 0.85
+	var perp := (hint - dir * hint.dot(dir)).normalized()
+	var x := (l1 * l1 - l2 * l2 + d * d) / (2.0 * d)
+	var h := sqrt(maxf(0.0, l1 * l1 - x * x))
+	var elbow := a + dir * x + perp * h
+	_aim_bone(ia, ib, elbow)
+	_aim_bone(ib, ic, a + dir * d)
+	skel.force_update_all_bone_transforms()
+
+
+func _aim_bone(bone: int, child: int, want_point: Vector3) -> void:
+	var gt := skel.global_transform
+	var bp := gt * skel.get_bone_global_pose(bone)
+	var cp := (gt * skel.get_bone_global_pose(child)).origin
+	var cur := (cp - bp.origin).normalized()
+	var want := (want_point - bp.origin).normalized()
+	if cur.dot(want) > 0.99999:
+		return
+	var q := Quaternion(cur, want)
+	skel.set_bone_global_pose(bone, gt.affine_inverse() * Transform3D(Basis(q) * bp.basis, bp.origin))
+
+
 func _project(p: Vector3) -> Vector2:
 	var pc := cam.global_transform.affine_inverse() * p
 	var cx := float(cell) * 0.5 + pc.x * ppu
@@ -351,6 +387,11 @@ func _render_anim(an: String, spec: Dictionary, dir_name: String) -> Array:
 			ut = float(spec["upper_hold"]) * ulen
 		root3d.position = Vector3.ZERO
 		_apply_pose(_sample(lower_name, lt), _sample(upper_name, ut))
+		if spec.has("ik_left"):
+			var ik: Dictionary = spec["ik_left"]
+			var rh := (skel.global_transform * skel.get_bone_global_pose(hand_idx)).origin
+			var fwd := root3d.global_transform.basis.z.normalized()
+			_ik_arm("l", rh + fwd * float(ik.get("fwd", 0.3)) + Vector3.DOWN * float(ik.get("down", 0.03)))
 		if recenter > 0.0:
 			# anula parte del desplazamiento de raiz (p. ej. la caida hacia atras de la muerte) para que el cuerpo quede en la celda
 			var h := (skel.global_transform * skel.get_bone_global_pose(hips_idx)).origin

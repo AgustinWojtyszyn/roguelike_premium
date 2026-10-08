@@ -279,14 +279,36 @@ static func rooms() -> Array[RoomDef]:
 		"decor": {"emblem": "sun", "stains": 10, "litter": 30},
 	}))
 	# ---------------------------------------------------------------- CAPITULO 3: fortaleza oscura
-	L.append(_room("patio_armas", "Patio de Armas", "castle", Vector2(1300, 680), "combat", {
+	# Patio de Armas: sala BENCHMARK visual (compacta y compuesta). Zonas: armeria norte (escudo heraldico, banderas, mesa de trabajo),
+	# sigilo central con dos columnas-monumento, rincon de intendencia (cajas/barriles) y mesa de guardia con luz calida.
+	# `authored`: piezas bajas horneadas en el suelo; `lights`: pozas de luz localizadas; `wall_items`: piezas de muro norte.
+	L.append(_room("patio_armas", "Patio de Armas", "castle", Vector2(1100, 600), "combat", {
 		"entry_sides": ["W", "E"], "exit_sides": ["E", "W"],
 		"props": [
-			["statue", -430, -240, 56, 36], ["statue", 380, -240, 56, 36], ["column", -140, -110, 40, 34], ["column", 100, 100, 40, 34],
-			["weapon_rack", -470, 90, 90, 26], ["weapon_rack", 400, -130, 90, 26], ["wood_crate", -300, 170, 40, 30], ["wood_barrel", -340, 215, 28, 22], ["wood_crate", 340, 190, 40, 30], ["wood_barrel", 300, -170, 28, 22],
+			["statue", -400, -205, 56, 36], ["statue", 350, -205, 56, 36], ["column", -135, -95, 40, 34], ["column", 105, 105, 40, 34],
+			["weapon_rack", -440, 110, 90, 26], ["weapon_rack", 340, -135, 90, 26],
+			["table", -255, -150, 150, 36],
+			["wood_crate", -285, 170, 40, 30], ["wood_barrel", -325, 208, 28, 22], ["wood_crate", 290, 175, 40, 30], ["wood_barrel", 252, 214, 28, 22], ["wood_barrel", 300, -190, 28, 22],
 		],
-		"spawns": _sp([Vector2(-560, -200), Vector2(560, -200), Vector2(-560, 200), Vector2(560, 200), Vector2(0, -260), Vector2(0, 270)]),
-		"decor": {"emblem": "sigil", "stains": 9, "litter": 22},
+		"spawns": _sp([Vector2(-470, -190), Vector2(470, -190), Vector2(-470, 190), Vector2(470, 190), Vector2(0, -235), Vector2(0, 245)]),
+		"decor": {"emblem": "sigil", "stains": 9, "litter": 22, "composed": true,
+			"wall_items": [{"art": "sword_shield_gold", "x": 0.0, "k": 1.7}],
+			"authored": [
+				{"art": "stool", "p": Vector2(-330, -108), "h": 24}, {"art": "stool", "p": Vector2(-185, -104), "h": 24},
+				{"art": "candle_triple", "p": Vector2(-205, -118), "h": 26},
+				{"art": "coin_stack_large", "p": Vector2(410, 150), "h": 24}, {"art": "coin_stack_large", "p": Vector2(432, 172), "h": 20}, {"art": "coin_stack_large", "p": Vector2(392, 176), "h": 18},
+				{"art": "box_small_decorated", "p": Vector2(400, 215), "h": 36},
+				{"art": "barrel_small_stack", "p": Vector2(-372, 150), "h": 34},
+				{"art": "candle_triple", "p": Vector2(-372, 185), "h": 24},
+				{"art": "candle_triple", "p": Vector2(180, -220), "h": 26}, {"art": "candle_triple", "p": Vector2(-60, 240), "h": 22},
+				{"art": "coin_stack_large", "p": Vector2(-470, -30), "h": 18},
+			],
+			"lights": [
+				{"p": Vector2(-255, -125), "r": 150.0, "col": Color(1.0, 0.62, 0.28), "a": 0.22, "flicker": true},
+				{"p": Vector2(-372, 180), "r": 90.0, "col": Color(1.0, 0.6, 0.25), "a": 0.16, "flicker": true},
+				{"p": Vector2(410, 165), "r": 110.0, "col": Color(1.0, 0.8, 0.35), "a": 0.15, "flicker": false},
+				{"p": Vector2(0, 0), "r": 210.0, "col": Color(0.9, 0.2, 0.35), "a": 0.07, "flicker": false},
+			]},
 	}))
 	L.append(_room("gran_salon", "Gran Salón", "castle", Vector2(1450, 600), "combat", {
 		"entry_sides": ["W", "E"], "exit_sides": ["E", "W"],

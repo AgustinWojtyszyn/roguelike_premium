@@ -32,7 +32,55 @@ static func paint(ci: CanvasItem, w: WeaponData, heat: float = 0.0, t: float = 0
 
 ## Arte importado (normalizado: eje a +x, agarre en el origen). La escala sale de `muzzle.x` para que la punta del arte
 ## coincida con el punto de disparo del arma Premium. Devuelve false (y se usa el dibujo vectorial) si falta algo.
+static func _premium(w: WeaponData) -> Dictionary:
+	return PremiumManifest.STATIC.get("premium/weapons/" + w.id, {})
+
+
+## Escala del arte Premium: la punta (geometria del modelo) cae exactamente en `muzzle.x` del arma.
+static func _premium_scale(w: WeaponData, info: Dictionary) -> float:
+	var reach := float(info["points"]["tip"][0])
+	return clampf(maxf(w.muzzle.x, 18.0) / maxf(reach, 1.0), 0.12, 1.5) * float(VisualProfiles.WEAPON_ART_SCALE)
+
+
+## Distancia (px de juego a escala 1 del nodo del arma) entre el eje del cañon y el centro de la empuñadura. El origen del arma es el
+## eje del cañon (el proyectil nace sobre el), pero el puño debe cerrar sobre la empuñadura: CharacterRig compensa con este valor.
+static func bore_offset(w: WeaponData) -> float:
+	var info := _premium(w)
+	if info.is_empty() or not VisualProfiles.sprites_enabled():
+		return 0.0
+	return -float(info["points"]["tip"][1]) * _premium_scale(w, info)
+
+
+## Punto de la mano libre (px de juego a escala 1, relativo al eje del cañon) o ZERO si el arma es de una mano.
+static func foregrip(w: WeaponData) -> Vector2:
+	var info := _premium(w)
+	if info.is_empty() or not info["points"].has("grip2"):
+		return Vector2.ZERO
+	var s := _premium_scale(w, info)
+	return Vector2(float(info["points"]["grip2"][0]), float(info["points"]["grip2"][1]) - float(info["points"]["tip"][1])) * s
+
+
+static func _paint_premium(ci: CanvasItem, w: WeaponData, heat: float) -> bool:
+	var info := _premium(w)
+	if info.is_empty():
+		return false
+	var tex := AssetCatalog.tex("premium/weapons/" + w.id)
+	if tex == null:
+		return false
+	var s := _premium_scale(w, info)
+	var an: Array = info["anchor"]
+	var sz: Array = info["size"]
+	var ty := float(info["points"]["tip"][1])
+	ci.draw_texture_rect(tex, Rect2(-float(an[0]) * s, -(float(an[1]) + ty) * s, float(sz[0]) * s, float(sz[1]) * s), false)
+	if heat > 0.05:
+		var glow: Color = w.palette.get("glow", w.color)
+		Gfx.draw_glow(ci, w.muzzle * 0.8, 9.0 + 6.0 * heat, Color(glow.r, glow.g, glow.b, 0.45 * heat))
+	return true
+
+
 static func _paint_imported(ci: CanvasItem, w: WeaponData, heat: float) -> bool:
+	if VisualProfiles.sprites_enabled() and _paint_premium(ci, w, heat):
+		return true
 	if not VisualProfiles.sprites_enabled() or not AssetManifest.ORIENTED.has(w.id):
 		return false
 	var info: Dictionary = AssetManifest.ORIENTED[w.id]

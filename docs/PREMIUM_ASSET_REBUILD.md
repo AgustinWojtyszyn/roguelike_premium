@@ -51,3 +51,29 @@ Only after the slice passes visual + performance review should the pipeline batc
 
 ## Validation baseline — 2026-10-07
 Commit `977f62e268c74cb206c020294d6e824fdfd3c760` passed the repository's Godot 4.7.2 import, headless smoke runs, full GDScript/Python validation suite, and Android APK export in GitHub Actions. The Android emulator cold-start stage still fails on SwiftShader/Vulkan presentation (`VkResult error 5`); the same stage is already failing on the current `main` commit `0bb8aa00c345636a921f1b694eb329bc287f507c`, so it is not a regression introduced by this asset-rebuild branch.
+
+## Vertical slice pipeline — Claude engineering pass (2026-10-07)
+
+### Reproduce
+```bash
+tools/bootstrap_premium_asset_sources.sh                       # pinned source bank (asset_bank/vendor, git-ignored by Godot)
+python3 tools/premium_pipeline.py build vesper sable skeleton_warrior crab castle_set   # render + pack + manifest
+godot --headless --path . --import                              # import the new PNGs
+python3 tools/check_premium_art.py && godot --headless --path . --script tests/run_tests.gd
+```
+Blender is **not** required (and was not available): Godot itself is the deterministic 3D->2D renderer (`tools/premium_render/render_rig.gd` for rigs, `render_static.gd` for props/floor/walls) and needs a GL driver (`--rendering-driver opengl3`, works on WSLg). The only input of a build is `tools/premium_render/jobs/<id>.json` + the pinned source revision.
+
+### How a hero holds a weapon (no anchors, no floating hands)
+1. The render script poses the *source rig*: legs/hips from a locomotion clip, torso/arms from a weapon-ready clip (`1H_Ranged_Aiming`, or the first frame of the 1H slice for melee). Bone-masked blend, sampled directly from the clips' tracks.
+2. For **every frame of every direction** it reads the socket bone `handslot.r`, projects it with the render camera and writes `[gx, gy, axis_deg, off_hand_x, off_hand_y, behind]` (px relative to the feet) into the manifest. Nothing is hand-tuned.
+3. Runtime (`CharacterRig`, `grip_mode: "rig"`): the weapon pivot is placed on that grip each frame; `weapon_mode: aim` rotates the weapon with the continuous aim angle around the hand, `weapon_mode: rig` (melee attack, death) follows the rig's own blade axis. A small **hand patch** (the fist pixels, cut from the same render with a bone-proximity mask) is drawn on top of the weapon so the fingers wrap the grip.
+4. Muzzle is still `WeaponData.muzzle` from the grip; the Premium weapon art is already scaled so its tip == muzzle, hence muzzle == visual barrel tip for any weapon (asserted in `tests/test_premium_slice.gd`).
+
+### Gate (automated)
+`tools/check_premium_art.py` + `tests/test_premium_pipeline.py` (static, manifest-level) and `tests/test_premium_slice.gd` (runtime): weapon_compatible, grip metadata for every frame, idle/walk/hurt/death, 8 directions, melee->attack / ranged->aim pose, grip lands on opaque body pixels in every frame, pivot==grip and muzzle distance in 8 aim directions, provenance for every static piece, and synthetic bad profiles are rejected. The pipeline also refuses to emit any frame/piece clipped by the cell border.
+
+### Art pass
+See `docs/PREMIUM_ART_DIRECTION.md` (look, weapons, depth, two-handed IK, benchmark room, quality sheet). Hero sets now ship the east side only (west mirrored at runtime).
+
+### Known limits before mass conversion
+See the hand-off report in the PR/commit message; short list: two-handed weapons (off-hand `grip_l` is exported but unused), weapon art is still the legacy pixel/vector art (style clash to be resolved in the Astra pass), texture memory/VRAM compression, outline/palette normalisation, behind-torso weapon layering (`weapon_behind`, off by default for readability).
