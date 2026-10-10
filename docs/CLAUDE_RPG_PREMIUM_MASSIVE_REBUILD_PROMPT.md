@@ -26,3 +26,9 @@ Run pre-existing tests and a real Android installation test; GitHub's last emula
 After a quality-approved vertical slice, prepare a staged art rollout across the four families: corrupted machinery, jade civilization, dark fortress, dimensional anomalies. Keep original bank archived without deleting or editing it.
 
 **Definition of done for YOUR first pass**: all extracted media present with SHA256 verification, gallery/categorization, licensed provenance notes, one attractive playable room in desktop + Android, tests passing, hand-grip validation, no unnecessary gameplay regressions, and no main merge.
+
+## Additional audit and world constraints
+- Also read `docs/RPG_PREMIUM_STATIC_CODE_SCAN_20261010.md` (143 scripts + five scenes checked; intentional missing test fixtures must remain missing).
+- The earlier **Drowned Harbor** art is reserve material for a future optional environment/hub; do not add a fifth chapter or mix its enemies into the four existing canonical families without explicit design approval.
+- Round two has **9 detailed backgrounds but zero modular tilesets**. Reconstruct gameplay maps with Premium's existing curated geometry/RoomBake and vetted new modules; never pretend a painted background supplies walkable geometry or collisions.
+- After importing the complete source bank, preserve **all** originals and 22 handpicked JPGs. No cleanup/removal of unapproved artwork from staging: mark its usability in inventory instead.
