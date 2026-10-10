@@ -30,8 +30,8 @@ Los 5 tilesets pertenecen al primer lote. **No hay tilesets nuevos de los cuatro
 ## Paquetes de entrega (creados fuera de GitHub)
 | Paquete | Tamaño | SHA256 |
 |---|---:|---|
-| RPG_PREMIUM_COMPLETE_BANK_FOR_REPO.zip | 344.540.097 bytes | `2571817d6416b9addf2e2f4fb57c783b14351da36c5f3d2650601d976d6e20d9` |
-| RPG_PREMIUM_SOURCE_BANK_COMPACT_FOR_REPO.zip | 110.568.683 bytes | `9a4947ea2a2abf95843f0fcf24e76ee7448bdbbb25a2f1a51ff05fb3709fd476` |
+| RPG_PREMIUM_COMPLETE_BANK_FOR_REPO.zip | 344.540.097 bytes | `16a4a980d7a89d446d192c93566bef5841b6f490c04225261cfe2f416718e5ea` |
+| RPG_PREMIUM_SOURCE_BANK_COMPACT_FOR_REPO.zip | 110.568.683 bytes | `1d9e1079e33638640d531efbff4d5d0a128718906e8116ba5ecf30ba44dff349` |
 
 El paquete completo contiene PNG verdaderos, 3 MP3, 22 JPG, los tres ZIP originales y reportes. El compacto conserva idénticos medios como WebP originales, sin alterar los píxeles ni ocultar archivos. **Ambos paquetes se instalaron en una carpeta de pruebas** con validación SHA256 de 168 recursos gráficos, 3 audios y 22 referencias.
 
