@@ -42,10 +42,14 @@ static func default_data() -> Dictionary:
 		"flags": {"seen_news": 0},
 		"selected_mode": "campaign",
 		"selected_challenge": "one_weapon",
+		"selected_difficulty": "normal",
 		"records": {
 			"survival": {"best_wave": 0, "best_score": 0, "best_time": 0.0, "best_kills": 0, "runs": 0},
 			"bossrush": {"best_bosses": 0, "best_time": 0.0, "least_damage": -1, "clears": 0, "runs": 0},
 			"challenges": {},
+			"horde": {"best_wave": 0, "best_score": 0, "best_time": 0.0, "best_kills": 0, "runs": 0},
+			"timeattack": {},      # por capitulo: {best_time, clears, runs}
+			"expedition": {},      # por capitulo: {best_legs, clears, best_time, runs}
 		},
 	}
 

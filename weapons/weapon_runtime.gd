@@ -13,6 +13,9 @@ var charge: float = 0.0
 var shots: int = 0
 var empty_t: float = 0.0
 var firing_prev := false
+var dry_notified := false      # un aviso de "sin energia" por pulsacion, no una alarma por cada intento mientras se mantiene el boton
+## Disparos maximos por frame al recuperar credito de cadencia (rate < dt con FPS bajos). El credito nunca supera un frame.
+const MAX_CATCHUP := 3
 
 
 func _init(p: Player, d: WeaponData) -> void:
@@ -25,27 +28,36 @@ func charge_frac() -> float:
 	return clampf(charge / ch, 0.0, 1.0) if ch > 0.0 else 0.0
 
 
+func is_semi() -> bool:
+	return bool(data.behavior.get("semi", false))
+
+
 func update(dt: float, firing: bool) -> void:
 	var b: Dictionary = data.behavior
-	cd -= dt
+	# Cadencia independiente de los FPS: el credito sobrante pasa al siguiente disparo (cd += rate) pero se acota a un frame,
+	# asi ni un frame largo ni una pausa acumulan rafagas gratis.
+	cd = maxf(cd - dt, -dt)
 	empty_t -= dt
+	var pressed := firing and not firing_prev
+	firing_prev = firing
+	if not firing:
+		dry_notified = false
 	# arranque del minigun
 	if b.has("spool"):
 		var sp: Dictionary = b["spool"]
 		spool = clampf(spool + (dt / float(sp["time"]) if firing else -dt * 1.2 / float(sp["time"])), 0.0, 1.0)
 	# carga
 	if b.has("charge"):
-		if firing and not player.game.over:
+		if firing and not player.game.over and player.fire_lock <= 0.0:
 			if player.energy >= energy_cost() or energy_cost() <= 0.0:
 				charge += dt
 				if int(charge * 30.0) % 4 == 0:
 					player.game.fx.mote(player.muzzle_world() + Vector2.from_angle(randf() * TAU) * 26.0, player.muzzle_world(), data.color, 0.18)
-				if charge >= float(b["charge"]):
-					player.energy = maxf(0.0, player.energy - energy_cost())
-					player.energy_idle = 0.0
-					_fire()
+				if charge >= float(b["charge"]) and cd <= 0.0:
+					if player.spend_energy(energy_cost()):
+						cd += data.rate / maxf(0.25, player.rate_mult())
+						_fire()
 					charge = 0.0
-					cd = data.rate
 			else:
 				_dry()
 		else:
@@ -59,22 +71,29 @@ func update(dt: float, firing: bool) -> void:
 			burst_left -= 1
 			burst_t = float(b.get("burst_gap", 0.06))
 		return
-	if firing and cd <= 0.0 and not player.game.over:
-		var cost := energy_cost()
-		if cost > player.energy:
-			_dry()
-			return
-		player.energy -= cost
-		player.energy_idle = 0.0
-		cd = _current_rate()
-		_fire()
-	firing_prev = firing
+	var want := firing and (pressed or not is_semi())
+	if want and not player.game.over and player.fire_lock <= 0.0:
+		var guard := 0
+		while cd <= 0.0 and guard < MAX_CATCHUP:
+			# una descarga = un cargo de energia (escopeta: todos los perdigones; rafaga: las 3 balas). Un intento sin energia no dispara.
+			if not player.spend_energy(energy_cost()):
+				_dry()
+				break
+			cd += _current_rate()
+			_fire()
+			guard += 1
+			if is_semi() or burst_left > 0:
+				break
+	if player.energy >= energy_cost() * 2.0:
+		dry_notified = false
 
 
 func _dry() -> void:
-	if empty_t <= 0.0:
-		empty_t = 0.35
+	if not dry_notified:
+		dry_notified = true
 		player.game.sfx.play("empty", -8.0)
+	if empty_t <= 0.0:
+		empty_t = 0.5
 		player.game.hud.flash_energy()
 
 
@@ -186,7 +205,7 @@ func _fire_projectiles() -> void:
 	if data.casing:
 		var side := Vector2(-player.aim.y, player.aim.x) * player.face
 		g.fx.casing(player.position + Vector2(0, -26) + player.aim * 6.0, (side * 0.8 + Vector2(0, -0.4)).normalized())
-	g.sfx.play(data.sfx, data.sfx_vol, data.sfx_pitch, 0.06, 0.03 if data.sfx == "flame" else 0.0)
+	g.sfx.play(data.sfx, data.sfx_vol, data.sfx_pitch, 0.05, clampf(_current_rate() * 0.6, 0.02, 0.12))
 
 
 func _roll_variant() -> Dictionary:

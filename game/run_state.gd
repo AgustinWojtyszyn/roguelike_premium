@@ -30,6 +30,10 @@ var mode: String = "campaign"
 var wave: int = 0              # supervivencia: oleada alcanzada
 var damage_taken: int = 0      # boss rush: dano total recibido
 var challenge: String = ""
+var difficulty: String = "normal"
+var penalty_time: float = 0.0   # contrarreloj: segundos sumados por golpes recibidos
+var legs: int = 0               # expedicion: tramos completados
+var route_log: Array[String] = []   # expedicion: tipos de tramo elegidos
 # estadisticas agregadas de perks
 var mods: Dictionary = {}
 var hooks: Dictionary = {}
@@ -114,6 +118,7 @@ func summary(stages_cleared: int) -> Dictionary:
 		"chests": chests, "perks": perks_picked, "bosses": bosses, "nodamage_rooms": nodamage_rooms,
 		"coins": coins, "time": time, "weapons_seen": weapons_seen,
 		"mode": mode, "wave": wave, "damage_taken": damage_taken, "challenge": challenge,
+		"difficulty": difficulty, "penalty": penalty_time, "legs": legs, "chapter_id": chapter.id if chapter != null else "",
 	}
 
 

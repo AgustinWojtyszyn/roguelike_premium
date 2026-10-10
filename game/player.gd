@@ -29,6 +29,10 @@ var shield_tick: float = 0.0
 var energy: float = 100.0
 var max_energy: float = 100.0
 var energy_idle: float = 0.0
+var fire_lock: float = 0.0       # tras cambiar de arma: evita alternar dos armas para sumar sus cadencias
+const SWAP_LOCK := 0.18
+const ENERGY_REGEN_FIRING := 3.5
+const ENERGY_REGEN_IDLE := 7.0
 var frac_dmg: float = 0.0
 
 var slots: Array[WeaponRuntime] = []
@@ -107,6 +111,17 @@ func crit_chance() -> float:
 	return c
 
 
+## Unico punto de cobro de energia: false (y no cobra) si falta; nunca deja la energia fuera de [0, max].
+func spend_energy(cost: float) -> bool:
+	if cost <= 0.0:
+		return true
+	if not is_finite(cost) or cost > energy + 0.0001:
+		return false
+	energy = clampf(energy - cost, 0.0, max_energy)
+	energy_idle = 0.0
+	return true
+
+
 func energy_cost_mult() -> float:
 	return 0.7 if data.passive_id == "arcane_flow" else 1.0
 
@@ -154,6 +169,7 @@ func swap_weapon(quiet: bool = false) -> void:
 	if slots.size() < 2:
 		return
 	cur = (cur + 1) % slots.size()
+	fire_lock = SWAP_LOCK
 	_equip_visual()
 	if not quiet:
 		game.sfx.play("swap", -4.0)
@@ -162,6 +178,7 @@ func swap_weapon(quiet: bool = false) -> void:
 func select_weapon(i: int) -> void:
 	if i >= 0 and i < slots.size() and i != cur:
 		cur = i
+		fire_lock = SWAP_LOCK
 		_equip_visual()
 		game.sfx.play("swap", -4.0)
 
@@ -184,6 +201,7 @@ func equip_weapon(id: String) -> String:
 		replaced = slots[cur].data.id
 		slots[cur] = WeaponRuntime.new(self, wd)
 		run.weapons[cur] = id
+	fire_lock = SWAP_LOCK
 	_equip_visual()
 	game.sfx.play("swap", -2.0)
 	return replaced
@@ -289,6 +307,7 @@ func _aim(_dt: float) -> void:
 
 
 func _fire(dt: float) -> void:
+	fire_lock = maxf(0.0, fire_lock - dt)
 	firing_now = game.fire_input() and not game.over and whirl_t <= 0.0 and not game.input_locked
 	for i in slots.size():
 		slots[i].update(dt if i == cur else dt, firing_now and i == cur)
@@ -304,7 +323,8 @@ func try_ability() -> bool:
 		game.hud.flash_energy()
 		game.sfx.play("ui_error", -6.0)
 		return false
-	energy -= float(data.ability_cost)
+	if not spend_energy(float(data.ability_cost)) and float(data.ability_cost) > 0.0:
+		return false
 	ability_cd = data.ability_cd * maxf(0.3, 1.0 + run.mod("cd_mult"))
 	Abilities.activate(self, data.ability_id)
 	return true
@@ -316,9 +336,11 @@ func ability_ready() -> bool:
 
 func _update_resources(dt: float) -> void:
 	# energia
+	# Recuperacion en dos ritmos: lenta mientras se dispara (la presion de energia se nota) y rapida al soltar el gatillo,
+	# para poder alternar ataque / movimiento / recuperacion sin esperar de brazos cruzados.
 	energy_idle += dt
-	var regen := 4.0 + run.mod("energy_regen")
-	energy = minf(max_energy, energy + regen * dt)
+	var regen := (ENERGY_REGEN_FIRING if energy_idle < 0.4 else ENERGY_REGEN_IDLE) + run.mod("energy_regen")
+	energy = clampf(energy + regen * dt, 0.0, max_energy)
 	# escudo
 	if shield < max_shield:
 		shield_delay -= dt
@@ -381,7 +403,8 @@ func _paint_aura(c: Part) -> void:
 
 
 # ------------------------------------------------------------------ dano / curas
-func take_damage(n: int, dir: Vector2, knock: float = 120.0) -> void:
+## `src`: "" (enemigo normal, hazard) | "boss". El dano base lo define cada atacante; el ESCALADO se aplica aqui, una sola vez (ver DamageScale).
+func take_damage(n: float, dir: Vector2, knock: float = 120.0, src: String = "") -> void:
 	if dead or inv > 0.0 or game.god or has_buff("phase"):
 		return
 	if data.passive_id == "ether_step" and randf() < 0.12:
@@ -389,7 +412,7 @@ func take_damage(n: int, dir: Vector2, knock: float = 120.0) -> void:
 		game.fx.ring(hit_center(), 6.0, 40.0, Color("ff4fd8"), 0.3, 3.0)
 		game.sfx.play("reflect", -6.0)
 		return
-	var amount := float(n)
+	var amount := DamageScale.final_hit(n, DamageScale.multiplier(DamageScale.context(game, src == "boss")), max_hp)
 	if has_buff("bulwark"):
 		amount *= 0.3
 	frac_dmg += amount
@@ -400,6 +423,7 @@ func take_damage(n: int, dir: Vector2, knock: float = 120.0) -> void:
 		inv = 0.25
 		return
 	frac_dmg -= float(whole)
+	game.on_player_hurt(whole)
 	run.damaged_in_room = true
 	shield_delay = 1.6 if data.passive_id == "immovable" else 2.8
 	shield_tick = 0.0

@@ -331,7 +331,7 @@ func _think(dt: float) -> void:
 				game.fx.puff(position + Vector2(randf_range(-20, 20), -2), -charge_dir * 30.0, 10.0, Color(0.75, 0.68, 0.6, 0.5), 0.45, 2.2)
 			if not hit_done and pl.position.distance_to(position) < radius + Player.RADIUS + 14.0 and pl.can_be_hit():
 				hit_done = true
-				pl.take_damage(2, charge_dir, 380.0)
+				pl.take_damage(2, charge_dir, 380.0, "boss")
 			var ahead := position + charge_dir * (radius + 22.0)
 			if not game.room.free_point(ahead, radius * 0.7):
 				_wall_crash(ahead)
@@ -455,7 +455,7 @@ func _cleave() -> void:
 	game.hitstop(0.04)
 	var to := pl.position - position
 	if to.length() < 150.0 + Player.RADIUS and absf(aim_dir.angle_to(to)) < 0.95 and pl.can_be_hit():
-		pl.take_damage(2, to.normalized(), 380.0)
+		pl.take_damage(2, to.normalized(), 380.0, "boss")
 	if phase >= 1:
 		var n := 5 + phase * 2
 		for i in n:
@@ -480,7 +480,7 @@ func _slam() -> void:
 	game.shake(0.7)
 	game.hitstop(0.05)
 	if pl.position.distance_to(position) < 118.0 + Player.RADIUS and pl.can_be_hit():
-		pl.take_damage(2, (pl.position - position).normalized(), 400.0)
+		pl.take_damage(2, (pl.position - position).normalized(), 400.0, "boss")
 	# onda de proyectiles con huecos: hay que colarse entre ellos
 	var n := 14 + phase * 3
 	var off := randf() * TAU

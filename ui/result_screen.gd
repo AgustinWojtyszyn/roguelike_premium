@@ -77,7 +77,7 @@ func _ready() -> void:
 func _again() -> void:
 	AudioMgr.stop_hum()
 	var first_ch: String = game.chapter.id
-	if game.mode_id == ModeRules.SURVIVAL or game.mode_id == ModeRules.BOSS_RUSH:
+	if not ModeRules.CHAPTER_MODES.has(game.mode_id):
 		first_ch = Catalog.chapter_order[0]
 	Router.goto("run", {"character": game.run.character.id, "chapter": first_ch, "seed": randi(), "mode": game.mode_id, "challenge": game.challenge_id}, game.chapter.accent.darkened(0.7))
 
@@ -126,8 +126,15 @@ func _draw() -> void:
 	# titulo
 	var tk := Gfx.ease_out(clampf(_t * 2.4, 0.0, 1.0))
 	var title := "¡VICTORIA!" if won else "RUN TERMINADA"
-	if game.mode_id == ModeRules.SURVIVAL:
-		title = "SUPERVIVENCIA"
+	match game.mode_id:
+		ModeRules.SURVIVAL:
+			title = "SUPERVIVENCIA"
+		ModeRules.HORDE:
+			title = "HORDA INFINITA"
+		ModeRules.TIME_ATTACK:
+			title = "¡TIEMPO!" if won else "CONTRARRELOJ"
+		ModeRules.EXPEDITION:
+			title = "¡EXPEDICIÓN SUPERADA!" if won else "EXPEDICIÓN FALLIDA"
 	var ts := int(78.0 * (0.7 + 0.3 * tk))
 	UiKit.text(self, Vector2(0, 112.0), title, ts, Color(accent.lightened(0.35), tk), 1, vs.x, 14.0)
 	var sub := "%s completado" % game.chapter.display_name if won else "Llegaste a la etapa %d de %d" % [game.director.stage + 1, game.director.plan.size()]
@@ -138,6 +145,18 @@ func _draw() -> void:
 			sub = ("¡Los 4 jefes derrotados!" if won else "Jefes derrotados: %d / 4" % int(summary["bosses"])) + "  ·  daño recibido %d" % int(summary.get("damage_taken", 0))
 		ModeRules.CHALLENGE:
 			sub = "Desafío: %s" % ModeRules.CHALLENGES.get(game.challenge_id, {}).get("name", "")
+		ModeRules.HORDE:
+			var hr: Dictionary = Profile.p.data["records"]["horde"]
+			var wv := int(summary.get("wave", 0))
+			sub = "Oleada %d · %s pts%s" % [wv, UiKit.format_int(ModeRules.horde_score(int(summary["kills"]), wv, float(summary["time"]))), "  ·  ¡NUEVO RÉCORD!" if wv >= int(hr["best_wave"]) and wv > 0 else "  ·  récord: oleada %d" % int(hr["best_wave"])]
+		ModeRules.TIME_ATTACK:
+			var tot := ModeRules.time_attack_total(float(summary["time"]), float(summary.get("penalty", 0.0)))
+			sub = ("%d:%05.2f" % [int(tot) / 60, fmod(tot, 60.0)] if won else "Sala %d de %d" % [game.director.stage + 1, game.director.plan.size()]) + ("  ·  +%d s por golpes" % int(summary.get("penalty", 0.0)) if float(summary.get("penalty", 0.0)) > 0.0 else "")
+		ModeRules.EXPEDITION:
+			sub = "Tramos completados: %d / %d · ruta: %s" % [int(summary.get("legs", 0)), ModeRules.EXP_LEGS, " › ".join(PackedStringArray((game.run.route_log as Array).map(func(k): return ModeRules.EXP_KIND_NAMES.get(k, k))))]
+	var dname: String = DamageScale.difficulty(game.difficulty_id)["name"]
+	if game.difficulty_id != DamageScale.NORMAL:
+		sub += "  ·  " + dname
 	UiKit.text(self, Vector2(0, 152.0), sub, 24, Color(UiKit.TEXT, tk), 1, vs.x, 6.0)
 	# personaje
 	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)

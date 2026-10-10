@@ -8,6 +8,14 @@ const UI_VOICES := 4
 
 var streams: Dictionary = {}
 var music_streams: Dictionary = {}
+var _variants: Dictionary = {}       # nombre base -> Array[AudioStreamWAV] (base + variantes "~N")
+var _last_variant: Dictionary = {}
+var _voice_name: Dictionary = {}     # AudioStreamPlayer -> nombre que suena (limite de polifonia por sonido)
+const MUSIC_CACHE := 3                # pistas de musica en memoria a la vez (menu + actual + siguiente)
+## Voces simultaneas maximas por sonido: evita la "masa de ruido" de armas automaticas y cascadas de impactos.
+const MAX_POLY := {"smg": 3, "pistol": 3, "rifle": 3, "minigun": 3, "flame": 2, "hit": 3, "tink": 3, "wall": 2, "step": 2, "coin": 3,
+	"claws": 3, "slash": 3, "bolt": 3, "bounce": 3, "zap": 3, "swarm": 2, "rocket": 3, "plasma": 3, "tick": 2, "die": 3, "break": 3}
+const PRIORITY := ["boom", "roar", "slam", "player_die", "victory", "defeat", "levelup", "reward", "hurt", "shield_break", "railbeam", "maul", "sniper", "die_big"]
 var _sfx_pool: Array[AudioStreamPlayer] = []
 var _ui_pool: Array[AudioStreamPlayer] = []
 var _music_a: AudioStreamPlayer
@@ -70,6 +78,16 @@ func _setup_buses() -> void:
 	bus_music = AudioServer.get_bus_index("Music")
 	bus_sfx = AudioServer.get_bus_index("SFX")
 	bus_ui = AudioServer.get_bus_index("UI")
+	# limitador en Master: la suma de armas + impactos + musica nunca recorta
+	var has_lim := false
+	for i in AudioServer.get_bus_effect_count(0):
+		if AudioServer.get_bus_effect(0, i) is AudioEffectLimiter:
+			has_lim = true
+	if not has_lim:
+		var lim := AudioEffectLimiter.new()
+		lim.ceiling_db = -1.0
+		lim.threshold_db = -4.0
+		AudioServer.add_bus_effect(0, lim)
 
 
 ## Lee preferencias del perfil y las aplica a los buses.
@@ -107,7 +125,7 @@ func sfx_enabled() -> bool:
 func _start_thread() -> void:
 	var order: Array = SfxBank.recipes().keys()
 	# lo critico del menu y del combate primero
-	var first := ["ui_click", "ui_confirm", "ui_back", "ui_open", "ui_error", "coin", "smg", "hit", "swap", "hurt", "die", "step"]
+	var first := ["ui_click", "ui_confirm", "ui_back", "ui_open", "ui_error", "coin", "pistol", "smg", "hit", "swap", "hurt", "die", "step", "rifle", "maul"]
 	for f in first:
 		order.erase(f)
 	order = first + order
@@ -148,12 +166,27 @@ var _stop := false
 
 func _on_sfx(name: String, s: AudioStreamWAV) -> void:
 	streams[name] = s
+	var base := name.get_slice("~", 0)
+	if not _variants.has(base):
+		_variants[base] = []
+	(_variants[base] as Array).append(s)
 	if name == "hum" and _hum_want:
 		_start_hum()
 
 
 func _on_music(id: String, s: AudioStreamWAV) -> void:
 	music_streams[id] = s
+	# memoria acotada: conserva el menu, la pista pedida y como mucho MUSIC_CACHE en total
+	while music_streams.size() > MUSIC_CACHE:
+		var drop := ""
+		for k in music_streams:
+			if k != id and k != _music_cur and k != _music_want and k != "menu":
+				drop = k
+				break
+		if drop == "":
+			break
+		music_streams.erase(drop)
+		_built.erase(drop)
 	if _music_want == id and _music_cur != id:
 		_crossfade_to(id)
 
@@ -180,12 +213,33 @@ func play(name: String, vol: float = 0.0, pitch: float = 1.0, jitter: float = 0.
 	var now := Time.get_ticks_msec() / 1000.0
 	if min_gap > 0.0 and now - float(_last_play.get(name, -10.0)) < min_gap:
 		return
+	var cap: int = MAX_POLY.get(name, 5)
+	if cap < 99 and not PRIORITY.has(name):
+		var live := 0
+		for pl in _sfx_pool:
+			if pl.playing and _voice_name.get(pl, "") == name:
+				live += 1
+		if live >= cap:
+			return
 	_last_play[name] = now
 	var p := _free_voice(_sfx_pool)
-	p.stream = streams[name]
+	p.stream = _pick(name)
 	p.volume_db = vol
 	p.pitch_scale = pitch * (1.0 + randf_range(-jitter, jitter))
+	_voice_name[p] = name
 	p.play()
+
+
+## Elige una variante distinta de la ultima reproducida.
+func _pick(name: String) -> AudioStream:
+	var arr: Array = _variants.get(name, [])
+	if arr.size() <= 1:
+		return streams[name]
+	var i := randi() % arr.size()
+	if i == int(_last_variant.get(name, -1)):
+		i = (i + 1) % arr.size()
+	_last_variant[name] = i
+	return arr[i]
 
 
 ## Sonido de interfaz (bus UI, funciona en pausa).

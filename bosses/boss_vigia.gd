@@ -414,7 +414,7 @@ func _detonate(p: Vector2) -> void:
 	game.shake(0.12)
 	var pl := game.player
 	if pl.position.distance_to(p) < 56.0 + Player.RADIUS and pl.can_be_hit():
-		pl.take_damage(1, (pl.position - p).normalized(), 300.0)
+		pl.take_damage(1, (pl.position - p).normalized(), 300.0, "boss")
 	if phase >= 2:
 		for k in 4:
 			var b := game.bullets.fire(p, Vector2.from_angle(TAU * float(k) / 4.0 + 0.4), 170.0, 1.6, 1.0, Bullets.Style.ORB, 1)

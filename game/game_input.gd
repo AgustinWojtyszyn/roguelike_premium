@@ -70,6 +70,9 @@ func aim_input(origin: Vector2) -> Vector2:
 
 func fire_input() -> bool:
 	if game.bot:
+		# el bot "suelta y aprieta" cada 0.12 s para poder usar armas semiautomaticas
+		if game.player != null and game.player.slots[game.player.cur].is_semi():
+			return int(game.clock / 0.12) % 2 == 0
 		return true
 	if game.input_locked or game.over:
 		return false

@@ -32,6 +32,7 @@ var result_ready := false
 var input_locked := false
 var enemy_time: float = 1.0
 var hp_scale: float = 1.0
+var difficulty_id: String = DamageScale.NORMAL
 var _slow_f: float = 1.0
 var _slow_t: float = 0.0
 var trauma: float = 0.0
@@ -93,6 +94,9 @@ func _ready() -> void:
 	mode_id = str(params.get("mode", Boot.get_arg("mode", ModeRules.CAMPAIGN)))
 	if not ModeRules.ORDER.has(mode_id):
 		mode_id = ModeRules.CAMPAIGN
+	difficulty_id = str(params.get("difficulty", Boot.get_arg("difficulty", str(Profile.p.data.get("selected_difficulty", DamageScale.NORMAL)))))
+	if not DamageScale.valid(difficulty_id):
+		difficulty_id = DamageScale.NORMAL
 	challenge_id = str(params.get("challenge", Boot.get_arg("challenge", "")))
 	if mode_id == ModeRules.CHALLENGE and ModeRules.CHALLENGES.has(challenge_id):
 		mods = (ModeRules.CHALLENGES[challenge_id]["mods"] as Dictionary).duplicate()
@@ -104,8 +108,9 @@ func _ready() -> void:
 	chapter = Catalog.chapter(chid)
 	if chapter == null:
 		chapter = Catalog.chapter("ch1")
-	hp_scale = chapter.difficulty
+	recalc_hp_scale()
 	run = RunState.create(cdata, chapter, seed_v)
+	run.difficulty = difficulty_id
 	if Boot.has_flag("weapon"):
 		run.weapons[0] = Boot.get_arg("weapon")
 	if Boot.has_flag("perks"):
@@ -477,6 +482,18 @@ func spawn_ally_turret(pos: Vector2) -> void:
 	t.position = Gfx.push_out(pos, 14.0, room.rects)
 	ysort.add_child(t)
 	allies.append(t)
+
+
+## Vida enemiga = capitulo x modo x dificultad x modificadores de tramo. SE ASIGNA (no se acumula) en cada sala/oleada.
+func recalc_hp_scale(mode_scale: float = 1.0) -> void:
+	hp_scale = DamageScale.hp_multiplier(chapter.difficulty, mode_scale, difficulty_id, float(mods.get("enemy_hp_mult", 1.0)))
+
+
+## El jugador perdio vida/escudo por un golpe enemigo (para reglas de modo, p. ej. la penalizacion de la Contrarreloj).
+func on_player_hurt(points: int) -> void:
+	if mode_id == ModeRules.TIME_ATTACK and points > 0:
+		run.penalty_time += ModeRules.TA_PENALTY
+		hud.toast("+%d s" % int(ModeRules.TA_PENALTY), Color("ff7a9a"))
 
 
 func claim_melee(e: Enemy) -> bool:

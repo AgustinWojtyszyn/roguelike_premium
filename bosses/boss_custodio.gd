@@ -508,7 +508,7 @@ func _slam() -> void:
 		ring_second = 0.35 if phase == 1 else 0.28
 	var pl := game.player
 	if pl.position.distance_to(position) < 96.0 and pl.can_be_hit():
-		pl.take_damage(2, (pl.position - position).normalized(), 340.0)
+		pl.take_damage(2, (pl.position - position).normalized(), 340.0, "boss")
 
 
 func _fire_cannon(side: float) -> void:
@@ -537,7 +537,7 @@ func _sweep() -> void:
 	game.hitstop(0.04)
 	var to := pl.position - position
 	if to.length() < 150.0 and absf(fwd.angle_to(to)) < 1.2 and pl.can_be_hit():
-		pl.take_damage(2, to.normalized(), 380.0)
+		pl.take_damage(2, to.normalized(), 380.0, "boss")
 
 
 func _summon() -> void:

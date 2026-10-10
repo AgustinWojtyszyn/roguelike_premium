@@ -18,6 +18,13 @@ static func apply(profile: PlayerProfile, summary: Dictionary, chapter: ChapterD
 	if mode != "campaign":
 		bonus_coins = mode_bonus(summary)
 		xp = int(kills * 0.5) + int(summary.get("wave", 0)) * 6 + int(summary.get("bosses", 0)) * 60
+		if mode == "timeattack" or mode == "expedition":
+			xp = int(kills * 0.5) + rooms * 7 + int(summary.get("bosses", 0)) * 60 + (60 if won else 0)
+	# dificultad: mas riesgo, mas recompensa (la fija DamageScale.DIFFICULTIES; Normal = x1)
+	var rmult := float(DamageScale.difficulty(str(summary.get("difficulty", "normal")))["reward"])
+	coins = int(round(float(coins) * rmult))
+	bonus_coins = int(round(float(bonus_coins) * rmult))
+	xp = int(round(float(xp) * (1.0 + (rmult - 1.0) * 0.5)))
 	profile.add_coins(coins + bonus_coins)
 	profile.data["xp_total"] = int(profile.data["xp_total"]) + xp
 	profile.data["pass"]["xp"] = int(profile.data["pass"]["xp"]) + xp
@@ -81,6 +88,14 @@ static func mode_bonus(summary: Dictionary) -> int:
 			if won:
 				var ch: Dictionary = ModeRules.CHALLENGES.get(str(summary.get("challenge", "")), {})
 				return int(120.0 * float(ch.get("bonus", 1.0)))
+		"horde":
+			return int(summary.get("wave", 0)) * 8 + int(summary.get("kills", 0)) / 3
+		"timeattack":
+			if won:
+				var tot := ModeRules.time_attack_total(float(summary.get("time", 0.0)), float(summary.get("penalty", 0.0)))
+				return 80 + maxi(0, int(210.0 - tot))     # cuanto mas rapido, mas bono
+		"expedition":
+			return int(summary.get("legs", 0)) * 18 + (220 if won else 0)
 	return 0
 
 
@@ -109,6 +124,34 @@ static func record_mode(profile: PlayerProfile, summary: Dictionary) -> void:
 				var dmg := int(summary.get("damage_taken", 0))
 				var ld := int(r2["least_damage"])
 				r2["least_damage"] = dmg if ld < 0 else mini(ld, dmg)
+		"horde":
+			var rh: Dictionary = rec["horde"]
+			var wv := int(summary.get("wave", 0))
+			rh["runs"] = int(rh["runs"]) + 1
+			rh["best_wave"] = maxi(int(rh["best_wave"]), wv)
+			rh["best_score"] = maxi(int(rh["best_score"]), ModeRules.horde_score(int(summary.get("kills", 0)), wv, time))
+			rh["best_kills"] = maxi(int(rh["best_kills"]), int(summary.get("kills", 0)))
+			rh["best_time"] = maxf(float(rh["best_time"]), time)
+		"timeattack":
+			var chid := str(summary.get("chapter_id", ""))
+			var rt: Dictionary = rec["timeattack"].get(chid, {"best_time": 0.0, "clears": 0, "runs": 0})
+			rt["runs"] = int(rt["runs"]) + 1
+			if summary.get("won", false):
+				rt["clears"] = int(rt["clears"]) + 1
+				var tot2 := ModeRules.time_attack_total(time, float(summary.get("penalty", 0.0)))
+				var bt2 := float(rt["best_time"])
+				rt["best_time"] = tot2 if bt2 <= 0.0 else minf(bt2, tot2)
+			rec["timeattack"][chid] = rt
+		"expedition":
+			var ce := str(summary.get("chapter_id", ""))
+			var re: Dictionary = rec["expedition"].get(ce, {"best_legs": 0, "clears": 0, "best_time": 0.0, "runs": 0})
+			re["runs"] = int(re["runs"]) + 1
+			re["best_legs"] = maxi(int(re["best_legs"]), int(summary.get("legs", 0)))
+			if summary.get("won", false):
+				re["clears"] = int(re["clears"]) + 1
+				var bt3 := float(re["best_time"])
+				re["best_time"] = time if bt3 <= 0.0 else minf(bt3, time)
+			rec["expedition"][ce] = re
 		"challenge":
 			var cid := str(summary.get("challenge", ""))
 			var cs: Dictionary = rec["challenges"].get(cid, {"cleared": 0, "runs": 0, "best_stage": 0})

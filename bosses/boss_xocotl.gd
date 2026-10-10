@@ -400,7 +400,7 @@ func _think(dt: float) -> void:
 			var pl_d := pl.position.distance_to(position)
 			if not hit_done and pl_d < radius + Player.RADIUS + 14.0 and pl.can_be_hit():
 				hit_done = true
-				pl.take_damage(2, charge_dir, 360.0)
+				pl.take_damage(2, charge_dir, 360.0, "boss")
 			var ahead := position + charge_dir * (radius + 22.0)
 			if not game.room.free_point(ahead, radius * 0.7):
 				state = ST_STUN
@@ -541,7 +541,7 @@ func _smash() -> void:
 		b.col = col
 	var to := pl.position - position
 	if to.length() < 150.0 and absf(fwd.angle_to(to)) < 1.0 and pl.can_be_hit():
-		pl.take_damage(2, to.normalized(), 360.0)
+		pl.take_damage(2, to.normalized(), 360.0, "boss")
 
 
 func _spiral_shot() -> void:

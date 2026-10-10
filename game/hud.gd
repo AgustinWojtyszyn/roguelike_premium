@@ -97,7 +97,7 @@ var _reticle: HudReticle
 func _signature() -> int:
 	var pl := game.player
 	var d := game.director
-	var h := pl.hp * 7 + pl.shield * 131 + int(pl.energy) * 977 + pl.cur * 31 + game.run.coins * 3571
+	var h := pl.hp * 7 + pl.shield * 131 + int(pl.energy * 4.0) * 977 + pl.cur * 31 + game.run.coins * 3571
 	h += int(clampf(pl.ability_cd, 0.0, 99.0) * 8.0) * 17
 	if d != null:
 		h += d.stage * 101 + d.threats_left() * 1009 + (1 if d.in_combat else 0) * 3
@@ -177,9 +177,19 @@ func _draw_progress(vs: Vector2) -> void:
 	var d := game.director
 	if d == null or d.plan.is_empty():
 		return
-	if game.mode_id == ModeRules.SURVIVAL:
-		_draw_survival(vs, d)
-		return
+	match game.mode_id:
+		ModeRules.SURVIVAL:
+			_draw_survival(vs, d)
+			return
+		ModeRules.HORDE:
+			_draw_horde(vs, d)
+			return
+		ModeRules.TIME_ATTACK:
+			_draw_time_attack(vs, d)
+			return
+		ModeRules.EXPEDITION:
+			_draw_expedition(vs, d)
+			return
 	var n := d.plan.size()
 	var w := 34.0 * float(n) + 24.0
 	var r := Rect2(vs.x * 0.5 - w * 0.5, 14.0 + safe.y, w, 40.0)
@@ -217,6 +227,70 @@ func _draw_survival(vs: Vector2, d: RunDirector) -> void:
 	var left: int = d.threats_left()
 	if left > 0 and d.in_combat:
 		UiKit.text(self, Vector2(r.position.x, r.end.y + 20.0), "AMENAZAS  %d" % left, 13, Color(1.0, 0.8, 0.85, 0.9), 1, r.size.x, 3.0)
+
+
+## Horda Infinita: oleada, bajas, tiempo y record personal.
+func _draw_horde(vs: Vector2, d: RunDirector) -> void:
+	var run := game.run
+	var r := Rect2(vs.x * 0.5 - 200.0, 14.0 + safe.y, 400.0, 44.0)
+	UiKit.panel(self, r, Color(0.02, 0.05, 0.1, 0.55), Color("ff7a9a", 0.6), 10.0, 1.0, false)
+	var m := int(run.time) / 60
+	UiKit.text(self, Vector2(r.position.x, r.position.y + 28.0), "OLEADA %d   ·   %d BAJAS   ·   %d:%02d" % [maxi(run.wave, 1), run.kills, m, int(run.time) % 60], 17, Color(1, 0.95, 0.8), 1, r.size.x, 4.0)
+	var best := int(Profile.p.data["records"]["horde"]["best_wave"])
+	var left: int = d.threats_left()
+	var line := ("AMENAZAS  %d" % left) if (left > 0 and d.in_combat) else ""
+	if best > 0:
+		line += ("   ·   " if line != "" else "") + "RÉCORD  OLEADA %d" % best
+	if line != "":
+		UiKit.text(self, Vector2(r.position.x, r.end.y + 20.0), line, 13, Color(1.0, 0.8, 0.85, 0.9), 1, r.size.x, 3.0)
+
+
+## Contrarreloj: cronometro grande (tiempo de juego + penalizaciones), sala actual y penalizacion acumulada.
+func _draw_time_attack(vs: Vector2, d: RunDirector) -> void:
+	var run := game.run
+	var total := ModeRules.time_attack_total(run.time, run.penalty_time)
+	var r := Rect2(vs.x * 0.5 - 150.0, 14.0 + safe.y, 300.0, 52.0)
+	UiKit.panel(self, r, Color(0.02, 0.05, 0.1, 0.62), Color("ffd24a", 0.7), 10.0, 1.0, false)
+	UiKit.text(self, Vector2(r.position.x, r.position.y + 37.0), "%d:%05.2f" % [int(total) / 60, fmod(total, 60.0)], 34, Color("fff0b0"), 1, r.size.x, 5.0)
+	var sub := "SALA %d / %d" % [mini(d.stage + 1, d.plan.size()), d.plan.size()]
+	if run.penalty_time > 0.0:
+		sub += "   ·   +%d s por golpes" % int(run.penalty_time)
+	var best: float = float((Profile.p.data["records"]["timeattack"] as Dictionary).get(game.chapter.id, {}).get("best_time", 0.0))
+	if best > 0.0:
+		sub += "   ·   MEJOR %d:%05.2f" % [int(best) / 60, fmod(best, 60.0)]
+	UiKit.text(self, Vector2(r.position.x - 80.0, r.end.y + 18.0), sub, 13, Color(1.0, 0.92, 0.7, 0.92), 1, r.size.x + 160.0, 3.0)
+
+
+## Expedicion: ruta recorrida (iconos por tipo de tramo), tramo actual y modificador activo.
+func _draw_expedition(vs: Vector2, d: RunDirector) -> void:
+	var n := ModeRules.EXP_LEGS + 1
+	var w := 36.0 * float(n) + 24.0
+	var r := Rect2(vs.x * 0.5 - w * 0.5, 14.0 + safe.y, w, 40.0)
+	UiKit.panel(self, r, Color(0.02, 0.05, 0.1, 0.55), Color("c47bff", 0.55), 10.0, 1.0, false)
+	var log: Array = game.run.route_log
+	for i in n:
+		var c := Vector2(r.position.x + 30.0 + float(i) * 36.0, r.position.y + 20.0)
+		var cur := i == d.stage
+		var done := i < d.stage
+		var col := Color("27e0cc") if done else (Color("ffd24a") if cur else Color(0.3, 0.38, 0.55))
+		if i == n - 1:
+			UiIcons.draw(self, "skull", c, 9.5 if cur else 8.0, col)
+		elif i < log.size():
+			var kind := str(log[i])
+			UiIcons.draw(self, {"combat": "sword", "elite": "star", "cache": "chest", "rest": "heart"}.get(kind, "door"), c, 9.0 if cur else 7.5, col)
+		else:
+			draw_circle(c, 4.0, col)
+		if cur:
+			draw_arc(c, 14.0, 0, TAU, 20, Color(col, 0.5 + 0.3 * sin(t * 5.0)), 1.5, true)
+	var st: Dictionary = d.plan[d.stage]
+	var mid := str(st.get("modifier", ""))
+	var line := ""
+	if mid != "":
+		line = "⚠ %s" % str(ModeRules.EXP_MODIFIERS[mid]["name"])
+	elif d.in_combat and boss == null and d.threats_left() > 0:
+		line = "AMENAZAS  %d" % d.threats_left()
+	if line != "":
+		UiKit.text(self, Vector2(r.position.x, r.end.y + 20.0), line, 14, Color(1.0, 0.75, 0.82, 0.95), 1, r.size.x, 3.0)
 
 
 func _draw_top_right(vs: Vector2) -> void:

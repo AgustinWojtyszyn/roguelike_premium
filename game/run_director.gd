@@ -33,6 +33,11 @@ var surv_phase := 0
 var surv_pending_phase := -1    # fase a la que se pasa cuando se cierre el selector de perk
 var rush_wait := -1.0           # boss rush: cuenta atras de la zona de preparacion
 var _rush_last_sec := -1
+var room_elites := 0            # elites extra por dificultad ya lanzados en esta sala (tope 3)
+# ---- Expedicion
+var exp_used_rooms: Array = []
+var _base_mods: Dictionary = {}
+var exp_picker: Node = null
 
 
 func _ready() -> void:
@@ -57,6 +62,21 @@ func begin(start_stage: int = 0) -> void:
 			surv_wave = 0
 		ModeRules.BOSS_RUSH:
 			plan = ModeRules.boss_rush_plan(Catalog.rooms)
+		ModeRules.HORDE:
+			plan = [ModeRules.horde_stage(game.chapter.id)]
+			surv_wave = 0
+		ModeRules.TIME_ATTACK:
+			plan = ModeRules.time_attack_plan(game.chapter, game.run.seed_v)
+		ModeRules.EXPEDITION:
+			_base_mods = game.mods.duplicate()
+			var first: Array = ModeRules.expedition_options(game.chapter, 0, "", "", rng, [])
+			var st0: Dictionary = (first[0] as Dictionary).duplicate()
+			st0["kind"] = "combat"
+			st0["modifier"] = ""
+			st0["perk_after"] = false
+			plan = [st0]
+			exp_used_rooms = [st0["room"]]
+			game.run.route_log.append("combat")
 		_:
 			plan = DungeonGenerator.generate(game.chapter, game.run.seed_v, Catalog.rooms, Catalog.encounters)
 	_load_stage(clampi(start_stage, 0, plan.size() - 1), true)
@@ -122,10 +142,16 @@ func _load_stage(i: int, instant: bool) -> void:
 		game.chapter = Catalog.chapter(st["chapter"])
 		game.run.chapter = game.chapter
 		AudioMgr.play_music(game.chapter.music)
-	if game.mode_id == ModeRules.SURVIVAL:
-		game.hp_scale = game.chapter.difficulty * ModeRules.difficulty_scale(surv_wave + 1, surv_phase)
-	elif st.has("chapter"):
-		game.hp_scale = game.chapter.difficulty
+	if game.mode_id == ModeRules.EXPEDITION:
+		# modificadores del tramo: se funden sobre las reglas base y SE QUITAN al salir (nunca se acumulan entre tramos)
+		game.mods = _base_mods.duplicate()
+		var mid := str(st.get("modifier", ""))
+		if mid != "":
+			var mm: Dictionary = (ModeRules.EXP_MODIFIERS[mid] as Dictionary)["mods"]
+			for k in mm:
+				game.mods[k] = mm[k]
+	game.recalc_hp_scale(_mode_hp_scale())
+	room_elites = 0
 	var def: RoomDef = Catalog.rooms[st["room"]]
 	var forced := Boot.get_arg("room", "")   # solo revision visual: fuerza la sala (sin efecto en partidas normales)
 	if forced != "" and Catalog.rooms.has(forced):
@@ -156,10 +182,13 @@ func _load_stage(i: int, instant: bool) -> void:
 	pl.aim = dir.normalized()
 	game.cam_extra = Vector2.ZERO
 	game._snap_camera()
-	if st["kind"] == "survival":
+	if st["kind"] == "survival" or st["kind"] == "horde":
 		ArenaHazard.spawn_all(game, room, room)
 	if st["kind"] == "cache":
-		_spawn_chests(def)
+		if game.mode_id == ModeRules.EXPEDITION and st.get("route", "") == "rest":
+			_rest_site()
+		else:
+			_spawn_chests(def)
 		cleared = true
 		room.seal_open = 1.0
 		room.seal_target = 1.0
@@ -183,6 +212,14 @@ func _load_stage(i: int, instant: bool) -> void:
 	elif st["kind"] == "elite":
 		title = "ETAPA %d · ÉLITE" % (i + 1)
 		col = Color("ffd24a")
+	if game.mode_id == ModeRules.EXPEDITION and st["kind"] != "boss":
+		title = "TRAMO %d · %s" % [i + 1, ModeRules.EXP_KIND_NAMES.get(st.get("route", st["kind"]), "COMBATE")]
+		if str(st.get("modifier", "")) != "":
+			sub = "%s: %s" % [ModeRules.EXP_MODIFIERS[st["modifier"]]["name"], ModeRules.EXP_MODIFIERS[st["modifier"]]["desc"]]
+	elif game.mode_id == ModeRules.HORDE:
+		title = "HORDA INFINITA"
+	elif game.mode_id == ModeRules.TIME_ATTACK and i > 0:
+		title = "SALA %d / %d" % [i + 1, plan.size()]
 	game.hud.banner(title, 2.4, sub, col)
 	fade.modulate.a = 1.0 if instant else fade.modulate.a
 	_fade_in_settled()
@@ -268,6 +305,9 @@ func _begin_encounter() -> void:
 	if st["kind"] == "survival":
 		_start_survival_wave()
 		return
+	if st["kind"] == "horde":
+		_start_horde_wave()
+		return
 	if st["kind"] == "boss" and Catalog.bosses.has(game.chapter.boss):
 		_spawn_boss()
 		return
@@ -295,6 +335,9 @@ func _start_wave(i: int) -> void:
 func _update_waves(dt: float) -> void:
 	if plan[stage]["kind"] == "survival":
 		_update_survival(dt)
+		return
+	if plan[stage]["kind"] == "horde":
+		_update_horde(dt)
 		return
 	if plan[stage]["kind"] == "boss" and Catalog.bosses.has(game.chapter.boss):
 		return
@@ -384,10 +427,24 @@ func spawn_enemy_at(id: String, pos: Vector2, force_elite: bool) -> Enemy:
 	elif (st["elite"] or force_elite or (st["kind"] == "boss" and not Catalog.bosses.has(game.chapter.boss))) and not elite_done and data.elite_ok and data.threat >= 1.4:
 		e.elite = true
 		elite_done = true
+	if not e.elite and data.elite_ok and data.threat >= 1.4 and st["kind"] != "boss" and room_elites < 3:
+		var extra := float(DamageScale.difficulty(game.difficulty_id)["elite"])
+		if extra > 0.0 and rng.randf() < extra:
+			e.elite = true
+			room_elites += 1
 	game.ysort.add_child(e)
 	e.setup(game, pos)
 	game.enemies.append(e)
 	return e
+
+
+func _mode_hp_scale() -> float:
+	match game.mode_id:
+		ModeRules.SURVIVAL:
+			return ModeRules.difficulty_scale(surv_wave + 1, surv_phase)
+		ModeRules.HORDE:
+			return ModeRules.horde_hp_scale(surv_wave + 1)
+	return 1.0
 
 
 func _spawn_boss() -> void:
@@ -467,8 +524,14 @@ func _clear_stage() -> void:
 	if rng.randf() < 0.45:
 		game.pickups.drop_heart(game.player.position + Vector2(20, -10))
 	game.pickups.drop_energy(game.player.position + Vector2(-20, -10), 12.0)
+	if game.mode_id == ModeRules.EXPEDITION:
+		var mid := str(plan[stage].get("modifier", ""))
+		if mid != "":   # riesgo asumido, recompensa cobrada
+			game.pickups.drop_coins(game.player.position + Vector2(10, 14), int(ModeRules.EXP_MODIFIERS[mid]["coins"]))
+			if int(ModeRules.EXP_MODIFIERS[mid]["risk"]) >= 2:
+				game.pickups.drop_heart(game.player.position + Vector2(-26, 12))
 	PerkEffects.on_room_clear(game)
-	if stage == plan.size() - 1:
+	if stage == plan.size() - 1 and (game.mode_id != ModeRules.EXPEDITION or str(plan[stage]["kind"]) == "boss"):
 		_finish_chapter(null)
 		return
 	var t := token
@@ -483,6 +546,9 @@ func _clear_stage() -> void:
 
 func perk_closed() -> void:
 	perk_busy = false
+	if game.mode_id == ModeRules.HORDE:
+		_start_horde_wave()
+		return
 	if surv_pending_phase >= 0:
 		var ph := surv_pending_phase
 		surv_pending_phase = -1
@@ -505,6 +571,9 @@ func _open_exit() -> void:
 
 
 func _leave() -> void:
+	if game.mode_id == ModeRules.EXPEDITION and stage + 1 >= plan.size():
+		_exp_offer_routes()      # el siguiente tramo aun no existe: se elige la ruta (modal) y se vuelve a llamar
+		return
 	transition = true
 	game.input_locked = true
 	game.sfx.play("ui_open", -4.0)
@@ -541,12 +610,17 @@ func _finish_chapter(e: Enemy) -> void:
 	game.hud.boss = null
 	game.slow_enemies(0.2, 1.4)
 	game.sfx.play("victory", -2.0)
-	game.hud.banner("¡CAPÍTULO COMPLETADO!", 3.2, game.chapter.display_name, Color("ffe27a"))
 	var at := e.hit_center() if e != null else game.player.position + Vector2(0, -30)
 	var bonus := (Catalog.bosses[game.chapter.boss] as BossData).coins if e != null else 30
-	game.pickups.drop_coins(at, bonus)
-	game.pickups.drop_weapon(at + Vector2(0, 40), roll_weapon(2, 4))
-	game.pickups.drop_heart(at + Vector2(30, 10))
+	if game.mode_id == ModeRules.TIME_ATTACK:
+		var tot := ModeRules.time_attack_total(game.run.time, game.run.penalty_time)
+		game.hud.banner("¡%d:%05.2f!" % [int(tot) / 60, fmod(tot, 60.0)], 3.2, "Contrarreloj completada", Color("ffe27a"))
+		game.pickups.drop_coins(at, bonus)
+	else:
+		game.hud.banner("¡EXPEDICIÓN COMPLETADA!" if game.mode_id == ModeRules.EXPEDITION else "¡CAPÍTULO COMPLETADO!", 3.2, game.chapter.display_name, Color("ffe27a"))
+		game.pickups.drop_coins(at, bonus)
+		game.pickups.drop_weapon(at + Vector2(0, 40), roll_weapon(2, 4))
+		game.pickups.drop_heart(at + Vector2(30, 10))
 	AudioMgr.play_music(game.chapter.music)
 	end_won = true
 	end_t = 3.6
@@ -564,7 +638,7 @@ func _start_survival_wave() -> void:
 	surv_wave += 1
 	game.run.wave = surv_wave
 	surv_phase = ModeRules.phase_of_wave(surv_wave)
-	game.hp_scale = game.chapter.difficulty * ModeRules.difficulty_scale(surv_wave, surv_phase)
+	game.recalc_hp_scale(ModeRules.difficulty_scale(surv_wave, surv_phase))
 	elite_done = false
 	next_wave_t = -1.0
 	wave_i = surv_wave - 1
@@ -664,3 +738,125 @@ func _rush_start_wait() -> void:
 	rush_wait = 12.0
 	_rush_last_sec = -1
 	game.hud.banner("PREPARACIÓN", 1.6, "Elige un arma · recoge tus recompensas", Color("9fffe8"))
+
+
+# ------------------------------------------------------------------ HORDA INFINITA
+func _start_horde_wave() -> void:
+	surv_wave += 1
+	game.run.wave = surv_wave
+	game.recalc_hp_scale(ModeRules.horde_hp_scale(surv_wave))
+	elite_done = false
+	next_wave_t = -1.0
+	wave_i = surv_wave - 1
+	wave_clock = 0.0
+	var champion := false
+	for u in ModeRules.horde_wave(surv_wave, game.chapter.id, rng):
+		pending.append([u["id"], u["delay"], u["elite"]])
+		champion = champion or bool(u.get("champion", false))
+	var sub := game.chapter.display_name
+	if champion:
+		sub = "¡CAMPEÓN!"
+	game.hud.banner("OLEADA %d" % surv_wave, 1.4, sub, Color("ff7a9a") if champion else game.chapter.accent.lightened(0.6))
+	game.sfx.play("wave", -2.0)
+	if champion:
+		game.sfx.play("roar", -6.0)
+	if surv_wave > 1:
+		game.pickups.drop_energy(game.room.floor_rect.get_center(), 16.0)
+		if game.player.hp < game.player.max_hp and rng.randf() < 0.5:
+			game.pickups.drop_heart(game.room.floor_rect.get_center() + Vector2(rng.randf_range(-80, 80), rng.randf_range(-40, 40)))
+
+
+func _update_horde(dt: float) -> void:
+	wave_clock += dt
+	var i := pending.size() - 1
+	while i >= 0:
+		pending[i][1] -= dt
+		if pending[i][1] <= 0.0:
+			# tope de enemigos simultaneos: el resto espera en cola (rendimiento y justicia)
+			if game.enemies.size() + spawn_busy.size() >= ModeRules.HORDE_MAX_ALIVE:
+				pending[i][1] = 0.25
+			elif _try_spawn(pending[i][0], pending[i][2]):
+				pending.remove_at(i)
+			else:
+				pending[i][1] = 0.3
+		i -= 1
+	var alive := game.enemies.size() + pending.size()
+	if pending.is_empty() and alive <= 1 and next_wave_t < 0.0 and not game.over:
+		next_wave_t = 1.2
+	if next_wave_t >= 0.0:
+		next_wave_t -= dt
+		if next_wave_t <= 0.0:
+			next_wave_t = -1.0
+			_horde_next()
+
+
+## Fin de oleada: recompensa; cada HORDE_PERK_EVERY oleadas, una mejora (la oleada siguiente empieza al cerrarla).
+func _horde_next() -> void:
+	var pl := game.player
+	game.pickups.drop_coins(pl.position + Vector2(0, -20), 3 + surv_wave)
+	pl.add_energy(25.0)
+	if surv_wave % 2 == 0:
+		pl.heal(1)
+		pl.add_shield(1)
+	game.hud.banner("OLEADA %d SUPERADA" % surv_wave, 1.4, "", Color("ffe27a"))
+	game.sfx.play("clear", -2.0)
+	if surv_wave % ModeRules.HORDE_PERK_EVERY == 0:
+		perk_busy = true
+		var t := token
+		get_tree().create_timer(1.1).timeout.connect(func():
+			if t == token and not game.over:
+				game.offer_perk("clear"))
+		return
+	_start_horde_wave()
+
+
+# ------------------------------------------------------------------ EXPEDICION
+func _rest_site() -> void:
+	var pl := game.player
+	pl.heal(3)
+	pl.add_shield(pl.max_shield)
+	pl.add_energy(pl.max_energy)
+	game.hud.toast("DESCANSO: vida, escudo y energía recuperados", Color("9fffe8"))
+
+
+## Muestra la eleccion de ruta (2-3 tramos compatibles con el capitulo). Al elegir se agrega el tramo al plan y se continua.
+func _exp_offer_routes() -> void:
+	if exp_picker != null and is_instance_valid(exp_picker):
+		return
+	var cur: Dictionary = plan[stage]
+	var need := ""
+	var exit: String = str(cur.get("exit", ""))
+	if exit != "":
+		need = DungeonGenerator.OPP.get(exit, "")
+	var next_idx := plan.size()
+	if next_idx >= ModeRules.EXP_LEGS:
+		_exp_choose({"boss": true})
+		return
+	var opts := ModeRules.expedition_options(game.chapter, next_idx, need, str(cur.get("route", cur["kind"])), rng, exp_used_rooms)
+	var picker := RoutePicker.new()
+	picker.game = game
+	picker.options = opts
+	picker.leg = next_idx
+	exp_picker = picker
+	perk_busy = true
+	game.overlay_layer.add_child(picker)
+
+
+func _exp_choose(opt: Dictionary) -> void:
+	perk_busy = false
+	exp_picker = null
+	var cur: Dictionary = plan[stage]
+	var need: String = DungeonGenerator.OPP.get(str(cur.get("exit", "")), "")
+	if opt.get("boss", false):
+		plan.append(ModeRules.expedition_boss_stage(game.chapter, need))
+		game.hud.toast("EL JEFE TE ESPERA", Color("ff7a9a"))
+	else:
+		var st: Dictionary = opt.duplicate()
+		st["route"] = st["kind"]
+		if st["kind"] in ["cache", "rest"]:
+			st["kind"] = "cache"
+		plan.append(st)
+		exp_used_rooms.append(st["room"])
+		game.run.route_log.append(str(st["route"]))
+	game.run.legs += 1
+	_leave()

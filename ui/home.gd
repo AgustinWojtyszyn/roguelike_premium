@@ -227,7 +227,7 @@ func _start_run(mode: String, challenge: String) -> void:
 	AudioMgr.ui("smg", -4.0)
 	var ch := Catalog.chapter(chapter_id)
 	get_tree().create_timer(0.35).timeout.connect(func():
-		var first := chapter_id if (mode_id == ModeRules.CAMPAIGN or mode_id == ModeRules.CHALLENGE) else Catalog.chapter_order[0]
+		var first := chapter_id if ModeRules.CHAPTER_MODES.has(mode_id) else Catalog.chapter_order[0]
 		Router.goto("run", {"character": p.selected_character(), "chapter": first, "seed": randi(), "mode": mode_id, "challenge": challenge_id}, ch.accent.darkened(0.75)))
 
 
