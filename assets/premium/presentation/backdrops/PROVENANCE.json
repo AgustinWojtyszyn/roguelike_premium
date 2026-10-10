@@ -1,0 +1,94 @@
+[
+ {
+  "chapter": "ch1",
+  "output": "ch1.jpg",
+  "size": [
+   1600,
+   900
+  ],
+  "role": "chapter backdrop: corrupted technology",
+  "source": "asset_bank/playground/round_02_four_worlds/original_webp/backgrounds/bg_machine_empire.webp",
+  "source_sha256": "513106f6dd2816f56586da0a65a572871c7cde6e4fd0b0627d8979d656f421c4",
+  "source_size": [
+   1376,
+   768
+  ],
+  "band_crop_box": [
+   0,
+   0,
+   1376,
+   768
+  ],
+  "transformation": "edge-band crop + cover fit + JPEG q88 (tools/promote_playground_backdrops.py)",
+  "license_status": "UNVERIFIED commercial terms (Google Playground output); runtime use is provisional"
+ },
+ {
+  "chapter": "ch2",
+  "output": "ch2.jpg",
+  "size": [
+   1600,
+   900
+  ],
+  "role": "chapter backdrop: jade civilization",
+  "source": "asset_bank/playground/round_02_four_worlds/original_webp/backgrounds/bg_jade_empire.webp",
+  "source_sha256": "abead92dfaa616a09c4fe0b8d05edcebc74a1e51957a3c7d94fad6a6b652d989",
+  "source_size": [
+   1376,
+   768
+  ],
+  "band_crop_box": [
+   172,
+   0,
+   1204,
+   768
+  ],
+  "transformation": "edge-band crop + cover fit + JPEG q88 (tools/promote_playground_backdrops.py)",
+  "license_status": "UNVERIFIED commercial terms (Google Playground output); runtime use is provisional"
+ },
+ {
+  "chapter": "ch3",
+  "output": "ch3.jpg",
+  "size": [
+   1600,
+   900
+  ],
+  "role": "chapter backdrop: dark fortress",
+  "source": "asset_bank/playground/round_02_four_worlds/original_webp/backgrounds/bg_scarlet_fortress.webp",
+  "source_sha256": "60f47a2d1c21584158bd2da4a0060c0fddedc8ba0e468c8c23543d68fc322ae3",
+  "source_size": [
+   1376,
+   768
+  ],
+  "band_crop_box": [
+   0,
+   0,
+   1376,
+   768
+  ],
+  "transformation": "edge-band crop + cover fit + JPEG q88 (tools/promote_playground_backdrops.py)",
+  "license_status": "UNVERIFIED commercial terms (Google Playground output); runtime use is provisional"
+ },
+ {
+  "chapter": "ch4",
+  "output": "ch4.jpg",
+  "size": [
+   1600,
+   900
+  ],
+  "role": "chapter backdrop: interdimensional rift",
+  "source": "asset_bank/playground/round_02_four_worlds/original_webp/backgrounds/bg_fractured_dimension.webp",
+  "source_sha256": "cab7c8b5bfd559fed6a328dac4ed07065bc14f8cd15f287dce4bc95aa4a88c3d",
+  "source_size": [
+   1376,
+   768
+  ],
+  "band_crop_box": [
+   0,
+   154,
+   1376,
+   630
+  ],
+  "transformation": "edge-band crop + cover fit + JPEG q88 (tools/promote_playground_backdrops.py)",
+  "license_status": "UNVERIFIED commercial terms (Google Playground output); runtime use is provisional"
+ }
+]

@@ -1,0 +1,5600 @@
+{
+ "generator": "tools/playground_catalog.py",
+ "total": 168,
+ "status_counts": {
+  "backdrop_menu_ambient": 15,
+  "needs_art_correction": 55,
+  "ready_to_adapt": 61,
+  "needs_more_animation": 32,
+  "reserve_future": 5
+ },
+ "duplicates": [],
+ "actors": {
+  "boss_hollow_king": {
+   "states": [
+    "death",
+    "hurt",
+    "idle",
+    "sword_attack",
+    "walk"
+   ],
+   "gaps": [],
+   "complete_states": true
+  },
+  "boss_iron_colossus": {
+   "states": [
+    "attack",
+    "death",
+    "hurt",
+    "idle",
+    "walk"
+   ],
+   "gaps": [],
+   "complete_states": true
+  },
+  "boss_jade_serpent": {
+   "states": [
+    "single"
+   ],
+   "gaps": [
+    "single still image only"
+   ],
+   "complete_states": false
+  },
+  "boss_reality_architect": {
+   "states": [
+    "attack",
+    "death",
+    "hurt",
+    "idle",
+    "walk"
+   ],
+   "gaps": [],
+   "complete_states": true
+  },
+  "boss_the_drowned_king": {
+   "states": [
+    "attack",
+    "death",
+    "hurt",
+    "idle",
+    "sword_attack",
+    "walk"
+   ],
+   "gaps": [],
+   "complete_states": true
+  },
+  "char_arcanist": {
+   "states": [
+    "attack",
+    "death",
+    "hurt",
+    "idle",
+    "run",
+    "walk"
+   ],
+   "gaps": [],
+   "complete_states": true
+  },
+  "char_ranger": {
+   "states": [
+    "death",
+    "hurt",
+    "idle",
+    "run",
+    "shoot",
+    "walk"
+   ],
+   "gaps": [],
+   "complete_states": true
+  },
+  "char_vanguard": {
+   "states": [
+    "attack",
+    "death",
+    "hurt",
+    "idle",
+    "run",
+    "walk"
+   ],
+   "gaps": [],
+   "complete_states": true
+  },
+  "enemy_abyssal_crab": {
+   "states": [
+    "single"
+   ],
+   "gaps": [
+    "single still image only"
+   ],
+   "complete_states": false
+  },
+  "enemy_armored_guardian": {
+   "states": [
+    "attack",
+    "death",
+    "hurt",
+    "idle",
+    "walk"
+   ],
+   "gaps": [],
+   "complete_states": true
+  },
+  "enemy_cursed_archer": {
+   "states": [
+    "death",
+    "hurt",
+    "idle",
+    "shoot",
+    "walk"
+   ],
+   "gaps": [],
+   "complete_states": true
+  },
+  "enemy_drowned_hunter": {
+   "states": [
+    "attack",
+    "death",
+    "hurt",
+    "idle",
+    "run"
+   ],
+   "gaps": [],
+   "complete_states": true
+  },
+  "enemy_drowned_soldier": {
+   "states": [
+    "death",
+    "hurt",
+    "idle",
+    "sword_attack",
+    "walk"
+   ],
+   "gaps": [],
+   "complete_states": true
+  },
+  "enemy_fractured_knight": {
+   "states": [
+    "attack",
+    "death",
+    "hurt",
+    "idle",
+    "run"
+   ],
+   "gaps": [],
+   "complete_states": true
+  },
+  "enemy_jade_guardian": {
+   "states": [
+    "attack",
+    "death",
+    "hurt",
+    "idle",
+    "walk"
+   ],
+   "gaps": [],
+   "complete_states": true
+  },
+  "enemy_machine_scout": {
+   "states": [
+    "death",
+    "hurt",
+    "idle",
+    "run",
+    "shoot"
+   ],
+   "gaps": [],
+   "complete_states": true
+  },
+  "enemy_scarlet_knight": {
+   "states": [
+    "death",
+    "hurt",
+    "idle",
+    "run",
+    "sword_attack"
+   ],
+   "gaps": [],
+   "complete_states": true
+  },
+  "hero_explorer": {
+   "states": [
+    "death",
+    "hurt",
+    "idle",
+    "run",
+    "shoot",
+    "walk"
+   ],
+   "gaps": [],
+   "complete_states": true
+  },
+  "hero_iron_warden": {
+   "states": [
+    "death",
+    "hurt",
+    "idle",
+    "run",
+    "sword_attack",
+    "walk"
+   ],
+   "gaps": [],
+   "complete_states": true
+  }
+ },
+ "assets": [
+  {
+   "id": "scene_abandoned_docks",
+   "category": "backgrounds",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/backgrounds/scene_abandoned_docks.webp",
+   "size": [
+    1376,
+    768
+   ],
+   "has_alpha": false,
+   "corner_background": "flat",
+   "byte_size": 125098,
+   "sha256": "a069d47e04d8f5ba3dca46004c049f2304dc23f9149e1d07427f38c663311a7e",
+   "status": 5,
+   "reasons": [
+    "panoramic illustration: usable for menus / chapter cards / parallax, not a walkable room"
+   ],
+   "status_name": "backdrop_menu_ambient"
+  },
+  {
+   "id": "scene_drowned_cathedral",
+   "category": "backgrounds",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/backgrounds/scene_drowned_cathedral.webp",
+   "size": [
+    1376,
+    768
+   ],
+   "has_alpha": false,
+   "corner_background": "black",
+   "byte_size": 171042,
+   "sha256": "be12d01eedd8ff90a6bbff62eef0f28fd443e8a9d93d8e92af8140d06b38c6fd",
+   "status": 5,
+   "reasons": [
+    "panoramic illustration: usable for menus / chapter cards / parallax, not a walkable room"
+   ],
+   "status_name": "backdrop_menu_ambient"
+  },
+  {
+   "id": "scene_flooded_market",
+   "category": "backgrounds",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/backgrounds/scene_flooded_market.webp",
+   "size": [
+    1376,
+    768
+   ],
+   "has_alpha": false,
+   "corner_background": "scene",
+   "byte_size": 132478,
+   "sha256": "47ea564178b7485a069d10e130a726aa64e94e8c1006787a7043be8f4dbeaa18",
+   "status": 5,
+   "reasons": [
+    "panoramic illustration: usable for menus / chapter cards / parallax, not a walkable room"
+   ],
+   "status_name": "backdrop_menu_ambient"
+  },
+  {
+   "id": "scene_main_menu_dusk_harbor",
+   "category": "backgrounds",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/backgrounds/scene_main_menu_dusk_harbor.webp",
+   "size": [
+    1376,
+    768
+   ],
+   "has_alpha": false,
+   "corner_background": "scene",
+   "byte_size": 106796,
+   "sha256": "d95ae612a658f1463b5a87c9442c1b8e30b5ca952f286789ba3a1f45095d5246",
+   "status": 5,
+   "reasons": [
+    "panoramic illustration: usable for menus / chapter cards / parallax, not a walkable room"
+   ],
+   "status_name": "backdrop_menu_ambient"
+  },
+  {
+   "id": "scene_sanctuary_campfire",
+   "category": "backgrounds",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/backgrounds/scene_sanctuary_campfire.webp",
+   "size": [
+    1376,
+    768
+   ],
+   "has_alpha": false,
+   "corner_background": "scene",
+   "byte_size": 179654,
+   "sha256": "cbe013459239e025a80c39ab4036a4dc37be86b47a96559b4cc2f77354e20ca2",
+   "status": 5,
+   "reasons": [
+    "panoramic illustration: usable for menus / chapter cards / parallax, not a walkable room"
+   ],
+   "status_name": "backdrop_menu_ambient"
+  },
+  {
+   "id": "scene_world_map",
+   "category": "backgrounds",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/backgrounds/scene_world_map.webp",
+   "size": [
+    1376,
+    768
+   ],
+   "has_alpha": false,
+   "corner_background": "scene",
+   "byte_size": 231304,
+   "sha256": "d1baa9f8c0c8746afcd2ec479b41e2618371ff2a4114a52d23319f26278c2d6f",
+   "status": 5,
+   "reasons": [
+    "panoramic illustration: usable for menus / chapter cards / parallax, not a walkable room"
+   ],
+   "status_name": "backdrop_menu_ambient"
+  },
+  {
+   "id": "boss_the_drowned_king_attack",
+   "category": "bosses",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/bosses/boss_the_drowned_king_attack.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 541048,
+   "sha256": "259d5a610f1444a2dbc87483f885067d3be47fe045a666d17e9cbf7832db33c2",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 12,
+    "height_min": 478,
+    "height_max": 494,
+    "height_jitter": 0.032,
+    "feet_jitter_px": 3,
+    "center_jitter_px": 99.5
+   },
+   "status": 3,
+   "reasons": [
+    "12 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "boss_the_drowned_king_death",
+   "category": "bosses",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/bosses/boss_the_drowned_king_death.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 582134,
+   "sha256": "c252cc51539ac8ab951d0131597f3ac1a054f2527ccb480d917d721bc6347371",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 13,
+    "height_min": 214,
+    "height_max": 489,
+    "height_jitter": 0.562,
+    "feet_jitter_px": 3,
+    "center_jitter_px": 67.0
+   },
+   "status": 3,
+   "reasons": [
+    "13 frame(s) touch the cell border (clipping)",
+    "silhouette height varies 56% between frames",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "boss_the_drowned_king_hurt",
+   "category": "bosses",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/bosses/boss_the_drowned_king_hurt.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 501074,
+   "sha256": "4f77bcd529cc4c59ec64b0d60d77dbe0a12bf56323da743c48c302be0f721b2c",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 4,
+    "height_min": 440,
+    "height_max": 494,
+    "height_jitter": 0.109,
+    "feet_jitter_px": 1,
+    "center_jitter_px": 71.5
+   },
+   "status": 3,
+   "reasons": [
+    "4 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "boss_the_drowned_king_idle",
+   "category": "bosses",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/bosses/boss_the_drowned_king_idle.webp",
+   "size": [
+    2048,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 176614,
+   "sha256": "caa9e9d48ba78fca23f6422fb978c7738b1b2c8365e7ada767be9ed70f935320",
+   "grid": {
+    "cols": 4,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 4,
+    "empty": 0,
+    "edge_touching": 0,
+    "height_min": 488,
+    "height_max": 488,
+    "height_jitter": 0.0,
+    "feet_jitter_px": 0,
+    "center_jitter_px": 13.5
+   },
+   "status": 1,
+   "reasons": [
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "boss_the_drowned_king_sword_attack",
+   "category": "bosses",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/bosses/boss_the_drowned_king_sword_attack.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 602530,
+   "sha256": "f90bacdcea70b00c3c58cb0c1dd0c99a97724a0a6e5b503a2d3b4c9fe8b30eff",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 15,
+    "height_min": 436,
+    "height_max": 503,
+    "height_jitter": 0.133,
+    "feet_jitter_px": 2,
+    "center_jitter_px": 100.5
+   },
+   "status": 3,
+   "reasons": [
+    "15 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "boss_the_drowned_king_walk",
+   "category": "bosses",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/bosses/boss_the_drowned_king_walk.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 578416,
+   "sha256": "3cc734a891904a82f456242795fb7b586f2fc8f5ce3e06490266d3897bb68e13",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 9,
+    "height_min": 490,
+    "height_max": 503,
+    "height_jitter": 0.026,
+    "feet_jitter_px": 2,
+    "center_jitter_px": 53.0
+   },
+   "status": 3,
+   "reasons": [
+    "9 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "char_arcanist_attack",
+   "category": "characters",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/characters/char_arcanist_attack.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 427026,
+   "sha256": "d26d48d01f8192e72fff17134e5b2481aeaef97fc3e9e6843b5c2a88a60ffc43",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 12,
+    "height_min": 480,
+    "height_max": 512,
+    "height_jitter": 0.062,
+    "feet_jitter_px": 2,
+    "center_jitter_px": 54.0
+   },
+   "status": 4,
+   "reasons": [
+    "12 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)",
+    "cannot enter VisualProfiles.CHARACTERS: no rig grip => not weapon_compatible"
+   ],
+   "status_name": "needs_more_animation"
+  },
+  {
+   "id": "char_arcanist_death",
+   "category": "characters",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/characters/char_arcanist_death.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "flat",
+   "byte_size": 443820,
+   "sha256": "83bc6827c03b16626cf15f0931c7b55ad2aa146df53e580b0ff65a1c8bc1d188",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 12,
+    "height_min": 140,
+    "height_max": 477,
+    "height_jitter": 0.706,
+    "feet_jitter_px": 2,
+    "center_jitter_px": 39.0
+   },
+   "status": 4,
+   "reasons": [
+    "flat flat background baked into pixels: needs keying (colour-distance, edge-safe)",
+    "12 frame(s) touch the cell border (clipping)",
+    "silhouette height varies 71% between frames",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)",
+    "cannot enter VisualProfiles.CHARACTERS: no rig grip => not weapon_compatible"
+   ],
+   "status_name": "needs_more_animation"
+  },
+  {
+   "id": "char_arcanist_hurt",
+   "category": "characters",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/characters/char_arcanist_hurt.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 505252,
+   "sha256": "2527ab1d84eb44a13c63f391703ac890950739348893038a16a4608de12ca2c9",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 13,
+    "height_min": 458,
+    "height_max": 512,
+    "height_jitter": 0.105,
+    "feet_jitter_px": 2,
+    "center_jitter_px": 105.5
+   },
+   "status": 4,
+   "reasons": [
+    "13 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)",
+    "cannot enter VisualProfiles.CHARACTERS: no rig grip => not weapon_compatible"
+   ],
+   "status_name": "needs_more_animation"
+  },
+  {
+   "id": "char_arcanist_idle",
+   "category": "characters",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/characters/char_arcanist_idle.webp",
+   "size": [
+    2048,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 123028,
+   "sha256": "86e9952c8b94bb945edb0652dfd0acd2dd283e9bcc3e230195b14325b543df2d",
+   "grid": {
+    "cols": 4,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 4,
+    "empty": 0,
+    "edge_touching": 0,
+    "height_min": 498,
+    "height_max": 498,
+    "height_jitter": 0.0,
+    "feet_jitter_px": 0,
+    "center_jitter_px": 22.0
+   },
+   "status": 4,
+   "reasons": [
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)",
+    "cannot enter VisualProfiles.CHARACTERS: no rig grip => not weapon_compatible"
+   ],
+   "status_name": "needs_more_animation"
+  },
+  {
+   "id": "char_arcanist_run",
+   "category": "characters",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/characters/char_arcanist_run.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 541928,
+   "sha256": "6eccafd36c770aa7e1e7a2b7b5b8c1f9159827756549adbdf74e2c145b3a6286",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 14,
+    "height_min": 488,
+    "height_max": 512,
+    "height_jitter": 0.047,
+    "feet_jitter_px": 1,
+    "center_jitter_px": 67.5
+   },
+   "status": 4,
+   "reasons": [
+    "14 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)",
+    "cannot enter VisualProfiles.CHARACTERS: no rig grip => not weapon_compatible"
+   ],
+   "status_name": "needs_more_animation"
+  },
+  {
+   "id": "char_arcanist_walk",
+   "category": "characters",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/characters/char_arcanist_walk.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 470574,
+   "sha256": "26b3e805cf33b468aa3d80118742cc51469c90755d530d389b4573d40feb0f2b",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 8,
+    "height_min": 501,
+    "height_max": 509,
+    "height_jitter": 0.016,
+    "feet_jitter_px": 3,
+    "center_jitter_px": 37.5
+   },
+   "status": 4,
+   "reasons": [
+    "8 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)",
+    "cannot enter VisualProfiles.CHARACTERS: no rig grip => not weapon_compatible"
+   ],
+   "status_name": "needs_more_animation"
+  },
+  {
+   "id": "char_ranger_death",
+   "category": "characters",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/characters/char_ranger_death.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 344444,
+   "sha256": "909c12b6f604e28122bf4bbe83871c5f10683c6ff6184297b3acae5e4375b722",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 0,
+    "height_min": 166,
+    "height_max": 486,
+    "height_jitter": 0.658,
+    "feet_jitter_px": 1,
+    "center_jitter_px": 61.5
+   },
+   "status": 4,
+   "reasons": [
+    "silhouette height varies 66% between frames",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)",
+    "cannot enter VisualProfiles.CHARACTERS: no rig grip => not weapon_compatible"
+   ],
+   "status_name": "needs_more_animation"
+  },
+  {
+   "id": "char_ranger_hurt",
+   "category": "characters",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/characters/char_ranger_hurt.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 392610,
+   "sha256": "763c181a86f8ada10e8bdcab9d70c5b82484049d54184adbddf20d7facd4c69f",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 4,
+    "height_min": 464,
+    "height_max": 502,
+    "height_jitter": 0.076,
+    "feet_jitter_px": 2,
+    "center_jitter_px": 42.0
+   },
+   "status": 4,
+   "reasons": [
+    "4 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)",
+    "cannot enter VisualProfiles.CHARACTERS: no rig grip => not weapon_compatible"
+   ],
+   "status_name": "needs_more_animation"
+  },
+  {
+   "id": "char_ranger_idle",
+   "category": "characters",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/characters/char_ranger_idle.webp",
+   "size": [
+    2048,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 84770,
+   "sha256": "3a3c73f374bb582e21ac15f736d7ee5ebb92c00f3c9bdaa298f3ac0284325741",
+   "grid": {
+    "cols": 4,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 4,
+    "empty": 0,
+    "edge_touching": 0,
+    "height_min": 483,
+    "height_max": 497,
+    "height_jitter": 0.028,
+    "feet_jitter_px": 1,
+    "center_jitter_px": 5.5
+   },
+   "status": 4,
+   "reasons": [
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)",
+    "cannot enter VisualProfiles.CHARACTERS: no rig grip => not weapon_compatible"
+   ],
+   "status_name": "needs_more_animation"
+  },
+  {
+   "id": "char_ranger_run",
+   "category": "characters",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/characters/char_ranger_run.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 423382,
+   "sha256": "aa90ece1a9d52e82e5da3915d15d74d0cef3e8efa4db9fac5b725b502ba6e7ac",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 11,
+    "height_min": 485,
+    "height_max": 508,
+    "height_jitter": 0.045,
+    "feet_jitter_px": 2,
+    "center_jitter_px": 48.0
+   },
+   "status": 4,
+   "reasons": [
+    "11 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)",
+    "cannot enter VisualProfiles.CHARACTERS: no rig grip => not weapon_compatible"
+   ],
+   "status_name": "needs_more_animation"
+  },
+  {
+   "id": "char_ranger_shoot",
+   "category": "characters",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/characters/char_ranger_shoot.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 479874,
+   "sha256": "e1eab294e37a27c0f1f53a312e82f3dffb2b81256438b93acb31f6ccdfe2364e",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 16,
+    "height_min": 472,
+    "height_max": 512,
+    "height_jitter": 0.078,
+    "feet_jitter_px": 0,
+    "center_jitter_px": 43.5
+   },
+   "status": 4,
+   "reasons": [
+    "16 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)",
+    "cannot enter VisualProfiles.CHARACTERS: no rig grip => not weapon_compatible"
+   ],
+   "status_name": "needs_more_animation"
+  },
+  {
+   "id": "char_ranger_walk",
+   "category": "characters",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/characters/char_ranger_walk.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 323426,
+   "sha256": "662a7600e4d13401c96d412f1e5701fcbfce34e2b58597685d8a399c032de852",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 9,
+    "height_min": 493,
+    "height_max": 507,
+    "height_jitter": 0.028,
+    "feet_jitter_px": 2,
+    "center_jitter_px": 36.0
+   },
+   "status": 4,
+   "reasons": [
+    "9 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)",
+    "cannot enter VisualProfiles.CHARACTERS: no rig grip => not weapon_compatible"
+   ],
+   "status_name": "needs_more_animation"
+  },
+  {
+   "id": "char_vanguard_attack",
+   "category": "characters",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/characters/char_vanguard_attack.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 392384,
+   "sha256": "64df14879da11274fba0b3ea31f779e06a2fb6f264d5f122a7e4a6ef852227fe",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 10,
+    "height_min": 475,
+    "height_max": 484,
+    "height_jitter": 0.019,
+    "feet_jitter_px": 2,
+    "center_jitter_px": 77.5
+   },
+   "status": 4,
+   "reasons": [
+    "10 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)",
+    "cannot enter VisualProfiles.CHARACTERS: no rig grip => not weapon_compatible"
+   ],
+   "status_name": "needs_more_animation"
+  },
+  {
+   "id": "char_vanguard_death",
+   "category": "characters",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/characters/char_vanguard_death.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 419626,
+   "sha256": "7e5fff311731a6fd7dcc2507f6bdd2f4f34da29a6f4c94b9858dd0f0c631b08b",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 7,
+    "height_min": 189,
+    "height_max": 479,
+    "height_jitter": 0.605,
+    "feet_jitter_px": 2,
+    "center_jitter_px": 61.0
+   },
+   "status": 4,
+   "reasons": [
+    "7 frame(s) touch the cell border (clipping)",
+    "silhouette height varies 60% between frames",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)",
+    "cannot enter VisualProfiles.CHARACTERS: no rig grip => not weapon_compatible"
+   ],
+   "status_name": "needs_more_animation"
+  },
+  {
+   "id": "char_vanguard_hurt",
+   "category": "characters",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/characters/char_vanguard_hurt.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 570504,
+   "sha256": "b798ba2818cef91f5e206f10178c16ee5c713a20bf11c1fd6c337c23712988ad",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 16,
+    "height_min": 461,
+    "height_max": 512,
+    "height_jitter": 0.1,
+    "feet_jitter_px": 0,
+    "center_jitter_px": 46.5
+   },
+   "status": 4,
+   "reasons": [
+    "16 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)",
+    "cannot enter VisualProfiles.CHARACTERS: no rig grip => not weapon_compatible"
+   ],
+   "status_name": "needs_more_animation"
+  },
+  {
+   "id": "char_vanguard_idle",
+   "category": "characters",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/characters/char_vanguard_idle.webp",
+   "size": [
+    2048,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 130814,
+   "sha256": "22428f867081b255a5b4363d9bac3f3c8e51d5b20e871bea4295df49c8ed3da0",
+   "grid": {
+    "cols": 4,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 4,
+    "empty": 0,
+    "edge_touching": 4,
+    "height_min": 485,
+    "height_max": 492,
+    "height_jitter": 0.014,
+    "feet_jitter_px": 0,
+    "center_jitter_px": 13.5
+   },
+   "status": 4,
+   "reasons": [
+    "4 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)",
+    "cannot enter VisualProfiles.CHARACTERS: no rig grip => not weapon_compatible"
+   ],
+   "status_name": "needs_more_animation"
+  },
+  {
+   "id": "char_vanguard_run",
+   "category": "characters",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/characters/char_vanguard_run.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 448156,
+   "sha256": "37bc893aa9d96f134a12967081c3823c8dfb37cc1875c2b56536a5e21b959cda",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 12,
+    "height_min": 479,
+    "height_max": 501,
+    "height_jitter": 0.044,
+    "feet_jitter_px": 2,
+    "center_jitter_px": 103.5
+   },
+   "status": 4,
+   "reasons": [
+    "12 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)",
+    "cannot enter VisualProfiles.CHARACTERS: no rig grip => not weapon_compatible"
+   ],
+   "status_name": "needs_more_animation"
+  },
+  {
+   "id": "char_vanguard_walk",
+   "category": "characters",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/characters/char_vanguard_walk.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 384750,
+   "sha256": "8a4d9884b61990279b41182855f8eceee9db0bc130a84d7463ffd57298a3f624",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 12,
+    "height_min": 490,
+    "height_max": 507,
+    "height_jitter": 0.034,
+    "feet_jitter_px": 2,
+    "center_jitter_px": 80.5
+   },
+   "status": 4,
+   "reasons": [
+    "12 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)",
+    "cannot enter VisualProfiles.CHARACTERS: no rig grip => not weapon_compatible"
+   ],
+   "status_name": "needs_more_animation"
+  },
+  {
+   "id": "enemy_abyssal_crab",
+   "category": "enemies",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/enemies/enemy_abyssal_crab.webp",
+   "size": [
+    700,
+    498
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 68838,
+   "sha256": "f63a376957e2806eaa6c3b2a94789180bfd3b1a7677bf3986b8b23fbe7e68a62",
+   "bbox": [
+    0,
+    2,
+    699,
+    495
+   ],
+   "fill": 0.629,
+   "status": 4,
+   "reasons": [
+    "single image, no animation strip",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_more_animation"
+  },
+  {
+   "id": "enemy_armored_guardian_attack",
+   "category": "enemies",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/enemies/enemy_armored_guardian_attack.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 695248,
+   "sha256": "7e1f15c8bbe263f6df88c8fb55073ddd4d4b5e1ed920f9ad4d778cce82cf698b",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 16,
+    "height_min": 446,
+    "height_max": 472,
+    "height_jitter": 0.055,
+    "feet_jitter_px": 0,
+    "center_jitter_px": 59.0
+   },
+   "status": 3,
+   "reasons": [
+    "16 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "enemy_armored_guardian_death",
+   "category": "enemies",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/enemies/enemy_armored_guardian_death.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "flat",
+   "byte_size": 567946,
+   "sha256": "27553a1ce3c8cad9de322d56a3bb8394b907ba570486fedce452f85ee5c7c480",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 11,
+    "height_min": 190,
+    "height_max": 470,
+    "height_jitter": 0.596,
+    "feet_jitter_px": 2,
+    "center_jitter_px": 25.5
+   },
+   "status": 3,
+   "reasons": [
+    "flat flat background baked into pixels: needs keying (colour-distance, edge-safe)",
+    "11 frame(s) touch the cell border (clipping)",
+    "silhouette height varies 60% between frames",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "enemy_armored_guardian_hurt",
+   "category": "enemies",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/enemies/enemy_armored_guardian_hurt.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 560470,
+   "sha256": "8d3eb7a688df2ad51b6e4536f2426ed7d81c257a3ff860653a44ee9a5f5fb751",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 5,
+    "height_min": 361,
+    "height_max": 502,
+    "height_jitter": 0.281,
+    "feet_jitter_px": 1,
+    "center_jitter_px": 78.5
+   },
+   "status": 3,
+   "reasons": [
+    "5 frame(s) touch the cell border (clipping)",
+    "silhouette height varies 28% between frames",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "enemy_armored_guardian_idle",
+   "category": "enemies",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/enemies/enemy_armored_guardian_idle.webp",
+   "size": [
+    2048,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 168600,
+   "sha256": "44a5cc3fb699aaf1cc1c9efc81b6d527c677a74161a66b84ed940fe84107ad1f",
+   "grid": {
+    "cols": 4,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 4,
+    "empty": 0,
+    "edge_touching": 2,
+    "height_min": 473,
+    "height_max": 476,
+    "height_jitter": 0.006,
+    "feet_jitter_px": 1,
+    "center_jitter_px": 51.5
+   },
+   "status": 3,
+   "reasons": [
+    "2 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "enemy_armored_guardian_walk",
+   "category": "enemies",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/enemies/enemy_armored_guardian_walk.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 536946,
+   "sha256": "eecdc86823fa3476acf370170f6c1bc44a0a69c8e449b7516bc4062b0dbd53d3",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 8,
+    "height_min": 494,
+    "height_max": 499,
+    "height_jitter": 0.01,
+    "feet_jitter_px": 2,
+    "center_jitter_px": 24.0
+   },
+   "status": 3,
+   "reasons": [
+    "8 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "enemy_cursed_archer_death",
+   "category": "enemies",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/enemies/enemy_cursed_archer_death.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 490640,
+   "sha256": "b44223318d17b8a77934731a150390bb6c73b6de5fb453b4edd9a19b75fa6167",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 5,
+    "height_min": 132,
+    "height_max": 479,
+    "height_jitter": 0.724,
+    "feet_jitter_px": 3,
+    "center_jitter_px": 55.0
+   },
+   "status": 3,
+   "reasons": [
+    "5 frame(s) touch the cell border (clipping)",
+    "silhouette height varies 72% between frames",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "enemy_cursed_archer_hurt",
+   "category": "enemies",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/enemies/enemy_cursed_archer_hurt.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 508152,
+   "sha256": "ea1c6efb6dbf26d0fc4642b6bce726c4d2bed5ba4ff4ef39c8134e578e5933e2",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 4,
+    "height_min": 472,
+    "height_max": 495,
+    "height_jitter": 0.046,
+    "feet_jitter_px": 3,
+    "center_jitter_px": 84.0
+   },
+   "status": 3,
+   "reasons": [
+    "4 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "enemy_cursed_archer_idle",
+   "category": "enemies",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/enemies/enemy_cursed_archer_idle.webp",
+   "size": [
+    2048,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 116926,
+   "sha256": "6946a1246f7efb40b0eb332efe18dec7a77bf4291327a4f8af568c7662ceb169",
+   "grid": {
+    "cols": 4,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 4,
+    "empty": 0,
+    "edge_touching": 0,
+    "height_min": 492,
+    "height_max": 498,
+    "height_jitter": 0.012,
+    "feet_jitter_px": 0,
+    "center_jitter_px": 11.5
+   },
+   "status": 1,
+   "reasons": [
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "enemy_cursed_archer_shoot",
+   "category": "enemies",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/enemies/enemy_cursed_archer_shoot.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 486902,
+   "sha256": "695b30310e90052e914739a0a0e5b3b8e70ecd653e20a76450b9bb2df45deffd",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 8,
+    "height_min": 481,
+    "height_max": 512,
+    "height_jitter": 0.061,
+    "feet_jitter_px": 3,
+    "center_jitter_px": 62.0
+   },
+   "status": 3,
+   "reasons": [
+    "8 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "enemy_cursed_archer_walk",
+   "category": "enemies",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/enemies/enemy_cursed_archer_walk.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 507844,
+   "sha256": "31b327e95aa00cfb546e44b1f352015db5b6b6e4002ed683f9015e2e6ced8c6c",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 10,
+    "height_min": 500,
+    "height_max": 512,
+    "height_jitter": 0.023,
+    "feet_jitter_px": 2,
+    "center_jitter_px": 43.0
+   },
+   "status": 3,
+   "reasons": [
+    "10 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "enemy_drowned_hunter_attack",
+   "category": "enemies",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/enemies/enemy_drowned_hunter_attack.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 370752,
+   "sha256": "1654bd786a1b05bc2905b3ba0bac73973370d41520f5d0768d5f79905c65dcb3",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 11,
+    "height_min": 495,
+    "height_max": 512,
+    "height_jitter": 0.033,
+    "feet_jitter_px": 2,
+    "center_jitter_px": 95.0
+   },
+   "status": 3,
+   "reasons": [
+    "11 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "enemy_drowned_hunter_death",
+   "category": "enemies",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/enemies/enemy_drowned_hunter_death.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 394046,
+   "sha256": "6812aaad722029e584bc7183bf677509c9a07e50251f5837ef6a634aac572960",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 7,
+    "height_min": 179,
+    "height_max": 475,
+    "height_jitter": 0.623,
+    "feet_jitter_px": 2,
+    "center_jitter_px": 39.5
+   },
+   "status": 3,
+   "reasons": [
+    "7 frame(s) touch the cell border (clipping)",
+    "silhouette height varies 62% between frames",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "enemy_drowned_hunter_hurt",
+   "category": "enemies",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/enemies/enemy_drowned_hunter_hurt.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 316806,
+   "sha256": "ec716d2fb02e9812d0e807a2625bae1ac50ad5b29cd632375cde2b1d6aed498d",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 0,
+    "height_min": 461,
+    "height_max": 507,
+    "height_jitter": 0.091,
+    "feet_jitter_px": 1,
+    "center_jitter_px": 80.0
+   },
+   "status": 1,
+   "reasons": [
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "enemy_drowned_hunter_idle",
+   "category": "enemies",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/enemies/enemy_drowned_hunter_idle.webp",
+   "size": [
+    2048,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 122022,
+   "sha256": "d1171eb144e2dd8df02c82830904a003c3312b83505a5fe13859f24f26dbb4f9",
+   "grid": {
+    "cols": 4,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 4,
+    "empty": 0,
+    "edge_touching": 4,
+    "height_min": 512,
+    "height_max": 512,
+    "height_jitter": 0.0,
+    "feet_jitter_px": 0,
+    "center_jitter_px": 25.5
+   },
+   "status": 3,
+   "reasons": [
+    "4 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "enemy_drowned_hunter_run",
+   "category": "enemies",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/enemies/enemy_drowned_hunter_run.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 453376,
+   "sha256": "21c682a69ced044a6100cff5e8292cf286f2b30d888e7b90148500f668a7a41e",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 13,
+    "height_min": 493,
+    "height_max": 512,
+    "height_jitter": 0.037,
+    "feet_jitter_px": 3,
+    "center_jitter_px": 81.5
+   },
+   "status": 3,
+   "reasons": [
+    "13 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "enemy_drowned_soldier_death",
+   "category": "enemies",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/enemies/enemy_drowned_soldier_death.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 498788,
+   "sha256": "c9494e771079b4d10520d530647ded48606713ec00b123c79b6c0eb164263a95",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 7,
+    "height_min": 159,
+    "height_max": 495,
+    "height_jitter": 0.679,
+    "feet_jitter_px": 2,
+    "center_jitter_px": 93.5
+   },
+   "status": 3,
+   "reasons": [
+    "7 frame(s) touch the cell border (clipping)",
+    "silhouette height varies 68% between frames",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "enemy_drowned_soldier_hurt",
+   "category": "enemies",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/enemies/enemy_drowned_soldier_hurt.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 472626,
+   "sha256": "a5dae49d0ae1b21e2e140e18c31c419b10f831374b228180e687a2fced9dff44",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 4,
+    "height_min": 445,
+    "height_max": 503,
+    "height_jitter": 0.115,
+    "feet_jitter_px": 1,
+    "center_jitter_px": 97.0
+   },
+   "status": 3,
+   "reasons": [
+    "4 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "enemy_drowned_soldier_idle",
+   "category": "enemies",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/enemies/enemy_drowned_soldier_idle.webp",
+   "size": [
+    2048,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 122910,
+   "sha256": "20325e5a0a5ae38a4746521f92731889413cdae09256177dfed5d267b6e1bf39",
+   "grid": {
+    "cols": 4,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 4,
+    "empty": 0,
+    "edge_touching": 0,
+    "height_min": 488,
+    "height_max": 488,
+    "height_jitter": 0.0,
+    "feet_jitter_px": 1,
+    "center_jitter_px": 19.0
+   },
+   "status": 1,
+   "reasons": [
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "enemy_drowned_soldier_sword_attack",
+   "category": "enemies",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/enemies/enemy_drowned_soldier_sword_attack.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 550938,
+   "sha256": "5fe8f724d195dab381716edd8f55f94f2e073db59b7fb387cf30cc81125770d7",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 13,
+    "height_min": 451,
+    "height_max": 501,
+    "height_jitter": 0.1,
+    "feet_jitter_px": 2,
+    "center_jitter_px": 116.0
+   },
+   "status": 3,
+   "reasons": [
+    "13 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "enemy_drowned_soldier_walk",
+   "category": "enemies",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/enemies/enemy_drowned_soldier_walk.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 447476,
+   "sha256": "7cfd7531eeddb21c3f0d7239af4caa8e0a9f3b4d31f05d83611c3dc4574d3178",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 12,
+    "height_min": 498,
+    "height_max": 509,
+    "height_jitter": 0.022,
+    "feet_jitter_px": 2,
+    "center_jitter_px": 142.5
+   },
+   "status": 3,
+   "reasons": [
+    "12 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "prop_broken_pillar",
+   "category": "props",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/props/prop_broken_pillar.webp",
+   "size": [
+    762,
+    824
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 51580,
+   "sha256": "e4a801f28980afcd30629c38407ced893db16b29c67f975379b7a142b2cbe8e3",
+   "bbox": [
+    1,
+    1,
+    760,
+    822
+   ],
+   "fill": 0.484,
+   "status": 1,
+   "reasons": [
+    "candidate for adaptation after scale/readability review"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "prop_campfire",
+   "category": "props",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/props/prop_campfire.webp",
+   "size": [
+    722,
+    681
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 58040,
+   "sha256": "288b391aa5d202df2a5964e803feeed8772a1a6bf517ed651a1c7cd0a914f261",
+   "bbox": [
+    1,
+    1,
+    720,
+    679
+   ],
+   "fill": 0.616,
+   "status": 1,
+   "reasons": [
+    "candidate for adaptation after scale/readability review"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "prop_coin_pickup",
+   "category": "props",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/props/prop_coin_pickup.webp",
+   "size": [
+    782,
+    702
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 61188,
+   "sha256": "c386dbf6ac3389f6d461ccf539fe026ea4ded7e2738585ea23ce3711ca6daf84",
+   "bbox": [
+    0,
+    1,
+    781,
+    699
+   ],
+   "fill": 0.793,
+   "status": 1,
+   "reasons": [
+    "candidate for adaptation after scale/readability review"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "prop_harbor_lantern",
+   "category": "props",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/props/prop_harbor_lantern.webp",
+   "size": [
+    244,
+    844
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 39852,
+   "sha256": "1e3e4ccb5c81320664fb2bf125824b746fff15895cd072c4c51ed14ca66ff7f9",
+   "bbox": [
+    0,
+    1,
+    242,
+    843
+   ],
+   "fill": 0.342,
+   "status": 1,
+   "reasons": [
+    "candidate for adaptation after scale/readability review"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "prop_healing_flask",
+   "category": "props",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/props/prop_healing_flask.webp",
+   "size": [
+    434,
+    607
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 40956,
+   "sha256": "bc8ed1d37033d3f9fea27a1268121b67371a9400202d85434e133c4dfea37365",
+   "bbox": [
+    1,
+    1,
+    432,
+    606
+   ],
+   "fill": 0.608,
+   "status": 1,
+   "reasons": [
+    "candidate for adaptation after scale/readability review"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "prop_locked_chest",
+   "category": "props",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/props/prop_locked_chest.webp",
+   "size": [
+    750,
+    777
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 111158,
+   "sha256": "783d7cd0a98e15f71639da80a38254d7bed99beea25eecc63792e7e271ab0b50",
+   "bbox": [
+    2,
+    1,
+    748,
+    776
+   ],
+   "fill": 0.754,
+   "status": 1,
+   "reasons": [
+    "candidate for adaptation after scale/readability review"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "prop_rope_bundle",
+   "category": "props",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/props/prop_rope_bundle.webp",
+   "size": [
+    864,
+    671
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 78362,
+   "sha256": "672b7e724c00bdf2573e006d21a8349b8c4db5fc942fbc3b853e4d8f1920b741",
+   "bbox": [
+    0,
+    1,
+    861,
+    668
+   ],
+   "fill": 0.659,
+   "status": 1,
+   "reasons": [
+    "candidate for adaptation after scale/readability review"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "prop_rune_obelisk",
+   "category": "props",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/props/prop_rune_obelisk.webp",
+   "size": [
+    454,
+    911
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 71344,
+   "sha256": "b497357b1d4aff9fe0ceeae58e096eed268d43cbf95addbf0d82bf4de30ecf76",
+   "bbox": [
+    0,
+    1,
+    453,
+    909
+   ],
+   "fill": 0.659,
+   "status": 1,
+   "reasons": [
+    "candidate for adaptation after scale/readability review"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "prop_shrine_save",
+   "category": "props",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/props/prop_shrine_save.webp",
+   "size": [
+    660,
+    788
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 91962,
+   "sha256": "43e768975f1cd6ef481946b1a7407cff0afac4300b8b33db3064f2319c1770e3",
+   "bbox": [
+    0,
+    1,
+    659,
+    787
+   ],
+   "fill": 0.539,
+   "status": 1,
+   "reasons": [
+    "candidate for adaptation after scale/readability review"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "prop_small_boat",
+   "category": "props",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/props/prop_small_boat.webp",
+   "size": [
+    731,
+    506
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 66416,
+   "sha256": "589dc1f4ee04d58667b54b8cfcdac751cc3e29e00e37a81d247f008c69088e20",
+   "bbox": [
+    0,
+    1,
+    729,
+    504
+   ],
+   "fill": 0.643,
+   "status": 1,
+   "reasons": [
+    "candidate for adaptation after scale/readability review"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "prop_stone_column",
+   "category": "props",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/props/prop_stone_column.webp",
+   "size": [
+    394,
+    900
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 47704,
+   "sha256": "582e44d5c2622e1b84d991598aa9e033f79c63982de5e787c9319ff6a2990a55",
+   "bbox": [
+    1,
+    1,
+    391,
+    898
+   ],
+   "fill": 0.515,
+   "status": 1,
+   "reasons": [
+    "candidate for adaptation after scale/readability review"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "prop_sunken_fountain",
+   "category": "props",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/props/prop_sunken_fountain.webp",
+   "size": [
+    854,
+    684
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 94402,
+   "sha256": "9e0b3955ead60a08f3683691495bfb094888d5471b9abe6e6121336267b0c077",
+   "bbox": [
+    1,
+    0,
+    852,
+    682
+   ],
+   "fill": 0.734,
+   "status": 1,
+   "reasons": [
+    "candidate for adaptation after scale/readability review"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "prop_treasure_chest",
+   "category": "props",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/props/prop_treasure_chest.webp",
+   "size": [
+    742,
+    711
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 63590,
+   "sha256": "351329f760fe5d91104e0acb3a03bef60d22dd76f79fe7dc5f551532012d23b2",
+   "bbox": [
+    0,
+    1,
+    740,
+    710
+   ],
+   "fill": 0.748,
+   "status": 1,
+   "reasons": [
+    "candidate for adaptation after scale/readability review"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "prop_weapon_pedestal",
+   "category": "props",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/props/prop_weapon_pedestal.webp",
+   "size": [
+    863,
+    826
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 98030,
+   "sha256": "e5dd20ec1e04a085534fd8cfe3f8ab55871f5ffa192a41551192ab9d8a8950c5",
+   "bbox": [
+    0,
+    4,
+    861,
+    825
+   ],
+   "fill": 0.608,
+   "status": 1,
+   "reasons": [
+    "candidate for adaptation after scale/readability review"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "prop_wooden_barrel",
+   "category": "props",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/props/prop_wooden_barrel.webp",
+   "size": [
+    678,
+    884
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 65600,
+   "sha256": "ad7bdb9e2ea5f8a2f7f802b82c57a341ec964a09691d1be1b84c4ac6b9851ffe",
+   "bbox": [
+    0,
+    0,
+    677,
+    883
+   ],
+   "fill": 0.834,
+   "status": 1,
+   "reasons": [
+    "candidate for adaptation after scale/readability review"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "prop_wooden_crate",
+   "category": "props",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/props/prop_wooden_crate.webp",
+   "size": [
+    676,
+    672
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 67982,
+   "sha256": "6ab1a76a7b24f82bb96407179081b29a1682904ad33ea2f527d51f47e286d3d5",
+   "bbox": [
+    0,
+    1,
+    673,
+    669
+   ],
+   "fill": 0.719,
+   "status": 1,
+   "reasons": [
+    "candidate for adaptation after scale/readability review"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "tileset_abandoned_docks",
+   "category": "tilesets",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/tilesets/tileset_abandoned_docks.webp",
+   "size": [
+    993,
+    818
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 181072,
+   "sha256": "db9786c14649d38ab44f7035ccfb326f8761cfe9026b17c0dfc21f5c9ac247d8",
+   "status": 6,
+   "reasons": [
+    "illustration-style composition, not verified as modular tiles (needs grid/seam check)"
+   ],
+   "status_name": "reserve_future"
+  },
+  {
+   "id": "tileset_cursed_fortress",
+   "category": "tilesets",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/tilesets/tileset_cursed_fortress.webp",
+   "size": [
+    836,
+    625
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 92394,
+   "sha256": "40be17ccff1869a522421ece1bc3b3fc067bc088d8cb108c347002401998a6ec",
+   "status": 6,
+   "reasons": [
+    "illustration-style composition, not verified as modular tiles (needs grid/seam check)"
+   ],
+   "status_name": "reserve_future"
+  },
+  {
+   "id": "tileset_drowned_cathedral",
+   "category": "tilesets",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/tilesets/tileset_drowned_cathedral.webp",
+   "size": [
+    893,
+    768
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 190442,
+   "sha256": "b0b5d7fccc3cd5770e9ee73b37fc1444c66f8f48002a7368bc7f41d7a260b251",
+   "status": 6,
+   "reasons": [
+    "illustration-style composition, not verified as modular tiles (needs grid/seam check)"
+   ],
+   "status_name": "reserve_future"
+  },
+  {
+   "id": "tileset_flooded_market",
+   "category": "tilesets",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/tilesets/tileset_flooded_market.webp",
+   "size": [
+    977,
+    743
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 151536,
+   "sha256": "d1a047346ce787316b9db7b011c7325defb6bbf26ed62ffedd502dc440ccbc48",
+   "status": 6,
+   "reasons": [
+    "illustration-style composition, not verified as modular tiles (needs grid/seam check)"
+   ],
+   "status_name": "reserve_future"
+  },
+  {
+   "id": "tileset_forgotten_gardens",
+   "category": "tilesets",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/tilesets/tileset_forgotten_gardens.webp",
+   "size": [
+    927,
+    646
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 155780,
+   "sha256": "b8c33a77892da68cc36df02e71257e8bc181795c22a9fe4e33ccaf405acd2c64",
+   "status": 6,
+   "reasons": [
+    "illustration-style composition, not verified as modular tiles (needs grid/seam check)"
+   ],
+   "status_name": "reserve_future"
+  },
+  {
+   "id": "vfx_bullet_impact",
+   "category": "vfx",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/vfx/vfx_bullet_impact.webp",
+   "size": [
+    731,
+    671
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 78230,
+   "sha256": "e43c37091a7da94dae4eb4158f74b486731b1212d0b1c8b6d2effaee47d9b1a4",
+   "status": 1,
+   "reasons": [
+    "candidate for adaptation after scale/readability review"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "vfx_chest_glow",
+   "category": "vfx",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/vfx/vfx_chest_glow.webp",
+   "size": [
+    547,
+    732
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 51786,
+   "sha256": "ce37f7fd373f9ee736d775c1c368f703f1df87e89f46c2bb560e798862a5e222",
+   "status": 1,
+   "reasons": [
+    "candidate for adaptation after scale/readability review"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "vfx_dash_trail",
+   "category": "vfx",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/vfx/vfx_dash_trail.webp",
+   "size": [
+    795,
+    538
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 70758,
+   "sha256": "bfa36d68f4e3d57ee3dedf80d65109aaf43ac0a82cb3415001234849faee94d0",
+   "status": 1,
+   "reasons": [
+    "candidate for adaptation after scale/readability review"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "vfx_magic_spark",
+   "category": "vfx",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/vfx/vfx_magic_spark.webp",
+   "size": [
+    700,
+    700
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 92504,
+   "sha256": "db1ea25b7d78886b1d92e8d3708ce18652995a7fb31cb402aa2c5065538da028",
+   "status": 1,
+   "reasons": [
+    "candidate for adaptation after scale/readability review"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "vfx_runic_slash",
+   "category": "vfx",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/vfx/vfx_runic_slash.webp",
+   "size": [
+    671,
+    620
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 54696,
+   "sha256": "2d568fa946e092f8eb73607a3cd43be31cfc0953cbef57a27dcc6d6b4ffc7257",
+   "status": 1,
+   "reasons": [
+    "candidate for adaptation after scale/readability review"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "vfx_water_splash",
+   "category": "vfx",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/vfx/vfx_water_splash.webp",
+   "size": [
+    702,
+    712
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 89744,
+   "sha256": "5f0eca8b80ad8be23374bafc66a149cd38e1a6449230f4bd62af6dfa78e489b4",
+   "status": 1,
+   "reasons": [
+    "candidate for adaptation after scale/readability review"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "weapon_ancient_pistol",
+   "category": "weapons",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/weapons/weapon_ancient_pistol.webp",
+   "size": [
+    822,
+    454
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 52200,
+   "sha256": "706dbc19ee010106b48e88c79662648d3649fbd1cf0d27985de054cd91c682c9",
+   "bbox": [
+    0,
+    0,
+    821,
+    453
+   ],
+   "fill": 0.368,
+   "status": 1,
+   "reasons": [
+    "weapon art: must be re-scaled so tip == WeaponData.muzzle before adoption"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "weapon_arcane_staff",
+   "category": "weapons",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/weapons/weapon_arcane_staff.webp",
+   "size": [
+    270,
+    892
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 44804,
+   "sha256": "4a3f8850c7d6e02d34f96fca941a0bc80572f4dbbbf0df0ccd3ef7cc703bbec6",
+   "bbox": [
+    0,
+    7,
+    268,
+    890
+   ],
+   "fill": 0.559,
+   "status": 1,
+   "reasons": [
+    "weapon art: must be re-scaled so tip == WeaponData.muzzle before adoption"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "weapon_harbor_rifle",
+   "category": "weapons",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/weapons/weapon_harbor_rifle.webp",
+   "size": [
+    870,
+    604
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 41470,
+   "sha256": "285add2b52af707fb589fafbe17053a18e30ef506144c79e14aee5f133c21136",
+   "bbox": [
+    0,
+    0,
+    868,
+    602
+   ],
+   "fill": 0.202,
+   "status": 1,
+   "reasons": [
+    "weapon art: must be re-scaled so tip == WeaponData.muzzle before adoption"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "weapon_runic_sword",
+   "category": "weapons",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/weapons/weapon_runic_sword.webp",
+   "size": [
+    181,
+    834
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 22654,
+   "sha256": "a50dd1bc6b8ffa640a8f01e215fe6f5c6a26bed5aeb8b986b987ef28355032be",
+   "bbox": [
+    1,
+    0,
+    180,
+    833
+   ],
+   "fill": 0.385,
+   "status": 1,
+   "reasons": [
+    "weapon art: must be re-scaled so tip == WeaponData.muzzle before adoption"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "weapon_tidebreaker_shotgun",
+   "category": "weapons",
+   "round": "round_01_drowned_harbor",
+   "path": "asset_bank/playground/round_01_drowned_harbor/original_webp/weapons/weapon_tidebreaker_shotgun.webp",
+   "size": [
+    752,
+    649
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 43332,
+   "sha256": "b298ca7c749a29fc8ac61fd0fbe60e3a3f5ce749a0cf967125dc73546ff60435",
+   "bbox": [
+    0,
+    1,
+    750,
+    648
+   ],
+   "fill": 0.403,
+   "status": 1,
+   "reasons": [
+    "weapon art: must be re-scaled so tip == WeaponData.muzzle before adoption"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "bg_fractured_arena",
+   "category": "backgrounds",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/backgrounds/bg_fractured_arena.webp",
+   "size": [
+    1376,
+    768
+   ],
+   "has_alpha": false,
+   "corner_background": "flat",
+   "byte_size": 295564,
+   "sha256": "71d51c38aa9c221a49b342118aa92e32ea2a8bd80353a23447693b6089f09c9e",
+   "status": 5,
+   "reasons": [
+    "panoramic illustration: usable for menus / chapter cards / parallax, not a walkable room"
+   ],
+   "status_name": "backdrop_menu_ambient"
+  },
+  {
+   "id": "bg_fractured_dimension",
+   "category": "backgrounds",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/backgrounds/bg_fractured_dimension.webp",
+   "size": [
+    1376,
+    768
+   ],
+   "has_alpha": false,
+   "corner_background": "scene",
+   "byte_size": 213492,
+   "sha256": "cab7c8b5bfd559fed6a328dac4ed07065bc14f8cd15f287dce4bc95aa4a88c3d",
+   "status": 5,
+   "reasons": [
+    "panoramic illustration: usable for menus / chapter cards / parallax, not a walkable room"
+   ],
+   "status_name": "backdrop_menu_ambient"
+  },
+  {
+   "id": "bg_jade_arena",
+   "category": "backgrounds",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/backgrounds/bg_jade_arena.webp",
+   "size": [
+    1376,
+    768
+   ],
+   "has_alpha": false,
+   "corner_background": "flat",
+   "byte_size": 268028,
+   "sha256": "e6c1f529b4fe88634a4c002ee62ef743bfda8d41e12b1d67b610da1e23b4b51c",
+   "status": 5,
+   "reasons": [
+    "panoramic illustration: usable for menus / chapter cards / parallax, not a walkable room"
+   ],
+   "status_name": "backdrop_menu_ambient"
+  },
+  {
+   "id": "bg_jade_empire",
+   "category": "backgrounds",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/backgrounds/bg_jade_empire.webp",
+   "size": [
+    1376,
+    768
+   ],
+   "has_alpha": false,
+   "corner_background": "scene",
+   "byte_size": 250622,
+   "sha256": "abead92dfaa616a09c4fe0b8d05edcebc74a1e51957a3c7d94fad6a6b652d989",
+   "status": 5,
+   "reasons": [
+    "panoramic illustration: usable for menus / chapter cards / parallax, not a walkable room"
+   ],
+   "status_name": "backdrop_menu_ambient"
+  },
+  {
+   "id": "bg_machine_arena",
+   "category": "backgrounds",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/backgrounds/bg_machine_arena.webp",
+   "size": [
+    1376,
+    768
+   ],
+   "has_alpha": false,
+   "corner_background": "scene",
+   "byte_size": 244610,
+   "sha256": "d302a284fe24fa8d167aa349ac3eb9602cd47fb219a9565dbc02e1ed52f379ef",
+   "status": 5,
+   "reasons": [
+    "panoramic illustration: usable for menus / chapter cards / parallax, not a walkable room"
+   ],
+   "status_name": "backdrop_menu_ambient"
+  },
+  {
+   "id": "bg_machine_empire",
+   "category": "backgrounds",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/backgrounds/bg_machine_empire.webp",
+   "size": [
+    1376,
+    768
+   ],
+   "has_alpha": false,
+   "corner_background": "scene",
+   "byte_size": 259604,
+   "sha256": "513106f6dd2816f56586da0a65a572871c7cde6e4fd0b0627d8979d656f421c4",
+   "status": 5,
+   "reasons": [
+    "panoramic illustration: usable for menus / chapter cards / parallax, not a walkable room"
+   ],
+   "status_name": "backdrop_menu_ambient"
+  },
+  {
+   "id": "bg_scarlet_arena",
+   "category": "backgrounds",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/backgrounds/bg_scarlet_arena.webp",
+   "size": [
+    1376,
+    768
+   ],
+   "has_alpha": false,
+   "corner_background": "black",
+   "byte_size": 194116,
+   "sha256": "5bba3b2ef89d77c0387061d5a4aa27a2db7da826f3966f1db1281d24dd0df4ba",
+   "status": 5,
+   "reasons": [
+    "panoramic illustration: usable for menus / chapter cards / parallax, not a walkable room"
+   ],
+   "status_name": "backdrop_menu_ambient"
+  },
+  {
+   "id": "bg_scarlet_fortress",
+   "category": "backgrounds",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/backgrounds/bg_scarlet_fortress.webp",
+   "size": [
+    1376,
+    768
+   ],
+   "has_alpha": false,
+   "corner_background": "black",
+   "byte_size": 173424,
+   "sha256": "60f47a2d1c21584158bd2da4a0060c0fddedc8ba0e468c8c23543d68fc322ae3",
+   "status": 5,
+   "reasons": [
+    "panoramic illustration: usable for menus / chapter cards / parallax, not a walkable room"
+   ],
+   "status_name": "backdrop_menu_ambient"
+  },
+  {
+   "id": "bg_title_screen",
+   "category": "backgrounds",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/backgrounds/bg_title_screen.webp",
+   "size": [
+    1376,
+    768
+   ],
+   "has_alpha": false,
+   "corner_background": "scene",
+   "byte_size": 225228,
+   "sha256": "907877657af63f9dc63834d4d00dcfb0e94b3a288cf330dcd4f708e67158a1cc",
+   "status": 5,
+   "reasons": [
+    "panoramic illustration: usable for menus / chapter cards / parallax, not a walkable room"
+   ],
+   "status_name": "backdrop_menu_ambient"
+  },
+  {
+   "id": "boss_hollow_king_death",
+   "category": "bosses",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/bosses/boss_hollow_king_death.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 613382,
+   "sha256": "60ad469e80203a3c3a54a1b661533ab25799cb17ab8d85d3132d61b54fdcbd44",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 13,
+    "height_min": 201,
+    "height_max": 512,
+    "height_jitter": 0.607,
+    "feet_jitter_px": 2,
+    "center_jitter_px": 36.5
+   },
+   "status": 3,
+   "reasons": [
+    "13 frame(s) touch the cell border (clipping)",
+    "silhouette height varies 61% between frames",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "boss_hollow_king_hurt",
+   "category": "bosses",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/bosses/boss_hollow_king_hurt.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 710448,
+   "sha256": "9a8b315e211fc9b8fadf235146a627c0b61d65e927edb0756b273fe69a98440d",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 12,
+    "height_min": 497,
+    "height_max": 512,
+    "height_jitter": 0.029,
+    "feet_jitter_px": 2,
+    "center_jitter_px": 37.5
+   },
+   "status": 3,
+   "reasons": [
+    "12 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "boss_hollow_king_idle",
+   "category": "bosses",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/bosses/boss_hollow_king_idle.webp",
+   "size": [
+    2048,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 180696,
+   "sha256": "deaa8e9bc1a8676c455b04c7b779f0acf35d55a6d2f74c8887371d8f6e68b159",
+   "grid": {
+    "cols": 4,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 4,
+    "empty": 0,
+    "edge_touching": 0,
+    "height_min": 510,
+    "height_max": 510,
+    "height_jitter": 0.0,
+    "feet_jitter_px": 0,
+    "center_jitter_px": 19.0
+   },
+   "status": 1,
+   "reasons": [
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "boss_hollow_king_sword_attack",
+   "category": "bosses",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/bosses/boss_hollow_king_sword_attack.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 686228,
+   "sha256": "8bd922522f46dcb725199855051e7cd127b2b9e6599379b94304780524d30eb4",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 14,
+    "height_min": 497,
+    "height_max": 512,
+    "height_jitter": 0.029,
+    "feet_jitter_px": 2,
+    "center_jitter_px": 99.0
+   },
+   "status": 3,
+   "reasons": [
+    "14 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "boss_hollow_king_walk",
+   "category": "bosses",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/bosses/boss_hollow_king_walk.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 634484,
+   "sha256": "05a15b8b923e5eab77a419227b8ee87485110165fa09804bee89df730c96be8d",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 11,
+    "height_min": 499,
+    "height_max": 512,
+    "height_jitter": 0.025,
+    "feet_jitter_px": 3,
+    "center_jitter_px": 98.5
+   },
+   "status": 3,
+   "reasons": [
+    "11 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "boss_iron_colossus_attack",
+   "category": "bosses",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/bosses/boss_iron_colossus_attack.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 654224,
+   "sha256": "478d56991396c23bf46eca78c745ec85aac6518dbbd05f5ab5b4cf1c5d90da51",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 16,
+    "height_min": 484,
+    "height_max": 512,
+    "height_jitter": 0.055,
+    "feet_jitter_px": 0,
+    "center_jitter_px": 37.5
+   },
+   "status": 3,
+   "reasons": [
+    "16 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "boss_iron_colossus_death",
+   "category": "bosses",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/bosses/boss_iron_colossus_death.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 535624,
+   "sha256": "7028861beb87b89a4179fde3b7f1da46ebdbd87ea0cb712b32ff0f95e313e778",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 5,
+    "height_min": 235,
+    "height_max": 491,
+    "height_jitter": 0.521,
+    "feet_jitter_px": 2,
+    "center_jitter_px": 41.5
+   },
+   "status": 3,
+   "reasons": [
+    "5 frame(s) touch the cell border (clipping)",
+    "silhouette height varies 52% between frames",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "boss_iron_colossus_hurt",
+   "category": "bosses",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/bosses/boss_iron_colossus_hurt.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 735942,
+   "sha256": "a86529661d6142db296067213cbefeced51472bba7ef7362ba5bd757626330ba",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 12,
+    "height_min": 444,
+    "height_max": 501,
+    "height_jitter": 0.114,
+    "feet_jitter_px": 1,
+    "center_jitter_px": 22.5
+   },
+   "status": 3,
+   "reasons": [
+    "12 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "boss_iron_colossus_idle",
+   "category": "bosses",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/bosses/boss_iron_colossus_idle.webp",
+   "size": [
+    2048,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 182462,
+   "sha256": "afbf5b85e6f6d0cc127c00de88c482726487c2de974f6045255a46f7f20cc444",
+   "grid": {
+    "cols": 4,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 4,
+    "empty": 0,
+    "edge_touching": 4,
+    "height_min": 493,
+    "height_max": 502,
+    "height_jitter": 0.018,
+    "feet_jitter_px": 0,
+    "center_jitter_px": 9.0
+   },
+   "status": 3,
+   "reasons": [
+    "4 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "boss_iron_colossus_walk",
+   "category": "bosses",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/bosses/boss_iron_colossus_walk.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 454192,
+   "sha256": "f1a4250ac043341ba7db517c70b9eb180ae05bc557f920acda37848d21a1b34d",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 12,
+    "height_min": 491,
+    "height_max": 512,
+    "height_jitter": 0.041,
+    "feet_jitter_px": 2,
+    "center_jitter_px": 59.0
+   },
+   "status": 3,
+   "reasons": [
+    "12 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "boss_jade_serpent",
+   "category": "bosses",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/bosses/boss_jade_serpent.webp",
+   "size": [
+    829,
+    856
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 150686,
+   "sha256": "9dc38a497cbaa922404bf4fe4cd5468bce1ad5c57246e7f28142afcdae0e3b96",
+   "bbox": [
+    1,
+    1,
+    828,
+    853
+   ],
+   "fill": 0.618,
+   "status": 4,
+   "reasons": [
+    "single image, no animation strip",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_more_animation"
+  },
+  {
+   "id": "boss_reality_architect_attack",
+   "category": "bosses",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/bosses/boss_reality_architect_attack.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 1089042,
+   "sha256": "2a1015f6c31018b3f3619f3f0487c9126d62165c996d0614a688e1a4d4e87d0a",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 16,
+    "height_min": 510,
+    "height_max": 512,
+    "height_jitter": 0.004,
+    "feet_jitter_px": 0,
+    "center_jitter_px": 39.5
+   },
+   "status": 3,
+   "reasons": [
+    "16 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "boss_reality_architect_death",
+   "category": "bosses",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/bosses/boss_reality_architect_death.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 905398,
+   "sha256": "e335757cbfdd19f8c1a7d3b3f976e3cf86a21746061c81e713d5c1f69abc20d8",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 10,
+    "height_min": 167,
+    "height_max": 505,
+    "height_jitter": 0.669,
+    "feet_jitter_px": 6,
+    "center_jitter_px": 25.0
+   },
+   "status": 3,
+   "reasons": [
+    "10 frame(s) touch the cell border (clipping)",
+    "silhouette height varies 67% between frames",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "boss_reality_architect_hurt",
+   "category": "bosses",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/bosses/boss_reality_architect_hurt.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 1202314,
+   "sha256": "75260d82b2e0a410096bb17513210b8959bf881cf7bd58b41695b9c0901e9ab6",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 16,
+    "height_min": 461,
+    "height_max": 496,
+    "height_jitter": 0.071,
+    "feet_jitter_px": 0,
+    "center_jitter_px": 34.5
+   },
+   "status": 3,
+   "reasons": [
+    "16 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "boss_reality_architect_idle",
+   "category": "bosses",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/bosses/boss_reality_architect_idle.webp",
+   "size": [
+    2048,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 204684,
+   "sha256": "2cef50d079aaba265503cd84ef224213ca6ca7391876e6f1166c71b7e7d3b94c",
+   "grid": {
+    "cols": 4,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 4,
+    "empty": 0,
+    "edge_touching": 0,
+    "height_min": 502,
+    "height_max": 503,
+    "height_jitter": 0.002,
+    "feet_jitter_px": 1,
+    "center_jitter_px": 15.5
+   },
+   "status": 1,
+   "reasons": [
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "boss_reality_architect_walk",
+   "category": "bosses",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/bosses/boss_reality_architect_walk.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 858378,
+   "sha256": "0134612354ef3680077ba2c9b80044734ab34dda45638b6ffc09b0095252dbdf",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 8,
+    "height_min": 499,
+    "height_max": 512,
+    "height_jitter": 0.025,
+    "feet_jitter_px": 2,
+    "center_jitter_px": 34.0
+   },
+   "status": 3,
+   "reasons": [
+    "8 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "hero_explorer_death",
+   "category": "characters",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/characters/hero_explorer_death.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 387228,
+   "sha256": "3702dceb078e3dc9476ed66d6b6449a678ddae62fb64e524a50fbabf09a13a5f",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 1,
+    "height_min": 116,
+    "height_max": 485,
+    "height_jitter": 0.761,
+    "feet_jitter_px": 1,
+    "center_jitter_px": 47.0
+   },
+   "status": 4,
+   "reasons": [
+    "1 frame(s) touch the cell border (clipping)",
+    "silhouette height varies 76% between frames",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)",
+    "cannot enter VisualProfiles.CHARACTERS: no rig grip => not weapon_compatible"
+   ],
+   "status_name": "needs_more_animation"
+  },
+  {
+   "id": "hero_explorer_hurt",
+   "category": "characters",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/characters/hero_explorer_hurt.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 306730,
+   "sha256": "25e2e44a8e76cc9f959cc23ed3953838d172b0048080ae3cdbf6b882eb8f3f17",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 0,
+    "height_min": 471,
+    "height_max": 494,
+    "height_jitter": 0.047,
+    "feet_jitter_px": 1,
+    "center_jitter_px": 74.0
+   },
+   "status": 4,
+   "reasons": [
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)",
+    "cannot enter VisualProfiles.CHARACTERS: no rig grip => not weapon_compatible"
+   ],
+   "status_name": "needs_more_animation"
+  },
+  {
+   "id": "hero_explorer_idle",
+   "category": "characters",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/characters/hero_explorer_idle.webp",
+   "size": [
+    2048,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 81528,
+   "sha256": "9739d8efc63bef31766de14fc0f0c8b6c8c80d56af3da61a92bb6cdec0c7d604",
+   "grid": {
+    "cols": 4,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 4,
+    "empty": 0,
+    "edge_touching": 0,
+    "height_min": 497,
+    "height_max": 502,
+    "height_jitter": 0.01,
+    "feet_jitter_px": 1,
+    "center_jitter_px": 19.0
+   },
+   "status": 4,
+   "reasons": [
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)",
+    "cannot enter VisualProfiles.CHARACTERS: no rig grip => not weapon_compatible"
+   ],
+   "status_name": "needs_more_animation"
+  },
+  {
+   "id": "hero_explorer_run",
+   "category": "characters",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/characters/hero_explorer_run.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 426112,
+   "sha256": "bcce36149bd974b3f09fbb6bf71b93edec010c19e44e77c4defcc05412ccf961",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 13,
+    "height_min": 488,
+    "height_max": 512,
+    "height_jitter": 0.047,
+    "feet_jitter_px": 2,
+    "center_jitter_px": 38.5
+   },
+   "status": 4,
+   "reasons": [
+    "13 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)",
+    "cannot enter VisualProfiles.CHARACTERS: no rig grip => not weapon_compatible"
+   ],
+   "status_name": "needs_more_animation"
+  },
+  {
+   "id": "hero_explorer_shoot",
+   "category": "characters",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/characters/hero_explorer_shoot.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 289838,
+   "sha256": "c986e9f0cabbeb9161188d559ee4e9480f56f7c284af228c8bf7cc84b5e2cadc",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 8,
+    "height_min": 489,
+    "height_max": 492,
+    "height_jitter": 0.006,
+    "feet_jitter_px": 2,
+    "center_jitter_px": 29.0
+   },
+   "status": 4,
+   "reasons": [
+    "8 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)",
+    "cannot enter VisualProfiles.CHARACTERS: no rig grip => not weapon_compatible"
+   ],
+   "status_name": "needs_more_animation"
+  },
+  {
+   "id": "hero_explorer_walk",
+   "category": "characters",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/characters/hero_explorer_walk.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 331258,
+   "sha256": "1f685527792957db1a238c64b27a84a4ec505722e4c2e6a51429e6bc06a3d941",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 11,
+    "height_min": 499,
+    "height_max": 511,
+    "height_jitter": 0.023,
+    "feet_jitter_px": 2,
+    "center_jitter_px": 28.0
+   },
+   "status": 4,
+   "reasons": [
+    "11 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)",
+    "cannot enter VisualProfiles.CHARACTERS: no rig grip => not weapon_compatible"
+   ],
+   "status_name": "needs_more_animation"
+  },
+  {
+   "id": "hero_iron_warden_death",
+   "category": "characters",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/characters/hero_iron_warden_death.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 442314,
+   "sha256": "ad75db5efdb8e3476aaa98dd247c53715962ece8a598a15a36b081e53ed1d524",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 7,
+    "height_min": 150,
+    "height_max": 482,
+    "height_jitter": 0.689,
+    "feet_jitter_px": 2,
+    "center_jitter_px": 36.0
+   },
+   "status": 4,
+   "reasons": [
+    "7 frame(s) touch the cell border (clipping)",
+    "silhouette height varies 69% between frames",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)",
+    "cannot enter VisualProfiles.CHARACTERS: no rig grip => not weapon_compatible"
+   ],
+   "status_name": "needs_more_animation"
+  },
+  {
+   "id": "hero_iron_warden_hurt",
+   "category": "characters",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/characters/hero_iron_warden_hurt.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 492200,
+   "sha256": "732f33b78f8add44648285ae9ab36c91d44b05faac25c1213213ac97231f618a",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 0,
+    "height_min": 454,
+    "height_max": 505,
+    "height_jitter": 0.101,
+    "feet_jitter_px": 1,
+    "center_jitter_px": 87.0
+   },
+   "status": 4,
+   "reasons": [
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)",
+    "cannot enter VisualProfiles.CHARACTERS: no rig grip => not weapon_compatible"
+   ],
+   "status_name": "needs_more_animation"
+  },
+  {
+   "id": "hero_iron_warden_idle",
+   "category": "characters",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/characters/hero_iron_warden_idle.webp",
+   "size": [
+    2048,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 138992,
+   "sha256": "b90b8bdd45a896567d5249faa61d589f904e3d18c882ff3013d179ddd61ad978",
+   "grid": {
+    "cols": 4,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 4,
+    "empty": 0,
+    "edge_touching": 0,
+    "height_min": 484,
+    "height_max": 484,
+    "height_jitter": 0.0,
+    "feet_jitter_px": 0,
+    "center_jitter_px": 20.0
+   },
+   "status": 4,
+   "reasons": [
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)",
+    "cannot enter VisualProfiles.CHARACTERS: no rig grip => not weapon_compatible"
+   ],
+   "status_name": "needs_more_animation"
+  },
+  {
+   "id": "hero_iron_warden_run",
+   "category": "characters",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/characters/hero_iron_warden_run.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 496340,
+   "sha256": "9c71640f64ba12547b7f935ce37bac4b26305ecc781df422e38243dd87e63838",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 12,
+    "height_min": 483,
+    "height_max": 512,
+    "height_jitter": 0.057,
+    "feet_jitter_px": 2,
+    "center_jitter_px": 54.0
+   },
+   "status": 4,
+   "reasons": [
+    "12 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)",
+    "cannot enter VisualProfiles.CHARACTERS: no rig grip => not weapon_compatible"
+   ],
+   "status_name": "needs_more_animation"
+  },
+  {
+   "id": "hero_iron_warden_sword_attack",
+   "category": "characters",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/characters/hero_iron_warden_sword_attack.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 528154,
+   "sha256": "dbe16b5b252d2fd9404f616ea05733ef4e11a98b3b39a2b05b44c1e882ddd1de",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 14,
+    "height_min": 442,
+    "height_max": 502,
+    "height_jitter": 0.12,
+    "feet_jitter_px": 2,
+    "center_jitter_px": 118.0
+   },
+   "status": 4,
+   "reasons": [
+    "14 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)",
+    "cannot enter VisualProfiles.CHARACTERS: no rig grip => not weapon_compatible"
+   ],
+   "status_name": "needs_more_animation"
+  },
+  {
+   "id": "hero_iron_warden_walk",
+   "category": "characters",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/characters/hero_iron_warden_walk.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 470408,
+   "sha256": "ae1aca10d3c2e4f3dcd1d2066462986775174eab1bedd9a0eac467c0cd03e287",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 12,
+    "height_min": 497,
+    "height_max": 512,
+    "height_jitter": 0.029,
+    "feet_jitter_px": 2,
+    "center_jitter_px": 90.0
+   },
+   "status": 4,
+   "reasons": [
+    "12 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)",
+    "cannot enter VisualProfiles.CHARACTERS: no rig grip => not weapon_compatible"
+   ],
+   "status_name": "needs_more_animation"
+  },
+  {
+   "id": "enemy_fractured_knight_attack",
+   "category": "enemies",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/enemies/enemy_fractured_knight_attack.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 609374,
+   "sha256": "ba8c1a594df18d3a5bf0a13d0a943a52c04679c676858cdcdb6aeee785f03721",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 14,
+    "height_min": 460,
+    "height_max": 512,
+    "height_jitter": 0.102,
+    "feet_jitter_px": 3,
+    "center_jitter_px": 117.0
+   },
+   "status": 3,
+   "reasons": [
+    "14 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "enemy_fractured_knight_death",
+   "category": "enemies",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/enemies/enemy_fractured_knight_death.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 531026,
+   "sha256": "2246532eebb7fe7996c7a72bbb36c7aa424603a485051fa260914798518a60ce",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 16,
+    "height_min": 159,
+    "height_max": 510,
+    "height_jitter": 0.688,
+    "feet_jitter_px": 1,
+    "center_jitter_px": 53.5
+   },
+   "status": 3,
+   "reasons": [
+    "16 frame(s) touch the cell border (clipping)",
+    "silhouette height varies 69% between frames",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "enemy_fractured_knight_hurt",
+   "category": "enemies",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/enemies/enemy_fractured_knight_hurt.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 651342,
+   "sha256": "a14172ab862534f989997a8492ac21998b3a12091e3dbfab964c93d7e28a32ee",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 9,
+    "height_min": 446,
+    "height_max": 501,
+    "height_jitter": 0.11,
+    "feet_jitter_px": 2,
+    "center_jitter_px": 30.0
+   },
+   "status": 3,
+   "reasons": [
+    "9 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "enemy_fractured_knight_idle",
+   "category": "enemies",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/enemies/enemy_fractured_knight_idle.webp",
+   "size": [
+    2048,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 147282,
+   "sha256": "bc7ea42626b103c38acaca1a68fdfa170701e491f4aef5c84cde3e649dfc4da3",
+   "grid": {
+    "cols": 4,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 4,
+    "empty": 0,
+    "edge_touching": 1,
+    "height_min": 498,
+    "height_max": 498,
+    "height_jitter": 0.0,
+    "feet_jitter_px": 0,
+    "center_jitter_px": 14.5
+   },
+   "status": 3,
+   "reasons": [
+    "1 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "enemy_fractured_knight_run",
+   "category": "enemies",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/enemies/enemy_fractured_knight_run.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 517890,
+   "sha256": "3ca350b5facae774003f2bd54646ef4066d31c6167ea62da7263b6806d2a1896",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 16,
+    "height_min": 490,
+    "height_max": 512,
+    "height_jitter": 0.043,
+    "feet_jitter_px": 1,
+    "center_jitter_px": 92.0
+   },
+   "status": 3,
+   "reasons": [
+    "16 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "enemy_jade_guardian_attack",
+   "category": "enemies",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/enemies/enemy_jade_guardian_attack.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 488628,
+   "sha256": "aeba2dc452285755fe7214ad6b18c5ad03607da25c6a93a82fdeb21c19d512eb",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 16,
+    "height_min": 508,
+    "height_max": 512,
+    "height_jitter": 0.008,
+    "feet_jitter_px": 0,
+    "center_jitter_px": 107.5
+   },
+   "status": 3,
+   "reasons": [
+    "16 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "enemy_jade_guardian_death",
+   "category": "enemies",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/enemies/enemy_jade_guardian_death.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "black",
+   "byte_size": 481968,
+   "sha256": "f8aa2cac6d35a8488a67bf0ddec18385e3de0376d2758977fbab34939dc477ea",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 7,
+    "height_min": 132,
+    "height_max": 502,
+    "height_jitter": 0.737,
+    "feet_jitter_px": 4,
+    "center_jitter_px": 75.0
+   },
+   "status": 3,
+   "reasons": [
+    "flat black background baked into pixels: needs keying (colour-distance, edge-safe)",
+    "7 frame(s) touch the cell border (clipping)",
+    "silhouette height varies 74% between frames",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "enemy_jade_guardian_hurt",
+   "category": "enemies",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/enemies/enemy_jade_guardian_hurt.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 512482,
+   "sha256": "676400990e6c723aa31bb47136e9f76af24e91e1ecb96b2b90fbf95e66b7eb59",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 12,
+    "height_min": 501,
+    "height_max": 512,
+    "height_jitter": 0.021,
+    "feet_jitter_px": 3,
+    "center_jitter_px": 80.5
+   },
+   "status": 3,
+   "reasons": [
+    "12 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "enemy_jade_guardian_idle",
+   "category": "enemies",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/enemies/enemy_jade_guardian_idle.webp",
+   "size": [
+    2048,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 139474,
+   "sha256": "b9e48a439f50eb014a91a876597f2e7c1a30e7fee2a0738094caf2fc857c1fb9",
+   "grid": {
+    "cols": 4,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 4,
+    "empty": 0,
+    "edge_touching": 4,
+    "height_min": 512,
+    "height_max": 512,
+    "height_jitter": 0.0,
+    "feet_jitter_px": 0,
+    "center_jitter_px": 21.0
+   },
+   "status": 3,
+   "reasons": [
+    "4 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "enemy_jade_guardian_walk",
+   "category": "enemies",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/enemies/enemy_jade_guardian_walk.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 449442,
+   "sha256": "921eabf27c81552759f8f8c0a5f6ce18dfa06ca01859fee75309b0aec9da2b70",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 12,
+    "height_min": 504,
+    "height_max": 512,
+    "height_jitter": 0.016,
+    "feet_jitter_px": 2,
+    "center_jitter_px": 101.0
+   },
+   "status": 3,
+   "reasons": [
+    "12 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "enemy_machine_scout_death",
+   "category": "enemies",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/enemies/enemy_machine_scout_death.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 423226,
+   "sha256": "8cd3f2db1e7bba21be3d10010fc3bd0194c070450605356a7c0d092ff8131c0c",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 6,
+    "height_min": 145,
+    "height_max": 482,
+    "height_jitter": 0.699,
+    "feet_jitter_px": 2,
+    "center_jitter_px": 52.0
+   },
+   "status": 3,
+   "reasons": [
+    "6 frame(s) touch the cell border (clipping)",
+    "silhouette height varies 70% between frames",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "enemy_machine_scout_hurt",
+   "category": "enemies",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/enemies/enemy_machine_scout_hurt.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 373070,
+   "sha256": "2b1d97d5eb98b6042629ef4fc6ef8af201cdbab18763b69de18fda9003c5577b",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 4,
+    "height_min": 458,
+    "height_max": 503,
+    "height_jitter": 0.089,
+    "feet_jitter_px": 2,
+    "center_jitter_px": 33.0
+   },
+   "status": 3,
+   "reasons": [
+    "4 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "enemy_machine_scout_idle",
+   "category": "enemies",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/enemies/enemy_machine_scout_idle.webp",
+   "size": [
+    2048,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 123282,
+   "sha256": "174b88a082aa4c7443c48f38b3965d3cc2485e09c8d4112dcbfc29992439f81d",
+   "grid": {
+    "cols": 4,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 4,
+    "empty": 0,
+    "edge_touching": 3,
+    "height_min": 497,
+    "height_max": 500,
+    "height_jitter": 0.006,
+    "feet_jitter_px": 2,
+    "center_jitter_px": 28.0
+   },
+   "status": 3,
+   "reasons": [
+    "3 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "enemy_machine_scout_run",
+   "category": "enemies",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/enemies/enemy_machine_scout_run.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 454246,
+   "sha256": "7d97c2d6c40f42e7c82fa2a60823abc8c9d3c65e59bc731e758e923743868277",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 11,
+    "height_min": 480,
+    "height_max": 512,
+    "height_jitter": 0.062,
+    "feet_jitter_px": 3,
+    "center_jitter_px": 77.0
+   },
+   "status": 3,
+   "reasons": [
+    "11 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "enemy_machine_scout_shoot",
+   "category": "enemies",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/enemies/enemy_machine_scout_shoot.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 389894,
+   "sha256": "282aa70d07b03df97a3b186050f1afbd1e344491f83f395d6f7529c257d4fc74",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 8,
+    "height_min": 491,
+    "height_max": 496,
+    "height_jitter": 0.01,
+    "feet_jitter_px": 2,
+    "center_jitter_px": 38.5
+   },
+   "status": 3,
+   "reasons": [
+    "8 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "enemy_scarlet_knight_death",
+   "category": "enemies",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/enemies/enemy_scarlet_knight_death.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 490700,
+   "sha256": "9d5dc8c7fd0ffbe6bee993eef0536cd8eccf4456fd0147448d62f6ec9891adbb",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 14,
+    "height_min": 158,
+    "height_max": 483,
+    "height_jitter": 0.673,
+    "feet_jitter_px": 2,
+    "center_jitter_px": 42.5
+   },
+   "status": 3,
+   "reasons": [
+    "14 frame(s) touch the cell border (clipping)",
+    "silhouette height varies 67% between frames",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "enemy_scarlet_knight_hurt",
+   "category": "enemies",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/enemies/enemy_scarlet_knight_hurt.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "flat",
+   "byte_size": 594124,
+   "sha256": "d162720a7bb717a979cce2b19b8310489d98355ad23f39a712ff334a0043644b",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 16,
+    "height_min": 419,
+    "height_max": 512,
+    "height_jitter": 0.182,
+    "feet_jitter_px": 0,
+    "center_jitter_px": 70.0
+   },
+   "status": 3,
+   "reasons": [
+    "flat flat background baked into pixels: needs keying (colour-distance, edge-safe)",
+    "16 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "enemy_scarlet_knight_idle",
+   "category": "enemies",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/enemies/enemy_scarlet_knight_idle.webp",
+   "size": [
+    2048,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 135960,
+   "sha256": "73285dfeee31ac9d95ba499943830f20cc7da6c860cf1ccaa1447c478766261d",
+   "grid": {
+    "cols": 4,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 4,
+    "empty": 0,
+    "edge_touching": 4,
+    "height_min": 490,
+    "height_max": 492,
+    "height_jitter": 0.004,
+    "feet_jitter_px": 0,
+    "center_jitter_px": 6.5
+   },
+   "status": 3,
+   "reasons": [
+    "4 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "enemy_scarlet_knight_run",
+   "category": "enemies",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/enemies/enemy_scarlet_knight_run.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 616192,
+   "sha256": "6688919d4bca9304f65be6adef8a5bc27b6b44a8be05bf7f7b2f5cdf3a5645c8",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 16,
+    "height_min": 491,
+    "height_max": 512,
+    "height_jitter": 0.041,
+    "feet_jitter_px": 2,
+    "center_jitter_px": 29.5
+   },
+   "status": 3,
+   "reasons": [
+    "16 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "enemy_scarlet_knight_sword_attack",
+   "category": "enemies",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/enemies/enemy_scarlet_knight_sword_attack.webp",
+   "size": [
+    8192,
+    512
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 589684,
+   "sha256": "ecc00f360377042da8880df9598b93fcc08abd11071a7668312a4724662682d3",
+   "grid": {
+    "cols": 16,
+    "rows": 1,
+    "cell": [
+     512,
+     512
+    ],
+    "how": "square_cells"
+   },
+   "frames": {
+    "frames": 16,
+    "empty": 0,
+    "edge_touching": 15,
+    "height_min": 455,
+    "height_max": 500,
+    "height_jitter": 0.09,
+    "feet_jitter_px": 2,
+    "center_jitter_px": 119.0
+   },
+   "status": 3,
+   "reasons": [
+    "15 frame(s) touch the cell border (clipping)",
+    "single camera angle (no 8-direction set, no per-frame weapon grip metadata)"
+   ],
+   "status_name": "needs_art_correction"
+  },
+  {
+   "id": "prop_chest_common",
+   "category": "props",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/props/prop_chest_common.webp",
+   "size": [
+    660,
+    679
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 66524,
+   "sha256": "0470cbb5575af8b3199c84e0befc22df95bbe05b1ffdf6499652055a9fb19691",
+   "bbox": [
+    1,
+    1,
+    658,
+    677
+   ],
+   "fill": 0.755,
+   "status": 1,
+   "reasons": [
+    "candidate for adaptation after scale/readability review"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "prop_chest_legendary",
+   "category": "props",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/props/prop_chest_legendary.webp",
+   "size": [
+    762,
+    833
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 83022,
+   "sha256": "39c969caec9e029bb3b71cd505f8747dfaa02af6f4ea046a5b3e69ee2295702a",
+   "bbox": [
+    1,
+    1,
+    760,
+    832
+   ],
+   "fill": 0.723,
+   "status": 1,
+   "reasons": [
+    "candidate for adaptation after scale/readability review"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "prop_chest_rare",
+   "category": "props",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/props/prop_chest_rare.webp",
+   "size": [
+    772,
+    762
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 120944,
+   "sha256": "08eecbde887413ca2e73efe8b06d36f1d641f45d90223a8af5a7110642a63918",
+   "bbox": [
+    0,
+    1,
+    770,
+    760
+   ],
+   "fill": 0.688,
+   "status": 1,
+   "reasons": [
+    "candidate for adaptation after scale/readability review"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "prop_coin_pickup",
+   "category": "props",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/props/prop_coin_pickup.webp",
+   "size": [
+    682,
+    650
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 45708,
+   "sha256": "050e013e8bac27984ca8e5534aca5eb68843bf6a6c60283c1c02216860ee19cc",
+   "bbox": [
+    2,
+    0,
+    679,
+    648
+   ],
+   "fill": 0.808,
+   "status": 1,
+   "reasons": [
+    "candidate for adaptation after scale/readability review"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "prop_crystal_pickup",
+   "category": "props",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/props/prop_crystal_pickup.webp",
+   "size": [
+    638,
+    682
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 55084,
+   "sha256": "ab02d83c14f038f39369e1aa7fda134dc3a76c8353bf37d4840611596e2d95e7",
+   "bbox": [
+    0,
+    2,
+    637,
+    679
+   ],
+   "fill": 0.723,
+   "status": 1,
+   "reasons": [
+    "candidate for adaptation after scale/readability review"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "prop_destructible_crate",
+   "category": "props",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/props/prop_destructible_crate.webp",
+   "size": [
+    782,
+    838
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 96282,
+   "sha256": "99ed583797e02e9dc096b36abef876f1d7b84ae8679232d908d9f4e3bfcd3c32",
+   "bbox": [
+    0,
+    1,
+    781,
+    837
+   ],
+   "fill": 0.773,
+   "status": 1,
+   "reasons": [
+    "candidate for adaptation after scale/readability review"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "prop_explosive_barrel",
+   "category": "props",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/props/prop_explosive_barrel.webp",
+   "size": [
+    475,
+    762
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 41104,
+   "sha256": "32ea79ca3f037bfc024405382e9bdac61ade652d4433f2dfb9c9ac87ea93864d",
+   "bbox": [
+    0,
+    1,
+    473,
+    760
+   ],
+   "fill": 0.875,
+   "status": 1,
+   "reasons": [
+    "candidate for adaptation after scale/readability review"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "prop_healing_shrine",
+   "category": "props",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/props/prop_healing_shrine.webp",
+   "size": [
+    782,
+    762
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 56982,
+   "sha256": "cb57af96ad52d7b6845dde9e5752335d821031bf85007f74518a73dbd945183d",
+   "bbox": [
+    0,
+    1,
+    781,
+    760
+   ],
+   "fill": 0.571,
+   "status": 1,
+   "reasons": [
+    "candidate for adaptation after scale/readability review"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "prop_health_pickup",
+   "category": "props",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/props/prop_health_pickup.webp",
+   "size": [
+    742,
+    741
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 42478,
+   "sha256": "b8b8b5e5d1bbec0947b48070aaaffd81c4af6d2d3d2b865eb6e38e9ad9c1dcb2",
+   "bbox": [
+    1,
+    1,
+    740,
+    740
+   ],
+   "fill": 0.75,
+   "status": 1,
+   "reasons": [
+    "candidate for adaptation after scale/readability review"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "prop_magic_altar",
+   "category": "props",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/props/prop_magic_altar.webp",
+   "size": [
+    790,
+    617
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 68152,
+   "sha256": "f9885b92cb8a6e3692923bdb058c05511df2d7ebc1c2267cc4fe3d21ce0477cb",
+   "bbox": [
+    0,
+    0,
+    789,
+    615
+   ],
+   "fill": 0.518,
+   "status": 1,
+   "reasons": [
+    "candidate for adaptation after scale/readability review"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "prop_teleport_portal",
+   "category": "props",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/props/prop_teleport_portal.webp",
+   "size": [
+    671,
+    859
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 123042,
+   "sha256": "621aa26b596442a36e3a4c29e463493c7c6aa5574fcfcc61ffc7f746f6c84698",
+   "bbox": [
+    2,
+    1,
+    670,
+    858
+   ],
+   "fill": 0.724,
+   "status": 1,
+   "reasons": [
+    "candidate for adaptation after scale/readability review"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "prop_weapon_pedestal",
+   "category": "props",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/props/prop_weapon_pedestal.webp",
+   "size": [
+    700,
+    668
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 47822,
+   "sha256": "98ce40db783e946e42d8a2324480d5dc4bce5a29fcc7168662e00b933166980b",
+   "bbox": [
+    0,
+    1,
+    698,
+    667
+   ],
+   "fill": 0.684,
+   "status": 1,
+   "reasons": [
+    "candidate for adaptation after scale/readability review"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "fx_dash_trail",
+   "category": "vfx",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/vfx/fx_dash_trail.webp",
+   "size": [
+    834,
+    425
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 49868,
+   "sha256": "e9d91a863a2e3b6ebbe837037aa4cb22c92b1ca46bb8290a9766ea659131984f",
+   "grid": {
+    "cols": 1,
+    "rows": 1,
+    "cell": [
+     834,
+     425
+    ],
+    "how": "single"
+   },
+   "frames": {
+    "frames": 1,
+    "empty": 0,
+    "edge_touching": 1,
+    "height_min": 424,
+    "height_max": 424,
+    "height_jitter": 0.0,
+    "feet_jitter_px": 0,
+    "center_jitter_px": 0.0
+   },
+   "status": 1,
+   "reasons": [
+    "candidate for adaptation after scale/readability review"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "fx_death_particles",
+   "category": "vfx",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/vfx/fx_death_particles.webp",
+   "size": [
+    567,
+    782
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 75934,
+   "sha256": "ec45e0a97085381e106161d162b251725b6882f6a581cbefd61aec305aa66ece",
+   "status": 1,
+   "reasons": [
+    "candidate for adaptation after scale/readability review"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "fx_electric_impact",
+   "category": "vfx",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/vfx/fx_electric_impact.webp",
+   "size": [
+    795,
+    796
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 132140,
+   "sha256": "fdb7c6b2310bf6c6360e2f9047ffd2f301ee75e039608b18fc4e6118afcfe683",
+   "status": 1,
+   "reasons": [
+    "candidate for adaptation after scale/readability review"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "fx_explosion",
+   "category": "vfx",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/vfx/fx_explosion.webp",
+   "size": [
+    700,
+    588
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 83230,
+   "sha256": "6b084bb31669286dd54255134b3fb9bf7a8c4dcc9c79aaf3abb98bdd2dcc8946",
+   "status": 1,
+   "reasons": [
+    "candidate for adaptation after scale/readability review"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "fx_heal_pulse",
+   "category": "vfx",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/vfx/fx_heal_pulse.webp",
+   "size": [
+    824,
+    824
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 100262,
+   "sha256": "d538e97456c935b14fede038a6b24799d69ca36424bd063a8dccd45ac38ae5b4",
+   "status": 1,
+   "reasons": [
+    "candidate for adaptation after scale/readability review"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "fx_muzzle_flash",
+   "category": "vfx",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/vfx/fx_muzzle_flash.webp",
+   "size": [
+    660,
+    620
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 49080,
+   "sha256": "9aeed640c3131be0e1de96a9b7091b89652868b3cf6197131428e294d4426888",
+   "status": 1,
+   "reasons": [
+    "candidate for adaptation after scale/readability review"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "fx_shield_break",
+   "category": "vfx",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/vfx/fx_shield_break.webp",
+   "size": [
+    762,
+    752
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 102388,
+   "sha256": "657f0a96964fafd9bb8ba5f7604a3e69f9506f7d922afa0d3f39c7306aa0e514",
+   "status": 1,
+   "reasons": [
+    "candidate for adaptation after scale/readability review"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "fx_sword_slash",
+   "category": "vfx",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/vfx/fx_sword_slash.webp",
+   "size": [
+    742,
+    578
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 43286,
+   "sha256": "69c566cad6c3ac8b419bb58630a2fb214e32fff08468f5adb5fd70d053282d40",
+   "status": 1,
+   "reasons": [
+    "candidate for adaptation after scale/readability review"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "weapon_ancient_sword",
+   "category": "weapons",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/weapons/weapon_ancient_sword.webp",
+   "size": [
+    895,
+    895
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 76786,
+   "sha256": "2974c4795c8d33f3e753075e3c95ba8f4789b7c8570634d05d8a2ab25fdf05fe",
+   "bbox": [
+    1,
+    1,
+    893,
+    893
+   ],
+   "fill": 0.208,
+   "status": 1,
+   "reasons": [
+    "weapon art: must be re-scaled so tip == WeaponData.muzzle before adoption"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "weapon_assault_rifle",
+   "category": "weapons",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/weapons/weapon_assault_rifle.webp",
+   "size": [
+    886,
+    567
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 45618,
+   "sha256": "ab32622ceeaaab69635f90fe51aec0f5a14a9fe06198185c40e0f4f5995962ad",
+   "bbox": [
+    2,
+    1,
+    883,
+    566
+   ],
+   "fill": 0.403,
+   "status": 1,
+   "reasons": [
+    "weapon art: must be re-scaled so tip == WeaponData.muzzle before adoption"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "weapon_celestial_railgun",
+   "category": "weapons",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/weapons/weapon_celestial_railgun.webp",
+   "size": [
+    857,
+    618
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 78448,
+   "sha256": "f549213c369ff6722915af3796b6f8a2119f0c75d567d53da51fda1df2f79e72",
+   "bbox": [
+    0,
+    1,
+    856,
+    616
+   ],
+   "fill": 0.381,
+   "status": 1,
+   "reasons": [
+    "weapon art: must be re-scaled so tip == WeaponData.muzzle before adoption"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "weapon_dual_daggers",
+   "category": "weapons",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/weapons/weapon_dual_daggers.webp",
+   "size": [
+    866,
+    753
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 93560,
+   "sha256": "f6152678c02edc01fa5127ec7ca48e7182508fcad1376707dad62a0d1565659e",
+   "bbox": [
+    2,
+    2,
+    863,
+    751
+   ],
+   "fill": 0.286,
+   "status": 1,
+   "reasons": [
+    "weapon art: must be re-scaled so tip == WeaponData.muzzle before adoption"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "weapon_energy_shotgun",
+   "category": "weapons",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/weapons/weapon_energy_shotgun.webp",
+   "size": [
+    862,
+    444
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 39144,
+   "sha256": "1dbd21bedc3762993667260d429547313469d705f80c0dfb68239d0ce77e009b",
+   "bbox": [
+    0,
+    1,
+    861,
+    443
+   ],
+   "fill": 0.541,
+   "status": 1,
+   "reasons": [
+    "weapon art: must be re-scaled so tip == WeaponData.muzzle before adoption"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "weapon_heavy_crossbow",
+   "category": "weapons",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/weapons/weapon_heavy_crossbow.webp",
+   "size": [
+    842,
+    526
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 86954,
+   "sha256": "f64c7e48152b9f941e01b4782c97fe454ec87b700ef0242a484b215235a83b7a",
+   "bbox": [
+    0,
+    0,
+    840,
+    523
+   ],
+   "fill": 0.536,
+   "status": 1,
+   "reasons": [
+    "weapon art: must be re-scaled so tip == WeaponData.muzzle before adoption"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "weapon_magical_staff",
+   "category": "weapons",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/weapons/weapon_magical_staff.webp",
+   "size": [
+    332,
+    822
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 27604,
+   "sha256": "7f1dc0bbfd6e09768f645b625350a87a549eaaf88dbe36bc135b7eaf382a8c9f",
+   "bbox": [
+    1,
+    0,
+    330,
+    821
+   ],
+   "fill": 0.283,
+   "status": 1,
+   "reasons": [
+    "weapon art: must be re-scaled so tip == WeaponData.muzzle before adoption"
+   ],
+   "status_name": "ready_to_adapt"
+  },
+  {
+   "id": "weapon_plasma_cannon",
+   "category": "weapons",
+   "round": "round_02_four_worlds",
+   "path": "asset_bank/playground/round_02_four_worlds/original_webp/weapons/weapon_plasma_cannon.webp",
+   "size": [
+    862,
+    618
+   ],
+   "has_alpha": true,
+   "corner_background": "transparent",
+   "byte_size": 54222,
+   "sha256": "a6f5594b9fab50cb0745f68c95b58cdc06bf535f71fadbe5503f83dc71b34a6c",
+   "bbox": [
+    0,
+    0,
+    861,
+    616
+   ],
+   "fill": 0.494,
+   "status": 1,
+   "reasons": [
+    "weapon art: must be re-scaled so tip == WeaponData.muzzle before adoption"
+   ],
+   "status_name": "ready_to_adapt"
+  }
+ ]
+}

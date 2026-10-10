@@ -28,7 +28,6 @@ var safe := Vector4.ZERO
 
 func _ready() -> void:
 	Boot.log_stage(2, "home entered")
-	cover = load("res://assets/premium/presentation/fortress.png")
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	mouse_filter = Control.MOUSE_FILTER_PASS
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -37,6 +36,7 @@ func _ready() -> void:
 	chapter_id = str(p.data.get("selected_chapter", "ch1"))
 	if Catalog.chapter(chapter_id) == null:
 		chapter_id = "ch1"
+	_apply_chapter_cover()
 	mode_id = str(p.data.get("selected_mode", ModeRules.CAMPAIGN))
 	if not ModeRules.ORDER.has(mode_id):
 		mode_id = ModeRules.CAMPAIGN
@@ -136,7 +136,17 @@ func _cycle_chapter(d: int) -> void:
 	chapter_id = order[i]
 	Profile.p.data["selected_chapter"] = chapter_id
 	Profile.p.touch()
+	_apply_chapter_cover()
 	_update_play_state()
+
+
+## Un fondo por capitulo (arte Playground promovido, uno cargado a la vez); sin el, la portada KayKit original.
+func _apply_chapter_cover() -> void:
+	var path := "res://assets/premium/presentation/backdrops/%s.jpg" % chapter_id
+	if not ResourceLoader.exists(path):
+		path = "res://assets/premium/presentation/fortress.png"
+	cover = load(path)
+	queue_redraw()
 
 
 func _cycle_char(d: int) -> void:
