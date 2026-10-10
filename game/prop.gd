@@ -126,11 +126,14 @@ func __draw_impl() -> void:
 	var f := Rect2(foot.position - position, foot.size)
 	match kind:
 		"crate_l":
-			_crate(f, h, Color("46526f"), true)
+			if not PropArt._imported(self, kind, f):
+				_crate(f, h, Color("46526f"), true)
 		"crate_s":
-			_crate(f, h, Color("3d4965"), false)
+			if not PropArt._imported(self, kind, f):
+				_crate(f, h, Color("3d4965"), false)
 		"barrel":
-			_barrel(f)
+			if not PropArt._imported(self, kind, f):
+				_barrel(f)
 		"tank":
 			if not PropArt._imported(self, kind, f):
 				_tank(f)
@@ -138,9 +141,11 @@ func __draw_impl() -> void:
 			if not PropArt._imported(self, kind, f):
 				_terminal(f)
 		"pillar":
-			_pillar(f)
+			if not PropArt._imported(self, kind, f):
+				_pillar(f)
 		"barrier_h":
-			_barrier(f, true)
+			if not PropArt._imported(self, kind, f):
+				_barrier(f, true)
 		"barrier_v":
 			_barrier(f, false)
 		_:

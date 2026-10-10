@@ -1,0 +1,83 @@
+{
+ "id": "tech_essentials",
+ "kind": "static_set",
+ "pack": "quaternius",
+ "dir": "Sci-Fi Essentials Kit[Standard]/glTF",
+ "dest": "dungeon/tech_props",
+ "cell": 448,
+ "ppu": 68.0,
+ "pitch": 35.0,
+ "feet_frac": 0.78,
+ "ppu_game": 26.0,
+ "ss": 2,
+ "items": [
+  {
+   "id": "prop_crate",
+   "file": "Prop_Crate.gltf"
+  },
+  {
+   "id": "prop_crate_large",
+   "file": "Prop_Crate_Large.gltf"
+  },
+  {
+   "id": "prop_crate_tarp",
+   "file": "Prop_Crate_Tarp.gltf"
+  },
+  {
+   "id": "prop_crate_tarp_large",
+   "file": "Prop_Crate_Tarp_Large.gltf"
+  },
+  {
+   "id": "prop_barrel1",
+   "file": "Prop_Barrel1.gltf"
+  },
+  {
+   "id": "prop_barrel2_closed",
+   "file": "Prop_Barrel2_Closed.gltf"
+  },
+  {
+   "id": "prop_barrel2_open",
+   "file": "Prop_Barrel2_Open.gltf"
+  },
+  {
+   "id": "prop_locker",
+   "file": "Prop_Locker.gltf"
+  },
+  {
+   "id": "prop_desk_medium",
+   "file": "Prop_Desk_Medium.gltf"
+  },
+  {
+   "id": "prop_desk_l",
+   "file": "Prop_Desk_L.gltf"
+  },
+  {
+   "id": "prop_shelves_widetall",
+   "file": "Prop_Shelves_WideTall.gltf"
+  },
+  {
+   "id": "prop_shelves_thintall",
+   "file": "Prop_Shelves_ThinTall.gltf"
+  },
+  {
+   "id": "prop_shelves_wideshort",
+   "file": "Prop_Shelves_WideShort.gltf"
+  },
+  {
+   "id": "prop_satellitedish",
+   "file": "Prop_SatelliteDish.gltf"
+  },
+  {
+   "id": "prop_chest",
+   "file": "Prop_Chest.gltf"
+  },
+  {
+   "id": "prop_mine",
+   "file": "Prop_Mine.gltf"
+  },
+  {
+   "id": "prop_healthpack_tube",
+   "file": "Prop_HealthPack_Tube.gltf"
+  }
+ ]
+}

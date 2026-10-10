@@ -4459,6 +4459,1081 @@ const STATIC := {
 			"license": "CC0 1.0"
 		}
 	},
+	"premium/dungeon/tech/prop_computer": {
+		"path": "res://assets/premium/dungeon/tech/prop_computer.png",
+		"size": [
+			58,
+			114
+		],
+		"bbox": [
+			0,
+			0,
+			58,
+			114
+		],
+		"anchor": [
+			29.0,
+			96.5
+		],
+		"scale": 0.38235294117647056,
+		"pitch": 35.0,
+		"source_file": "Props/Prop_Computer.gltf",
+		"source": {
+			"pack": "Quaternius FreeModels mirror",
+			"revision": "db3df04d1e4714298a09510b26fb6de6645138a2",
+			"license": "CC0 1.0"
+		}
+	},
+	"premium/dungeon/tech/prop_crate3": {
+		"path": "res://assets/premium/dungeon/tech/prop_crate3.png",
+		"size": [
+			75,
+			102
+		],
+		"bbox": [
+			0,
+			0,
+			75,
+			102
+		],
+		"anchor": [
+			37.5,
+			51.0
+		],
+		"scale": 0.38235294117647056,
+		"pitch": 35.0,
+		"source_file": "Props/Prop_Crate3.gltf",
+		"source": {
+			"pack": "Quaternius FreeModels mirror",
+			"revision": "db3df04d1e4714298a09510b26fb6de6645138a2",
+			"license": "CC0 1.0"
+		}
+	},
+	"premium/dungeon/tech/prop_crate4": {
+		"path": "res://assets/premium/dungeon/tech/prop_crate4.png",
+		"size": [
+			84,
+			106
+		],
+		"bbox": [
+			0,
+			0,
+			84,
+			106
+		],
+		"anchor": [
+			42.0,
+			53.0
+		],
+		"scale": 0.38235294117647056,
+		"pitch": 35.0,
+		"source_file": "Props/Prop_Crate4.gltf",
+		"source": {
+			"pack": "Quaternius FreeModels mirror",
+			"revision": "db3df04d1e4714298a09510b26fb6de6645138a2",
+			"license": "CC0 1.0"
+		}
+	},
+	"premium/dungeon/tech/prop_barrel_large": {
+		"path": "res://assets/premium/dungeon/tech/prop_barrel_large.png",
+		"size": [
+			42,
+			88
+		],
+		"bbox": [
+			0,
+			0,
+			42,
+			88
+		],
+		"anchor": [
+			21.0,
+			75.5
+		],
+		"scale": 0.38235294117647056,
+		"pitch": 35.0,
+		"source_file": "Props/Prop_Barrel_Large.gltf",
+		"source": {
+			"pack": "Quaternius FreeModels mirror",
+			"revision": "db3df04d1e4714298a09510b26fb6de6645138a2",
+			"license": "CC0 1.0"
+		}
+	},
+	"premium/dungeon/tech/prop_accesspoint": {
+		"path": "res://assets/premium/dungeon/tech/prop_accesspoint.png",
+		"size": [
+			37,
+			74
+		],
+		"bbox": [
+			0,
+			0,
+			37,
+			74
+		],
+		"anchor": [
+			18.5,
+			112.0
+		],
+		"scale": 0.38235294117647056,
+		"pitch": 35.0,
+		"source_file": "Props/Prop_AccessPoint.gltf",
+		"source": {
+			"pack": "Quaternius FreeModels mirror",
+			"revision": "db3df04d1e4714298a09510b26fb6de6645138a2",
+			"license": "CC0 1.0"
+		}
+	},
+	"premium/dungeon/tech/prop_chest": {
+		"path": "res://assets/premium/dungeon/tech/prop_chest.png",
+		"size": [
+			110,
+			76
+		],
+		"bbox": [
+			0,
+			0,
+			110,
+			76
+		],
+		"anchor": [
+			55.0,
+			58.5
+		],
+		"scale": 0.38235294117647056,
+		"pitch": 35.0,
+		"source_file": "Props/Prop_Chest.gltf",
+		"source": {
+			"pack": "Quaternius FreeModels mirror",
+			"revision": "db3df04d1e4714298a09510b26fb6de6645138a2",
+			"license": "CC0 1.0"
+		}
+	},
+	"premium/dungeon/tech/prop_fan_small": {
+		"path": "res://assets/premium/dungeon/tech/prop_fan_small.png",
+		"size": [
+			121,
+			84
+		],
+		"bbox": [
+			0,
+			0,
+			121,
+			84
+		],
+		"anchor": [
+			60.5,
+			47.0
+		],
+		"scale": 0.38235294117647056,
+		"pitch": 35.0,
+		"source_file": "Props/Prop_Fan_Small.gltf",
+		"source": {
+			"pack": "Quaternius FreeModels mirror",
+			"revision": "db3df04d1e4714298a09510b26fb6de6645138a2",
+			"license": "CC0 1.0"
+		}
+	},
+	"premium/dungeon/tech/prop_itemholder": {
+		"path": "res://assets/premium/dungeon/tech/prop_itemholder.png",
+		"size": [
+			63,
+			40
+		],
+		"bbox": [
+			0,
+			0,
+			63,
+			40
+		],
+		"anchor": [
+			31.5,
+			24.5
+		],
+		"scale": 0.38235294117647056,
+		"pitch": 35.0,
+		"source_file": "Props/Prop_ItemHolder.gltf",
+		"source": {
+			"pack": "Quaternius FreeModels mirror",
+			"revision": "db3df04d1e4714298a09510b26fb6de6645138a2",
+			"license": "CC0 1.0"
+		}
+	},
+	"premium/dungeon/tech/prop_light_floor": {
+		"path": "res://assets/premium/dungeon/tech/prop_light_floor.png",
+		"size": [
+			98,
+			30
+		],
+		"bbox": [
+			0,
+			0,
+			98,
+			30
+		],
+		"anchor": [
+			49.0,
+			16.5
+		],
+		"scale": 0.38235294117647056,
+		"pitch": 35.0,
+		"source_file": "Props/Prop_Light_Floor.gltf",
+		"source": {
+			"pack": "Quaternius FreeModels mirror",
+			"revision": "db3df04d1e4714298a09510b26fb6de6645138a2",
+			"license": "CC0 1.0"
+		}
+	},
+	"premium/dungeon/tech/prop_cable_1": {
+		"path": "res://assets/premium/dungeon/tech/prop_cable_1.png",
+		"size": [
+			76,
+			74
+		],
+		"bbox": [
+			0,
+			0,
+			76,
+			74
+		],
+		"anchor": [
+			37.0,
+			28.5
+		],
+		"scale": 0.38235294117647056,
+		"pitch": 35.0,
+		"source_file": "Props/Prop_Cable_1.gltf",
+		"source": {
+			"pack": "Quaternius FreeModels mirror",
+			"revision": "db3df04d1e4714298a09510b26fb6de6645138a2",
+			"license": "CC0 1.0"
+		}
+	},
+	"premium/dungeon/tech/prop_vent_big": {
+		"path": "res://assets/premium/dungeon/tech/prop_vent_big.png",
+		"size": [
+			143,
+			48
+		],
+		"bbox": [
+			0,
+			0,
+			143,
+			48
+		],
+		"anchor": [
+			71.5,
+			22.5
+		],
+		"scale": 0.38235294117647056,
+		"pitch": 35.0,
+		"source_file": "Props/Prop_Vent_Big.gltf",
+		"source": {
+			"pack": "Quaternius FreeModels mirror",
+			"revision": "db3df04d1e4714298a09510b26fb6de6645138a2",
+			"license": "CC0 1.0"
+		}
+	},
+	"premium/dungeon/tech/column_astra": {
+		"path": "res://assets/premium/dungeon/tech/column_astra.png",
+		"size": [
+			30,
+			216
+		],
+		"bbox": [
+			0,
+			0,
+			30,
+			216
+		],
+		"anchor": [
+			15.0,
+			198.0
+		],
+		"scale": 0.38235294117647056,
+		"pitch": 35.0,
+		"source_file": "Columns/Column_Astra.gltf",
+		"source": {
+			"pack": "Quaternius FreeModels mirror",
+			"revision": "db3df04d1e4714298a09510b26fb6de6645138a2",
+			"license": "CC0 1.0"
+		}
+	},
+	"premium/dungeon/tech/column_hollow": {
+		"path": "res://assets/premium/dungeon/tech/column_hollow.png",
+		"size": [
+			90,
+			333
+		],
+		"bbox": [
+			0,
+			0,
+			90,
+			333
+		],
+		"anchor": [
+			45.0,
+			306.0
+		],
+		"scale": 0.38235294117647056,
+		"pitch": 35.0,
+		"source_file": "Columns/Column_Hollow.gltf",
+		"source": {
+			"pack": "Quaternius FreeModels mirror",
+			"revision": "db3df04d1e4714298a09510b26fb6de6645138a2",
+			"license": "CC0 1.0"
+		}
+	},
+	"premium/dungeon/tech/column_pipes": {
+		"path": "res://assets/premium/dungeon/tech/column_pipes.png",
+		"size": [
+			67,
+			320
+		],
+		"bbox": [
+			0,
+			0,
+			67,
+			320
+		],
+		"anchor": [
+			33.5,
+			299.5
+		],
+		"scale": 0.38235294117647056,
+		"pitch": 35.0,
+		"source_file": "Columns/Column_Pipes.gltf",
+		"source": {
+			"pack": "Quaternius FreeModels mirror",
+			"revision": "db3df04d1e4714298a09510b26fb6de6645138a2",
+			"license": "CC0 1.0"
+		}
+	},
+	"premium/dungeon/tech/column_metalsupport": {
+		"path": "res://assets/premium/dungeon/tech/column_metalsupport.png",
+		"size": [
+			72,
+			166
+		],
+		"bbox": [
+			0,
+			0,
+			72,
+			166
+		],
+		"anchor": [
+			35.5,
+			83.0
+		],
+		"scale": 0.38235294117647056,
+		"pitch": 35.0,
+		"source_file": "Columns/Column_MetalSupport.gltf",
+		"source": {
+			"pack": "Quaternius FreeModels mirror",
+			"revision": "db3df04d1e4714298a09510b26fb6de6645138a2",
+			"license": "CC0 1.0"
+		}
+	},
+	"premium/dungeon/tech/column_round": {
+		"path": "res://assets/premium/dungeon/tech/column_round.png",
+		"size": [
+			75,
+			325
+		],
+		"bbox": [
+			0,
+			0,
+			75,
+			325
+		],
+		"anchor": [
+			37.5,
+			302.0
+		],
+		"scale": 0.38235294117647056,
+		"pitch": 35.0,
+		"source_file": "Columns/Column_Round.gltf",
+		"source": {
+			"pack": "Quaternius FreeModels mirror",
+			"revision": "db3df04d1e4714298a09510b26fb6de6645138a2",
+			"license": "CC0 1.0"
+		}
+	},
+	"premium/dungeon/tech/column_simple": {
+		"path": "res://assets/premium/dungeon/tech/column_simple.png",
+		"size": [
+			42,
+			324
+		],
+		"bbox": [
+			0,
+			0,
+			42,
+			324
+		],
+		"anchor": [
+			21.0,
+			302.0
+		],
+		"scale": 0.38235294117647056,
+		"pitch": 35.0,
+		"source_file": "Columns/Column_Simple.gltf",
+		"source": {
+			"pack": "Quaternius FreeModels mirror",
+			"revision": "db3df04d1e4714298a09510b26fb6de6645138a2",
+			"license": "CC0 1.0"
+		}
+	},
+	"premium/dungeon/tech_floor/deck_a": {
+		"path": "res://assets/premium/dungeon/tech_floor/deck_a.png",
+		"size": [
+			192,
+			192
+		],
+		"bbox": [
+			0,
+			0,
+			192,
+			192
+		],
+		"anchor": [
+			96.0,
+			96.0
+		],
+		"scale": 0.5,
+		"pitch": 90.0,
+		"source_file": "original:tools/premium_tech_floor.py",
+		"source": {
+			"pack": "RPG Premium original (tools/premium_tech_floor.py)",
+			"revision": "original",
+			"license": "Original work (RPG Premium)"
+		}
+	},
+	"premium/dungeon/tech_floor/deck_b": {
+		"path": "res://assets/premium/dungeon/tech_floor/deck_b.png",
+		"size": [
+			192,
+			192
+		],
+		"bbox": [
+			0,
+			0,
+			192,
+			192
+		],
+		"anchor": [
+			96.0,
+			96.0
+		],
+		"scale": 0.5,
+		"pitch": 90.0,
+		"source_file": "original:tools/premium_tech_floor.py",
+		"source": {
+			"pack": "RPG Premium original (tools/premium_tech_floor.py)",
+			"revision": "original",
+			"license": "Original work (RPG Premium)"
+		}
+	},
+	"premium/dungeon/tech_floor/deck_big": {
+		"path": "res://assets/premium/dungeon/tech_floor/deck_big.png",
+		"size": [
+			192,
+			192
+		],
+		"bbox": [
+			0,
+			0,
+			192,
+			192
+		],
+		"anchor": [
+			96.0,
+			96.0
+		],
+		"scale": 0.5,
+		"pitch": 90.0,
+		"source_file": "original:tools/premium_tech_floor.py",
+		"source": {
+			"pack": "RPG Premium original (tools/premium_tech_floor.py)",
+			"revision": "original",
+			"license": "Original work (RPG Premium)"
+		}
+	},
+	"premium/dungeon/tech_floor/deck_grate": {
+		"path": "res://assets/premium/dungeon/tech_floor/deck_grate.png",
+		"size": [
+			192,
+			192
+		],
+		"bbox": [
+			0,
+			0,
+			192,
+			192
+		],
+		"anchor": [
+			96.0,
+			96.0
+		],
+		"scale": 0.5,
+		"pitch": 90.0,
+		"source_file": "original:tools/premium_tech_floor.py",
+		"source": {
+			"pack": "RPG Premium original (tools/premium_tech_floor.py)",
+			"revision": "original",
+			"license": "Original work (RPG Premium)"
+		}
+	},
+	"premium/dungeon/tech_floor/deck_hazard": {
+		"path": "res://assets/premium/dungeon/tech_floor/deck_hazard.png",
+		"size": [
+			192,
+			192
+		],
+		"bbox": [
+			0,
+			0,
+			192,
+			192
+		],
+		"anchor": [
+			96.0,
+			96.0
+		],
+		"scale": 0.5,
+		"pitch": 90.0,
+		"source_file": "original:tools/premium_tech_floor.py",
+		"source": {
+			"pack": "RPG Premium original (tools/premium_tech_floor.py)",
+			"revision": "original",
+			"license": "Original work (RPG Premium)"
+		}
+	},
+	"premium/dungeon/tech_floor/deck_stencil": {
+		"path": "res://assets/premium/dungeon/tech_floor/deck_stencil.png",
+		"size": [
+			192,
+			192
+		],
+		"bbox": [
+			0,
+			0,
+			192,
+			192
+		],
+		"anchor": [
+			96.0,
+			96.0
+		],
+		"scale": 0.5,
+		"pitch": 90.0,
+		"source_file": "original:tools/premium_tech_floor.py",
+		"source": {
+			"pack": "RPG Premium original (tools/premium_tech_floor.py)",
+			"revision": "original",
+			"license": "Original work (RPG Premium)"
+		}
+	},
+	"premium/dungeon/tech_floor/deck_vent": {
+		"path": "res://assets/premium/dungeon/tech_floor/deck_vent.png",
+		"size": [
+			192,
+			192
+		],
+		"bbox": [
+			0,
+			0,
+			192,
+			192
+		],
+		"anchor": [
+			96.0,
+			96.0
+		],
+		"scale": 0.5,
+		"pitch": 90.0,
+		"source_file": "original:tools/premium_tech_floor.py",
+		"source": {
+			"pack": "RPG Premium original (tools/premium_tech_floor.py)",
+			"revision": "original",
+			"license": "Original work (RPG Premium)"
+		}
+	},
+	"premium/dungeon/tech_floor/deck_strip": {
+		"path": "res://assets/premium/dungeon/tech_floor/deck_strip.png",
+		"size": [
+			192,
+			192
+		],
+		"bbox": [
+			0,
+			0,
+			192,
+			192
+		],
+		"anchor": [
+			96.0,
+			96.0
+		],
+		"scale": 0.5,
+		"pitch": 90.0,
+		"source_file": "original:tools/premium_tech_floor.py",
+		"source": {
+			"pack": "RPG Premium original (tools/premium_tech_floor.py)",
+			"revision": "original",
+			"license": "Original work (RPG Premium)"
+		}
+	},
+	"premium/dungeon/tech_floor/deck_scorch": {
+		"path": "res://assets/premium/dungeon/tech_floor/deck_scorch.png",
+		"size": [
+			192,
+			192
+		],
+		"bbox": [
+			0,
+			0,
+			192,
+			192
+		],
+		"anchor": [
+			96.0,
+			96.0
+		],
+		"scale": 0.5,
+		"pitch": 90.0,
+		"source_file": "original:tools/premium_tech_floor.py",
+		"source": {
+			"pack": "RPG Premium original (tools/premium_tech_floor.py)",
+			"revision": "original",
+			"license": "Original work (RPG Premium)"
+		}
+	},
+	"premium/dungeon/tech_props/prop_crate": {
+		"path": "res://assets/premium/dungeon/tech_props/prop_crate.png",
+		"size": [
+			114,
+			146
+		],
+		"bbox": [
+			0,
+			0,
+			114,
+			146
+		],
+		"anchor": [
+			57.0,
+			115.0
+		],
+		"scale": 0.38235294117647056,
+		"pitch": 35.0,
+		"source_file": "Prop_Crate.gltf",
+		"source": {
+			"pack": "Quaternius FreeModels mirror",
+			"revision": "db3df04d1e4714298a09510b26fb6de6645138a2",
+			"license": "CC0 1.0"
+		}
+	},
+	"premium/dungeon/tech_props/prop_crate_large": {
+		"path": "res://assets/premium/dungeon/tech_props/prop_crate_large.png",
+		"size": [
+			243,
+			146
+		],
+		"bbox": [
+			0,
+			0,
+			243,
+			146
+		],
+		"anchor": [
+			121.5,
+			115.0
+		],
+		"scale": 0.38235294117647056,
+		"pitch": 35.0,
+		"source_file": "Prop_Crate_Large.gltf",
+		"source": {
+			"pack": "Quaternius FreeModels mirror",
+			"revision": "db3df04d1e4714298a09510b26fb6de6645138a2",
+			"license": "CC0 1.0"
+		}
+	},
+	"premium/dungeon/tech_props/prop_crate_tarp": {
+		"path": "res://assets/premium/dungeon/tech_props/prop_crate_tarp.png",
+		"size": [
+			124,
+			152
+		],
+		"bbox": [
+			0,
+			0,
+			124,
+			152
+		],
+		"anchor": [
+			62.0,
+			119.5
+		],
+		"scale": 0.38235294117647056,
+		"pitch": 35.0,
+		"source_file": "Prop_Crate_Tarp.gltf",
+		"source": {
+			"pack": "Quaternius FreeModels mirror",
+			"revision": "db3df04d1e4714298a09510b26fb6de6645138a2",
+			"license": "CC0 1.0"
+		}
+	},
+	"premium/dungeon/tech_props/prop_crate_tarp_large": {
+		"path": "res://assets/premium/dungeon/tech_props/prop_crate_tarp_large.png",
+		"size": [
+			226,
+			153
+		],
+		"bbox": [
+			0,
+			0,
+			226,
+			153
+		],
+		"anchor": [
+			113.0,
+			120.0
+		],
+		"scale": 0.38235294117647056,
+		"pitch": 35.0,
+		"source_file": "Prop_Crate_Tarp_Large.gltf",
+		"source": {
+			"pack": "Quaternius FreeModels mirror",
+			"revision": "db3df04d1e4714298a09510b26fb6de6645138a2",
+			"license": "CC0 1.0"
+		}
+	},
+	"premium/dungeon/tech_props/prop_barrel1": {
+		"path": "res://assets/premium/dungeon/tech_props/prop_barrel1.png",
+		"size": [
+			56,
+			86
+		],
+		"bbox": [
+			0,
+			0,
+			56,
+			86
+		],
+		"anchor": [
+			28.0,
+			72.0
+		],
+		"scale": 0.38235294117647056,
+		"pitch": 35.0,
+		"source_file": "Prop_Barrel1.gltf",
+		"source": {
+			"pack": "Quaternius FreeModels mirror",
+			"revision": "db3df04d1e4714298a09510b26fb6de6645138a2",
+			"license": "CC0 1.0"
+		}
+	},
+	"premium/dungeon/tech_props/prop_barrel2_closed": {
+		"path": "res://assets/premium/dungeon/tech_props/prop_barrel2_closed.png",
+		"size": [
+			44,
+			63
+		],
+		"bbox": [
+			0,
+			0,
+			44,
+			63
+		],
+		"anchor": [
+			22.0,
+			50.5
+		],
+		"scale": 0.38235294117647056,
+		"pitch": 35.0,
+		"source_file": "Prop_Barrel2_Closed.gltf",
+		"source": {
+			"pack": "Quaternius FreeModels mirror",
+			"revision": "db3df04d1e4714298a09510b26fb6de6645138a2",
+			"license": "CC0 1.0"
+		}
+	},
+	"premium/dungeon/tech_props/prop_barrel2_open": {
+		"path": "res://assets/premium/dungeon/tech_props/prop_barrel2_open.png",
+		"size": [
+			44,
+			81
+		],
+		"bbox": [
+			0,
+			0,
+			44,
+			81
+		],
+		"anchor": [
+			22.0,
+			68.5
+		],
+		"scale": 0.38235294117647056,
+		"pitch": 35.0,
+		"source_file": "Prop_Barrel2_Open.gltf",
+		"source": {
+			"pack": "Quaternius FreeModels mirror",
+			"revision": "db3df04d1e4714298a09510b26fb6de6645138a2",
+			"license": "CC0 1.0"
+		}
+	},
+	"premium/dungeon/tech_props/prop_locker": {
+		"path": "res://assets/premium/dungeon/tech_props/prop_locker.png",
+		"size": [
+			74,
+			174
+		],
+		"bbox": [
+			0,
+			0,
+			74,
+			174
+		],
+		"anchor": [
+			37.0,
+			160.0
+		],
+		"scale": 0.38235294117647056,
+		"pitch": 35.0,
+		"source_file": "Prop_Locker.gltf",
+		"source": {
+			"pack": "Quaternius FreeModels mirror",
+			"revision": "db3df04d1e4714298a09510b26fb6de6645138a2",
+			"license": "CC0 1.0"
+		}
+	},
+	"premium/dungeon/tech_props/prop_desk_medium": {
+		"path": "res://assets/premium/dungeon/tech_props/prop_desk_medium.png",
+		"size": [
+			201,
+			99
+		],
+		"bbox": [
+			0,
+			0,
+			201,
+			99
+		],
+		"anchor": [
+			100.5,
+			76.5
+		],
+		"scale": 0.38235294117647056,
+		"pitch": 35.0,
+		"source_file": "Prop_Desk_Medium.gltf",
+		"source": {
+			"pack": "Quaternius FreeModels mirror",
+			"revision": "db3df04d1e4714298a09510b26fb6de6645138a2",
+			"license": "CC0 1.0"
+		}
+	},
+	"premium/dungeon/tech_props/prop_desk_l": {
+		"path": "res://assets/premium/dungeon/tech_props/prop_desk_l.png",
+		"size": [
+			158,
+			146
+		],
+		"bbox": [
+			0,
+			0,
+			158,
+			146
+		],
+		"anchor": [
+			58.0,
+			111.5
+		],
+		"scale": 0.38235294117647056,
+		"pitch": 35.0,
+		"source_file": "Prop_Desk_L.gltf",
+		"source": {
+			"pack": "Quaternius FreeModels mirror",
+			"revision": "db3df04d1e4714298a09510b26fb6de6645138a2",
+			"license": "CC0 1.0"
+		}
+	},
+	"premium/dungeon/tech_props/prop_shelves_widetall": {
+		"path": "res://assets/premium/dungeon/tech_props/prop_shelves_widetall.png",
+		"size": [
+			142,
+			177
+		],
+		"bbox": [
+			0,
+			0,
+			142,
+			177
+		],
+		"anchor": [
+			71.0,
+			163.0
+		],
+		"scale": 0.38235294117647056,
+		"pitch": 35.0,
+		"source_file": "Prop_Shelves_WideTall.gltf",
+		"source": {
+			"pack": "Quaternius FreeModels mirror",
+			"revision": "db3df04d1e4714298a09510b26fb6de6645138a2",
+			"license": "CC0 1.0"
+		}
+	},
+	"premium/dungeon/tech_props/prop_shelves_thintall": {
+		"path": "res://assets/premium/dungeon/tech_props/prop_shelves_thintall.png",
+		"size": [
+			101,
+			177
+		],
+		"bbox": [
+			0,
+			0,
+			101,
+			177
+		],
+		"anchor": [
+			50.5,
+			163.0
+		],
+		"scale": 0.38235294117647056,
+		"pitch": 35.0,
+		"source_file": "Prop_Shelves_ThinTall.gltf",
+		"source": {
+			"pack": "Quaternius FreeModels mirror",
+			"revision": "db3df04d1e4714298a09510b26fb6de6645138a2",
+			"license": "CC0 1.0"
+		}
+	},
+	"premium/dungeon/tech_props/prop_shelves_wideshort": {
+		"path": "res://assets/premium/dungeon/tech_props/prop_shelves_wideshort.png",
+		"size": [
+			142,
+			96
+		],
+		"bbox": [
+			0,
+			0,
+			142,
+			96
+		],
+		"anchor": [
+			71.0,
+			81.5
+		],
+		"scale": 0.38235294117647056,
+		"pitch": 35.0,
+		"source_file": "Prop_Shelves_WideShort.gltf",
+		"source": {
+			"pack": "Quaternius FreeModels mirror",
+			"revision": "db3df04d1e4714298a09510b26fb6de6645138a2",
+			"license": "CC0 1.0"
+		}
+	},
+	"premium/dungeon/tech_props/prop_satellitedish": {
+		"path": "res://assets/premium/dungeon/tech_props/prop_satellitedish.png",
+		"size": [
+			132,
+			352
+		],
+		"bbox": [
+			0,
+			0,
+			132,
+			352
+		],
+		"anchor": [
+			66.0,
+			325.5
+		],
+		"scale": 0.38235294117647056,
+		"pitch": 35.0,
+		"source_file": "Prop_SatelliteDish.gltf",
+		"source": {
+			"pack": "Quaternius FreeModels mirror",
+			"revision": "db3df04d1e4714298a09510b26fb6de6645138a2",
+			"license": "CC0 1.0"
+		}
+	},
+	"premium/dungeon/tech_props/prop_chest": {
+		"path": "res://assets/premium/dungeon/tech_props/prop_chest.png",
+		"size": [
+			133,
+			92
+		],
+		"bbox": [
+			0,
+			0,
+			133,
+			92
+		],
+		"anchor": [
+			66.5,
+			72.5
+		],
+		"scale": 0.38235294117647056,
+		"pitch": 35.0,
+		"source_file": "Prop_Chest.gltf",
+		"source": {
+			"pack": "Quaternius FreeModels mirror",
+			"revision": "db3df04d1e4714298a09510b26fb6de6645138a2",
+			"license": "CC0 1.0"
+		}
+	},
+	"premium/dungeon/tech_props/prop_mine": {
+		"path": "res://assets/premium/dungeon/tech_props/prop_mine.png",
+		"size": [
+			62,
+			78
+		],
+		"bbox": [
+			0,
+			0,
+			62,
+			78
+		],
+		"anchor": [
+			31.0,
+			57.0
+		],
+		"scale": 0.38235294117647056,
+		"pitch": 35.0,
+		"source_file": "Prop_Mine.gltf",
+		"source": {
+			"pack": "Quaternius FreeModels mirror",
+			"revision": "db3df04d1e4714298a09510b26fb6de6645138a2",
+			"license": "CC0 1.0"
+		}
+	},
+	"premium/dungeon/tech_props/prop_healthpack_tube": {
+		"path": "res://assets/premium/dungeon/tech_props/prop_healthpack_tube.png",
+		"size": [
+			18,
+			30
+		],
+		"bbox": [
+			0,
+			0,
+			18,
+			30
+		],
+		"anchor": [
+			9.0,
+			16.5
+		],
+		"scale": 0.38235294117647056,
+		"pitch": 35.0,
+		"source_file": "Prop_HealthPack_Tube.gltf",
+		"source": {
+			"pack": "Quaternius FreeModels mirror",
+			"revision": "db3df04d1e4714298a09510b26fb6de6645138a2",
+			"license": "CC0 1.0"
+		}
+	},
 	"premium/weapons/pulsar": {
 		"path": "res://assets/premium/weapons/pulsar.png",
 		"size": [

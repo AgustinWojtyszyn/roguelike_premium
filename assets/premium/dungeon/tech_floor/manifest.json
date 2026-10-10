@@ -1,0 +1,194 @@
+{
+ "id": "tech_floor",
+ "kind": "static_set",
+ "role": "environment",
+ "source_pack": "RPG Premium original (tools/premium_tech_floor.py)",
+ "source_revision": "original",
+ "license": "Original work (RPG Premium)",
+ "transformation": "procedural PIL deck-plate drawing, 4x supersample, deterministic seeds (tools/premium_tech_floor.py)",
+ "runtime_path": "res://assets/premium/dungeon/tech_floor/",
+ "ppu": 2.0,
+ "ppu_game": 1.0,
+ "items": {
+  "deck_a": {
+   "path": "res://assets/premium/dungeon/tech_floor/deck_a.png",
+   "size": [
+    192,
+    192
+   ],
+   "bbox": [
+    0,
+    0,
+    192,
+    192
+   ],
+   "anchor": [
+    96.0,
+    96.0
+   ],
+   "scale": 0.5,
+   "pitch": 90.0,
+   "source_file": "original:tools/premium_tech_floor.py"
+  },
+  "deck_b": {
+   "path": "res://assets/premium/dungeon/tech_floor/deck_b.png",
+   "size": [
+    192,
+    192
+   ],
+   "bbox": [
+    0,
+    0,
+    192,
+    192
+   ],
+   "anchor": [
+    96.0,
+    96.0
+   ],
+   "scale": 0.5,
+   "pitch": 90.0,
+   "source_file": "original:tools/premium_tech_floor.py"
+  },
+  "deck_big": {
+   "path": "res://assets/premium/dungeon/tech_floor/deck_big.png",
+   "size": [
+    192,
+    192
+   ],
+   "bbox": [
+    0,
+    0,
+    192,
+    192
+   ],
+   "anchor": [
+    96.0,
+    96.0
+   ],
+   "scale": 0.5,
+   "pitch": 90.0,
+   "source_file": "original:tools/premium_tech_floor.py"
+  },
+  "deck_grate": {
+   "path": "res://assets/premium/dungeon/tech_floor/deck_grate.png",
+   "size": [
+    192,
+    192
+   ],
+   "bbox": [
+    0,
+    0,
+    192,
+    192
+   ],
+   "anchor": [
+    96.0,
+    96.0
+   ],
+   "scale": 0.5,
+   "pitch": 90.0,
+   "source_file": "original:tools/premium_tech_floor.py"
+  },
+  "deck_hazard": {
+   "path": "res://assets/premium/dungeon/tech_floor/deck_hazard.png",
+   "size": [
+    192,
+    192
+   ],
+   "bbox": [
+    0,
+    0,
+    192,
+    192
+   ],
+   "anchor": [
+    96.0,
+    96.0
+   ],
+   "scale": 0.5,
+   "pitch": 90.0,
+   "source_file": "original:tools/premium_tech_floor.py"
+  },
+  "deck_stencil": {
+   "path": "res://assets/premium/dungeon/tech_floor/deck_stencil.png",
+   "size": [
+    192,
+    192
+   ],
+   "bbox": [
+    0,
+    0,
+    192,
+    192
+   ],
+   "anchor": [
+    96.0,
+    96.0
+   ],
+   "scale": 0.5,
+   "pitch": 90.0,
+   "source_file": "original:tools/premium_tech_floor.py"
+  },
+  "deck_vent": {
+   "path": "res://assets/premium/dungeon/tech_floor/deck_vent.png",
+   "size": [
+    192,
+    192
+   ],
+   "bbox": [
+    0,
+    0,
+    192,
+    192
+   ],
+   "anchor": [
+    96.0,
+    96.0
+   ],
+   "scale": 0.5,
+   "pitch": 90.0,
+   "source_file": "original:tools/premium_tech_floor.py"
+  },
+  "deck_strip": {
+   "path": "res://assets/premium/dungeon/tech_floor/deck_strip.png",
+   "size": [
+    192,
+    192
+   ],
+   "bbox": [
+    0,
+    0,
+    192,
+    192
+   ],
+   "anchor": [
+    96.0,
+    96.0
+   ],
+   "scale": 0.5,
+   "pitch": 90.0,
+   "source_file": "original:tools/premium_tech_floor.py"
+  },
+  "deck_scorch": {
+   "path": "res://assets/premium/dungeon/tech_floor/deck_scorch.png",
+   "size": [
+    192,
+    192
+   ],
+   "bbox": [
+    0,
+    0,
+    192,
+    192
+   ],
+   "anchor": [
+    96.0,
+    96.0
+   ],
+   "scale": 0.5,
+   "pitch": 90.0,
+   "source_file": "original:tools/premium_tech_floor.py"
+  }
+ }
+}

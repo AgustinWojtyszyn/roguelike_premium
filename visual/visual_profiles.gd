@@ -110,6 +110,16 @@ const PROPS_THEMED := {
 		"statue": {"art": ["premium/dungeon/castle/pillar_decorated"], "fit": "h", "hmul": 1.05, "tint": Color("c4c8e0")},
 		"weapon_rack": {"art": ["premium/dungeon/castle/crates_stacked", "premium/dungeon/castle/box_stacked"], "fit": "w2", "tint": Color("d6d2e6")},
 	},
+	# Capitulo 1: Quaternius Sci-Fi Essentials / Modular SciFi MegaKit (CC0), pre-renderizados con tools/premium_pipeline.py.
+	"tech": {
+		"crate_l": {"art": ["premium/dungeon/tech_props/prop_crate_large"], "fit": "w2", "tint": Color("9fabc4")},
+		"crate_s": {"art": ["premium/dungeon/tech_props/prop_crate", "premium/dungeon/tech_props/prop_crate", "premium/dungeon/tech_props/prop_chest"], "fit": "h", "hmul": 1.9, "tint": Color("9fabc4")},
+		"barrel": {"art": ["premium/dungeon/tech_props/prop_barrel2_closed", "premium/dungeon/tech_props/prop_barrel1"], "fit": "h", "hmul": 1.55, "tint": Color("9fabc4")},
+		"tank": {"art": ["premium/dungeon/tech/prop_barrel_large"], "fit": "h", "hmul": 1.5, "tint": Color("86a8d6")},
+		"terminal": {"art": ["premium/dungeon/tech/prop_computer"], "fit": "h", "hmul": 1.9, "tint": Color("a2bfe6")},
+		"pillar": {"art": ["premium/dungeon/tech/column_metalsupport"], "fit": "h", "hmul": 1.2, "tint": Color("8aa0c8")},
+		"barrier_h": {"art": ["premium/dungeon/tech_props/prop_desk_medium"], "fit": "w2", "tint": Color("8795b0")},
+	},
 }
 
 

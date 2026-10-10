@@ -1,0 +1,89 @@
+{
+ "id": "tech_modular",
+ "kind": "static_set",
+ "pack": "quaternius",
+ "dir": "Modular SciFi MegaKit[Standard]/glTF",
+ "dest": "dungeon/tech",
+ "cell": 448,
+ "ppu": 68.0,
+ "pitch": 35.0,
+ "feet_frac": 0.78,
+ "ppu_game": 26.0,
+ "ss": 2,
+ "items": [
+  {
+   "id": "prop_computer",
+   "file": "Props/Prop_Computer.gltf"
+  },
+  {
+   "id": "prop_crate3",
+   "file": "Props/Prop_Crate3.gltf"
+  },
+  {
+   "id": "prop_crate4",
+   "file": "Props/Prop_Crate4.gltf"
+  },
+  {
+   "id": "prop_barrel_large",
+   "file": "Props/Prop_Barrel_Large.gltf"
+  },
+  {
+   "id": "prop_accesspoint",
+   "file": "Props/Prop_AccessPoint.gltf"
+  },
+  {
+   "id": "prop_chest",
+   "file": "Props/Prop_Chest.gltf"
+  },
+  {
+   "id": "prop_fan_small",
+   "file": "Props/Prop_Fan_Small.gltf"
+  },
+  {
+   "id": "prop_itemholder",
+   "file": "Props/Prop_ItemHolder.gltf"
+  },
+  {
+   "id": "prop_light_floor",
+   "file": "Props/Prop_Light_Floor.gltf"
+  },
+  {
+   "id": "prop_cable_1",
+   "file": "Props/Prop_Cable_1.gltf"
+  },
+  {
+   "id": "prop_vent_big",
+   "file": "Props/Prop_Vent_Big.gltf"
+  },
+  {
+   "id": "column_astra",
+   "file": "Columns/Column_Astra.gltf"
+  },
+  {
+   "id": "column_hollow",
+   "file": "Columns/Column_Hollow.gltf"
+  },
+  {
+   "id": "column_pipes",
+   "file": "Columns/Column_Pipes.gltf"
+  },
+  {
+   "id": "column_metalsupport",
+   "file": "Columns/Column_MetalSupport.gltf"
+  },
+  {
+   "id": "column_round",
+   "file": "Columns/Column_Round.gltf"
+  },
+  {
+   "id": "column_simple",
+   "file": "Columns/Column_Simple.gltf"
+  }
+ ],
+ "look": {
+  "albedo_mul": 0.42,
+  "sat": 1.0,
+  "val": 1.0,
+  "amb_i": 0.2
+ }
+}

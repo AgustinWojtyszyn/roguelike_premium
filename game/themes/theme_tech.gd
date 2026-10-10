@@ -2,6 +2,15 @@ class_name ThemeTech
 extends RoomTheme
 ## Capitulo 1: estacion de tecnologia corrupta (la sala original de la vertical slice, generalizada).
 
+## Suelo premium: placas de cubierta ORIGINALES (tools/premium_tech_floor.py), horneadas en RoomBake. Sin ellas, el suelo vectorial original.
+const DECK := "premium/dungeon/tech_floor/"
+const DECK_TILE := 96.0
+const DECK_TINT := Color("e6f0ff")
+const DECK_VARIANTS := [["deck_a", 0.40], ["deck_b", 0.38], ["deck_big", 0.06], ["deck_grate", 0.03], ["deck_vent", 0.02],
+	["deck_stencil", 0.04], ["deck_scorch", 0.04], ["deck_strip", 0.03]]
+var _room: Room
+
+
 func _init() -> void:
 	id = "tech"
 	accent = Color("27e0cc")
@@ -30,6 +39,7 @@ func build_dressing(room: Room, rng: RandomNumberGenerator) -> Dictionary:
 
 # ============================================================ SUELO
 func paint_floor(ci: CanvasItem, room: Room) -> void:
+	_room = room
 	var F := room.floor_rect
 	var dec: Dictionary = room.def.decor
 	ci.draw_rect(room.bounds.grow(900.0), void_col)
@@ -134,6 +144,7 @@ func paint_floor(ci: CanvasItem, room: Room) -> void:
 		var s := rng.randf_range(1.5, 3.0)
 		ci.draw_rect(Rect2(p, Vector2(s * 1.4, s)), Color(0.35, 0.4, 0.5, 0.5))
 		ci.draw_rect(Rect2(p + Vector2(0, s), Vector2(s * 1.4, 1.0)), Color(0, 0, 0, 0.5))
+	RoomDecor.paint_authored(ci, room)
 	# sombra ambiental junto a los muros (solo bordes expuestos de la sala principal)
 	for i in 10:
 		var a := 0.5 * (1.0 - float(i) / 10.0)
@@ -148,7 +159,53 @@ func paint_floor(ci: CanvasItem, room: Room) -> void:
 			ci.draw_rect(Rect2(F.end.x - o - 4.0, F.position.y, 4.0, F.size.y), Color(0, 0, 0, a * 0.8))
 
 
+func _deck_variant(c: Vector2, rng: RandomNumberGenerator) -> String:
+	var r := rng.randf()
+	if _room != null:
+		# zonas compuestas a mano por sala (decor.deck_zones: [{rect: Rect2, v: variante}]): carriles, rejillas de servicio...
+		for z in _room.def.decor.get("deck_zones", []):
+			if (z["rect"] as Rect2).has_point(c):
+				return str(z["v"])
+		if _room.def.decor.get("composed", false):
+			r = minf(r, 0.78)   # sala compuesta: sin placas de ruido grandes fuera de lo escrito
+	var acc := 0.0
+	for v in DECK_VARIANTS:
+		acc += float(v[1])
+		if r <= acc:
+			return v[0]
+	return "deck_a"
+
+
+func _floor_premium(ci: CanvasItem, R: Rect2, seed_v: int) -> bool:
+	if not VisualProfiles.sprites_enabled() or AssetCatalog.tex(DECK + "deck_a") == null:
+		return false
+	var rng := RandomNumberGenerator.new()
+	rng.seed = seed_v
+	var ts := DECK_TILE
+	var k := 0.5   # px de juego por px de textura
+	ci.draw_rect(R, Color("070a12"))
+	# Rejilla alineada al MUNDO (una fila centrada en y=0, la del carril de los pasillos de entrada/salida), no a cada rectangulo:
+	# asi todas las zonas y los pasillos comparten juntas y las zonas de `deck_zones` se escriben en coordenadas reales.
+	var y := floorf((R.position.y + ts * 0.5) / ts) * ts - ts * 0.5
+	while y < R.end.y - 0.5:
+		var x := floorf((R.position.x + ts * 0.5) / ts) * ts - ts * 0.5
+		while x < R.end.x - 0.5:
+			var cell := Rect2(x, y, ts, ts)
+			var vis := cell.intersection(R)
+			if vis.size.x > 0.5 and vis.size.y > 0.5:
+				var id := _deck_variant(cell.get_center(), rng)
+				var tex := AssetCatalog.tex(DECK + id)
+				if tex == null:
+					tex = AssetCatalog.tex(DECK + "deck_a")
+				ci.draw_texture_rect_region(tex, vis, Rect2((vis.position - cell.position) / k, vis.size / k), DECK_TINT)
+			x += ts
+		y += ts
+	return true
+
+
 func _floor_panels(ci: CanvasItem, R: Rect2, seed_v: int) -> void:
+	if _floor_premium(ci, R, seed_v):
+		return
 	var rng := RandomNumberGenerator.new()
 	rng.seed = seed_v
 	var ts := tile
@@ -289,6 +346,10 @@ func _wall_items(ci: CanvasItem, room: Room, x0: float, x1: float, edge: float) 
 			Gfx.rrect(ci, Rect2(lx - 14, edge - 107, 28, 7), 3.0, Color("d6f6ff"), Color(0, 0, 0, 0), 0.0)
 			lx += 200.0
 		return
+	for wi in room.def.decor.get("wall_items", []):
+		var wx: float = F.get_center().x + float(wi["x"])
+		if wx > x0 + 10.0 and wx < x1 - 10.0:
+			_wall_sprite(ci, str(wi["art"]), Vector2(wx, edge - float(wi.get("y", 20.0))), float(wi["h"]), wi.get("tint", Color("cfe0ff")))
 	for s in d.get("screens", []):
 		var sr: Rect2 = s
 		if sr.position.x > x0 and sr.end.x < x1:
@@ -318,6 +379,19 @@ func _wall_items(ci: CanvasItem, room: Room, x0: float, x1: float, edge: float) 
 			ci.draw_polyline(pts, Color("2a3452"), 3.5, true)
 
 
+## Pieza premium colgada del muro (base en `at`): vigas, ventiladores, cajas de acceso. Horneada en RoomBake.
+func _wall_sprite(ci: CanvasItem, art: String, at: Vector2, h: float, tint: Color) -> void:
+	var tex := AssetCatalog.tex(art)
+	if tex == null or not VisualProfiles.sprites_enabled():
+		return
+	var bb: Array = AssetCatalog.info(art).get("bbox", [0, 0, tex.get_width(), tex.get_height()])
+	var bw := float(bb[2]) - float(bb[0])
+	var bh := float(bb[3]) - float(bb[1])
+	var k := h / bh
+	Gfx.draw_glow(ci, at + Vector2(0, -h * 0.4), maxf(bw * k, h) * 0.7, Color(0, 0, 0, 0.35))
+	ci.draw_texture_rect_region(tex, Rect2(at.x - bw * k * 0.5, at.y - h, bw * k, h), Rect2(float(bb[0]), float(bb[1]), bw, bh), tint)
+
+
 # ============================================================ LUCES
 func paint_lights(ci: CanvasItem, room: Room) -> void:
 	var F := room.floor_rect
@@ -335,6 +409,9 @@ func paint_lights(ci: CanvasItem, room: Room) -> void:
 		ci.draw_polygon(pts, cols)
 		Gfx.draw_glow(ci, Vector2(lp.x, F.position.y + 20.0), 130.0, Color(0.5, 0.85, 1.0, 0.18))
 	Gfx.draw_glow(ci, F.get_center(), minf(F.size.x, F.size.y) * 0.4, Color(0.2, 0.7, 0.9, 0.06))
+	for L in room.def.decor.get("lights", []):
+		if not L.get("flicker", false):
+			Gfx.draw_glow(ci, L["p"], float(L["r"]), Color(L["col"], float(L["a"])))
 	for p in room.props:
 		var c := p.foot.get_center()
 		match p.kind:
@@ -355,6 +432,10 @@ func paint_deco(ci: CanvasItem, room: Room, t: float) -> void:
 	var F := room.floor_rect
 	var dec: Dictionary = room.def.decor
 	var d: Dictionary = room.dressing
+	for L in dec.get("lights", []):
+		if L.get("flicker", false):   # alarma / chispas: pulso, no parpadeo caotico (legibilidad)
+			var fl := 0.65 + 0.35 * sin(t * 3.2 + float((L["p"] as Vector2).x) * 0.03)
+			Gfx.draw_glow(ci, L["p"], float(L["r"]), Color(L["col"], float(L["a"]) * fl))
 	var traces: Array = dec.get("traces", [])
 	for i in traces.size():
 		var tr: PackedVector2Array = traces[i]

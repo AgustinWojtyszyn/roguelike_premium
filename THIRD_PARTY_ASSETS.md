@@ -45,3 +45,13 @@ The Vesper benchmark now applies source-space proportions `[0.92, 1.26, 0.92]`, 
 ## Playground backdrops — 2026-10-10 (LICENCE UNVERIFIED)
 
 `assets/premium/presentation/backdrops/ch1..ch4.jpg` derive from Google Playground exports preserved in `asset_bank/playground/` (`bg_machine_empire`, `bg_jade_empire`, `bg_scarlet_fortress`, `bg_fractured_dimension`). They are used only as chapter-menu illustrations. Commercial redistribution terms of Playground output have **not** been verified; confirm before any public release or replace. Per-file hashes and transformations: `backdrops/PROVENANCE.json`. All other Playground files remain unactivated in the bank (see `docs/PLAYGROUND_CATALOG.md`).
+
+## Chapter 1 premium room — 2026-10-10
+
+| Runtime path | Role | Source | Licence / transformation |
+|---|---|---|---|
+| `assets/premium/dungeon/tech_props/` | cover, crates, barrels, desks, lockers, shelving | Quaternius **Sci-Fi Essentials Kit [Standard]** (`asset_bank/vendor/quaternius`) | CC0 1.0 (pack's `License_Standard.txt`); 3D->2D toon render, `tools/premium_render/jobs/tech_essentials.json` |
+| `assets/premium/dungeon/tech/` | trusses, computer, access point, fan, vent, floor lights, cable coil | Quaternius **Modular SciFi MegaKit [Standard]** | CC0 1.0; `jobs/tech_modular.json`, darkened albedo (`albedo_mul 0.42`) |
+| `assets/premium/dungeon/tech_floor/` | 9 deck-plate floor tiles | **Original work (RPG Premium)**, `tools/premium_tech_floor.py` | procedural PIL drawing, deterministic seeds |
+
+The Quaternius platform/wall pieces were rendered and **rejected**: their detail lives in normal maps that the toon pipeline flattens (floor became a flat quad, walls came out edge-on or blown out), so the floor is original art and walls stay the existing procedural tech walls.

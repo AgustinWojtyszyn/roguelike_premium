@@ -25,7 +25,7 @@ static func _sp(arr: Array) -> Array[Vector2]:
 static func chapters() -> Array[ChapterData]:
 	var L: Array[ChapterData] = []
 	L.append(_chapter("ch1", "CIRCUITOS CORRUPTOS", "Estación Cinder · Sector de mantenimiento", "tech", 0, "ch1", Color("27e0cc"),
-		["maintenance", "server_hall", "reactor_chamber", "cargo_bay", "coolant_plant"], ["vault"], "core_arena",
+		["maintenance", "server_hall", "reactor_chamber", "cargo_bay", "coolant_plant", "assembly_line"], ["vault"], "core_arena",
 		["skitter", "lancer", "sentry", "fuse", "aegis", "mender"], ["brute", "aegis"], "custodio", "drops_ch1", 1.0, "",
 		"Una estación de investigación cuyo sistema operativo despertó con hambre. Los drones de mantenimiento ya no limpian: cazan."))
 	L.append(_chapter("ch2", "TEMPLO DE JADE", "Civilización antigua · Ruinas conectadas", "aztec", 1, "ch2", Color("3dd9a8"),
@@ -55,7 +55,7 @@ static func _chapter(id: String, nm: String, sub: String, theme: String, order: 
 	c.accent = accent
 	var all_rooms: Array = rooms.duplicate()
 	for rid in rooms:
-		if rid != "patio_armas":
+		if not NO_MIRROR.has(rid):
 			all_rooms.append(rid + MIRROR_SUFFIX)
 	c.room_pool = Array(all_rooms, TYPE_STRING, "", null)
 	c.cache_rooms = Array(caches, TYPE_STRING, "", null)
@@ -70,6 +70,8 @@ static func _chapter(id: String, nm: String, sub: String, theme: String, order: 
 
 
 const MIRROR_SUFFIX := "_m"
+## Salas compuestas a mano (arte horneado en posiciones fijas): sin gemelo reverso.
+const NO_MIRROR := ["patio_armas", "assembly_line"]
 
 
 ## Las salas compuestas a mano (arte horneado en posiciones fijas) no se espejan; el resto gana un gemelo reverso.
@@ -184,7 +186,7 @@ static func _compact(r: RoomDef, k: float) -> void:
 	var dec := {}
 	for key in r.decor:
 		var val: Variant = r.decor[key]
-		dec[key] = val if key in ["emblem", "lane", "carpet", "no_screens"] else _scale_val(val, k)
+		dec[key] = val if key in ["emblem", "lane", "carpet", "no_screens", "deck_zones"] else _scale_val(val, k)
 	r.decor = dec
 
 
@@ -278,6 +280,56 @@ static func rooms() -> Array[RoomDef]:
 		],
 		"spawns": _sp([Vector2(-560, -240), Vector2(560, -240), Vector2(-560, 240), Vector2(560, 240), Vector2(-250, 50), Vector2(300, -60)]),
 		"decor": {"stains": 7, "litter": 24, "traces": [PackedVector2Array([Vector2(-625, 40), Vector2(-420, 40), Vector2(-420, 100), Vector2(-250, 100)])]},
+	}))
+	# Linea de Montaje: sala COMPUESTA (benchmark ch1). Carril central de servicio (franja de luz + peligro), banco de trabajo norte con
+	# terminales, deposito de tanques al noreste, almacen de cajas/barriles al sur, vigas de refuerzo y cobertura baja (mesas) que
+	# corta lineas de tiro sin cerrar el carril. Props con colision/destruccion propias; el resto es arte horneado en RoomBake.
+	L.append(_room("assembly_line", "Línea de Montaje", "tech", Vector2(1200, 640), "combat", {
+		"entry_sides": ["W", "E"], "exit_sides": ["E", "W"],
+		"props": [
+			["crate_l", -440, -212, 100, 56], ["crate_s", -352, -232, 44, 34], ["crate_s", -372, -176, 44, 34], ["barrel", -500, -170, 30, 22],
+			["terminal", -170, -300, 84, 34], ["terminal", 190, -300, 84, 34],
+			["pillar", -40, -200, 40, 34],
+			["barrier_h", -250, -128, 170, 22], ["barrier_h", 80, -112, 170, 22],
+			["tank", 372, -252, 64, 44], ["tank", 380, -150, 64, 44], ["barrel", 300, -190, 30, 22],
+			["pillar", -118, 128, 40, 34], ["pillar", 200, 168, 40, 34],
+			["barrier_h", -330, 150, 170, 22],
+			["crate_l", 300, 250, 100, 56], ["crate_s", 230, 236, 44, 34], ["crate_s", 520, 168, 44, 34], ["barrel", 292, 196, 30, 22],
+			["crate_s", -480, 236, 44, 34], ["barrel", -430, 256, 30, 22], ["barrel", -108, 252, 30, 22],
+		],
+		"spawns": _sp([Vector2(-515, -245), Vector2(515, -235), Vector2(-515, 235), Vector2(515, 245), Vector2(-15, -262), Vector2(-10, 262)]),
+		"decor": {"composed": true, "lane": false, "stains": 10, "litter": 24, "no_screens": false,
+			"deck_zones": [
+				# coordenadas REALES (no se compactan): filas de 96 px centradas en y=0, columnas centradas en x=0
+				{"rect": Rect2(-700, -48, 1400, 96), "v": "deck_strip"},
+				{"rect": Rect2(-700, -144, 1400, 96), "v": "deck_hazard"},
+				{"rect": Rect2(-240, 144, 96, 96), "v": "deck_grate"}, {"rect": Rect2(144, -240, 96, 96), "v": "deck_vent"},
+			],
+			"traces": [
+				PackedVector2Array([Vector2(-600, 90), Vector2(-420, 90), Vector2(-420, 60), Vector2(-150, 60)]),
+				PackedVector2Array([Vector2(600, -96), Vector2(420, -96), Vector2(420, -70), Vector2(150, -70)]),
+			],
+			"wall_items": [
+				{"art": "premium/dungeon/tech/prop_vent_big", "x": -420.0, "y": 44.0, "h": 24.0},
+				{"art": "premium/dungeon/tech/prop_fan_small", "x": 40.0, "y": 36.0, "h": 36.0},
+				{"art": "premium/dungeon/tech/prop_accesspoint", "x": 440.0, "y": 28.0, "h": 40.0},
+			],
+			"authored": [
+				{"art": "premium/dungeon/tech/prop_cable_1", "p": Vector2(-250, 40), "h": 24}, {"art": "premium/dungeon/tech/prop_cable_1", "p": Vector2(300, -60), "h": 22},
+				{"art": "premium/dungeon/tech/prop_cable_1", "p": Vector2(-480, 120), "h": 20},
+				{"art": "premium/dungeon/tech/prop_light_floor", "p": Vector2(-560, 6), "h": 14}, {"art": "premium/dungeon/tech/prop_light_floor", "p": Vector2(560, 6), "h": 14},
+				{"art": "premium/dungeon/tech/prop_light_floor", "p": Vector2(0, 62), "h": 14},
+				{"art": "premium/dungeon/tech_props/prop_healthpack_tube", "p": Vector2(-205, -330), "h": 20},
+				{"art": "premium/dungeon/tech_props/prop_mine", "p": Vector2(120, 86), "h": 22},
+			],
+			"lights": [
+				{"p": Vector2(0, 0), "r": 330.0, "col": Color(0.2, 0.9, 0.85), "a": 0.10, "flicker": false},
+				{"p": Vector2(-170, -290), "r": 130.0, "col": Color(0.3, 0.95, 0.9), "a": 0.14, "flicker": false},
+				{"p": Vector2(190, -290), "r": 130.0, "col": Color(0.3, 0.95, 0.9), "a": 0.14, "flicker": false},
+				{"p": Vector2(410, -240), "r": 150.0, "col": Color(0.15, 0.9, 0.75), "a": 0.16, "flicker": false},
+				{"p": Vector2(380, 230), "r": 120.0, "col": Color(1.0, 0.62, 0.22), "a": 0.10, "flicker": false},
+				{"p": Vector2(-470, -200), "r": 120.0, "col": Color(1.0, 0.45, 0.2), "a": 0.10, "flicker": true},
+			]},
 	}))
 	L.append(_room("vault", "Cámara Sellada", "tech", Vector2(900, 560), "cache", {
 		"entry_sides": ["W", "E", "S"], "exit_sides": ["E", "W", "N"],

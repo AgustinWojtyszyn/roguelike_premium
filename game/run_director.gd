@@ -127,6 +127,9 @@ func _load_stage(i: int, instant: bool) -> void:
 	elif st.has("chapter"):
 		game.hp_scale = game.chapter.difficulty
 	var def: RoomDef = Catalog.rooms[st["room"]]
+	var forced := Boot.get_arg("room", "")   # solo revision visual: fuerza la sala (sin efecto en partidas normales)
+	if forced != "" and Catalog.rooms.has(forced):
+		def = Catalog.rooms[forced]
 	var room := Room.new()
 	game.room = room
 	game.add_child(room)

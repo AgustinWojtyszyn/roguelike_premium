@@ -1,0 +1,355 @@
+{
+ "id": "tech_modular",
+ "kind": "static_set",
+ "role": "environment",
+ "source_pack": "Quaternius FreeModels mirror",
+ "source_revision": "db3df04d1e4714298a09510b26fb6de6645138a2",
+ "license": "CC0 1.0",
+ "transformation": "Godot offscreen ortho render (tools/premium_render/render_static.gd) + recorte por alfa; ancla = origen del modelo",
+ "job_sha256": "b02ba1f8300e80ac",
+ "runtime_path": "res://assets/premium/dungeon/tech/",
+ "ppu": 68.0,
+ "ppu_game": 26.0,
+ "items": {
+  "prop_computer": {
+   "path": "res://assets/premium/dungeon/tech/prop_computer.png",
+   "size": [
+    58,
+    114
+   ],
+   "bbox": [
+    0,
+    0,
+    58,
+    114
+   ],
+   "anchor": [
+    29.0,
+    96.5
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "Props/Prop_Computer.gltf"
+  },
+  "prop_crate3": {
+   "path": "res://assets/premium/dungeon/tech/prop_crate3.png",
+   "size": [
+    75,
+    102
+   ],
+   "bbox": [
+    0,
+    0,
+    75,
+    102
+   ],
+   "anchor": [
+    37.5,
+    51.0
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "Props/Prop_Crate3.gltf"
+  },
+  "prop_crate4": {
+   "path": "res://assets/premium/dungeon/tech/prop_crate4.png",
+   "size": [
+    84,
+    106
+   ],
+   "bbox": [
+    0,
+    0,
+    84,
+    106
+   ],
+   "anchor": [
+    42.0,
+    53.0
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "Props/Prop_Crate4.gltf"
+  },
+  "prop_barrel_large": {
+   "path": "res://assets/premium/dungeon/tech/prop_barrel_large.png",
+   "size": [
+    42,
+    88
+   ],
+   "bbox": [
+    0,
+    0,
+    42,
+    88
+   ],
+   "anchor": [
+    21.0,
+    75.5
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "Props/Prop_Barrel_Large.gltf"
+  },
+  "prop_accesspoint": {
+   "path": "res://assets/premium/dungeon/tech/prop_accesspoint.png",
+   "size": [
+    37,
+    74
+   ],
+   "bbox": [
+    0,
+    0,
+    37,
+    74
+   ],
+   "anchor": [
+    18.5,
+    112.0
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "Props/Prop_AccessPoint.gltf"
+  },
+  "prop_chest": {
+   "path": "res://assets/premium/dungeon/tech/prop_chest.png",
+   "size": [
+    110,
+    76
+   ],
+   "bbox": [
+    0,
+    0,
+    110,
+    76
+   ],
+   "anchor": [
+    55.0,
+    58.5
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "Props/Prop_Chest.gltf"
+  },
+  "prop_fan_small": {
+   "path": "res://assets/premium/dungeon/tech/prop_fan_small.png",
+   "size": [
+    121,
+    84
+   ],
+   "bbox": [
+    0,
+    0,
+    121,
+    84
+   ],
+   "anchor": [
+    60.5,
+    47.0
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "Props/Prop_Fan_Small.gltf"
+  },
+  "prop_itemholder": {
+   "path": "res://assets/premium/dungeon/tech/prop_itemholder.png",
+   "size": [
+    63,
+    40
+   ],
+   "bbox": [
+    0,
+    0,
+    63,
+    40
+   ],
+   "anchor": [
+    31.5,
+    24.5
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "Props/Prop_ItemHolder.gltf"
+  },
+  "prop_light_floor": {
+   "path": "res://assets/premium/dungeon/tech/prop_light_floor.png",
+   "size": [
+    98,
+    30
+   ],
+   "bbox": [
+    0,
+    0,
+    98,
+    30
+   ],
+   "anchor": [
+    49.0,
+    16.5
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "Props/Prop_Light_Floor.gltf"
+  },
+  "prop_cable_1": {
+   "path": "res://assets/premium/dungeon/tech/prop_cable_1.png",
+   "size": [
+    76,
+    74
+   ],
+   "bbox": [
+    0,
+    0,
+    76,
+    74
+   ],
+   "anchor": [
+    37.0,
+    28.5
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "Props/Prop_Cable_1.gltf"
+  },
+  "prop_vent_big": {
+   "path": "res://assets/premium/dungeon/tech/prop_vent_big.png",
+   "size": [
+    143,
+    48
+   ],
+   "bbox": [
+    0,
+    0,
+    143,
+    48
+   ],
+   "anchor": [
+    71.5,
+    22.5
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "Props/Prop_Vent_Big.gltf"
+  },
+  "column_astra": {
+   "path": "res://assets/premium/dungeon/tech/column_astra.png",
+   "size": [
+    30,
+    216
+   ],
+   "bbox": [
+    0,
+    0,
+    30,
+    216
+   ],
+   "anchor": [
+    15.0,
+    198.0
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "Columns/Column_Astra.gltf"
+  },
+  "column_hollow": {
+   "path": "res://assets/premium/dungeon/tech/column_hollow.png",
+   "size": [
+    90,
+    333
+   ],
+   "bbox": [
+    0,
+    0,
+    90,
+    333
+   ],
+   "anchor": [
+    45.0,
+    306.0
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "Columns/Column_Hollow.gltf"
+  },
+  "column_pipes": {
+   "path": "res://assets/premium/dungeon/tech/column_pipes.png",
+   "size": [
+    67,
+    320
+   ],
+   "bbox": [
+    0,
+    0,
+    67,
+    320
+   ],
+   "anchor": [
+    33.5,
+    299.5
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "Columns/Column_Pipes.gltf"
+  },
+  "column_metalsupport": {
+   "path": "res://assets/premium/dungeon/tech/column_metalsupport.png",
+   "size": [
+    72,
+    166
+   ],
+   "bbox": [
+    0,
+    0,
+    72,
+    166
+   ],
+   "anchor": [
+    35.5,
+    83.0
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "Columns/Column_MetalSupport.gltf"
+  },
+  "column_round": {
+   "path": "res://assets/premium/dungeon/tech/column_round.png",
+   "size": [
+    75,
+    325
+   ],
+   "bbox": [
+    0,
+    0,
+    75,
+    325
+   ],
+   "anchor": [
+    37.5,
+    302.0
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "Columns/Column_Round.gltf"
+  },
+  "column_simple": {
+   "path": "res://assets/premium/dungeon/tech/column_simple.png",
+   "size": [
+    42,
+    324
+   ],
+   "bbox": [
+    0,
+    0,
+    42,
+    324
+   ],
+   "anchor": [
+    21.0,
+    302.0
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "Columns/Column_Simple.gltf"
+  }
+ }
+}

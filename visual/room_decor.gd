@@ -142,6 +142,12 @@ static func spawn_standing(room: Room, parent: Node2D) -> void:
 				break
 
 
+## Punto de entrada publico para temas que no usan paint_floor() de RoomDecor (tech): piezas de `decor.authored`.
+static func paint_authored(ci: CanvasItem, room: Room) -> void:
+	if VisualProfiles.sprites_enabled():
+		_paint_authored(ci, room)
+
+
 ## Piezas bajas COMPUESTAS a mano para una sala (def.decor["authored"]): se hornean en el suelo con sombra de contacto.
 ## Solo cosas pequeñas y planas: lo alto/solido es un Prop con colision, nunca decoracion horneada.
 static func _paint_authored(ci: CanvasItem, room: Room) -> void:

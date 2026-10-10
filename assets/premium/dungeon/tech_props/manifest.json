@@ -1,0 +1,355 @@
+{
+ "id": "tech_essentials",
+ "kind": "static_set",
+ "role": "environment",
+ "source_pack": "Quaternius FreeModels mirror",
+ "source_revision": "db3df04d1e4714298a09510b26fb6de6645138a2",
+ "license": "CC0 1.0",
+ "transformation": "Godot offscreen ortho render (tools/premium_render/render_static.gd) + recorte por alfa; ancla = origen del modelo",
+ "job_sha256": "8ae8b964a39d482d",
+ "runtime_path": "res://assets/premium/dungeon/tech_props/",
+ "ppu": 68.0,
+ "ppu_game": 26.0,
+ "items": {
+  "prop_crate": {
+   "path": "res://assets/premium/dungeon/tech_props/prop_crate.png",
+   "size": [
+    114,
+    146
+   ],
+   "bbox": [
+    0,
+    0,
+    114,
+    146
+   ],
+   "anchor": [
+    57.0,
+    115.0
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "Prop_Crate.gltf"
+  },
+  "prop_crate_large": {
+   "path": "res://assets/premium/dungeon/tech_props/prop_crate_large.png",
+   "size": [
+    243,
+    146
+   ],
+   "bbox": [
+    0,
+    0,
+    243,
+    146
+   ],
+   "anchor": [
+    121.5,
+    115.0
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "Prop_Crate_Large.gltf"
+  },
+  "prop_crate_tarp": {
+   "path": "res://assets/premium/dungeon/tech_props/prop_crate_tarp.png",
+   "size": [
+    124,
+    152
+   ],
+   "bbox": [
+    0,
+    0,
+    124,
+    152
+   ],
+   "anchor": [
+    62.0,
+    119.5
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "Prop_Crate_Tarp.gltf"
+  },
+  "prop_crate_tarp_large": {
+   "path": "res://assets/premium/dungeon/tech_props/prop_crate_tarp_large.png",
+   "size": [
+    226,
+    153
+   ],
+   "bbox": [
+    0,
+    0,
+    226,
+    153
+   ],
+   "anchor": [
+    113.0,
+    120.0
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "Prop_Crate_Tarp_Large.gltf"
+  },
+  "prop_barrel1": {
+   "path": "res://assets/premium/dungeon/tech_props/prop_barrel1.png",
+   "size": [
+    56,
+    86
+   ],
+   "bbox": [
+    0,
+    0,
+    56,
+    86
+   ],
+   "anchor": [
+    28.0,
+    72.0
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "Prop_Barrel1.gltf"
+  },
+  "prop_barrel2_closed": {
+   "path": "res://assets/premium/dungeon/tech_props/prop_barrel2_closed.png",
+   "size": [
+    44,
+    63
+   ],
+   "bbox": [
+    0,
+    0,
+    44,
+    63
+   ],
+   "anchor": [
+    22.0,
+    50.5
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "Prop_Barrel2_Closed.gltf"
+  },
+  "prop_barrel2_open": {
+   "path": "res://assets/premium/dungeon/tech_props/prop_barrel2_open.png",
+   "size": [
+    44,
+    81
+   ],
+   "bbox": [
+    0,
+    0,
+    44,
+    81
+   ],
+   "anchor": [
+    22.0,
+    68.5
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "Prop_Barrel2_Open.gltf"
+  },
+  "prop_locker": {
+   "path": "res://assets/premium/dungeon/tech_props/prop_locker.png",
+   "size": [
+    74,
+    174
+   ],
+   "bbox": [
+    0,
+    0,
+    74,
+    174
+   ],
+   "anchor": [
+    37.0,
+    160.0
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "Prop_Locker.gltf"
+  },
+  "prop_desk_medium": {
+   "path": "res://assets/premium/dungeon/tech_props/prop_desk_medium.png",
+   "size": [
+    201,
+    99
+   ],
+   "bbox": [
+    0,
+    0,
+    201,
+    99
+   ],
+   "anchor": [
+    100.5,
+    76.5
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "Prop_Desk_Medium.gltf"
+  },
+  "prop_desk_l": {
+   "path": "res://assets/premium/dungeon/tech_props/prop_desk_l.png",
+   "size": [
+    158,
+    146
+   ],
+   "bbox": [
+    0,
+    0,
+    158,
+    146
+   ],
+   "anchor": [
+    58.0,
+    111.5
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "Prop_Desk_L.gltf"
+  },
+  "prop_shelves_widetall": {
+   "path": "res://assets/premium/dungeon/tech_props/prop_shelves_widetall.png",
+   "size": [
+    142,
+    177
+   ],
+   "bbox": [
+    0,
+    0,
+    142,
+    177
+   ],
+   "anchor": [
+    71.0,
+    163.0
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "Prop_Shelves_WideTall.gltf"
+  },
+  "prop_shelves_thintall": {
+   "path": "res://assets/premium/dungeon/tech_props/prop_shelves_thintall.png",
+   "size": [
+    101,
+    177
+   ],
+   "bbox": [
+    0,
+    0,
+    101,
+    177
+   ],
+   "anchor": [
+    50.5,
+    163.0
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "Prop_Shelves_ThinTall.gltf"
+  },
+  "prop_shelves_wideshort": {
+   "path": "res://assets/premium/dungeon/tech_props/prop_shelves_wideshort.png",
+   "size": [
+    142,
+    96
+   ],
+   "bbox": [
+    0,
+    0,
+    142,
+    96
+   ],
+   "anchor": [
+    71.0,
+    81.5
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "Prop_Shelves_WideShort.gltf"
+  },
+  "prop_satellitedish": {
+   "path": "res://assets/premium/dungeon/tech_props/prop_satellitedish.png",
+   "size": [
+    132,
+    352
+   ],
+   "bbox": [
+    0,
+    0,
+    132,
+    352
+   ],
+   "anchor": [
+    66.0,
+    325.5
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "Prop_SatelliteDish.gltf"
+  },
+  "prop_chest": {
+   "path": "res://assets/premium/dungeon/tech_props/prop_chest.png",
+   "size": [
+    133,
+    92
+   ],
+   "bbox": [
+    0,
+    0,
+    133,
+    92
+   ],
+   "anchor": [
+    66.5,
+    72.5
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "Prop_Chest.gltf"
+  },
+  "prop_mine": {
+   "path": "res://assets/premium/dungeon/tech_props/prop_mine.png",
+   "size": [
+    62,
+    78
+   ],
+   "bbox": [
+    0,
+    0,
+    62,
+    78
+   ],
+   "anchor": [
+    31.0,
+    57.0
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "Prop_Mine.gltf"
+  },
+  "prop_healthpack_tube": {
+   "path": "res://assets/premium/dungeon/tech_props/prop_healthpack_tube.png",
+   "size": [
+    18,
+    30
+   ],
+   "bbox": [
+    0,
+    0,
+    18,
+    30
+   ],
+   "anchor": [
+    9.0,
+    16.5
+   ],
+   "scale": 0.38235294117647056,
+   "pitch": 35.0,
+   "source_file": "Prop_HealthPack_Tube.gltf"
+  }
+ }
+}
