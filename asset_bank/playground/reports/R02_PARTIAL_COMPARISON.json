@@ -1,0 +1,856 @@
+{
+  "media": [
+    {
+      "name": "assets/audio/bgm_boss_battle.mp3",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/audio/bgm_realm_theme.mp3",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/bg_fractured_arena.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/bg_fractured_dimension.png",
+      "placeholder": false,
+      "matches_complete": true
+    },
+    {
+      "name": "assets/images/bg_jade_arena.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/bg_jade_empire.png",
+      "placeholder": false,
+      "matches_complete": true
+    },
+    {
+      "name": "assets/images/bg_machine_arena.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/bg_machine_empire.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/bg_scarlet_arena.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/bg_scarlet_fortress.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/bg_title_screen.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/boss_hollow_king_death.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/boss_hollow_king_hurt.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/boss_hollow_king_idle.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/boss_hollow_king_sword_attack.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/boss_hollow_king_walk.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/boss_iron_colossus_attack.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/boss_iron_colossus_death.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/boss_iron_colossus_hurt.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/boss_iron_colossus_idle.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/boss_iron_colossus_walk.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/boss_jade_serpent.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/boss_reality_architect_attack.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/boss_reality_architect_death.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/boss_reality_architect_hurt.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/boss_reality_architect_idle.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/boss_reality_architect_walk.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/enemy_fractured_knight_attack.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/enemy_fractured_knight_death.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/enemy_fractured_knight_hurt.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/enemy_fractured_knight_idle.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/enemy_fractured_knight_run.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/enemy_jade_guardian_attack.png",
+      "placeholder": false,
+      "matches_complete": true
+    },
+    {
+      "name": "assets/images/enemy_jade_guardian_death.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/enemy_jade_guardian_hurt.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/enemy_jade_guardian_idle.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/enemy_jade_guardian_walk.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/enemy_machine_scout_death.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/enemy_machine_scout_hurt.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/enemy_machine_scout_idle.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/enemy_machine_scout_run.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/enemy_machine_scout_shoot.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/enemy_scarlet_knight_death.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/enemy_scarlet_knight_hurt.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/enemy_scarlet_knight_idle.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/enemy_scarlet_knight_run.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/enemy_scarlet_knight_sword_attack.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/fx_dash_trail.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/fx_death_particles.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/fx_electric_impact.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/fx_explosion.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/fx_heal_pulse.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/fx_muzzle_flash.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/fx_shield_break.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/fx_sword_slash.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/hero_explorer_death.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/hero_explorer_hurt.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/hero_explorer_idle.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/hero_explorer_run.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/hero_explorer_shoot.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/hero_explorer_walk.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/hero_iron_warden_death.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/hero_iron_warden_hurt.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/hero_iron_warden_idle.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/hero_iron_warden_run.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/hero_iron_warden_sword_attack.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/hero_iron_warden_walk.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/prop_chest_common.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/prop_chest_legendary.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/prop_chest_rare.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/prop_coin_pickup.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/prop_crystal_pickup.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/prop_destructible_crate.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/prop_explosive_barrel.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/prop_healing_shrine.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/prop_health_pickup.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/prop_magic_altar.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/prop_teleport_portal.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/prop_weapon_pedestal.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/weapon_ancient_sword.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/weapon_assault_rifle.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/weapon_celestial_railgun.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/weapon_dual_daggers.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/weapon_energy_shotgun.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/weapon_heavy_crossbow.png",
+      "placeholder": true,
+      "matches_complete": false
+    },
+    {
+      "name": "assets/images/weapon_magical_staff.png",
+      "placeholder": false,
+      "matches_complete": true
+    },
+    {
+      "name": "assets/images/weapon_plasma_cannon.png",
+      "placeholder": true,
+      "matches_complete": false
+    }
+  ],
+  "differing_paths": [
+    {
+      "name": "assets/audio/bgm_boss_battle.mp3",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/audio/bgm_realm_theme.mp3",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/bg_fractured_arena.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/bg_jade_arena.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/bg_machine_arena.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/bg_machine_empire.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/bg_scarlet_arena.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/bg_scarlet_fortress.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/bg_title_screen.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/boss_hollow_king_death.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/boss_hollow_king_hurt.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/boss_hollow_king_idle.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/boss_hollow_king_sword_attack.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/boss_hollow_king_walk.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/boss_iron_colossus_attack.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/boss_iron_colossus_death.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/boss_iron_colossus_hurt.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/boss_iron_colossus_idle.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/boss_iron_colossus_walk.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/boss_jade_serpent.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/boss_reality_architect_attack.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/boss_reality_architect_death.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/boss_reality_architect_hurt.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/boss_reality_architect_idle.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/boss_reality_architect_walk.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/enemy_fractured_knight_attack.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/enemy_fractured_knight_death.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/enemy_fractured_knight_hurt.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/enemy_fractured_knight_idle.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/enemy_fractured_knight_run.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/enemy_jade_guardian_death.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/enemy_jade_guardian_hurt.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/enemy_jade_guardian_idle.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/enemy_jade_guardian_walk.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/enemy_machine_scout_death.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/enemy_machine_scout_hurt.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/enemy_machine_scout_idle.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/enemy_machine_scout_run.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/enemy_machine_scout_shoot.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/enemy_scarlet_knight_death.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/enemy_scarlet_knight_hurt.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/enemy_scarlet_knight_idle.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/enemy_scarlet_knight_run.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/enemy_scarlet_knight_sword_attack.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/fx_dash_trail.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/fx_death_particles.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/fx_electric_impact.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/fx_explosion.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/fx_heal_pulse.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/fx_muzzle_flash.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/fx_shield_break.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/fx_sword_slash.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/hero_explorer_death.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/hero_explorer_hurt.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/hero_explorer_idle.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/hero_explorer_run.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/hero_explorer_shoot.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/hero_explorer_walk.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/hero_iron_warden_death.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/hero_iron_warden_hurt.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/hero_iron_warden_idle.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/hero_iron_warden_run.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/hero_iron_warden_sword_attack.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/hero_iron_warden_walk.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/prop_chest_common.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/prop_chest_legendary.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/prop_chest_rare.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/prop_coin_pickup.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/prop_crystal_pickup.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/prop_destructible_crate.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/prop_explosive_barrel.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/prop_healing_shrine.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/prop_health_pickup.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/prop_magic_altar.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/prop_teleport_portal.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/prop_weapon_pedestal.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/weapon_ancient_sword.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/weapon_assault_rifle.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/weapon_celestial_railgun.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/weapon_dual_daggers.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/weapon_energy_shotgun.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/weapon_heavy_crossbow.png",
+      "status": "differs",
+      "partial_placeholder": true
+    },
+    {
+      "name": "assets/images/weapon_plasma_cannon.png",
+      "status": "differs",
+      "partial_placeholder": true
+    }
+  ]
+}

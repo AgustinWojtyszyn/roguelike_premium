@@ -1,0 +1,2534 @@
+{
+  "batch": "round_01_drowned_harbor",
+  "media": [
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/audio/bgm_dusk_harbor.mp3",
+      "source_sha256": "bf4e2a3e00391958be490b63b77c45f22e8583c9c6af5ed26ad67c79ccbd87ae",
+      "source_byte_size": 744658,
+      "category": "audio",
+      "source_ext": ".mp3",
+      "approved_for_runtime": false,
+      "actual_format": "MP3",
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/audio/bgm_dusk_harbor.mp3",
+      "converted_sha256": "bf4e2a3e00391958be490b63b77c45f22e8583c9c6af5ed26ad67c79ccbd87ae"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/boss_the_drowned_king_attack.png",
+      "source_sha256": "259d5a610f1444a2dbc87483f885067d3be47fe045a666d17e9cbf7832db33c2",
+      "source_byte_size": 541048,
+      "category": "bosses",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 3045568,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/bosses/boss_the_drowned_king_attack.png",
+      "converted_sha256": "2143211805c5254df1be06a83f5cfdb619811a209e75cf2e841d2b8957e6658c"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/boss_the_drowned_king_death.png",
+      "source_sha256": "c252cc51539ac8ab951d0131597f3ac1a054f2527ccb480d917d721bc6347371",
+      "source_byte_size": 582134,
+      "category": "bosses",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 3399756,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/bosses/boss_the_drowned_king_death.png",
+      "converted_sha256": "7518961220539145d56fc8a22c8485d2b247764b3a1cfdf632cd05f4c6582d78"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/boss_the_drowned_king_hurt.png",
+      "source_sha256": "4f77bcd529cc4c59ec64b0d60d77dbe0a12bf56323da743c48c302be0f721b2c",
+      "source_byte_size": 501074,
+      "category": "bosses",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 2767611,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/bosses/boss_the_drowned_king_hurt.png",
+      "converted_sha256": "2298073f94e694c7ade60935ce6fa5c5ab992d3048a996c0823c2d55cf1d8240"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/boss_the_drowned_king_idle.png",
+      "source_sha256": "caa9e9d48ba78fca23f6422fb978c7738b1b2c8365e7ada767be9ed70f935320",
+      "source_byte_size": 176614,
+      "category": "bosses",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        2048,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 984057,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 4,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/bosses/boss_the_drowned_king_idle.png",
+      "converted_sha256": "22e7e343b2ef6d0ff2d8db60b9766eaaf1cce5e48821d5bb270df580ce342272"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/boss_the_drowned_king_sword_attack.png",
+      "source_sha256": "f90bacdcea70b00c3c58cb0c1dd0c99a97724a0a6e5b503a2d3b4c9fe8b30eff",
+      "source_byte_size": 602530,
+      "category": "bosses",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 3061138,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/bosses/boss_the_drowned_king_sword_attack.png",
+      "converted_sha256": "f7bfce95fdcffa92e85284285c3c83c9753561ee2823af08e1fa1378ba8e9a25"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/boss_the_drowned_king_walk.png",
+      "source_sha256": "3cc734a891904a82f456242795fb7b586f2fc8f5ce3e06490266d3897bb68e13",
+      "source_byte_size": 578416,
+      "category": "bosses",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 3263877,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/bosses/boss_the_drowned_king_walk.png",
+      "converted_sha256": "772ff574852f868a76919d98ea83bcb696a03905a61d2b7f51be46c108849e2a"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/char_arcanist_attack.png",
+      "source_sha256": "d26d48d01f8192e72fff17134e5b2481aeaef97fc3e9e6843b5c2a88a60ffc43",
+      "source_byte_size": 427026,
+      "category": "characters",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 2520468,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/characters/char_arcanist_attack.png",
+      "converted_sha256": "a950167e97f9b2ae99ace03fd1e06de4060fcf8da33c01b12f6986b1c38a5960"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/char_arcanist_death.png",
+      "source_sha256": "83bc6827c03b16626cf15f0931c7b55ad2aa146df53e580b0ff65a1c8bc1d188",
+      "source_byte_size": 443820,
+      "category": "characters",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 2535849,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/characters/char_arcanist_death.png",
+      "converted_sha256": "4b2d8f59d7a699cfc832197705ecc21aa85f7673e2a145d14d189e68b37304cc"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/char_arcanist_hurt.png",
+      "source_sha256": "2527ab1d84eb44a13c63f391703ac890950739348893038a16a4608de12ca2c9",
+      "source_byte_size": 505252,
+      "category": "characters",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 2849488,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/characters/char_arcanist_hurt.png",
+      "converted_sha256": "2a6e94838e16a7f2ea6b0e4c72f9fafbb3e42e9a9b24ea53c1ffb39baf872f54"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/char_arcanist_idle.png",
+      "source_sha256": "86e9952c8b94bb945edb0652dfd0acd2dd283e9bcc3e230195b14325b543df2d",
+      "source_byte_size": 123028,
+      "category": "characters",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        2048,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 718251,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 4,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/characters/char_arcanist_idle.png",
+      "converted_sha256": "a5da9d9b69d91a13e74928dc71ea356d57aee35ded4045dca72457be2ee234b1"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/char_arcanist_run.png",
+      "source_sha256": "6eccafd36c770aa7e1e7a2b7b5b8c1f9159827756549adbdf74e2c145b3a6286",
+      "source_byte_size": 541928,
+      "category": "characters",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 3072568,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/characters/char_arcanist_run.png",
+      "converted_sha256": "85c6cb042d32371547977afd4710bd0480f6f33f0381ba8b72b643a71394b570"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/char_arcanist_walk.png",
+      "source_sha256": "26b3e805cf33b468aa3d80118742cc51469c90755d530d389b4573d40feb0f2b",
+      "source_byte_size": 470574,
+      "category": "characters",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 2706087,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/characters/char_arcanist_walk.png",
+      "converted_sha256": "9f74e011d5bb25a4673a64f5a0fcb658f5175df445d70958e310be7374396ba2"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/char_ranger_death.png",
+      "source_sha256": "909c12b6f604e28122bf4bbe83871c5f10683c6ff6184297b3acae5e4375b722",
+      "source_byte_size": 344444,
+      "category": "characters",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 2093491,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/characters/char_ranger_death.png",
+      "converted_sha256": "e1432558b5acdc0b466c88dcf734ac8eec10ba4b89bb469eb23d44a4affabb76"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/char_ranger_hurt.png",
+      "source_sha256": "763c181a86f8ada10e8bdcab9d70c5b82484049d54184adbddf20d7facd4c69f",
+      "source_byte_size": 392610,
+      "category": "characters",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 2428961,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/characters/char_ranger_hurt.png",
+      "converted_sha256": "26b1b46e58034fc662e7426e3187e0badd4de315ab403a5b218bd9aef19cdea2"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/char_ranger_idle.png",
+      "source_sha256": "3a3c73f374bb582e21ac15f736d7ee5ebb92c00f3c9bdaa298f3ac0284325741",
+      "source_byte_size": 84770,
+      "category": "characters",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        2048,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 504465,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 4,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/characters/char_ranger_idle.png",
+      "converted_sha256": "ea16a96d6d5ffa800ceb062040b80179b00356178b664e321febe74e1c121aa7"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/char_ranger_run.png",
+      "source_sha256": "aa90ece1a9d52e82e5da3915d15d74d0cef3e8efa4db9fac5b725b502ba6e7ac",
+      "source_byte_size": 423382,
+      "category": "characters",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 2553779,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/characters/char_ranger_run.png",
+      "converted_sha256": "880b1f85519e2f6314b119712780eefe83923917a93244b82b4a44df6a797dca"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/char_ranger_shoot.png",
+      "source_sha256": "e1eab294e37a27c0f1f53a312e82f3dffb2b81256438b93acb31f6ccdfe2364e",
+      "source_byte_size": 479874,
+      "category": "characters",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 3064576,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/characters/char_ranger_shoot.png",
+      "converted_sha256": "a4bd2a5215bbc72df34546ae9f9ce7f01e8f0322baeb06ca774b826811fe3164"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/char_ranger_walk.png",
+      "source_sha256": "662a7600e4d13401c96d412f1e5701fcbfce34e2b58597685d8a399c032de852",
+      "source_byte_size": 323426,
+      "category": "characters",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 1978795,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/characters/char_ranger_walk.png",
+      "converted_sha256": "18a10209f682b636546dd0c1447648e61e0a5185d3926c548047373558b32f4c"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/char_vanguard_attack.png",
+      "source_sha256": "64df14879da11274fba0b3ea31f779e06a2fb6f264d5f122a7e4a6ef852227fe",
+      "source_byte_size": 392384,
+      "category": "characters",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 2427782,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/characters/char_vanguard_attack.png",
+      "converted_sha256": "7676040f9566005bd1bc882057408ee8c85615ec0a2d190082aa36f4a4856e7f"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/char_vanguard_death.png",
+      "source_sha256": "7e5fff311731a6fd7dcc2507f6bdd2f4f34da29a6f4c94b9858dd0f0c631b08b",
+      "source_byte_size": 419626,
+      "category": "characters",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 2443201,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/characters/char_vanguard_death.png",
+      "converted_sha256": "c77de29b3cc38ecea0b2bf4333e61b0fa09628362aefe1f7c20a4157428fb49c"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/char_vanguard_hurt.png",
+      "source_sha256": "b798ba2818cef91f5e206f10178c16ee5c713a20bf11c1fd6c337c23712988ad",
+      "source_byte_size": 570504,
+      "category": "characters",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 3577663,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/characters/char_vanguard_hurt.png",
+      "converted_sha256": "348f250cf60afa6daf41967d3dbb0687f6d17126d1b1909ce222023004877d60"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/char_vanguard_idle.png",
+      "source_sha256": "22428f867081b255a5b4363d9bac3f3c8e51d5b20e871bea4295df49c8ed3da0",
+      "source_byte_size": 130814,
+      "category": "characters",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        2048,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 832863,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 4,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/characters/char_vanguard_idle.png",
+      "converted_sha256": "90bd1cc909581b124bb4eb4bd5505a317689b3b650e649142c2d2b22a890867f"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/char_vanguard_run.png",
+      "source_sha256": "37bc893aa9d96f134a12967081c3823c8dfb37cc1875c2b56536a5e21b959cda",
+      "source_byte_size": 448156,
+      "category": "characters",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 2768641,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/characters/char_vanguard_run.png",
+      "converted_sha256": "eb017d32546447b3637ff27756cec57c5a32ee2c8a1c313506d8886cc0870aca"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/char_vanguard_walk.png",
+      "source_sha256": "8a4d9884b61990279b41182855f8eceee9db0bc130a84d7463ffd57298a3f624",
+      "source_byte_size": 384750,
+      "category": "characters",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 2463694,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/characters/char_vanguard_walk.png",
+      "converted_sha256": "f4196bdbb5e024b55b4ce2bf3793828c1338a201dec4646b389c59cdb953b36c"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/enemy_abyssal_crab.png",
+      "source_sha256": "f63a376957e2806eaa6c3b2a94789180bfd3b1a7677bf3986b8b23fbe7e68a62",
+      "source_byte_size": 68838,
+      "category": "enemies",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        700,
+        498
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 392435,
+      "grid_candidate": null,
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/enemies/enemy_abyssal_crab.png",
+      "converted_sha256": "4b6bc2e2d3d376b363f3bcdd857bb8f84b89dab7c71e8c356438d029139dd660"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/enemy_armored_guardian_attack.png",
+      "source_sha256": "7e1f15c8bbe263f6df88c8fb55073ddd4d4b5e1ed920f9ad4d778cce82cf698b",
+      "source_byte_size": 695248,
+      "category": "enemies",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 4283648,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/enemies/enemy_armored_guardian_attack.png",
+      "converted_sha256": "075830a52bca17bc903f9f844508e6f6a5cd1aae188e1f59214326e5744e1285"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/enemy_armored_guardian_death.png",
+      "source_sha256": "27553a1ce3c8cad9de322d56a3bb8394b907ba570486fedce452f85ee5c7c480",
+      "source_byte_size": 567946,
+      "category": "enemies",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 3262598,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/enemies/enemy_armored_guardian_death.png",
+      "converted_sha256": "f84f0c0b739694fa7b0ec8b44d1a1bc379fe6ca5b222329df21e6f34701de915"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/enemy_armored_guardian_hurt.png",
+      "source_sha256": "8d3eb7a688df2ad51b6e4536f2426ed7d81c257a3ff860653a44ee9a5f5fb751",
+      "source_byte_size": 560470,
+      "category": "enemies",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 3272754,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/enemies/enemy_armored_guardian_hurt.png",
+      "converted_sha256": "6abc6859e2fce31fd9dbe44320bf5fa88302bcad8e52bc28a3d9c12106bd2a25"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/enemy_armored_guardian_idle.png",
+      "source_sha256": "44a5cc3fb699aaf1cc1c9efc81b6d527c677a74161a66b84ed940fe84107ad1f",
+      "source_byte_size": 168600,
+      "category": "enemies",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        2048,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 995430,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 4,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/enemies/enemy_armored_guardian_idle.png",
+      "converted_sha256": "7b87806c582d8c8088d2c08b68cbd8c71b67fc5f6b1e4b3f82e8cd268b5de366"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/enemy_armored_guardian_walk.png",
+      "source_sha256": "eecdc86823fa3476acf370170f6c1bc44a0a69c8e449b7516bc4062b0dbd53d3",
+      "source_byte_size": 536946,
+      "category": "enemies",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 3293053,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/enemies/enemy_armored_guardian_walk.png",
+      "converted_sha256": "244534c0794c0e054fc8e326e701ba10f2f0997f7480ee9ba1d794aeb86c8026"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/enemy_cursed_archer_death.png",
+      "source_sha256": "b44223318d17b8a77934731a150390bb6c73b6de5fb453b4edd9a19b75fa6167",
+      "source_byte_size": 490640,
+      "category": "enemies",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 2381379,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/enemies/enemy_cursed_archer_death.png",
+      "converted_sha256": "0990874d478dbba21df36d37182d0194100229fc5543eeb6e2161bdd5526eed9"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/enemy_cursed_archer_hurt.png",
+      "source_sha256": "ea1c6efb6dbf26d0fc4642b6bce726c4d2bed5ba4ff4ef39c8134e578e5933e2",
+      "source_byte_size": 508152,
+      "category": "enemies",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 2550925,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/enemies/enemy_cursed_archer_hurt.png",
+      "converted_sha256": "f402e40da9230697ed13903ccb69938db72088cdc077886654299bbb341255b3"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/enemy_cursed_archer_idle.png",
+      "source_sha256": "6946a1246f7efb40b0eb332efe18dec7a77bf4291327a4f8af568c7662ceb169",
+      "source_byte_size": 116926,
+      "category": "enemies",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        2048,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 638625,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 4,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/enemies/enemy_cursed_archer_idle.png",
+      "converted_sha256": "2b6eaa1047cef1e9462db1d83c252e2af0479a416c2c23e84a91184a315ebf17"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/enemy_cursed_archer_shoot.png",
+      "source_sha256": "695b30310e90052e914739a0a0e5b3b8e70ecd653e20a76450b9bb2df45deffd",
+      "source_byte_size": 486902,
+      "category": "enemies",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 2416427,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/enemies/enemy_cursed_archer_shoot.png",
+      "converted_sha256": "9c9d97f9992a93924849ac69d747477447c249defa3013d65463065b11f88ab7"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/enemy_cursed_archer_walk.png",
+      "source_sha256": "31b327e95aa00cfb546e44b1f352015db5b6b6e4002ed683f9015e2e6ced8c6c",
+      "source_byte_size": 507844,
+      "category": "enemies",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 2700421,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/enemies/enemy_cursed_archer_walk.png",
+      "converted_sha256": "afd0bd21e683442302cd4aeb99312c143e6c85c9a5f0cd67e870fab87da8efe5"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/enemy_drowned_hunter_attack.png",
+      "source_sha256": "1654bd786a1b05bc2905b3ba0bac73973370d41520f5d0768d5f79905c65dcb3",
+      "source_byte_size": 370752,
+      "category": "enemies",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 2214666,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/enemies/enemy_drowned_hunter_attack.png",
+      "converted_sha256": "41de35e9de3d130d21ab64032e680aa84e4432c469be6b4f649f33ee5f633f4f"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/enemy_drowned_hunter_death.png",
+      "source_sha256": "6812aaad722029e584bc7183bf677509c9a07e50251f5837ef6a634aac572960",
+      "source_byte_size": 394046,
+      "category": "enemies",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 2386688,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/enemies/enemy_drowned_hunter_death.png",
+      "converted_sha256": "80613a8402ef2b02259d0fc4fbdf9724d7b7fac785e572399f50712b65b3b272"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/enemy_drowned_hunter_hurt.png",
+      "source_sha256": "ec716d2fb02e9812d0e807a2625bae1ac50ad5b29cd632375cde2b1d6aed498d",
+      "source_byte_size": 316806,
+      "category": "enemies",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 2040804,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/enemies/enemy_drowned_hunter_hurt.png",
+      "converted_sha256": "0a81868a0efb3848d25cc5634eb9c9434d38ebaf7a266bd45f61d9cd858e515a"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/enemy_drowned_hunter_idle.png",
+      "source_sha256": "d1171eb144e2dd8df02c82830904a003c3312b83505a5fe13859f24f26dbb4f9",
+      "source_byte_size": 122022,
+      "category": "enemies",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        2048,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 730660,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 4,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/enemies/enemy_drowned_hunter_idle.png",
+      "converted_sha256": "f9a255d2497d70e02ef28eee0660415cb4a01d2dd4e8aaaecfcfacdee4ebe298"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/enemy_drowned_hunter_run.png",
+      "source_sha256": "21c682a69ced044a6100cff5e8292cf286f2b30d888e7b90148500f668a7a41e",
+      "source_byte_size": 453376,
+      "category": "enemies",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 2713285,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/enemies/enemy_drowned_hunter_run.png",
+      "converted_sha256": "550e73960691d2d5a9e3b0441ebd1e34e08c883180713888041cab379a48c1ba"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/enemy_drowned_soldier_death.png",
+      "source_sha256": "c9494e771079b4d10520d530647ded48606713ec00b123c79b6c0eb164263a95",
+      "source_byte_size": 498788,
+      "category": "enemies",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 2716101,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/enemies/enemy_drowned_soldier_death.png",
+      "converted_sha256": "f5757479d2bea79780513d012a94a589bc1077fd7079dcf4414eaf34f5c539ba"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/enemy_drowned_soldier_hurt.png",
+      "source_sha256": "a5dae49d0ae1b21e2e140e18c31c419b10f831374b228180e687a2fced9dff44",
+      "source_byte_size": 472626,
+      "category": "enemies",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 2735190,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/enemies/enemy_drowned_soldier_hurt.png",
+      "converted_sha256": "6b36bcd891adfd108ee6dc6ae9f6b3d54c4d81839e38c1c9eb9aaedc50481c26"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/enemy_drowned_soldier_idle.png",
+      "source_sha256": "20325e5a0a5ae38a4746521f92731889413cdae09256177dfed5d267b6e1bf39",
+      "source_byte_size": 122910,
+      "category": "enemies",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        2048,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 670108,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 4,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/enemies/enemy_drowned_soldier_idle.png",
+      "converted_sha256": "a97844ea2d2debd15af200c005f8392d7f2da3e425f0851ae40ab84ed9943860"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/enemy_drowned_soldier_sword_attack.png",
+      "source_sha256": "5fe8f724d195dab381716edd8f55f94f2e073db59b7fb387cf30cc81125770d7",
+      "source_byte_size": 550938,
+      "category": "enemies",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 3077264,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/enemies/enemy_drowned_soldier_sword_attack.png",
+      "converted_sha256": "8d38238942fb8b17e7f3c078fde0965492cf4e50be47de9a03c63b9f67244c40"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/enemy_drowned_soldier_walk.png",
+      "source_sha256": "7cfd7531eeddb21c3f0d7239af4caa8e0a9f3b4d31f05d83611c3dc4574d3178",
+      "source_byte_size": 447476,
+      "category": "enemies",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 2600310,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/enemies/enemy_drowned_soldier_walk.png",
+      "converted_sha256": "adabec9f399d2b5f02066aa34ae14beeae5e8f58f0a58f982887b8d68d4def10"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/prop_broken_pillar.png",
+      "source_sha256": "e4a801f28980afcd30629c38407ced893db16b29c67f975379b7a142b2cbe8e3",
+      "source_byte_size": 51580,
+      "category": "props",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        762,
+        824
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 331714,
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/props/prop_broken_pillar.png",
+      "converted_sha256": "4b71d0de13091fb905f82887630f2a6f21bcaed417707de948f1abbaa5bbe5d2"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/prop_campfire.png",
+      "source_sha256": "288b391aa5d202df2a5964e803feeed8772a1a6bf517ed651a1c7cd0a914f261",
+      "source_byte_size": 58040,
+      "category": "props",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        722,
+        681
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 406316,
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/props/prop_campfire.png",
+      "converted_sha256": "03e625e6de8f44562bab9d272914b4bef770127fe3ca39dcf14e911a7ea24679"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/prop_coin_pickup.png",
+      "source_sha256": "c386dbf6ac3389f6d461ccf539fe026ea4ded7e2738585ea23ce3711ca6daf84",
+      "source_byte_size": 61188,
+      "category": "props",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        782,
+        702
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 471612,
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/props/prop_coin_pickup.png",
+      "converted_sha256": "6e4b47e256bcbd54a5228e3da6286595b3427d5766ae06062f71d0466be50e2e"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/prop_harbor_lantern.png",
+      "source_sha256": "1e3e4ccb5c81320664fb2bf125824b746fff15895cd072c4c51ed14ca66ff7f9",
+      "source_byte_size": 39852,
+      "category": "props",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        244,
+        844
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 168338,
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/props/prop_harbor_lantern.png",
+      "converted_sha256": "8aa3ee091e5576b393b137df3decf4b6619d4e4b9eac51e9fdb36301ff77a1d8"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/prop_healing_flask.png",
+      "source_sha256": "bc8ed1d37033d3f9fea27a1268121b67371a9400202d85434e133c4dfea37365",
+      "source_byte_size": 40956,
+      "category": "props",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        434,
+        607
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 237095,
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/props/prop_healing_flask.png",
+      "converted_sha256": "984c3c7d97dca0b714e87535a860f89e4e5252a4ccd80b6522d87587ecd55cc8"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/prop_locked_chest.png",
+      "source_sha256": "783d7cd0a98e15f71639da80a38254d7bed99beea25eecc63792e7e271ab0b50",
+      "source_byte_size": 111158,
+      "category": "props",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        750,
+        777
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 731565,
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/props/prop_locked_chest.png",
+      "converted_sha256": "62cd7c98879374418869e26b53c3c6f376dd554f74d139fc344283924bf37467"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/prop_rope_bundle.png",
+      "source_sha256": "672b7e724c00bdf2573e006d21a8349b8c4db5fc942fbc3b853e4d8f1920b741",
+      "source_byte_size": 78362,
+      "category": "props",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        864,
+        671
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 572322,
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/props/prop_rope_bundle.png",
+      "converted_sha256": "254628a183a196f5906e72467099c84cff98af41aab597fff01cf7b38a47d786"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/prop_rune_obelisk.png",
+      "source_sha256": "b497357b1d4aff9fe0ceeae58e096eed268d43cbf95addbf0d82bf4de30ecf76",
+      "source_byte_size": 71344,
+      "category": "props",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        454,
+        911
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 434779,
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/props/prop_rune_obelisk.png",
+      "converted_sha256": "2c2b1b0dc7359e07e5a3e90cf310ebe0653fe96faa190c72751182ba09fc3085"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/prop_shrine_save.png",
+      "source_sha256": "43e768975f1cd6ef481946b1a7407cff0afac4300b8b33db3064f2319c1770e3",
+      "source_byte_size": 91962,
+      "category": "props",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        660,
+        788
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 500802,
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/props/prop_shrine_save.png",
+      "converted_sha256": "2d06a91210211c9a7f3d7dd487b922210ebe2133dd4d3eed6a32bdf6f4f92785"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/prop_small_boat.png",
+      "source_sha256": "589dc1f4ee04d58667b54b8cfcdac751cc3e29e00e37a81d247f008c69088e20",
+      "source_byte_size": 66416,
+      "category": "props",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        731,
+        506
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 406491,
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/props/prop_small_boat.png",
+      "converted_sha256": "7d331815b12897f46cadc5d134964b3e93a54fb40a512bffa94cb2c85fcf1ffd"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/prop_stone_column.png",
+      "source_sha256": "582e44d5c2622e1b84d991598aa9e033f79c63982de5e787c9319ff6a2990a55",
+      "source_byte_size": 47704,
+      "category": "props",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        394,
+        900
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 281524,
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/props/prop_stone_column.png",
+      "converted_sha256": "e336f9641db42ed4b54fb5a09e45a8f7b3be5d6f7dc51c210f75b7893367f83f"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/prop_sunken_fountain.png",
+      "source_sha256": "9e0b3955ead60a08f3683691495bfb094888d5471b9abe6e6121336267b0c077",
+      "source_byte_size": 94402,
+      "category": "props",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        854,
+        684
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 599843,
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/props/prop_sunken_fountain.png",
+      "converted_sha256": "04ad8c91140a07696a8426449525c782057fcffb9dc6c14f4357efe2930acfc8"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/prop_treasure_chest.png",
+      "source_sha256": "351329f760fe5d91104e0acb3a03bef60d22dd76f79fe7dc5f551532012d23b2",
+      "source_byte_size": 63590,
+      "category": "props",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        742,
+        711
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 489973,
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/props/prop_treasure_chest.png",
+      "converted_sha256": "9a8e4d93eb36cfeec9b6d3a4f417bfbcc28e1004c642816cdb2c03b15db26877"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/prop_weapon_pedestal.png",
+      "source_sha256": "e5dd20ec1e04a085534fd8cfe3f8ab55871f5ffa192a41551192ab9d8a8950c5",
+      "source_byte_size": 98030,
+      "category": "props",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        863,
+        826
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 615258,
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/props/prop_weapon_pedestal.png",
+      "converted_sha256": "0330291269e5bdf435e28b226fc9c9ac5f90ee13b0ad198a0812299e39b1a083"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/prop_wooden_barrel.png",
+      "source_sha256": "ad7bdb9e2ea5f8a2f7f802b82c57a341ec964a09691d1be1b84c4ac6b9851ffe",
+      "source_byte_size": 65600,
+      "category": "props",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        678,
+        884
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 512248,
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/props/prop_wooden_barrel.png",
+      "converted_sha256": "c5cc2850ea3ad6a6aab3bd64a1635e32f931d58d1f5014bb50978a13e81bf1df"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/prop_wooden_crate.png",
+      "source_sha256": "6ab1a76a7b24f82bb96407179081b29a1682904ad33ea2f527d51f47e286d3d5",
+      "source_byte_size": 67982,
+      "category": "props",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        676,
+        672
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 446067,
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/props/prop_wooden_crate.png",
+      "converted_sha256": "0cf947c62c0b12819941f5230ab520f8eb137308e4ee28db9b46c26c69edd236"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/scene_abandoned_docks.png",
+      "source_sha256": "a069d47e04d8f5ba3dca46004c049f2304dc23f9149e1d07427f38c663311a7e",
+      "source_byte_size": 125098,
+      "category": "backgrounds",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        1376,
+        768
+      ],
+      "raw_mode": "RGB",
+      "alpha_range": [
+        255,
+        255
+      ],
+      "has_transparency": false,
+      "alpha_status": "opaque",
+      "png_format_verified": true,
+      "converted_byte_size": 1137209,
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/backgrounds/scene_abandoned_docks.png",
+      "converted_sha256": "a34b41cb7eb71766d39a46452719fdcbbd27a48aa94a3f89da607817d910c7e8"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/scene_drowned_cathedral.png",
+      "source_sha256": "be12d01eedd8ff90a6bbff62eef0f28fd443e8a9d93d8e92af8140d06b38c6fd",
+      "source_byte_size": 171042,
+      "category": "backgrounds",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        1376,
+        768
+      ],
+      "raw_mode": "RGB",
+      "alpha_range": [
+        255,
+        255
+      ],
+      "has_transparency": false,
+      "alpha_status": "opaque",
+      "png_format_verified": true,
+      "converted_byte_size": 1457108,
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/backgrounds/scene_drowned_cathedral.png",
+      "converted_sha256": "0b6e34f2233675868fa9b99dbf417689f20d3c0fe218b3b36c6797b9d82ae64a"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/scene_flooded_market.png",
+      "source_sha256": "47ea564178b7485a069d10e130a726aa64e94e8c1006787a7043be8f4dbeaa18",
+      "source_byte_size": 132478,
+      "category": "backgrounds",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        1376,
+        768
+      ],
+      "raw_mode": "RGB",
+      "alpha_range": [
+        255,
+        255
+      ],
+      "has_transparency": false,
+      "alpha_status": "opaque",
+      "png_format_verified": true,
+      "converted_byte_size": 1191814,
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/backgrounds/scene_flooded_market.png",
+      "converted_sha256": "f2d471b769a50e7f36a50d94266a14829918ba88fb52771d64dfa91a6526aea7"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/scene_main_menu_dusk_harbor.png",
+      "source_sha256": "d95ae612a658f1463b5a87c9442c1b8e30b5ca952f286789ba3a1f45095d5246",
+      "source_byte_size": 106796,
+      "category": "backgrounds",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        1376,
+        768
+      ],
+      "raw_mode": "RGB",
+      "alpha_range": [
+        255,
+        255
+      ],
+      "has_transparency": false,
+      "alpha_status": "opaque",
+      "png_format_verified": true,
+      "converted_byte_size": 1063490,
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/backgrounds/scene_main_menu_dusk_harbor.png",
+      "converted_sha256": "d5e6e7e49c409a326658c1de093d821e330b61a847c0c81478e081eba8eb9e1d"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/scene_sanctuary_campfire.png",
+      "source_sha256": "cbe013459239e025a80c39ab4036a4dc37be86b47a96559b4cc2f77354e20ca2",
+      "source_byte_size": 179654,
+      "category": "backgrounds",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        1376,
+        768
+      ],
+      "raw_mode": "RGB",
+      "alpha_range": [
+        255,
+        255
+      ],
+      "has_transparency": false,
+      "alpha_status": "opaque",
+      "png_format_verified": true,
+      "converted_byte_size": 1400998,
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/backgrounds/scene_sanctuary_campfire.png",
+      "converted_sha256": "6a15f5d9e14d3ba5aea278b67e49ec716d610c44376fe3e0c8a69cea76cb086a"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/scene_world_map.png",
+      "source_sha256": "d1baa9f8c0c8746afcd2ec479b41e2618371ff2a4114a52d23319f26278c2d6f",
+      "source_byte_size": 231304,
+      "category": "backgrounds",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        1376,
+        768
+      ],
+      "raw_mode": "RGB",
+      "alpha_range": [
+        255,
+        255
+      ],
+      "has_transparency": false,
+      "alpha_status": "opaque",
+      "png_format_verified": true,
+      "converted_byte_size": 1672885,
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/backgrounds/scene_world_map.png",
+      "converted_sha256": "7c1eb651b962ec8c1ee9565eef19954b956bf8160985432f7ba2e64ab8986fa6"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/tileset_abandoned_docks.png",
+      "source_sha256": "db9786c14649d38ab44f7035ccfb326f8761cfe9026b17c0dfc21f5c9ac247d8",
+      "source_byte_size": 181072,
+      "category": "tilesets",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        993,
+        818
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 930732,
+      "tileset_warning": "Composition may not be a regularly aligned atlas; manual separation and collision validation required",
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/tilesets/tileset_abandoned_docks.png",
+      "converted_sha256": "34bd8ad338281dc088c019181ca08243d7a99ed4066fd1d981e59e7d59eae19e"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/tileset_cursed_fortress.png",
+      "source_sha256": "40be17ccff1869a522421ece1bc3b3fc067bc088d8cb108c347002401998a6ec",
+      "source_byte_size": 92394,
+      "category": "tilesets",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        836,
+        625
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 542180,
+      "tileset_warning": "Composition may not be a regularly aligned atlas; manual separation and collision validation required",
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/tilesets/tileset_cursed_fortress.png",
+      "converted_sha256": "f5dfbf4c58bd43920cffad3a7ca7fc5d96a841fd3c6e5aab73c0725272d544a9"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/tileset_drowned_cathedral.png",
+      "source_sha256": "b0b5d7fccc3cd5770e9ee73b37fc1444c66f8f48002a7368bc7f41d7a260b251",
+      "source_byte_size": 190442,
+      "category": "tilesets",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        893,
+        768
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 1043996,
+      "tileset_warning": "Composition may not be a regularly aligned atlas; manual separation and collision validation required",
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/tilesets/tileset_drowned_cathedral.png",
+      "converted_sha256": "91791baa30f2b0b6de18b5988efa72535f136d0a43fbd887111909e4c3642a19"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/tileset_flooded_market.png",
+      "source_sha256": "d1a047346ce787316b9db7b011c7325defb6bbf26ed62ffedd502dc440ccbc48",
+      "source_byte_size": 151536,
+      "category": "tilesets",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        977,
+        743
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 787285,
+      "tileset_warning": "Composition may not be a regularly aligned atlas; manual separation and collision validation required",
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/tilesets/tileset_flooded_market.png",
+      "converted_sha256": "07deb152edebdb5532def27d169d97ca5d1af864615b279dc446ee5294d90a3a"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/tileset_forgotten_gardens.png",
+      "source_sha256": "b8c33a77892da68cc36df02e71257e8bc181795c22a9fe4e33ccaf405acd2c64",
+      "source_byte_size": 155780,
+      "category": "tilesets",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        927,
+        646
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 755834,
+      "tileset_warning": "Composition may not be a regularly aligned atlas; manual separation and collision validation required",
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/tilesets/tileset_forgotten_gardens.png",
+      "converted_sha256": "75085470a6ff992405d8d0d021c6d61f46501e75bca87df4a46c8e3dc5a6dba1"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/vfx_bullet_impact.png",
+      "source_sha256": "e43c37091a7da94dae4eb4158f74b486731b1212d0b1c8b6d2effaee47d9b1a4",
+      "source_byte_size": 78230,
+      "category": "vfx",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        731,
+        671
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 489186,
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/vfx/vfx_bullet_impact.png",
+      "converted_sha256": "252f720f5e5b1bab26e2d8a268c013d43f7e00393134dbed0862fd84971714a8"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/vfx_chest_glow.png",
+      "source_sha256": "ce37f7fd373f9ee736d775c1c368f703f1df87e89f46c2bb560e798862a5e222",
+      "source_byte_size": 51786,
+      "category": "vfx",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        547,
+        732
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 302293,
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/vfx/vfx_chest_glow.png",
+      "converted_sha256": "b64d0e39e2f5887518dda5e802ec764d02037f8e222c601c4054d34ad83d406e"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/vfx_dash_trail.png",
+      "source_sha256": "bfa36d68f4e3d57ee3dedf80d65109aaf43ac0a82cb3415001234849faee94d0",
+      "source_byte_size": 70758,
+      "category": "vfx",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        795,
+        538
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 414012,
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/vfx/vfx_dash_trail.png",
+      "converted_sha256": "509727332a07cae7b7539b53fedb80c00ba645312797b5fa34c75c3a23eb1266"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/vfx_magic_spark.png",
+      "source_sha256": "db1ea25b7d78886b1d92e8d3708ce18652995a7fb31cb402aa2c5065538da028",
+      "source_byte_size": 92504,
+      "category": "vfx",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        700,
+        700
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 595403,
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/vfx/vfx_magic_spark.png",
+      "converted_sha256": "1046a0ff7a52bf4e455a10d50d27785f82e7fd2ebfbd67f91d274734f56c6a62"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/vfx_runic_slash.png",
+      "source_sha256": "2d568fa946e092f8eb73607a3cd43be31cfc0953cbef57a27dcc6d6b4ffc7257",
+      "source_byte_size": 54696,
+      "category": "vfx",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        671,
+        620
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 317500,
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/vfx/vfx_runic_slash.png",
+      "converted_sha256": "f9c67ba8fd428c3d645efa475b3352b0134beb2496a0d67a3de0450c7b2d40f9"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/vfx_water_splash.png",
+      "source_sha256": "5f0eca8b80ad8be23374bafc66a149cd38e1a6449230f4bd62af6dfa78e489b4",
+      "source_byte_size": 89744,
+      "category": "vfx",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        702,
+        712
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 517727,
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/vfx/vfx_water_splash.png",
+      "converted_sha256": "cf1a4bb0db343f50b091bb6039eca0c0119c2781d174b6945470f2e08fdd89a4"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/weapon_ancient_pistol.png",
+      "source_sha256": "706dbc19ee010106b48e88c79662648d3649fbd1cf0d27985de054cd91c682c9",
+      "source_byte_size": 52200,
+      "category": "weapons",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        822,
+        454
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 297499,
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/weapons/weapon_ancient_pistol.png",
+      "converted_sha256": "87c60c67a734daabfd9e5aa8993ff715ac0a4e911773f0a122220f6b8e3b7aa6"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/weapon_arcane_staff.png",
+      "source_sha256": "4a3f8850c7d6e02d34f96fca941a0bc80572f4dbbbf0df0ccd3ef7cc703bbec6",
+      "source_byte_size": 44804,
+      "category": "weapons",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        270,
+        892
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 252430,
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/weapons/weapon_arcane_staff.png",
+      "converted_sha256": "e339869a043a5b7956299b62876ab9469a332426fd41c7c000cf6f51afcc5300"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/weapon_harbor_rifle.png",
+      "source_sha256": "285add2b52af707fb589fafbe17053a18e30ef506144c79e14aee5f133c21136",
+      "source_byte_size": 41470,
+      "category": "weapons",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        870,
+        604
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 216225,
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/weapons/weapon_harbor_rifle.png",
+      "converted_sha256": "c0fb50fb802f323196e99a900af9cf76f0caad57fd203f563c27933fd72e8520"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/weapon_runic_sword.png",
+      "source_sha256": "a50dd1bc6b8ffa640a8f01e215fe6f5c6a26bed5aeb8b986b987ef28355032be",
+      "source_byte_size": 22654,
+      "category": "weapons",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        181,
+        834
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 124038,
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/weapons/weapon_runic_sword.png",
+      "converted_sha256": "1057fb8e53d9b403e52a1b2fc65282d094d6ada4c121870921df7e2ee73d2b99"
+    },
+    {
+      "round": "round_01_drowned_harbor",
+      "source_zip": "project-files (1).zip",
+      "source_path": "assets/images/weapon_tidebreaker_shotgun.png",
+      "source_sha256": "b298ca7c749a29fc8ac61fd0fbe60e3a3f5ce749a0cf967125dc73546ff60435",
+      "source_byte_size": 43332,
+      "category": "weapons",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        752,
+        649
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 288747,
+      "local_path": "asset_bank/playground/round_01_drowned_harbor/weapons/weapon_tidebreaker_shotgun.png",
+      "converted_sha256": "49ac13c0b6cb01bf200647dc4c3ffacba4ec77aa45003c54f363788f35881c85"
+    }
+  ]
+}
