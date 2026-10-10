@@ -1,28 +1,26 @@
-# RPG Premium — Google Playground staging
+# RPG PREMIUM — banco completo de recursos Playground
 
-Resources from Playground are **source candidates**, not runtime assets. Keep this folder under the existing `asset_bank/.gdignore` so Godot does not index unapproved bulk material.
+**Este es el repositorio correcto: `AgustinWojtyszyn/roguelike_premium`.**
 
-## First captured batch (2026-10-10)
+El banco es un área de conservación/curaduría para el RPG Premium existente en Godot 4.7, NO un nuevo juego ni un reemplazo de su runtime.
 
-- Source: user-owned `project-files (1).zip` (provided in ChatGPT).
-- 83 valid images internally encoded as WebP despite a `.png` filename.
-- 1 MP3.
-- 22 individually selected JPG screenshots/illustrations (reference only; some overlap with export).
-- Local import verified: 84 export resources; formats and file signatures pass.
-- Actual media files are **not yet uploaded to GitHub**. The staged package is provided separately to the project owner.
+## Archivos
+- `round_01_drowned_harbor/`: 83 imágenes + 1 MP3.
+- `round_02_four_worlds/`: 85 imágenes + 2 MP3.
+- `manual_selection/source_jpg/`: 22 referencias elegidas a mano.
+- `raw_export_zips/`: los tres ZIP originales, incluidos los dos completos y un snapshot parcial.
+- `reports/`: manifiestos con SHA256, formatos, transparencia, auditoría de animaciones y planchas visuales.
 
-Run `python3 tools/import_playground_assets.py '/path/to/project-files (1).zip'` after installing Pillow. This generates true PNG files, retains alpha when present, and records a manifest.
+**Estado remoto:** Los binarios del banco NO están aún en GitHub; este directorio de la rama solo contiene las instrucciones. Importar uno de los paquetes entregados en ChatGPT con:
+```bash
+python3 tools/install_playground_bank.py "/ruta/RPG_PREMIUM_SOURCE_BANK_COMPACT_FOR_REPO.zip"
+```
+o usar `RPG_PREMIUM_COMPLETE_BANK_FOR_REPO.zip` si se prefieren todos los PNG convertidos. Los dos pasaron pruebas de extracción SHA256 en un proyecto simulado.
 
-## Safe integration
+El paquete compacto conserva los originales en archivos `.webp`, identificados según su formato real. El paquete completo convierte las imágenes a PNG auténtico preservando el alfa. Ambos mantienen los ZIP históricos y los 22 JPG.
 
-- Keep the original ZIP archived separately.
-- Keep original/converted resources separate from `assets/premium/`.
-- Deduplicate against current Premium assets before promoting.
-- Character spritesheets are NOT weapon-ready just because frames exist: enforce `AGENTS.md` and `docs/PREMIUM_ASSET_REBUILD.md`.
-- Validate source terms for commercial rights, including any music.
-- Current first vertical slice: 1 ranged hero, 1 melee hero, 1 skeleton, 1 creature, 1 compact room.
-- Keep game mechanics, hitboxes, pooling, RoomBake, profile/save, and Android controls unchanged until the slice passes.
+**Nunca descartar del banco un recurso por no servir hoy.** Aceptar visuales en runtime selectivamente después de verificar cámara/perspectiva, animación, agarre de arma, oclusión, colisiones, rendimiento Android y derechos de uso comercial.
 
-Second batch should cover RPG Premium's four chapter families: corrupted machines, jade civilization, dark fortress, interdimensional anomalies.
+Lectura obligatoria: `docs/RPG_PREMIUM_COMPLETE_AUDIT_20261010.md`, `docs/CLAUDE_RPG_PREMIUM_MASSIVE_REBUILD_PROMPT.md`, `asset_bank/playground/COMPLETE_BANK_RECEIPT_20261010.md` y `AGENTS.md`.
 
-See `docs/PLAYGROUND_REBUILD_HANDOFF.md` for the safe workflow.
+`asset_bank/.gdignore` mantiene fuera del escaneo de Godot estos originales.
