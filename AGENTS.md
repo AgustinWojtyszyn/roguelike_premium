@@ -19,3 +19,6 @@ Read these before changing anything:
 
 ## Current target
 Prove one ranged hero, one melee hero, one humanoid enemy, one non-humanoid enemy and one compact premium dungeon room. Preserve the 60 FPS Android target.
+
+## Current 2026-10-10 asset-bank assignment
+Read `docs/RPG_PREMIUM_COMPLETE_AUDIT_20261010.md` and `docs/CLAUDE_RPG_PREMIUM_MASSIVE_REBUILD_PROMPT.md` before using any Playground source asset. All source files must be preserved in `asset_bank/playground/` but must not be bulk-wired into runtime. Continue on branch `feat/rpg-premium-complete-asset-audit-20261010`; do not merge automatically.
