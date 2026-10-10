@@ -23,12 +23,12 @@ func _ready() -> void:
 	rng.seed = game.run.seed_v * 7 + game.run.stage_idx * 13 + game.run.perks_picked
 	var luck := 0.15 if source == "chest" else 0.0
 	offers = RunState.roll_perk_offer(rng, Catalog.perks, game.run.perks, 3, luck)
-	skip_btn = GButton.make("SALTAR  +20", GButton.Style.GHOST, "coin")
+	skip_btn = HomeButton.menu("SALTAR  +20", GButton.Style.GHOST, "coin")
 	skip_btn.font_size = 20
 	skip_btn.icon_col = Color("ffd24a")
 	skip_btn.pressed.connect(_skip)
 	add_child(skip_btn)
-	cancel_btn = GButton.make("ATRÁS", GButton.Style.GHOST)
+	cancel_btn = HomeButton.menu("ATRÁS", GButton.Style.GHOST)
 	cancel_btn.font_size = 20
 	cancel_btn.visible = false
 	cancel_btn.pressed.connect(func(): _stage = 0; cancel_btn.visible = false; skip_btn.visible = true)
@@ -161,9 +161,9 @@ func _draw() -> void:
 	var a := clampf(_anim * 5.0, 0.0, 1.0)
 	draw_rect(Rect2(Vector2.ZERO, size), Color(0.01, 0.02, 0.06, 0.78 * a))
 	var title := "ELIGE UN PERK" if _stage == 0 else "¿QUÉ PERK REEMPLAZAS?"
-	UiKit.text(self, Vector2(0, 74.0), title, 44, UiKit.TEXT, 1, size.x, 8.0)
+	MenuStyle.text(self, Vector2(0, 74.0), title, 44, MenuStyle.TEXT, 1, size.x, 8.0)
 	var sub := "Mejora permanente durante esta run" if _stage == 0 else "Tus 5 slots están llenos"
-	UiKit.text(self, Vector2(0, 104.0), sub, 18, UiKit.DIM, 1, size.x, 3.0, false)
+	MenuStyle.text(self, Vector2(0, 104.0), sub, 18, MenuStyle.DIM, 1, size.x, 3.0, false)
 	if _stage == 0:
 		for i in offers.size():
 			_draw_card(i)
@@ -184,7 +184,10 @@ func _draw_card(i: int) -> void:
 	var col := Rarity.color_anim(p.rarity, _anim)
 	var owned := game.run.perks.has(p.id) and not p.stackable
 	Gfx.draw_glow(self, rr.get_center(), rr.size.y * 0.7, Color(col, 0.14 * k))
-	UiKit.panel(self, rr, UiKit.PANEL_HI, Color(col, 0.95), 18.0, k)
+	MenuStyle.panel(self, rr, MenuStyle.PANEL_HI, Color(col, 0.95), 18.0, k)
+	var art_rect := Rect2(rr.position + Vector2(3, 3), Vector2(rr.size.x - 6, 146))
+	MenuStyle.cover(self, art_rect, MenuStyle.art("ch4"), Color(0.8, 0.85, 1.0, k * 0.45))
+	MenuStyle.gradient_rect(self, art_rect, Color(MenuStyle.INK, 0.1), Color(MenuStyle.PANEL, k))
 	draw_rect(Rect2(rr.position.x + 10, rr.position.y + 10, rr.size.x - 20, 6), Color(col, 0.9 * k))
 	# icono en hexagono
 	var ic := Vector2(rr.get_center().x, rr.position.y + 92.0)
@@ -194,27 +197,27 @@ func _draw_card(i: int) -> void:
 	Gfx.draw_glow(self, ic, 60.0, Color(col, 0.3 * k))
 	UiIcons.draw(self, p.icon, ic, 26.0, Color(col.lightened(0.45), k))
 	# nombre y etiquetas
-	UiKit.text(self, Vector2(rr.position.x, rr.position.y + 176.0), p.display_name, 24, Color(UiKit.TEXT, k), 1, rr.size.x, 5.0)
-	UiKit.text(self, Vector2(rr.position.x, rr.position.y + 202.0), "%s · %s" % [p.tag, Rarity.label(p.rarity)], 14, Color(col, k), 1, rr.size.x, 3.0)
-	var f := UiKit.font_reg()
+	MenuStyle.text(self, Vector2(rr.position.x, rr.position.y + 176.0), p.display_name, 24, Color(MenuStyle.TEXT, k), 1, rr.size.x, 5.0)
+	MenuStyle.text(self, Vector2(rr.position.x, rr.position.y + 202.0), "%s · %s" % [p.tag, Rarity.label(p.rarity)], 14, Color(col, k), 1, rr.size.x, 3.0)
+	var f := MenuStyle.font_reg()
 	draw_multiline_string(f, rr.position + Vector2(18, 238.0), p.description, HORIZONTAL_ALIGNMENT_CENTER, rr.size.x - 36.0, 18, 6, Color(0.85, 0.93, 1.0, k))
 	if owned:
-		UiKit.text(self, Vector2(rr.position.x, rr.end.y - 18.0), "YA LO TIENES", 14, Color(UiKit.DANGER, k), 1, rr.size.x, 3.0)
+		MenuStyle.text(self, Vector2(rr.position.x, rr.end.y - 18.0), "YA LO TIENES", 14, Color(MenuStyle.DANGER, k), 1, rr.size.x, 3.0)
 	elif p.stackable and game.run.perks.has(p.id):
-		UiKit.text(self, Vector2(rr.position.x, rr.end.y - 18.0), "SE ACUMULA  x%d" % (game.run.perk_count(p.id) + 1), 14, Color(UiKit.OK, k), 1, rr.size.x, 3.0)
+		MenuStyle.text(self, Vector2(rr.position.x, rr.end.y - 18.0), "SE ACUMULA  x%d" % (game.run.perk_count(p.id) + 1), 14, Color(MenuStyle.OK, k), 1, rr.size.x, 3.0)
 	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
 
 
 func _draw_slots() -> void:
-	UiKit.text(self, Vector2(0, size.y - 172.0), "SLOTS  %d / %d" % [game.run.perks.size(), RunState.PERK_SLOTS], 14, UiKit.DIM, 1, size.x, 3.0)
+	MenuStyle.text(self, Vector2(0, size.y - 172.0), "SLOTS  %d / %d" % [game.run.perks.size(), RunState.PERK_SLOTS], 14, MenuStyle.DIM, 1, size.x, 3.0)
 	for i in RunState.PERK_SLOTS:
 		var r := _slot_rect(i)
 		var filled := i < game.run.perks.size()
-		var col := UiKit.DIM
+		var col := MenuStyle.DIM
 		if filled:
 			var pd: PerkData = Catalog.perks[game.run.perks[i]]
 			col = Rarity.color(pd.rarity)
-		UiKit.panel(self, r, UiKit.PANEL, Color(col, 0.9 if filled else 0.3), 8.0, 1.0, false)
+		MenuStyle.panel(self, r, MenuStyle.PANEL, Color(col, 0.9 if filled else 0.3), 8.0, 1.0, false)
 		if filled:
 			var pd2: PerkData = Catalog.perks[game.run.perks[i]]
 			UiIcons.draw(self, pd2.icon, r.get_center(), 18.0, Color(col.lightened(0.4)))

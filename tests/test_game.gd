@@ -37,7 +37,7 @@ func run(t) -> void:
 	g.input.auto_walk = null
 	g.director.entered = true
 	g.director.in_combat = false
-	var dummy := g.director.spawn_enemy_at("sentry", Vector2(300, 0), false)
+	var dummy := g.director.spawn_enemy_at("ballestero", Vector2(300, 0), false)
 	g.player.position = Vector2(0, 0)
 	dummy.state = 1
 	dummy.stun = 0.0
@@ -140,7 +140,7 @@ func run(t) -> void:
 	d.entered = true
 	d.cleared = false
 	d.in_combat = true
-	d.waves = [[["skitter", 0.0]], [["skitter", 0.0], ["skitter", 0.3]]]
+	d.waves = [[["ballestero", 0.0]], [["skitter", 0.0], ["ballestero", 0.3]]]
 	d.pending.clear()
 	d._start_wave(0)
 	var premature := false
@@ -196,6 +196,11 @@ func run(t) -> void:
 		bg.director._begin_encounter()
 		await _frames(t, 4)
 		var boss := bg.director.boss
+		if VisualProfiles.enemy(bid).is_empty():
+			t.check(boss == null and bg.director.cleared, "jefe %s excluido sin bloquear la sala" % bid)
+			bg.queue_free()
+			await _frames(t, 3)
+			continue
 		t.check(boss != null and is_instance_valid(boss), "jefe %s aparece" % bid)
 		if boss == null:
 			continue
@@ -227,6 +232,9 @@ func run(t) -> void:
 		eg.bullets.clear_all()
 		eg.player.position = Vector2(0, 40)
 		var e := eg.director.spawn_enemy_at(eid, Vector2(280, 40), false)
+		if VisualProfiles.enemy(eid).is_empty():
+			t.check(e == null, "enemigo %s excluido de la partida" % eid)
+			continue
 		var shot_taken := false
 		var killed := false
 		for i in 420:

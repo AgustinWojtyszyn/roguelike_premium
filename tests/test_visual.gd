@@ -1,5 +1,5 @@
 extends RefCounted
-## Visual QA. Playables are sprite/pre-render only; enemies may retain their procedural safety fallback.
+## Visual QA. Playables are sprite/pre-render only; runs exclude enemies without sprites.
 
 func _frames(t, n: int) -> void:
 	for i in n:
@@ -13,6 +13,7 @@ func run(t) -> void:
 	_fallbacks(t)
 	await _rig_modes(t)
 	await _game_integration(t)
+	await _boss_gate(t)
 
 func _manifest(t) -> void:
 	for id in AssetManifest.ANIMS:
@@ -149,6 +150,13 @@ func _game_integration(t) -> void:
 	t.check(g.player.rig.is_placeholder or g.player.rig.sprite_mode, "jugador renderiza sprite/placeholder, no procedural")
 	g.director.entered = true
 	g.director.in_combat = false
+	for id in Catalog.enemies:
+		if VisualProfiles.enemy(id).is_empty():
+			var count := g.enemies.size()
+			t.check(g.director.spawn_enemy_at(id, Vector2.ZERO, false) == null, "%s poligonal excluido" % id)
+			t.check(g.director._try_spawn(id), "%s no bloquea la cola" % id)
+			t.eq(g.enemies.size(), count, "%s no se registra en combate" % id)
+			t.check(g.director.spawn_busy.is_empty(), "%s no abre portal" % id)
 	var spawned: Array = []
 	for kind in VisualProfiles.ENEMIES:
 		var e := g.director.spawn_enemy_at(kind, Vector2(randf_range(-200, 200), randf_range(-120, 120)), false)
@@ -159,10 +167,30 @@ func _game_integration(t) -> void:
 		if is_instance_valid(e):
 			e.hurt(9999.0, Vector2.RIGHT, 0.0, e.position, 0, true)
 	await _frames(t, 30)
-	# Enemigos conservan fallback procedural como red de seguridad; la prohibicion de poligonos aplica al jugador.
+	# Sin sprites no debe aparecer el antiguo fallback poligonal.
 	VisualProfiles._enabled = 0
 	var e2 := g.director.spawn_enemy_at("caballero", Vector2(100, 0), false)
-	t.check(e2.spr == null, "enemigo sin sprites conserva fallback logico")
+	t.check(e2 == null, "enemigo sin sprites queda fuera de la partida")
 	VisualProfiles._enabled = -1
 	g.queue_free()
 	await _frames(t, 2)
+
+
+func _boss_gate(t) -> void:
+	for chapter_id in Catalog.chapter_order:
+		Boot.args = {"god": "1", "seed": "9", "idle": "1", "chapter": chapter_id}
+		Router.params = {}
+		var g: Game = (load("res://scenes/run.tscn") as PackedScene).instantiate()
+		t.root.add_child(g)
+		await _frames(t, 8)
+		g.director._load_stage(g.director.plan.size() - 1, true)
+		g.director.entered = true
+		g.director._begin_encounter()
+		if VisualProfiles.enemy(g.chapter.boss).is_empty():
+			t.check(g.enemies.is_empty(), "%s: jefe poligonal excluido" % chapter_id)
+			t.check(g.director.cleared and g.director.end_won, "%s: capitulo termina sin esperar al jefe excluido" % chapter_id)
+			t.eq(g.run.bosses, 0, "no acredita una baja de jefe inexistente")
+		else:
+			t.check(g.director.boss_alive() and g.director.boss.spr != null, "%s: jefe con sprites permanece" % chapter_id)
+		g.queue_free()
+		await _frames(t, 4)

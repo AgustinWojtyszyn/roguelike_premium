@@ -50,10 +50,10 @@ func _ready() -> void:
 	rig.auto = true
 	rig.scale = Vector2.ONE * 3.0
 	rig.z_index = 1
-	home_btn = GButton.make("VOLVER AL INICIO", GButton.Style.SECONDARY, "")
+	home_btn = HomeButton.menu("VOLVER AL INICIO", GButton.Style.SECONDARY, "")
 	home_btn.font_size = 24
 	home_btn.pressed.connect(func(): game.quit_to_home(false))
-	again_btn = GButton.make("OTRA VEZ", GButton.Style.PRIMARY, "play")
+	again_btn = HomeButton.menu("OTRA VEZ", GButton.Style.PRIMARY, "play")
 	again_btn.font_size = 28
 	again_btn.pressed.connect(_again)
 	again_btn.pulse = true
@@ -112,17 +112,11 @@ func _process(delta: float) -> void:
 func _draw() -> void:
 	var vs := size
 	var k := clampf(_t * 3.0, 0.0, 1.0)
-	var top := Color("1a0f2e") if won else Color("0b1226")
-	var bot := Color("05060f")
-	UiKit.gradient_rect(self, Rect2(Vector2.ZERO, vs), Color(top, 0.94 * k), Color(bot, 0.97 * k))
-	var accent := Color("ffd24a") if won else Color("6a9cff")
-	# rayos / halo
-	if won:
-		for i in 14:
-			var a := _t * 0.25 + TAU * float(i) / 14.0
-			var c := Vector2(vs.x * 0.5, 130.0)
-			draw_colored_polygon(PackedVector2Array([c, c + Vector2.from_angle(a - 0.07) * 900.0, c + Vector2.from_angle(a + 0.07) * 900.0]), Color(1.0, 0.8, 0.3, 0.05 * k))
-	Gfx.draw_glow(self, Vector2(vs.x * 0.5, 120.0), 340.0, Color(accent, 0.18 * k))
+	MenuStyle.background(self, Rect2(Vector2.ZERO, vs))
+	var accent := MenuStyle.GOLD if won else MenuStyle.DIM
+	var banner := Rect2(24, 24, vs.x - 48, 146)
+	MenuStyle.cover(self, banner, MenuStyle.art(game.chapter.id), Color(0.6, 0.7, 0.8, 0.6 * k))
+	MenuStyle.gradient_rect(self, banner, Color(MenuStyle.INK, 0.25), Color(MenuStyle.INK, 0.94))
 	# titulo
 	var tk := Gfx.ease_out(clampf(_t * 2.4, 0.0, 1.0))
 	var title := "¡VICTORIA!" if won else "RUN TERMINADA"
@@ -136,11 +130,11 @@ func _draw() -> void:
 		ModeRules.EXPEDITION:
 			title = "¡EXPEDICIÓN SUPERADA!" if won else "EXPEDICIÓN FALLIDA"
 	var ts := int(78.0 * (0.7 + 0.3 * tk))
-	UiKit.text(self, Vector2(0, 112.0), title, ts, Color(accent.lightened(0.35), tk), 1, vs.x, 14.0)
+	MenuStyle.text(self, Vector2(0, 112.0), title, ts, Color(accent.lightened(0.35), tk), 1, vs.x, 14.0)
 	var sub := "%s completado" % game.chapter.display_name if won else "Llegaste a la etapa %d de %d" % [game.director.stage + 1, game.director.plan.size()]
 	match game.mode_id:
 		ModeRules.SURVIVAL:
-			sub = "Oleada %d · puntuación %s" % [int(summary.get("wave", 0)), UiKit.format_int(ModeRules.survival_score(int(summary["kills"]), int(summary.get("wave", 0)), float(summary["time"])))]
+			sub = "Oleada %d · puntuación %s" % [int(summary.get("wave", 0)), MenuStyle.format_int(ModeRules.survival_score(int(summary["kills"]), int(summary.get("wave", 0)), float(summary["time"])))]
 		ModeRules.BOSS_RUSH:
 			sub = ("¡Los 4 jefes derrotados!" if won else "Jefes derrotados: %d / 4" % int(summary["bosses"])) + "  ·  daño recibido %d" % int(summary.get("damage_taken", 0))
 		ModeRules.CHALLENGE:
@@ -148,7 +142,7 @@ func _draw() -> void:
 		ModeRules.HORDE:
 			var hr: Dictionary = Profile.p.data["records"]["horde"]
 			var wv := int(summary.get("wave", 0))
-			sub = "Oleada %d · %s pts%s" % [wv, UiKit.format_int(ModeRules.horde_score(int(summary["kills"]), wv, float(summary["time"]))), "  ·  ¡NUEVO RÉCORD!" if wv >= int(hr["best_wave"]) and wv > 0 else "  ·  récord: oleada %d" % int(hr["best_wave"])]
+			sub = "Oleada %d · %s pts%s" % [wv, MenuStyle.format_int(ModeRules.horde_score(int(summary["kills"]), wv, float(summary["time"]))), "  ·  ¡NUEVO RÉCORD!" if wv >= int(hr["best_wave"]) and wv > 0 else "  ·  récord: oleada %d" % int(hr["best_wave"])]
 		ModeRules.TIME_ATTACK:
 			var tot := ModeRules.time_attack_total(float(summary["time"]), float(summary.get("penalty", 0.0)))
 			sub = ("%d:%05.2f" % [int(tot) / 60, fmod(tot, 60.0)] if won else "Sala %d de %d" % [game.director.stage + 1, game.director.plan.size()]) + ("  ·  +%d s por golpes" % int(summary.get("penalty", 0.0)) if float(summary.get("penalty", 0.0)) > 0.0 else "")
@@ -157,14 +151,14 @@ func _draw() -> void:
 	var dname: String = DamageScale.difficulty(game.difficulty_id)["name"]
 	if game.difficulty_id != DamageScale.NORMAL:
 		sub += "  ·  " + dname
-	UiKit.text(self, Vector2(0, 152.0), sub, 24, Color(UiKit.TEXT, tk), 1, vs.x, 6.0)
+	MenuStyle.text(self, Vector2(0, 152.0), sub, 24, Color(MenuStyle.TEXT, tk), 1, vs.x, 6.0)
 	# personaje
 	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
 	Gfx.draw_glow(self, Vector2(vs.x * 0.22, vs.y * 0.66), 190.0, Color(accent, 0.12 * k))
 	# panel de datos
 	var pw := minf(560.0, vs.x * 0.5)
 	var pr := Rect2(vs.x * 0.44, 190.0, pw, vs.y - 330.0)
-	UiKit.panel(self, pr, Color("0d1424", 0.9), Color(accent, 0.6), 16.0, k)
+	MenuStyle.panel(self, pr, Color("0d1424", 0.9), Color(accent, 0.6), 16.0, k)
 	var rows := [
 		["skull", "BAJAS", str(summary["kills"])],
 		["door", "SALAS", str(summary["rooms"])],
@@ -175,42 +169,42 @@ func _draw() -> void:
 		var rk := clampf((_t - 0.35 - float(i) * 0.12) * 5.0, 0.0, 1.0)
 		var rowc := Vector2(pr.position.x + 40.0 + float(i % 2) * (pr.size.x * 0.5), pr.position.y + 42.0 + float(i / 2) * 44.0)
 		UiIcons.draw(self, rows[i][0], rowc, 11.0, Color(accent, rk))
-		UiKit.text(self, rowc + Vector2(26.0, 6.0), "%s  %s" % [rows[i][1], rows[i][2]], 20, Color(UiKit.TEXT, rk), 0, -1.0, 3.0)
+		MenuStyle.text(self, rowc + Vector2(26.0, 6.0), "%s  %s" % [rows[i][1], rows[i][2]], 20, Color(MenuStyle.TEXT, rk), 0, -1.0, 3.0)
 	# recompensas
 	var ry := pr.position.y + 150.0
 	var ck := clampf((_t - 0.9) / 1.2, 0.0, 1.0)
 	var coin_total := int(rewards.get("coins", 0)) + int(rewards.get("bonus_coins", 0))
 	UiIcons.draw(self, "coin", Vector2(pr.position.x + 46.0, ry), 18.0, Color("ffd24a"))
-	UiKit.text(self, Vector2(pr.position.x + 78.0, ry + 11.0), "+%s" % UiKit.format_int(int(round(coin_total * ck))), 36, Color("fff0b0"), 0, -1.0, 6.0)
+	MenuStyle.text(self, Vector2(pr.position.x + 78.0, ry + 11.0), "+%s" % MenuStyle.format_int(int(round(coin_total * ck))), 36, Color("fff0b0"), 0, -1.0, 6.0)
 	if int(rewards.get("bonus_coins", 0)) > 0:
-		UiKit.text(self, Vector2(pr.position.x + 78.0, ry + 34.0), ("incluye bono de capítulo +%d" if game.mode_id == ModeRules.CAMPAIGN else "incluye bono de modo +%d") % int(rewards["bonus_coins"]), 14, UiKit.DIM, 0, -1.0, 2.0, false)
+		MenuStyle.text(self, Vector2(pr.position.x + 78.0, ry + 34.0), ("incluye bono de capítulo +%d" if game.mode_id == ModeRules.CAMPAIGN else "incluye bono de modo +%d") % int(rewards["bonus_coins"]), 14, MenuStyle.DIM, 0, -1.0, 2.0, false)
 	# XP + nivel de cuenta
 	var xy := ry + 72.0
 	var xp_got := int(rewards.get("xp", 0))
-	UiKit.text(self, Vector2(pr.position.x + 28.0, xy), "NIVEL %d" % int(lv_after["level"]), 22, UiKit.TEXT, 0, -1.0, 4.0)
-	UiKit.text(self, Vector2(pr.end.x - 200.0, xy), "+%d XP" % int(round(xp_got * ck)), 22, Color("8fe8ff"), 2, 172.0, 4.0)
+	MenuStyle.text(self, Vector2(pr.position.x + 28.0, xy), "NIVEL %d" % int(lv_after["level"]), 22, MenuStyle.TEXT, 0, -1.0, 4.0)
+	MenuStyle.text(self, Vector2(pr.end.x - 200.0, xy), "+%d XP" % int(round(xp_got * ck)), 22, Color("8fe8ff"), 2, 172.0, 4.0)
 	var br := Rect2(pr.position.x + 28.0, xy + 14.0, pr.size.x - 56.0, 18.0)
 	var f0 := float(lv_before["into"]) / float(lv_before["need"])
 	var f1 := float(lv_after["into"]) / float(lv_after["need"])
 	var lvu: bool = int(lv_after["level"]) > int(lv_before["level"])
 	var fill := lerpf(f0, 1.0 if lvu else f1, ck) if (not lvu or ck < 0.5) else lerpf(0.0, f1, (ck - 0.5) * 2.0)
-	UiKit.bar(self, br, fill, Color("3fb8ff"))
+	MenuStyle.bar(self, br, fill, Color("3fb8ff"))
 	if lvu and ck > 0.9:
-		UiKit.text(self, Vector2(br.position.x, br.end.y + 24.0), "¡SUBISTE DE NIVEL!", 20, UiKit.GOLD, 1, br.size.x, 4.0)
+		MenuStyle.text(self, Vector2(br.position.x, br.end.y + 24.0), "¡SUBISTE DE NIVEL!", 20, MenuStyle.GOLD, 1, br.size.x, 4.0)
 	# pase
 	var py := xy + (74.0 if lvu else 56.0)
 	var pl_b := int(pass_before["level"])
 	var pl_a := int(pass_after["level"])
-	UiKit.text(self, Vector2(pr.position.x + 28.0, py), "PASE  %d" % pl_a, 18, Color(Catalog.season.theme_color, 1.0), 0, -1.0, 3.0)
+	MenuStyle.text(self, Vector2(pr.position.x + 28.0, py), "PASE  %d" % pl_a, 18, Color(Catalog.season.theme_color, 1.0), 0, -1.0, 3.0)
 	var pbr := Rect2(pr.position.x + 120.0, py - 14.0, pr.size.x - 150.0, 12.0)
 	var pf: float = 1.0 if bool(pass_after.get("max", false)) else float(pass_after["into"]) / float(pass_after["need"])
-	UiKit.bar(self, pbr, pf * ck, Catalog.season.theme_color)
+	MenuStyle.bar(self, pbr, pf * ck, Catalog.season.theme_color)
 	if pl_a > pl_b and ck > 0.9:
-		UiKit.text(self, Vector2(pbr.position.x, pbr.end.y + 20.0), "+%d niveles de pase · ¡reclama tus premios!" % (pl_a - pl_b), 15, UiKit.OK, 0, -1.0, 3.0)
+		MenuStyle.text(self, Vector2(pbr.position.x, pbr.end.y + 20.0), "+%d niveles de pase · ¡reclama tus premios!" % (pl_a - pl_b), 15, MenuStyle.OK, 0, -1.0, 3.0)
 	if unlocked_chapter != "":
 		var uc: ChapterData = Catalog.chapter(unlocked_chapter)
 		var bounce := 1.0 + 0.04 * sin(_t * 5.0)
-		UiKit.text(self, Vector2(0, vs.y - 160.0), "¡NUEVO CAPÍTULO DESBLOQUEADO!  %s" % uc.display_name, int(24.0 * bounce), UiKit.GOLD, 1, vs.x, 6.0)
+		MenuStyle.text(self, Vector2(0, vs.y - 160.0), "¡NUEVO CAPÍTULO DESBLOQUEADO!  %s" % uc.display_name, int(24.0 * bounce), MenuStyle.GOLD, 1, vs.x, 6.0)
 
 
 func _fmt_time(sec: float) -> String:

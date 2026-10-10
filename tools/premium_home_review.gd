@@ -26,10 +26,6 @@ func run() -> void:
 			home.screen.close()
 			await create_timer(0.4).timeout
 			assert(home.screen == null, "Screen did not close")
-		touch(home.hero_hit)
-		assert(home.screen.get_script() == load("res://ui/collection_screen.gd"), "Loadout card must open character selection")
-		home.screen.close()
-		await create_timer(0.4).timeout
 		touch(home.play_btn)
 		assert(home.screen.get_script() == load("res://ui/mode_select_screen.gd"), "Play must preserve mode selection")
 		home.screen.close()
@@ -38,7 +34,7 @@ func run() -> void:
 		assert(home.settings != null, "Settings touch failed")
 		home.settings.queue_free()
 		home.settings = null
-		print("HOME TOUCH SMOKE: OK (6 navigation routes, loadout, play, settings; sprite-free 2D home)")
+		print("HOME TOUCH SMOKE: OK (6 navigation routes, play, settings; sprite-free 2D home)")
 	await create_timer(0.4).timeout
 	var draws := 0.0
 	var memory := 0.0

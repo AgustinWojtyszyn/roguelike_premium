@@ -16,7 +16,7 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	mouse_filter = Control.MOUSE_FILTER_STOP
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	close_btn = GButton.make("LISTO", GButton.Style.PRIMARY)
+	close_btn = HomeButton.menu("LISTO", GButton.Style.PRIMARY)
 	close_btn.font_size = 26
 	close_btn.pressed.connect(func(): closed.emit())
 	add_child(close_btn)
@@ -25,8 +25,8 @@ func _ready() -> void:
 
 
 func _panel_rect() -> Rect2:
-	var w := minf(620.0, size.x - 40.0)
-	var h := minf(470.0, size.y - 40.0)
+	var w := minf(740.0, size.x - 40.0)
+	var h := minf(600.0, size.y - 40.0)
 	return Rect2((size.x - w) * 0.5, (size.y - h) * 0.5, w, h)
 
 
@@ -43,7 +43,7 @@ func _process(delta: float) -> void:
 
 func _row_rect(i: int) -> Rect2:
 	var pr := _panel_rect()
-	return Rect2(pr.position.x + 28.0, pr.position.y + 82.0 + float(i) * 66.0, pr.size.x - 56.0, 56.0)
+	return Rect2(pr.position.x + 28.0, pr.position.y + 100.0 + float(i) * 72.0, pr.size.x - 56.0, 60.0)
 
 
 func _items() -> Array[Dictionary]:
@@ -60,28 +60,28 @@ func _items() -> Array[Dictionary]:
 func _draw() -> void:
 	draw_rect(Rect2(Vector2.ZERO, size), Color(0.01, 0.02, 0.05, 0.7 * _anim))
 	var pr := _panel_rect()
-	var sc := 0.92 + 0.08 * Gfx.ease_out(_anim)
+	var sc := 1.0
 	draw_set_transform(pr.get_center() * (1.0 - sc), 0.0, Vector2.ONE * sc)
-	UiKit.panel(self, pr, UiKit.PANEL, Color(UiKit.EDGE, 0.8), 18.0)
-	UiKit.text(self, Vector2(pr.position.x, pr.position.y + 54.0), title, 34, UiKit.TEXT, 1, pr.size.x, 6.0)
+	MenuStyle.panel(self, pr, MenuStyle.PANEL, Color(MenuStyle.EDGE, 0.8), 18.0)
+	MenuStyle.text(self, Vector2(pr.position.x, pr.position.y + 54.0), title, 42, MenuStyle.TEXT, 1, pr.size.x, 6.0)
 	var items := _items()
 	for i in items.size():
 		var it: Dictionary = items[i]
 		var r := _row_rect(i)
-		UiKit.panel(self, r, UiKit.PANEL_HI, Color(1, 1, 1, 0.08), 8.0, 1.0, false)
-		UiKit.text(self, Vector2(r.position.x + 18.0, r.get_center().y + 8.0), it["label"], 22, UiKit.TEXT, 0, -1.0, 3.0)
+		MenuStyle.panel(self, r, MenuStyle.PANEL_HI, Color(1, 1, 1, 0.08), 8.0, 1.0, false)
+		MenuStyle.text(self, Vector2(r.position.x + 18.0, r.get_center().y + 8.0), it["label"], 22, MenuStyle.TEXT, 0, -1.0, 3.0)
 		# interruptor
 		var sw := Rect2(r.end.x - 92.0, r.position.y + 11.0, 76.0, 34.0)
 		var on: bool = it["on"]
-		UiKit.pill(self, sw, Color("1fb89a") if on else Color("3a4258"), UiKit.INK, 3.0)
+		MenuStyle.pill(self, sw, Color("1fb89a") if on else Color("3a4258"), MenuStyle.INK, 3.0)
 		var kx := sw.end.x - 18.0 if on else sw.position.x + 18.0
 		draw_circle(Vector2(kx, sw.get_center().y), 12.0, Color.WHITE if on else Color(0.7, 0.75, 0.85))
-		draw_arc(Vector2(kx, sw.get_center().y), 12.0, 0, TAU, 16, UiKit.INK, 2.0, true)
+		draw_arc(Vector2(kx, sw.get_center().y), 12.0, 0, TAU, 16, MenuStyle.INK, 2.0, true)
 		if it.has("vol"):
 			var vr := Rect2(r.position.x + 190.0, r.position.y + 21.0, r.size.x - 190.0 - 112.0, 14.0)
-			UiKit.bar(self, vr, float(it["v"]), Color("3fb8ff") if on else Color("5a6278"))
+			MenuStyle.bar(self, vr, float(it["v"]), Color("3fb8ff") if on else Color("5a6278"))
 			draw_circle(Vector2(vr.position.x + vr.size.x * float(it["v"]), vr.get_center().y), 11.0, Color.WHITE)
-			draw_arc(Vector2(vr.position.x + vr.size.x * float(it["v"]), vr.get_center().y), 11.0, 0, TAU, 14, UiKit.INK, 2.0, true)
+			draw_arc(Vector2(vr.position.x + vr.size.x * float(it["v"]), vr.get_center().y), 11.0, 0, TAU, 14, MenuStyle.INK, 2.0, true)
 	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
 
 
@@ -135,6 +135,11 @@ func _toggle(key: String, on: bool) -> void:
 	else:
 		Profile.p.set_setting(key, on)
 
+
+func _unhandled_input(e: InputEvent) -> void:
+	if e.is_action_pressed("ui_cancel") or (e is InputEventJoypadButton and e.pressed and e.button_index == JOY_BUTTON_B):
+		closed.emit()
+		get_viewport().set_input_as_handled()
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_GO_BACK_REQUEST:

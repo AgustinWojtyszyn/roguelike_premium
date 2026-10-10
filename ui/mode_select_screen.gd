@@ -1,6 +1,6 @@
 class_name ModeSelectScreen
 extends MenuScreen
-## Selector de modo: se abre al pulsar JUGAR. Campana, Supervivencia, Boss Rush y Desafio (este ultimo pide elegir una regla).
+## Selector visual de siete modos; selección local y confirmación explícita.
 ## Los modos bloqueados dicen por que. Emite `chosen(mode, challenge)`; el HOME arranca la run.
 
 signal chosen(mode: String, challenge: String)
@@ -14,17 +14,201 @@ const COLORS := {ModeRules.CAMPAIGN: Color("27e0cc"), ModeRules.SURVIVAL: Color(
 	ModeRules.HORDE: Color("ff7a3d"), ModeRules.TIME_ATTACK: Color("5fb8ff"), ModeRules.EXPEDITION: Color("5fffc8")}
 
 
-func _build() -> void:
-	title = "ELIGE UN MODO"
-	accent = Color("ffb23d")
+const MENU_BUTTON = preload("res://ui/home_button.gd")
+var canvas: Control
+var cards: Dictionary = {}
+var difficulties: Dictionary = {}
+var launch: HomeButton
+var selected_mode := ModeRules.CAMPAIGN
+var selected_rule := "one_weapon"
+const MODE_ART := {"campaign": "ch1", "survival": "ch2", "bossrush": "ch3", "challenge": "ch4", "horde": "ch3", "timeattack": "ch1", "expedition": "ch2"}
+var content_origin := Vector2.ZERO
+var content_scale := 1.0
 
+func _ready() -> void:
+	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	mouse_filter = Control.MOUSE_FILTER_STOP
+	canvas = Control.new()
+	canvas.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(canvas)
+	selected_mode = str(Profile.p.data.get("selected_mode", ModeRules.CAMPAIGN))
+	if not ModeRules.ORDER.has(selected_mode) or not _available(selected_mode):
+		selected_mode = ModeRules.SURVIVAL if not _available(ModeRules.CAMPAIGN) else ModeRules.CAMPAIGN
+	resized.connect(_layout)
+	_rebuild()
+	_layout()
+	AudioMgr.ui("ui_open", -4.0)
+
+func _control(rect: Rect2, text: String, action: Callable) -> HomeButton:
+	var b := MENU_BUTTON.new()
+	b.position = rect.position
+	b.size = rect.size
+	b.label = text
+	b.font_size = 18
+	b.pressed.connect(action)
+	canvas.add_child(b)
+	return b
+
+func _rebuild() -> void:
+	for child in canvas.get_children():
+		canvas.remove_child(child)
+		child.queue_free()
+	cards.clear()
+	difficulties.clear()
+	back_btn = _control(Rect2(40, 28, 52, 48), "", close)
+	back_btn.icon = "chev_l"
+	back_btn.tooltip_text = "Volver"
+	if state == "modes":
+		for i in DamageScale.ORDER.size():
+			var id: String = DamageScale.ORDER[i]
+			var d: Dictionary = DamageScale.difficulty(id)
+			var b := _control(Rect2(420 + i * 180, 111, 166, 44), str(d["name"]), func(): tap("diff:" + id); _refresh())
+			b.tint = d["color"]
+			difficulties[id] = b
+		for i in ModeRules.ORDER.size():
+			var id: String = ModeRules.ORDER[i]
+			var b := _control(Rect2(420 + (i % 2) * 416, 180 + (i / 2) * 110, 400, 102), ModeRules.NAMES[id], func(): selected_mode = id; _refresh())
+			b.card = true
+			b.compact = true
+			b.art = MenuStyle.art(MODE_ART[id])
+			b.icon = ICONS[id]
+			b.tint = COLORS[id]
+			b.description = ModeRules.GOALS[id]
+			b.enabled = _available(id)
+			b.footnote = _record_line(id) if b.enabled else _lock_reason(id)
+			b.tooltip_text = ModeRules.DESCS[id] if b.enabled else _lock_reason(id)
+			cards[id] = b
+	else:
+		for i in ModeRules.CHALLENGE_ORDER.size():
+			var id: String = ModeRules.CHALLENGE_ORDER[i]
+			var d: Dictionary = ModeRules.CHALLENGES[id]
+			var b := _control(Rect2(420 + (i % 2) * 416, 180 + (i / 2) * 220, 400, 208), d["name"], func(): selected_rule = id; _refresh())
+			b.card = true
+			b.art = MenuStyle.art("ch4")
+			b.icon = "star"
+			b.tint = COLORS[ModeRules.CHALLENGE]
+			b.description = d["desc"]
+			var rec: Dictionary = Profile.p.data["records"]["challenges"].get(id, {})
+			var done := int(rec.get("cleared", 0))
+			b.footnote = ("Superado ×%d" % done if done > 0 else "Sin superar") + "  ·  Bono ×%.1f" % float(d["bonus"])
+			cards[id] = b
+	launch = _control(Rect2(936, 632, 304, 56), "JUGAR", _confirm)
+	launch.style = GButton.Style.PRIMARY
+	_refresh()
+	_wire_focus()
+	var active: String = selected_mode if state == "modes" else selected_rule
+	cards[active].grab_focus()
+
+# Keep keyboard/controller navigation inside this modal, including at its edges.
+func _wire_focus() -> void:
+	var controls := canvas.get_children()
+	var directions := [Vector2.LEFT, Vector2.UP, Vector2.RIGHT, Vector2.DOWN]
+	for i in controls.size():
+		var b: Control = controls[i]
+		b.focus_next = b.get_path_to(controls[(i + 1) % controls.size()])
+		b.focus_previous = b.get_path_to(controls[posmod(i - 1, controls.size())])
+		for side in 4:
+			var nearest: Control = b
+			var best := INF
+			for other: Control in controls:
+				var offset := other.get_rect().get_center() - b.get_rect().get_center()
+				var forward := offset.dot(directions[side])
+				var across := absf(offset.cross(directions[side]))
+				var score := forward + across * 3.0
+				if forward > 1.0 and score < best:
+					best = score
+					nearest = other
+			b.set_focus_neighbor(side, b.get_path_to(nearest))
+
+	var order: Array = ModeRules.ORDER if state == "modes" else ModeRules.CHALLENGE_ORDER
+	for i in order.size():
+		var b: Control = cards[order[i]]
+		var left: Control = cards[order[i - 1]] if i % 2 == 1 else b
+		var right: Control = cards[order[i + 1]] if i % 2 == 0 and i + 1 < order.size() else b
+		var up: Control = cards[order[i - 2]] if i >= 2 else (difficulties[DamageScale.ORDER[mini(i, 2)]] if state == "modes" else back_btn)
+		var down: Control = cards[order[i + 2]] if i + 2 < order.size() else launch
+		b.focus_neighbor_left = b.get_path_to(left)
+		b.focus_neighbor_right = b.get_path_to(right)
+		b.focus_neighbor_top = b.get_path_to(up)
+		b.focus_neighbor_bottom = b.get_path_to(down)
+
+func _refresh() -> void:
+	var active: String = selected_mode if state == "modes" else selected_rule
+	for id in cards:
+		var b: HomeButton = cards[id]
+		b.selected = id == active
+		b.kicker = "SELECCIONADO" if b.selected else ("DISPONIBLE" if b.enabled else "BLOQUEADO")
+		b.queue_redraw()
+	for id in difficulties:
+		var b: HomeButton = difficulties[id]
+		b.selected = id == str(Profile.p.data.get("selected_difficulty", DamageScale.NORMAL))
+		b.queue_redraw()
+	launch.label = "ELEGIR REGLA  →" if state == "modes" and selected_mode == ModeRules.CHALLENGE else "JUGAR  →"
+	launch.queue_redraw()
+	queue_redraw()
+
+func _confirm() -> void:
+	if closing:
+		return
+	if state == "rules":
+		tap("rule:" + selected_rule)
+	elif _available(selected_mode):
+		tap("mode:" + selected_mode)
+
+func _layout() -> void:
+	if canvas == null:
+		return
+	var sm := SafeArea.margins(self)
+	var usable := size - Vector2(sm.x + sm.z, sm.y + sm.w)
+	content_scale = minf(usable.x / 1280.0, usable.y / 720.0)
+	content_origin = Vector2(sm.x, sm.y) + (usable - Vector2(1280, 720) * content_scale) * 0.5
+	canvas.position = content_origin
+	canvas.scale = Vector2.ONE * content_scale
+	canvas.size = Vector2(1280, 720)
 
 func close() -> void:
 	if state == "rules":
 		state = "modes"
-		title = "ELIGE UN MODO"
+		_rebuild()
 		return
 	super.close()
+
+func _unhandled_input(e: InputEvent) -> void:
+	if e.is_action_pressed("ui_cancel") or (e is InputEventJoypadButton and e.pressed and e.button_index == JOY_BUTTON_B):
+		close()
+		get_viewport().set_input_as_handled()
+
+func _draw() -> void:
+	MenuStyle.background(self, Rect2(Vector2.ZERO, size))
+	draw_set_transform(content_origin, 0, Vector2.ONE * content_scale)
+	MenuStyle.text(self, Vector2(112, 39), "RPG PREMIUM  /  PREPARAR DESCENSO", 12, MenuStyle.GOLD)
+	MenuStyle.text(self, Vector2(112, 79), "ELEGÍ TU EXPERIENCIA" if state == "modes" else "CAMBIÁ LAS REGLAS", 38, MenuStyle.TEXT)
+	MenuStyle.text(self, Vector2(810, 57), "CAPÍTULO %02d  /  %s" % [Catalog.chapter_order.find(chapter_id) + 1, Catalog.chapter(chapter_id).display_name], 15, MenuStyle.DIM, 2, 430)
+	draw_line(Vector2(40, 96), Vector2(1240, 96), Color(MenuStyle.GOLD, 0.25), 1)
+	var col: Color = COLORS[selected_mode]
+	var feature := Rect2(40, 111, 352, 492)
+	MenuStyle.cover(self, feature, MenuStyle.art(MODE_ART[selected_mode]))
+	MenuStyle.gradient_rect(self, feature, Color(MenuStyle.INK, 0.1), Color(MenuStyle.INK, 1))
+	draw_style_box(MenuStyle.box(Color.TRANSPARENT, Color(col, 0.7), 0), feature)
+	UiIcons.draw(self, ICONS[selected_mode], Vector2(78, 155), 17, col)
+	MenuStyle.text(self, Vector2(108, 160), "TU DESCENSO", 13, MenuStyle.TEXT)
+	MenuStyle.text(self, Vector2(62, 340), ModeRules.NAMES[selected_mode], 40, MenuStyle.TEXT, 0, 310)
+	MenuStyle.paragraph(self, Rect2(62, 363, 300, 132), ModeRules.DESCS[selected_mode], 20, MenuStyle.TEXT)
+	MenuStyle.paragraph(self, Rect2(62, 525, 306, 55), _record_line(selected_mode), 16, col.lightened(0.3))
+	if state == "modes":
+		MenuStyle.text(self, Vector2(976, 133), "DIFICULTAD", 12, MenuStyle.GOLD)
+		var d: Dictionary = DamageScale.difficulty(str(Profile.p.data.get("selected_difficulty", DamageScale.NORMAL)))
+		MenuStyle.paragraph(self, Rect2(976, 141, 264, 32), str(d["desc"]), 12)
+		MenuStyle.text(self, Vector2(860, 552), "SIETE FORMAS DE DESCENDER", 16, MenuStyle.GOLD)
+		MenuStyle.text(self, Vector2(860, 580), "Elegí un modo. Confirmá para entrar.", 16, MenuStyle.DIM)
+	else:
+		MenuStyle.text(self, Vector2(420, 142), "UNA CONDICIÓN. UN NUEVO DESAFÍO.", 25, MenuStyle.GOLD)
+	draw_line(Vector2(40, 620), Vector2(1240, 620), Color(MenuStyle.GOLD, 0.25), 1)
+	var name_text: String = ModeRules.NAMES[selected_mode] if state == "modes" else ModeRules.CHALLENGES[selected_rule]["name"]
+	MenuStyle.text(self, Vector2(40, 659), name_text, 30, MenuStyle.TEXT)
+	var difficulty: Dictionary = DamageScale.difficulty(str(Profile.p.data.get("selected_difficulty", DamageScale.NORMAL)))
+	MenuStyle.text(self, Vector2(40, 688), "Dificultad: %s  ·  %s" % [difficulty["name"], Catalog.character(Profile.p.selected_character()).display_name], 16, MenuStyle.DIM)
+	draw_set_transform(Vector2.ZERO)
 
 
 func _available(mode: String) -> bool:
@@ -52,7 +236,7 @@ func _record_line(mode: String) -> String:
 			return "Capítulo %d · %s" % [Catalog.chapter_order.find(chapter_id) + 1, ch.display_name]
 		ModeRules.SURVIVAL:
 			var s: Dictionary = rec["survival"]
-			return "Mejor: oleada %d · %s pts" % [int(s["best_wave"]), UiKit.format_int(int(s["best_score"]))]
+			return "Mejor: oleada %d · %s pts" % [int(s["best_wave"]), MenuStyle.format_int(int(s["best_score"]))] if int(s["best_wave"]) > 0 else "Sin récord · Tu primera resistencia"
 		ModeRules.BOSS_RUSH:
 			var b: Dictionary = rec["bossrush"]
 			var t := float(b["best_time"])
@@ -76,100 +260,6 @@ func _record_line(mode: String) -> String:
 	return ""
 
 
-func _draw_body(k: float) -> void:
-	if state == "rules":
-		_draw_rules()
-		return
-	var m := 24.0
-	_draw_difficulty(Rect2(m, HEADER_H + 14.0, size.x - m * 2.0, 62.0))
-	var top := HEADER_H + 96.0
-	var gap := 14.0
-	var cols := 4
-	var rows := 2
-	var h := (size.y - top - 22.0 - gap) / float(rows)
-	var w := (size.x - m * 2.0 - gap * float(cols - 1)) / float(cols)
-	var count: int = ModeRules.ORDER.size()
-	for i in count:
-		var row := i / cols
-		var col := i % cols
-		var in_row := mini(cols, count - row * cols)
-		var x0 := m + (size.x - m * 2.0 - (w * float(in_row) + gap * float(in_row - 1))) * 0.5   # ultima fila centrada
-		_card_mode(Rect2(x0 + float(col) * (w + gap), top + float(row) * (h + gap), w, h), ModeRules.ORDER[i])
-
-
-func _draw_rules() -> void:
-	var gap := 18.0
-	var m := 24.0
-	var n := 4
-	var top := HEADER_H + 26.0
-	var h := size.y - top - 28.0
-	var w := (size.x - m * 2.0 - gap * float(n - 1)) / float(n)
-	for i in n:
-		_card_rule(Rect2(m + float(i) * (w + gap), top, w, h), ModeRules.CHALLENGE_ORDER[i])
-
-
-## Selector de dificultad: tres botones grandes + descripcion de la elegida. Se guarda en el perfil al tocar.
-func _draw_difficulty(r: Rect2) -> void:
-	var cur: String = str(Profile.p.data.get("selected_difficulty", DamageScale.NORMAL))
-	UiKit.text(self, Vector2(r.position.x, r.position.y + 24.0), "DIFICULTAD", 16, UiKit.DIM, 0, -1.0, 3.0)
-	var bw := 168.0
-	var x := r.position.x + 150.0
-	for id in DamageScale.ORDER:
-		var d: Dictionary = DamageScale.difficulty(id)
-		var br := Rect2(x, r.position.y, bw, 44.0)
-		var col: Color = d["color"]
-		var sel: bool = (id == cur)
-		var style := GButton.Style.PRIMARY if sel else GButton.Style.GHOST
-		button("diff:" + id, br, str(d["name"]), style, "", 19, true)
-		if sel:
-			draw_rect(br.grow(3.0), Color(col, 0.9), false, 3.0)
-		x += bw + 12.0
-	var dd: Dictionary = DamageScale.difficulty(cur)
-	UiKit.text(self, Vector2(r.position.x + 150.0, r.position.y + 62.0), str(dd["desc"]), 14, Color(dd["color"]).lightened(0.3), 0, -1.0, 3.0, false)
-
-
-func _wrap(r: Rect2, text: String, y: float, col: Color, fs: int = 17) -> void:
-	draw_multiline_string(UiKit.font_reg(), Vector2(r.position.x + 14.0, y), text, HORIZONTAL_ALIGNMENT_LEFT, r.size.x - 28.0, fs, 4, col)
-
-
-func _card_mode(r: Rect2, mode: String) -> void:
-	var ok := _available(mode)
-	var col: Color = COLORS[mode]
-	var pressed := is_down("mode:" + mode) and ok
-	var rr := r.grow(-3.0) if pressed else r
-	UiKit.panel(self, rr, Color("101a30", 0.97), Color(col, 0.95 if ok else 0.3), 14.0)
-	var c := Vector2(rr.position.x + 40.0, rr.position.y + 44.0)
-	draw_circle(c, 28.0, Color(col.darkened(0.65), 1.0 if ok else 0.5))
-	draw_arc(c, 28.0, 0, TAU, 28, Color(col, 1.0 if ok else 0.4), 3.0, true)
-	UiIcons.draw(self, ICONS[mode], c, 15.0, col.lightened(0.3) if ok else Color(col, 0.4))
-	UiKit.text(self, Vector2(rr.position.x + 80.0, rr.position.y + 40.0), ModeRules.NAMES[mode], 22, UiKit.TEXT if ok else UiKit.DIM, 0, rr.size.x - 90.0, 4.0)
-	if mode in ModeRules.CHAPTER_MODES and mode != ModeRules.CHALLENGE:
-		UiKit.text(self, Vector2(rr.position.x + 80.0, rr.position.y + 60.0), "CAPÍTULO %d" % (Catalog.chapter_order.find(chapter_id) + 1), 12, Color(col, 0.85), 0, -1.0, 2.0, false)
-	_wrap(rr, ModeRules.GOALS[mode], rr.position.y + 92.0, Color(0.8, 0.9, 1.0, 0.92 if ok else 0.45), 15)
-	var line := _record_line(mode) if ok else _lock_reason(mode)
-	UiKit.text(self, Vector2(rr.position.x + 14.0, rr.end.y - 70.0), line, 13, Color(col.lightened(0.3), 0.95) if ok else UiKit.DIM, 0, rr.size.x - 28.0, 2.0, false)
-	var br := Rect2(rr.position.x + 14.0, rr.end.y - 54.0, rr.size.x - 28.0, 42.0)
-	button("", br, "JUGAR" if mode != ModeRules.CHALLENGE else "ELEGIR REGLA", GButton.Style.PRIMARY if ok else GButton.Style.GHOST, "", 19, ok)
-	if ok:
-		reg("mode:" + mode, rr)
-
-
-func _card_rule(r: Rect2, cid: String) -> void:
-	var def: Dictionary = ModeRules.CHALLENGES[cid]
-	var col: Color = COLORS[ModeRules.CHALLENGE]
-	var pressed := is_down("rule:" + cid)
-	var rr := r.grow(-3.0) if pressed else r
-	UiKit.panel(self, rr, Color("101a30", 0.97), Color(col, 0.95), 16.0)
-	UiKit.text(self, Vector2(rr.position.x, rr.position.y + 84.0), def["name"], 28, UiKit.TEXT, 1, rr.size.x, 6.0)
-	_wrap(rr, def["desc"], rr.position.y + 130.0, Color(0.8, 0.9, 1.0, 0.92), 18)
-	var rec: Dictionary = Profile.p.data["records"]["challenges"].get(cid, {})
-	var done := int(rec.get("cleared", 0))
-	UiKit.text(self, Vector2(rr.position.x, rr.end.y - 70.0), ("Superado ×%d" % done) if done > 0 else "Sin superar", 15, UiKit.OK if done > 0 else UiKit.DIM, 1, rr.size.x, 3.0, false)
-	UiKit.text(self, Vector2(rr.position.x, rr.end.y - 98.0), "Bono ×%.1f" % float(def["bonus"]), 14, UiKit.GOLD, 1, rr.size.x, 3.0, false)
-	button("", Rect2(rr.position.x + 24.0, rr.end.y - 56.0, rr.size.x - 48.0, 42.0), "JUGAR", GButton.Style.PRIMARY, "", 20, true)
-	reg("rule:" + cid, rr)
-
-
 func tap(id: String) -> void:
 	if id.begins_with("diff:"):
 		Profile.p.data["selected_difficulty"] = id.substr(5)
@@ -180,7 +270,7 @@ func tap(id: String) -> void:
 		var mode := id.substr(5)
 		if mode == ModeRules.CHALLENGE:
 			state = "rules"
-			title = "ELIGE UNA REGLA"
+			_rebuild()
 			AudioMgr.ui("tick", -4.0)
 		else:
 			chosen.emit(mode, "")

@@ -17,13 +17,13 @@ var closing := false
 var toast_text := ""
 var toast_t: float = 0.0
 var toast_col := Color.WHITE
-const HEADER_H := 84.0
+const HEADER_H := 104.0
 
 
 func _ready() -> void:
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	mouse_filter = Control.MOUSE_FILTER_STOP
-	back_btn = GButton.make("", GButton.Style.ICON, "chev_l")
+	back_btn = HomeButton.menu("", GButton.Style.ICON, "chev_l")
 	back_btn.click_sound = "ui_back"
 	back_btn.pressed.connect(close)
 	add_child(back_btn)
@@ -68,6 +68,8 @@ func show_toast(s: String, c: Color = Color.WHITE) -> void:
 
 func _process(delta: float) -> void:
 	t += delta
+	if not closing:
+		modulate.a = minf(1.0, t * 7.0)
 	enter_k = minf(1.0, enter_k + delta * 4.5)
 	toast_t = maxf(0.0, toast_t - delta)
 	queue_redraw()
@@ -76,43 +78,39 @@ func _process(delta: float) -> void:
 func _draw() -> void:
 	regions.clear()
 	var k := Gfx.ease_out(enter_k)
-	UiKit.gradient_rect(self, Rect2(Vector2.ZERO, size), Color("0a1020"), Color("04060e"))
-	Gfx.draw_glow(self, Vector2(size.x * 0.5, 0), size.x * 0.7, Color(accent, 0.08))
+	MenuStyle.background(self, Rect2(Vector2.ZERO, size))
 	_draw_header(k)
-	draw_set_transform(Vector2((1.0 - k) * 40.0, 0.0), 0.0, Vector2.ONE)
+	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
 	_draw_body(k)
 	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
 	if toast_t > 0.0:
 		var a := clampf(toast_t * 2.5, 0.0, 1.0)
 		var r := Rect2(size.x * 0.5 - 260.0, size.y - 130.0 + (1.0 - a) * 20.0, 520.0, 52.0)
-		UiKit.panel(self, r, Color("0d1424", 0.95), Color(toast_col, a), 12.0, a)
-		UiKit.text(self, Vector2(r.position.x, r.position.y + 35.0), toast_text, 22, Color(toast_col, a), 1, r.size.x, 4.0)
+		MenuStyle.panel(self, r, Color("0d1424", 0.95), Color(toast_col, a), 12.0, a)
+		MenuStyle.text(self, Vector2(r.position.x, r.position.y + 35.0), toast_text, 22, Color(toast_col, a), 1, r.size.x, 4.0)
 
 
 func _draw_body(_k: float) -> void:
 	pass
 
 
-func _draw_header(k: float) -> void:
-	UiKit.gradient_rect(self, Rect2(0, 0, size.x, HEADER_H), Color("0e1730"), Color("0a1226"))
-	draw_rect(Rect2(0, HEADER_H - 3.0, size.x, 3.0), Color(accent, 0.6))
-	# flecha volver dibujada sobre el boton
-	draw_colored_polygon(PackedVector2Array([Vector2(60, 28), Vector2(36, 45), Vector2(60, 62)]), Color(0, 0, 0, 0))
-	var smx := SafeArea.margins(self).x
-	UiKit.text(self, Vector2(108.0 + smx, 56.0), title, 38, UiKit.TEXT, 0, -1.0, 7.0)
-	# monedas y gemas
-	var p := Profile.p
-	var smz := SafeArea.margins(self).z
-	_pill(Vector2(size.x - 24.0 - smz, 22.0), UiKit.format_int(p.coins()), "coin", Color("ffd24a"))
-	_pill(Vector2(size.x - 24.0 - 190.0 - smz, 22.0), UiKit.format_int(p.gems()), "gem", UiKit.GEM)
+func _draw_header(_k: float) -> void:
+	draw_rect(Rect2(0, 0, size.x, HEADER_H), Color(MenuStyle.INK, 0.85))
+	draw_line(Vector2(24, HEADER_H - 1), Vector2(size.x - 24, HEADER_H - 1), Color(MenuStyle.GOLD, 0.24), 1)
+	var sx := SafeArea.margins(self).x
+	MenuStyle.text(self, Vector2(108 + sx, 30), "RPG PREMIUM  /  TU REFUGIO", 12, MenuStyle.GOLD)
+	MenuStyle.text(self, Vector2(108 + sx, 76), title, 42, MenuStyle.TEXT)
+	var right := size.x - 24.0 - SafeArea.margins(self).z
+	_pill(Vector2(right, 30), MenuStyle.format_int(Profile.p.coins()), "coin", MenuStyle.GOLD)
+	_pill(Vector2(right - 184, 30), MenuStyle.format_int(Profile.p.gems()), "gem", MenuStyle.GEM)
 
 
 func _pill(right_top: Vector2, s: String, icon: String, col: Color) -> void:
 	var w := 170.0
 	var r := Rect2(right_top.x - w, right_top.y, w, 42.0)
-	UiKit.pill(self, r, Color(0.03, 0.05, 0.1, 0.9), Color(col, 0.7), 2.5)
+	MenuStyle.pill(self, r, Color(0.03, 0.05, 0.1, 0.9), Color(col, 0.7), 2.5)
 	UiIcons.draw(self, icon, Vector2(r.position.x + 24.0, r.get_center().y), 12.0, col)
-	UiKit.text(self, Vector2(r.position.x + 44.0, r.get_center().y + 8.0), s, 22, UiKit.TEXT, 0, w - 54.0, 3.0)
+	MenuStyle.text(self, Vector2(r.position.x + 44.0, r.get_center().y + 8.0), s, 22, MenuStyle.TEXT, 0, w - 54.0, 3.0)
 
 
 # ---- botones dibujados (con registro de zona) ----
@@ -125,37 +123,25 @@ func is_down(id: String) -> bool:
 
 
 func button(id: String, r: Rect2, label: String, style: int = GButton.Style.SECONDARY, icon: String = "", fsize: int = 22, enabled: bool = true, sub: String = "") -> void:
-	var top: Color
-	var bot: Color
-	var txt := UiKit.TEXT
+	var top := MenuStyle.PANEL_HI
+	var bot := MenuStyle.PANEL
+	var txt := MenuStyle.TEXT
 	match style:
-		GButton.Style.PRIMARY:
-			top = Color("ffb23d")
-			bot = Color("ff6a2a")
-		GButton.Style.GOLD:
-			top = Color("ffe27a")
-			bot = Color("f0a020")
-			txt = Color("3a2200")
+		GButton.Style.PRIMARY, GButton.Style.GOLD:
+			top = MenuStyle.GOLD
+			txt = MenuStyle.INK
 		GButton.Style.DANGER:
-			top = Color("ff7a8a")
-			bot = Color("d83a52")
-		GButton.Style.GHOST:
-			top = Color(0.2, 0.28, 0.44)
-			bot = Color(0.1, 0.15, 0.28)
+			top = MenuStyle.DANGER
 		GButton.Style.TAB:
-			top = Color("2a3a5c")
-			bot = Color("141e38")
-		_:
-			top = Color("3fb8ff")
-			bot = Color("1a68d8")
+			top = Color("365164")
 	if not enabled:
 		top = top.lerp(Color("3a4056"), 0.75)
 		bot = bot.lerp(Color("20243a"), 0.75)
-		txt = Color(txt, 0.55)
+		txt = MenuStyle.DIM
 	var press := 1.0 if (is_down(id) and enabled) else 0.0
-	var body := UiKit.chunky(self, r, top, bot, press, 0.0, minf(14.0, r.size.y * 0.3), 3.0)
+	var body := MenuStyle.chunky(self, r, top, bot, press, 1.0 if enabled and r.has_point(get_local_mouse_position()) else 0.0, minf(14.0, r.size.y * 0.3), 3.0)
 	var cy := body.position.y + body.size.y * 0.5
-	var tw := UiKit.text_width(label, fsize)
+	var tw := MenuStyle.text_width(label, fsize)
 	var isz := float(fsize) * 0.78
 	var total := tw + (isz * 2.2 if icon != "" else 0.0)
 	var x0 := r.position.x + (r.size.x - total) * 0.5
@@ -163,10 +149,10 @@ func button(id: String, r: Rect2, label: String, style: int = GButton.Style.SECO
 		UiIcons.draw(self, icon, Vector2(x0 + isz, cy), isz, Color.WHITE if style != GButton.Style.GOLD else Color("3a2200"))
 		x0 += isz * 2.2
 	if sub != "":
-		UiKit.text(self, Vector2(x0, cy - 1.0), label, fsize, txt, 0, -1.0, 4.0 if style != GButton.Style.GOLD else 0.0)
-		UiKit.text(self, Vector2(r.position.x, cy + float(fsize) * 0.85), sub, int(fsize * 0.55), Color(txt, 0.8), 1, r.size.x, 0.0, false)
+		MenuStyle.text(self, Vector2(x0, cy - 1.0), label, fsize, txt, 0, -1.0, 4.0 if style != GButton.Style.GOLD else 0.0)
+		MenuStyle.text(self, Vector2(r.position.x, cy + float(fsize) * 0.85), sub, int(fsize * 0.55), Color(txt, 0.8), 1, r.size.x, 0.0, false)
 	else:
-		UiKit.text(self, Vector2(x0, cy + float(fsize) * 0.36), label, fsize, txt, 0, -1.0, 4.0 if style != GButton.Style.GOLD else 0.0)
+		MenuStyle.text(self, Vector2(x0, cy + float(fsize) * 0.36), label, fsize, txt, 0, -1.0, 4.0 if style != GButton.Style.GOLD else 0.0)
 	if enabled:
 		reg(id, r)
 

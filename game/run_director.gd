@@ -385,6 +385,9 @@ func _pick_spawn() -> int:
 
 
 func _try_spawn(id: String, elite: bool = false) -> bool:
+	# Consumir entradas excluidas sin portales ni reintentos interminables.
+	if not _has_enemy_sprite(id):
+		return true
 	var room := game.room
 	var h := _pick_spawn()
 	if h < 0:
@@ -417,6 +420,8 @@ func _try_spawn(id: String, elite: bool = false) -> bool:
 
 ## Crea un enemigo por id en `pos` (tambien lo usan jefes y habilidades que invocan).
 func spawn_enemy_at(id: String, pos: Vector2, force_elite: bool) -> Enemy:
+	if not _has_enemy_sprite(id):
+		return null
 	var data: EnemyData = Catalog.enemies[id]
 	var e: Enemy = (load(data.script_path) as GDScript).new()
 	e.data = data
@@ -434,6 +439,9 @@ func spawn_enemy_at(id: String, pos: Vector2, force_elite: bool) -> Enemy:
 			room_elites += 1
 	game.ysort.add_child(e)
 	e.setup(game, pos)
+	if e.spr == null:
+		e.free()
+		return null
 	game.enemies.append(e)
 	return e
 
@@ -447,7 +455,24 @@ func _mode_hp_scale() -> float:
 	return 1.0
 
 
+func _has_enemy_sprite(id: String) -> bool:
+	return VisualProfiles.sprites_enabled() and not VisualProfiles.enemy(id).is_empty()
+
+
+func _skip_polygon_boss() -> void:
+	if game.mode_id == ModeRules.BOSS_RUSH and stage < plan.size() - 1:
+		# Las arenas de Boss Rush no tienen salida: pasar a la siguiente sin premiar una baja.
+		cleared = true
+		in_combat = false
+		rush_wait = 0.1
+	else:
+		_clear_stage()
+
+
 func _spawn_boss() -> void:
+	if not _has_enemy_sprite(game.chapter.boss):
+		_skip_polygon_boss()
+		return
 	var bd: BossData = Catalog.bosses[game.chapter.boss]
 	var b: Enemy = (load(bd.script_path) as GDScript).new()
 	b.boss_data = bd
@@ -455,6 +480,10 @@ func _spawn_boss() -> void:
 	game.ysort.add_child(b)
 	var pos := Vector2(0, game.room.floor_rect.position.y + 200.0)
 	b.setup(game, pos)
+	if b.spr == null:
+		b.free()
+		_skip_polygon_boss()
+		return
 	game.enemies.append(b)
 	boss = b
 	game.hud.boss = b

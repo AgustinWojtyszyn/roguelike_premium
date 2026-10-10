@@ -111,7 +111,8 @@ func _integration(t) -> void:
 	g2.director.entered = true
 	g2.director._begin_encounter()
 	await _frames(t, 10)
-	t.check(g2.director.boss_alive(), "boss rush: el primer jefe aparece")
+	t.check(not g2.director.boss_alive(), "boss rush: el primer jefe poligonal queda excluido")
+	t.check(g2.director.cleared or g2.director.transition or g2.director.stage > 0, "boss rush: avanza sin esperar al jefe excluido")
 	g2.queue_free()
 	await _frames(t, 2)
 	# desafios

@@ -2,7 +2,7 @@ class_name VisualProfiles
 extends RefCounted
 ## Perfiles visuales: que sprite usa cada personaje / enemigo / jefe / arma / cofre / prop, con su escala, offset, fps y anclas.
 ## `height` = alto en pixeles de juego de la silueta tipica (la escala sale de ahi, nunca se deforma el sprite).
-## Jugadores sin perfil aprobado usan placeholder temporal. Enemigos conservan su fallback procedural de seguridad.
+## Jugadores sin perfil aprobado usan placeholder temporal. Enemigos sin sprite quedan excluidos de las partidas por RunDirector.
 
 ## Ajuste global del tamano del arte de armas importado (1.0 = la punta cae justo en `muzzle`).
 const WEAPON_ART_SCALE := 1.0

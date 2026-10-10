@@ -17,15 +17,15 @@ func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_STOP
 	var defs := [["CONTINUAR", GButton.Style.PRIMARY, "play"], ["AJUSTES", GButton.Style.SECONDARY, "gear"], ["SALIR DE LA RUN", GButton.Style.DANGER, ""]]
 	for d in defs:
-		var b := GButton.make(d[0], d[1], d[2])
+		var b := HomeButton.menu(d[0], d[1], d[2])
 		b.font_size = 28
 		add_child(b)
 		btns.append(b)
 	btns[0].pressed.connect(func(): _close())
 	btns[1].pressed.connect(_open_settings)
 	btns[2].pressed.connect(func(): _set_confirm(true))
-	yes_btn = GButton.make("SÍ, SALIR", GButton.Style.DANGER)
-	no_btn = GButton.make("VOLVER", GButton.Style.SECONDARY)
+	yes_btn = HomeButton.menu("SÍ, SALIR", GButton.Style.DANGER)
+	no_btn = HomeButton.menu("VOLVER", GButton.Style.SECONDARY)
 	for b in [yes_btn, no_btn]:
 		b.font_size = 26
 		b.visible = false
@@ -38,12 +38,12 @@ func _ready() -> void:
 
 
 func _layout() -> void:
-	var w := 380.0
+	var w := 440.0
 	var x := (size.x - w) * 0.5
-	var y := size.y * 0.5 - 90.0
+	var y := size.y * 0.5 - 100.0
 	for i in btns.size():
-		btns[i].size = Vector2(w, 74)
-		btns[i].position = Vector2(x, y + float(i) * 90.0)
+		btns[i].size = Vector2(w, 64)
+		btns[i].position = Vector2(x, y + float(i) * 82.0)
 	yes_btn.size = Vector2(250, 70)
 	no_btn.size = Vector2(250, 70)
 	yes_btn.position = Vector2(size.x * 0.5 - 265.0, size.y * 0.5 + 40.0)
@@ -82,17 +82,17 @@ func _process(delta: float) -> void:
 
 func _draw() -> void:
 	draw_rect(Rect2(Vector2.ZERO, size), Color(0.01, 0.02, 0.05, 0.62 * _anim))
-	var pw := 460.0
-	var ph := 372.0 if not confirm else 260.0
-	var pr := Rect2((size.x - pw) * 0.5, size.y * 0.5 - (150.0 if not confirm else 100.0), pw, ph)
-	UiKit.panel(self, pr, UiKit.PANEL, Color(UiKit.EDGE, 0.7), 18.0, _anim)
+	var pw := 600.0 if confirm else 520.0
+	var ph := 480.0 if not confirm else 320.0
+	var pr := Rect2((size.x - pw) * 0.5, (size.y - ph) * 0.5, pw, ph)
+	MenuStyle.panel(self, pr, MenuStyle.PANEL, Color(MenuStyle.EDGE, 0.7), 18.0, _anim)
 	if confirm:
-		UiKit.text(self, Vector2(pr.position.x, pr.position.y + 60.0), "¿SALIR DE LA RUN?", 32, UiKit.TEXT, 1, pw, 6.0)
-		UiKit.text(self, Vector2(pr.position.x, pr.position.y + 100.0), "Conservas las monedas y la XP ganadas.", 18, UiKit.DIM, 1, pw, 3.0, false)
+		MenuStyle.text(self, Vector2(pr.position.x, pr.position.y + 60.0), "¿SALIR DE LA RUN?", 32, MenuStyle.TEXT, 1, pw, 6.0)
+		MenuStyle.text(self, Vector2(pr.position.x, pr.position.y + 100.0), "Conservas las monedas y la XP ganadas.", 18, MenuStyle.DIM, 1, pw, 3.0, false)
 	else:
-		UiKit.text(self, Vector2(pr.position.x, pr.position.y + 56.0), "PAUSA", 40, UiKit.TEXT, 1, pw, 7.0)
+		MenuStyle.text(self, Vector2(pr.position.x, pr.position.y + 56.0), "PAUSA", 40, MenuStyle.TEXT, 1, pw, 7.0)
 		var c := game.chapter
-		UiKit.text(self, Vector2(pr.position.x, pr.position.y + 84.0), c.display_name, 16, Color(c.accent, 0.9), 1, pw, 3.0)
+		MenuStyle.text(self, Vector2(pr.position.x, pr.position.y + 84.0), c.display_name, 16, Color(c.accent, 0.9), 1, pw, 3.0)
 
 
 func _notification(what: int) -> void:

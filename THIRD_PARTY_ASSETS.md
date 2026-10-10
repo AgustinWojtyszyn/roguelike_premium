@@ -55,3 +55,7 @@ The Vesper benchmark now applies source-space proportions `[0.92, 1.26, 0.92]`, 
 | `assets/premium/dungeon/tech_floor/` | 9 deck-plate floor tiles | **Original work (RPG Premium)**, `tools/premium_tech_floor.py` | procedural PIL drawing, deterministic seeds |
 
 The Quaternius platform/wall pieces were rendered and **rejected**: their detail lives in normal maps that the toon pipeline flattens (floor became a flat quad, walls came out edge-on or blown out), so the floor is original art and walls stay the existing procedural tech walls.
+
+## Menu typography — 2026-10-10
+
+`assets/ui/fonts/`: Barlow Regular, Barlow SemiBold and Barlow Condensed SemiBold by Jeremy Tribby, SIL Open Font License 1.1 (included as `OFL.txt`). Unmodified TTF files from [Google Fonts / Barlow](https://github.com/google/fonts/tree/main/ofl/barlow) and [Barlow Condensed](https://github.com/google/fonts/tree/main/ofl/barlowcondensed), retrieved 2026-10-10. Used only by `ui/menu_style.gd`; no gameplay font changes.
