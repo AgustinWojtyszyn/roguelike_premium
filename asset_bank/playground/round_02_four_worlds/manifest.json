@@ -1,0 +1,2618 @@
+{
+  "batch": "round_02_four_worlds",
+  "media": [
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/audio/bgm_boss_battle.mp3",
+      "source_sha256": "3b4140e4f72077209b53597b0a6dada99016e630a38a0d322fd2f11e5dd73842",
+      "source_byte_size": 744658,
+      "category": "audio",
+      "source_ext": ".mp3",
+      "approved_for_runtime": false,
+      "actual_format": "MP3",
+      "local_path": "asset_bank/playground/round_02_four_worlds/audio/bgm_boss_battle.mp3",
+      "converted_sha256": "3b4140e4f72077209b53597b0a6dada99016e630a38a0d322fd2f11e5dd73842"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/audio/bgm_realm_theme.mp3",
+      "source_sha256": "4b88a432b47c490e94b404605a4a3d99fcb232c4eea9c59b9f65e78ab0999a8b",
+      "source_byte_size": 744658,
+      "category": "audio",
+      "source_ext": ".mp3",
+      "approved_for_runtime": false,
+      "actual_format": "MP3",
+      "local_path": "asset_bank/playground/round_02_four_worlds/audio/bgm_realm_theme.mp3",
+      "converted_sha256": "4b88a432b47c490e94b404605a4a3d99fcb232c4eea9c59b9f65e78ab0999a8b"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/bg_fractured_arena.png",
+      "source_sha256": "71d51c38aa9c221a49b342118aa92e32ea2a8bd80353a23447693b6089f09c9e",
+      "source_byte_size": 295564,
+      "category": "backgrounds",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        1376,
+        768
+      ],
+      "raw_mode": "RGB",
+      "alpha_range": [
+        255,
+        255
+      ],
+      "has_transparency": false,
+      "alpha_status": "opaque",
+      "png_format_verified": true,
+      "converted_byte_size": 1949211,
+      "local_path": "asset_bank/playground/round_02_four_worlds/backgrounds/bg_fractured_arena.png",
+      "converted_sha256": "ee65d940923d9c7b818b440b6a0f0df37b255ea8be994493086269e1a6f5793d"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/bg_fractured_dimension.png",
+      "source_sha256": "cab7c8b5bfd559fed6a328dac4ed07065bc14f8cd15f287dce4bc95aa4a88c3d",
+      "source_byte_size": 213492,
+      "category": "backgrounds",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        1376,
+        768
+      ],
+      "raw_mode": "RGB",
+      "alpha_range": [
+        255,
+        255
+      ],
+      "has_transparency": false,
+      "alpha_status": "opaque",
+      "png_format_verified": true,
+      "converted_byte_size": 1709487,
+      "local_path": "asset_bank/playground/round_02_four_worlds/backgrounds/bg_fractured_dimension.png",
+      "converted_sha256": "d5517dce0174f356df466fdb288c6e2487b2dd9f25c229d1197161412122f011"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/bg_jade_arena.png",
+      "source_sha256": "e6c1f529b4fe88634a4c002ee62ef743bfda8d41e12b1d67b610da1e23b4b51c",
+      "source_byte_size": 268028,
+      "category": "backgrounds",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        1376,
+        768
+      ],
+      "raw_mode": "RGB",
+      "alpha_range": [
+        255,
+        255
+      ],
+      "has_transparency": false,
+      "alpha_status": "opaque",
+      "png_format_verified": true,
+      "converted_byte_size": 1815931,
+      "local_path": "asset_bank/playground/round_02_four_worlds/backgrounds/bg_jade_arena.png",
+      "converted_sha256": "367aca4802f521a0e0a46a342f44f0813ee6dfa63cd0a143eb577abbd1bed30d"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/bg_jade_empire.png",
+      "source_sha256": "abead92dfaa616a09c4fe0b8d05edcebc74a1e51957a3c7d94fad6a6b652d989",
+      "source_byte_size": 250622,
+      "category": "backgrounds",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        1376,
+        768
+      ],
+      "raw_mode": "RGB",
+      "alpha_range": [
+        255,
+        255
+      ],
+      "has_transparency": false,
+      "alpha_status": "opaque",
+      "png_format_verified": true,
+      "converted_byte_size": 1802425,
+      "local_path": "asset_bank/playground/round_02_four_worlds/backgrounds/bg_jade_empire.png",
+      "converted_sha256": "c615f2cd20a5cb2fef591cdc84b39e8dfd3e3fb45d173aa33a47d6ef16ebd777"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/bg_machine_arena.png",
+      "source_sha256": "d302a284fe24fa8d167aa349ac3eb9602cd47fb219a9565dbc02e1ed52f379ef",
+      "source_byte_size": 244610,
+      "category": "backgrounds",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        1376,
+        768
+      ],
+      "raw_mode": "RGB",
+      "alpha_range": [
+        255,
+        255
+      ],
+      "has_transparency": false,
+      "alpha_status": "opaque",
+      "png_format_verified": true,
+      "converted_byte_size": 1726674,
+      "local_path": "asset_bank/playground/round_02_four_worlds/backgrounds/bg_machine_arena.png",
+      "converted_sha256": "4687a7fb329f175f4d73725a1b98287382557e1364f7be8558bc90ab34ce3bfa"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/bg_machine_empire.png",
+      "source_sha256": "513106f6dd2816f56586da0a65a572871c7cde6e4fd0b0627d8979d656f421c4",
+      "source_byte_size": 259604,
+      "category": "backgrounds",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        1376,
+        768
+      ],
+      "raw_mode": "RGB",
+      "alpha_range": [
+        255,
+        255
+      ],
+      "has_transparency": false,
+      "alpha_status": "opaque",
+      "png_format_verified": true,
+      "converted_byte_size": 1825591,
+      "local_path": "asset_bank/playground/round_02_four_worlds/backgrounds/bg_machine_empire.png",
+      "converted_sha256": "eef6410b5f0c67d258d82b33390e27d9ce1a649c3f566df99381693c4de78c4a"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/bg_scarlet_arena.png",
+      "source_sha256": "5bba3b2ef89d77c0387061d5a4aa27a2db7da826f3966f1db1281d24dd0df4ba",
+      "source_byte_size": 194116,
+      "category": "backgrounds",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        1376,
+        768
+      ],
+      "raw_mode": "RGB",
+      "alpha_range": [
+        255,
+        255
+      ],
+      "has_transparency": false,
+      "alpha_status": "opaque",
+      "png_format_verified": true,
+      "converted_byte_size": 1529345,
+      "local_path": "asset_bank/playground/round_02_four_worlds/backgrounds/bg_scarlet_arena.png",
+      "converted_sha256": "1b604073029e8aabac6111ac9dddcbcc05063fa74db42276c4a5487c15ff3971"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/bg_scarlet_fortress.png",
+      "source_sha256": "60f47a2d1c21584158bd2da4a0060c0fddedc8ba0e468c8c23543d68fc322ae3",
+      "source_byte_size": 173424,
+      "category": "backgrounds",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        1376,
+        768
+      ],
+      "raw_mode": "RGB",
+      "alpha_range": [
+        255,
+        255
+      ],
+      "has_transparency": false,
+      "alpha_status": "opaque",
+      "png_format_verified": true,
+      "converted_byte_size": 1444926,
+      "local_path": "asset_bank/playground/round_02_four_worlds/backgrounds/bg_scarlet_fortress.png",
+      "converted_sha256": "7026ffaa9fa094ce54c89ec3bc6f6bc04fb71e03c3ac53817f635405c4ff6495"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/bg_title_screen.png",
+      "source_sha256": "907877657af63f9dc63834d4d00dcfb0e94b3a288cf330dcd4f708e67158a1cc",
+      "source_byte_size": 225228,
+      "category": "backgrounds",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        1376,
+        768
+      ],
+      "raw_mode": "RGB",
+      "alpha_range": [
+        255,
+        255
+      ],
+      "has_transparency": false,
+      "alpha_status": "opaque",
+      "png_format_verified": true,
+      "converted_byte_size": 1679055,
+      "local_path": "asset_bank/playground/round_02_four_worlds/backgrounds/bg_title_screen.png",
+      "converted_sha256": "ccfff0c86c3a8a3db180b1db83dc2fe12119ed8669f902b30e5d7308b0046cce"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/boss_hollow_king_death.png",
+      "source_sha256": "60ad469e80203a3c3a54a1b661533ab25799cb17ab8d85d3132d61b54fdcbd44",
+      "source_byte_size": 613382,
+      "category": "bosses",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 3320869,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_02_four_worlds/bosses/boss_hollow_king_death.png",
+      "converted_sha256": "7bca638468850e32f9b9a627747a011ae442772a2851a689cc505c188a3a16c6"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/boss_hollow_king_hurt.png",
+      "source_sha256": "9a8b315e211fc9b8fadf235146a627c0b61d65e927edb0756b273fe69a98440d",
+      "source_byte_size": 710448,
+      "category": "bosses",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 3849196,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_02_four_worlds/bosses/boss_hollow_king_hurt.png",
+      "converted_sha256": "af4a594ec14cfe96296b5588059408c624c97ca0180def1efe7cd33ae9667a36"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/boss_hollow_king_idle.png",
+      "source_sha256": "deaa8e9bc1a8676c455b04c7b779f0acf35d55a6d2f74c8887371d8f6e68b159",
+      "source_byte_size": 180696,
+      "category": "bosses",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        2048,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 934461,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 4,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_02_four_worlds/bosses/boss_hollow_king_idle.png",
+      "converted_sha256": "14a88aa82004f0b948bdd51508c20d807f90884860bb200deb745f98f519b5f3"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/boss_hollow_king_sword_attack.png",
+      "source_sha256": "8bd922522f46dcb725199855051e7cd127b2b9e6599379b94304780524d30eb4",
+      "source_byte_size": 686228,
+      "category": "bosses",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 3634400,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_02_four_worlds/bosses/boss_hollow_king_sword_attack.png",
+      "converted_sha256": "aff71455ba7a3c0af062ad143066b6ab0e8bffa752ac77db77b90e2739e42c6a"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/boss_hollow_king_walk.png",
+      "source_sha256": "05a15b8b923e5eab77a419227b8ee87485110165fa09804bee89df730c96be8d",
+      "source_byte_size": 634484,
+      "category": "bosses",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 3435205,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_02_four_worlds/bosses/boss_hollow_king_walk.png",
+      "converted_sha256": "fca9313a0134dcad1586cc47e51a14d42440e661a3d5ef0c4603f951d93799c2"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/boss_iron_colossus_attack.png",
+      "source_sha256": "478d56991396c23bf46eca78c745ec85aac6518dbbd05f5ab5b4cf1c5d90da51",
+      "source_byte_size": 654224,
+      "category": "bosses",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 3515245,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_02_four_worlds/bosses/boss_iron_colossus_attack.png",
+      "converted_sha256": "3d532178f5dd5b6a0fc491d2d57b97ac57d4860ba9b11e5f40e7f6b2e387149b"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/boss_iron_colossus_death.png",
+      "source_sha256": "7028861beb87b89a4179fde3b7f1da46ebdbd87ea0cb712b32ff0f95e313e778",
+      "source_byte_size": 535624,
+      "category": "bosses",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 2838095,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_02_four_worlds/bosses/boss_iron_colossus_death.png",
+      "converted_sha256": "99926fc0f34cb42743502e32900537b94aabde6b08a25c0e737d0461071fc4ba"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/boss_iron_colossus_hurt.png",
+      "source_sha256": "a86529661d6142db296067213cbefeced51472bba7ef7362ba5bd757626330ba",
+      "source_byte_size": 735942,
+      "category": "bosses",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 3907607,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_02_four_worlds/bosses/boss_iron_colossus_hurt.png",
+      "converted_sha256": "af416615729b540270e92661753da4379ce13c6a98b07368028c41620be8f9da"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/boss_iron_colossus_idle.png",
+      "source_sha256": "afbf5b85e6f6d0cc127c00de88c482726487c2de974f6045255a46f7f20cc444",
+      "source_byte_size": 182462,
+      "category": "bosses",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        2048,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 1067286,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 4,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_02_four_worlds/bosses/boss_iron_colossus_idle.png",
+      "converted_sha256": "d15c32fb7171f93a797a89db560dee95dcf8e0d65cc010284a6e1dda0e95803e"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/boss_iron_colossus_walk.png",
+      "source_sha256": "f1a4250ac043341ba7db517c70b9eb180ae05bc557f920acda37848d21a1b34d",
+      "source_byte_size": 454192,
+      "category": "bosses",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 2515163,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_02_four_worlds/bosses/boss_iron_colossus_walk.png",
+      "converted_sha256": "e1395ba33f8c3eb332c698323022882ef48f967f173cdb5b387e59b60b5eeb69"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/boss_jade_serpent.png",
+      "source_sha256": "9dc38a497cbaa922404bf4fe4cd5468bce1ad5c57246e7f28142afcdae0e3b96",
+      "source_byte_size": 150686,
+      "category": "bosses",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        829,
+        856
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 894616,
+      "grid_candidate": null,
+      "local_path": "asset_bank/playground/round_02_four_worlds/bosses/boss_jade_serpent.png",
+      "converted_sha256": "cba1b5b87efaef43984433bc8e2245a254b99e32b6b5581f07b3f3fa1e65dbc8"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/boss_reality_architect_attack.png",
+      "source_sha256": "2a1015f6c31018b3f3619f3f0487c9126d62165c996d0614a688e1a4d4e87d0a",
+      "source_byte_size": 1089042,
+      "category": "bosses",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 5288444,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_02_four_worlds/bosses/boss_reality_architect_attack.png",
+      "converted_sha256": "93fde227161c153613c45236ecb19a36fdd1e8d10e6b5f8ac8531810c19fb626"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/boss_reality_architect_death.png",
+      "source_sha256": "e335757cbfdd19f8c1a7d3b3f976e3cf86a21746061c81e713d5c1f69abc20d8",
+      "source_byte_size": 905398,
+      "category": "bosses",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 4179439,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_02_four_worlds/bosses/boss_reality_architect_death.png",
+      "converted_sha256": "25f9bf1151f1002f1aa433951ebce8d9ee74527a8511c6bc1fcfea9bb4b1684c"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/boss_reality_architect_hurt.png",
+      "source_sha256": "75260d82b2e0a410096bb17513210b8959bf881cf7bd58b41695b9c0901e9ab6",
+      "source_byte_size": 1202314,
+      "category": "bosses",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 5950878,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_02_four_worlds/bosses/boss_reality_architect_hurt.png",
+      "converted_sha256": "397af4a16153226f57b2368956d50e41648091cc9ceb64ebf8b905309f5dfb54"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/boss_reality_architect_idle.png",
+      "source_sha256": "2cef50d079aaba265503cd84ef224213ca6ca7391876e6f1166c71b7e7d3b94c",
+      "source_byte_size": 204684,
+      "category": "bosses",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        2048,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 1033778,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 4,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_02_four_worlds/bosses/boss_reality_architect_idle.png",
+      "converted_sha256": "34fb8fdad96fa7f40e3cf28fdab01b70a7e2db61892b2167850ce5bb68fe1d99"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/boss_reality_architect_walk.png",
+      "source_sha256": "0134612354ef3680077ba2c9b80044734ab34dda45638b6ffc09b0095252dbdf",
+      "source_byte_size": 858378,
+      "category": "bosses",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 4210352,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_02_four_worlds/bosses/boss_reality_architect_walk.png",
+      "converted_sha256": "fc04e276eb614fbd3abd44b181b40a32d284f2daa8794abeb35e3d200ccf5f85"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/enemy_fractured_knight_attack.png",
+      "source_sha256": "ba8c1a594df18d3a5bf0a13d0a943a52c04679c676858cdcdb6aeee785f03721",
+      "source_byte_size": 609374,
+      "category": "enemies",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 3515610,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_02_four_worlds/enemies/enemy_fractured_knight_attack.png",
+      "converted_sha256": "710b6d68c228f05e278abf384cf14fd408343dec405a91e1fee3582b35342958"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/enemy_fractured_knight_death.png",
+      "source_sha256": "2246532eebb7fe7996c7a72bbb36c7aa424603a485051fa260914798518a60ce",
+      "source_byte_size": 531026,
+      "category": "enemies",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 3201347,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_02_four_worlds/enemies/enemy_fractured_knight_death.png",
+      "converted_sha256": "d048a60af6727a0744b6a1d1eaf7cd31f54df8319d1273b2ec22305e3843e548"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/enemy_fractured_knight_hurt.png",
+      "source_sha256": "a14172ab862534f989997a8492ac21998b3a12091e3dbfab964c93d7e28a32ee",
+      "source_byte_size": 651342,
+      "category": "enemies",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 3610729,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_02_four_worlds/enemies/enemy_fractured_knight_hurt.png",
+      "converted_sha256": "41bcb42f90104f9584b59df62631216b5f4001aa976bd2f43d8657925678284a"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/enemy_fractured_knight_idle.png",
+      "source_sha256": "bc7ea42626b103c38acaca1a68fdfa170701e491f4aef5c84cde3e649dfc4da3",
+      "source_byte_size": 147282,
+      "category": "enemies",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        2048,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 832976,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 4,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_02_four_worlds/enemies/enemy_fractured_knight_idle.png",
+      "converted_sha256": "a36cb70016bfa28eaf9e61cc2aaf3f6315e5c16edd3921b277a11be4efecb200"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/enemy_fractured_knight_run.png",
+      "source_sha256": "3ca350b5facae774003f2bd54646ef4066d31c6167ea62da7263b6806d2a1896",
+      "source_byte_size": 517890,
+      "category": "enemies",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 3113669,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_02_four_worlds/enemies/enemy_fractured_knight_run.png",
+      "converted_sha256": "0215a3eff29f12f2a4a7a3a1d6c90fa41ac19420452e360963d1a13fde5b1350"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/enemy_jade_guardian_attack.png",
+      "source_sha256": "aeba2dc452285755fe7214ad6b18c5ad03607da25c6a93a82fdeb21c19d512eb",
+      "source_byte_size": 488628,
+      "category": "enemies",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 2867681,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_02_four_worlds/enemies/enemy_jade_guardian_attack.png",
+      "converted_sha256": "28f05b424c7e0ed5874f59cf0ba28aa2701bb76daa6d50c0ec53baa64ff3c8f1"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/enemy_jade_guardian_death.png",
+      "source_sha256": "f8aa2cac6d35a8488a67bf0ddec18385e3de0376d2758977fbab34939dc477ea",
+      "source_byte_size": 481968,
+      "category": "enemies",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 2644731,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_02_four_worlds/enemies/enemy_jade_guardian_death.png",
+      "converted_sha256": "59b7e310fd54f7c4cceffc45e4c9fdc8fb0e7f018e973b3bdd47946bd5016040"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/enemy_jade_guardian_hurt.png",
+      "source_sha256": "676400990e6c723aa31bb47136e9f76af24e91e1ecb96b2b90fbf95e66b7eb59",
+      "source_byte_size": 512482,
+      "category": "enemies",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 2889839,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_02_four_worlds/enemies/enemy_jade_guardian_hurt.png",
+      "converted_sha256": "b0aca91a2dc022b3af0e68af9f1cadea20cce1e87651fe40abb56fa7561b0f71"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/enemy_jade_guardian_idle.png",
+      "source_sha256": "b9e48a439f50eb014a91a876597f2e7c1a30e7fee2a0738094caf2fc857c1fb9",
+      "source_byte_size": 139474,
+      "category": "enemies",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        2048,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 768763,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 4,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_02_four_worlds/enemies/enemy_jade_guardian_idle.png",
+      "converted_sha256": "ee1424479b7ef5972ec3f811bdfe48a912a1edf999c351be8862ec0ff15ff471"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/enemy_jade_guardian_walk.png",
+      "source_sha256": "921eabf27c81552759f8f8c0a5f6ce18dfa06ca01859fee75309b0aec9da2b70",
+      "source_byte_size": 449442,
+      "category": "enemies",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 2511514,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_02_four_worlds/enemies/enemy_jade_guardian_walk.png",
+      "converted_sha256": "7a0753b40e6df297e83ff75c733693b93182d0536f5948e890ffaa5760a9539a"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/enemy_machine_scout_death.png",
+      "source_sha256": "8cd3f2db1e7bba21be3d10010fc3bd0194c070450605356a7c0d092ff8131c0c",
+      "source_byte_size": 423226,
+      "category": "enemies",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 2248857,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_02_four_worlds/enemies/enemy_machine_scout_death.png",
+      "converted_sha256": "76c9c25586d4a4b665b2eb1b01c05c69d62802a6877b25780989a61b742187de"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/enemy_machine_scout_hurt.png",
+      "source_sha256": "2b1d97d5eb98b6042629ef4fc6ef8af201cdbab18763b69de18fda9003c5577b",
+      "source_byte_size": 373070,
+      "category": "enemies",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 2174185,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_02_four_worlds/enemies/enemy_machine_scout_hurt.png",
+      "converted_sha256": "661f1eece61774e09ef2bc52e6e4a6095a0cf516b8c4d16226cfe5c1ca2bf8f5"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/enemy_machine_scout_idle.png",
+      "source_sha256": "174b88a082aa4c7443c48f38b3965d3cc2485e09c8d4112dcbfc29992439f81d",
+      "source_byte_size": 123282,
+      "category": "enemies",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        2048,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 632204,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 4,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_02_four_worlds/enemies/enemy_machine_scout_idle.png",
+      "converted_sha256": "2c3acb01bfd032dca199d92e288f6885d47dd6406070af4bd64be5f1402ba34d"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/enemy_machine_scout_run.png",
+      "source_sha256": "7d97c2d6c40f42e7c82fa2a60823abc8c9d3c65e59bc731e758e923743868277",
+      "source_byte_size": 454246,
+      "category": "enemies",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 2488028,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_02_four_worlds/enemies/enemy_machine_scout_run.png",
+      "converted_sha256": "233c1f9d8916333512443b962d954904e89ab542bac66391a289cfb7b194bfd9"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/enemy_machine_scout_shoot.png",
+      "source_sha256": "282aa70d07b03df97a3b186050f1afbd1e344491f83f395d6f7529c257d4fc74",
+      "source_byte_size": 389894,
+      "category": "enemies",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 2166998,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_02_four_worlds/enemies/enemy_machine_scout_shoot.png",
+      "converted_sha256": "89c891379a31916019d4e8a9e2013e077bb1e8644ae37fe0b0738c8b51baa255"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/enemy_scarlet_knight_death.png",
+      "source_sha256": "9d5dc8c7fd0ffbe6bee993eef0536cd8eccf4456fd0147448d62f6ec9891adbb",
+      "source_byte_size": 490700,
+      "category": "enemies",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 2832005,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_02_four_worlds/enemies/enemy_scarlet_knight_death.png",
+      "converted_sha256": "b0e5c44a7113fe39c5b7df2c6c325cfec7192fd9dcc64b83855548d2eee9e92e"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/enemy_scarlet_knight_hurt.png",
+      "source_sha256": "d162720a7bb717a979cce2b19b8310489d98355ad23f39a712ff334a0043644b",
+      "source_byte_size": 594124,
+      "category": "enemies",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 3674480,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_02_four_worlds/enemies/enemy_scarlet_knight_hurt.png",
+      "converted_sha256": "bdcecee75fefc241bbe78a0668a0b4cbf3f01227ffdb515df5574e075970323d"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/enemy_scarlet_knight_idle.png",
+      "source_sha256": "73285dfeee31ac9d95ba499943830f20cc7da6c860cf1ccaa1447c478766261d",
+      "source_byte_size": 135960,
+      "category": "enemies",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        2048,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 846167,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 4,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_02_four_worlds/enemies/enemy_scarlet_knight_idle.png",
+      "converted_sha256": "6949497cdfca5001181a0ad92f81e4f9482ffba086f074d5bbe93cd727c09dc0"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/enemy_scarlet_knight_run.png",
+      "source_sha256": "6688919d4bca9304f65be6adef8a5bc27b6b44a8be05bf7f7b2f5cdf3a5645c8",
+      "source_byte_size": 616192,
+      "category": "enemies",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 3641534,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_02_four_worlds/enemies/enemy_scarlet_knight_run.png",
+      "converted_sha256": "336cfa92119c4c5ff8fa183cf90b8676abcc7c1092daeca84947011fb1aff094"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/enemy_scarlet_knight_sword_attack.png",
+      "source_sha256": "ecc00f360377042da8880df9598b93fcc08abd11071a7668312a4724662682d3",
+      "source_byte_size": 589684,
+      "category": "enemies",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 3312329,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_02_four_worlds/enemies/enemy_scarlet_knight_sword_attack.png",
+      "converted_sha256": "e0f47d7cad008c048bfe6280b6220b80c11f0c315c85ff573c964eccd125cf2f"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/fx_dash_trail.png",
+      "source_sha256": "e9d91a863a2e3b6ebbe837037aa4cb22c92b1ca46bb8290a9766ea659131984f",
+      "source_byte_size": 49868,
+      "category": "vfx",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        834,
+        425
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 320741,
+      "local_path": "asset_bank/playground/round_02_four_worlds/vfx/fx_dash_trail.png",
+      "converted_sha256": "44efe50e3431e48e2c2652799c6b364c979bac58232bd57d18f391c9ef576cb7"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/fx_death_particles.png",
+      "source_sha256": "ec45e0a97085381e106161d162b251725b6882f6a581cbefd61aec305aa66ece",
+      "source_byte_size": 75934,
+      "category": "vfx",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        567,
+        782
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 434197,
+      "local_path": "asset_bank/playground/round_02_four_worlds/vfx/fx_death_particles.png",
+      "converted_sha256": "1b88e0b0e3371bb113e2bf7039c9f51a9baf49495935f0bc53d2ecc5e3dcf4fd"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/fx_electric_impact.png",
+      "source_sha256": "fdb7c6b2310bf6c6360e2f9047ffd2f301ee75e039608b18fc4e6118afcfe683",
+      "source_byte_size": 132140,
+      "category": "vfx",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        795,
+        796
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 651236,
+      "local_path": "asset_bank/playground/round_02_four_worlds/vfx/fx_electric_impact.png",
+      "converted_sha256": "db89670d286b3144537ff4dd80dcab4aeb051d6ce5badeb4fed64253f596d0dc"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/fx_explosion.png",
+      "source_sha256": "6b084bb31669286dd54255134b3fb9bf7a8c4dcc9c79aaf3abb98bdd2dcc8946",
+      "source_byte_size": 83230,
+      "category": "vfx",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        700,
+        588
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 506231,
+      "local_path": "asset_bank/playground/round_02_four_worlds/vfx/fx_explosion.png",
+      "converted_sha256": "ec8975631cb861677a4af53227f10b30c07dd8dfc086bd5d80e724c72f538909"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/fx_heal_pulse.png",
+      "source_sha256": "d538e97456c935b14fede038a6b24799d69ca36424bd063a8dccd45ac38ae5b4",
+      "source_byte_size": 100262,
+      "category": "vfx",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        824,
+        824
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 572633,
+      "local_path": "asset_bank/playground/round_02_four_worlds/vfx/fx_heal_pulse.png",
+      "converted_sha256": "699c025e8357d12bcb8f6d7eec2bd62a3775ce957f0c7d4e51ecd12c9b8cb878"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/fx_muzzle_flash.png",
+      "source_sha256": "9aeed640c3131be0e1de96a9b7091b89652868b3cf6197131428e294d4426888",
+      "source_byte_size": 49080,
+      "category": "vfx",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        660,
+        620
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 300785,
+      "local_path": "asset_bank/playground/round_02_four_worlds/vfx/fx_muzzle_flash.png",
+      "converted_sha256": "e1723d2da969e90a66566783e482710964c9151c9c628c3f5ac7f2ac16816dac"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/fx_shield_break.png",
+      "source_sha256": "657f0a96964fafd9bb8ba5f7604a3e69f9506f7d922afa0d3f39c7306aa0e514",
+      "source_byte_size": 102388,
+      "category": "vfx",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        762,
+        752
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 626475,
+      "local_path": "asset_bank/playground/round_02_four_worlds/vfx/fx_shield_break.png",
+      "converted_sha256": "ddcb6ee64730ef3eb0d027b8a4833b40f4c9e9aa79ef0412bad797895c271f60"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/fx_sword_slash.png",
+      "source_sha256": "69c566cad6c3ac8b419bb58630a2fb214e32fff08468f5adb5fd70d053282d40",
+      "source_byte_size": 43286,
+      "category": "vfx",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        742,
+        578
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 293016,
+      "local_path": "asset_bank/playground/round_02_four_worlds/vfx/fx_sword_slash.png",
+      "converted_sha256": "47e54dfa68561c6354076903db4429af7d2accd67577f3b46d854c18d7ba32b6"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/hero_explorer_death.png",
+      "source_sha256": "3702dceb078e3dc9476ed66d6b6449a678ddae62fb64e524a50fbabf09a13a5f",
+      "source_byte_size": 387228,
+      "category": "characters",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 2355470,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_02_four_worlds/characters/hero_explorer_death.png",
+      "converted_sha256": "684d43e08bccd4f778a4a25aa4323e3d85ca95430c34d0eb3ca59353b886c062"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/hero_explorer_hurt.png",
+      "source_sha256": "25e2e44a8e76cc9f959cc23ed3953838d172b0048080ae3cdbf6b882eb8f3f17",
+      "source_byte_size": 306730,
+      "category": "characters",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 1932109,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_02_four_worlds/characters/hero_explorer_hurt.png",
+      "converted_sha256": "37afb4b18f818b8e800c68b8d8b1b708909c80b9ce1ddc25170439a8a0a120d7"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/hero_explorer_idle.png",
+      "source_sha256": "9739d8efc63bef31766de14fc0f0c8b6c8c80d56af3da61a92bb6cdec0c7d604",
+      "source_byte_size": 81528,
+      "category": "characters",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        2048,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 524284,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 4,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_02_four_worlds/characters/hero_explorer_idle.png",
+      "converted_sha256": "83c66593ba6ac9a884f006976ab2ead4046749957182aa586bfaeadc2133c854"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/hero_explorer_run.png",
+      "source_sha256": "bcce36149bd974b3f09fbb6bf71b93edec010c19e44e77c4defcc05412ccf961",
+      "source_byte_size": 426112,
+      "category": "characters",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 2746946,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_02_four_worlds/characters/hero_explorer_run.png",
+      "converted_sha256": "e8077055c347d5de39ca6c16c9df73993f81a5928dbb88d75f34aa7caab4126b"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/hero_explorer_shoot.png",
+      "source_sha256": "c986e9f0cabbeb9161188d559ee4e9480f56f7c284af228c8bf7cc84b5e2cadc",
+      "source_byte_size": 289838,
+      "category": "characters",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 1762563,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_02_four_worlds/characters/hero_explorer_shoot.png",
+      "converted_sha256": "5202919b5044aff0b4a4ae91e8e1ad32fa67b46380455c5b447d6c4634a624c8"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/hero_explorer_walk.png",
+      "source_sha256": "1f685527792957db1a238c64b27a84a4ec505722e4c2e6a51429e6bc06a3d941",
+      "source_byte_size": 331258,
+      "category": "characters",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 2061845,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_02_four_worlds/characters/hero_explorer_walk.png",
+      "converted_sha256": "3d0950f110747f2edd78d8cb153957182f47b4d9707e7f42a9c6e81eb105e618"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/hero_iron_warden_death.png",
+      "source_sha256": "ad75db5efdb8e3476aaa98dd247c53715962ece8a598a15a36b081e53ed1d524",
+      "source_byte_size": 442314,
+      "category": "characters",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 2443480,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_02_four_worlds/characters/hero_iron_warden_death.png",
+      "converted_sha256": "475a013027489817ece4b0ac53ff94ae105b3633b9f400007374c6c0f9f138c4"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/hero_iron_warden_hurt.png",
+      "source_sha256": "732f33b78f8add44648285ae9ab36c91d44b05faac25c1213213ac97231f618a",
+      "source_byte_size": 492200,
+      "category": "characters",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 2551799,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_02_four_worlds/characters/hero_iron_warden_hurt.png",
+      "converted_sha256": "eb4c0ea1da4fb4eef82ad4681a32239ff9f8e0e5b59eb078e29e766a16d4542c"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/hero_iron_warden_idle.png",
+      "source_sha256": "b90b8bdd45a896567d5249faa61d589f904e3d18c882ff3013d179ddd61ad978",
+      "source_byte_size": 138992,
+      "category": "characters",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        2048,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 755355,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 4,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_02_four_worlds/characters/hero_iron_warden_idle.png",
+      "converted_sha256": "297f47b11325b18b28cdf6fbc587fed77d6c1da2f04e351701c9c055f2e29d25"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/hero_iron_warden_run.png",
+      "source_sha256": "9c71640f64ba12547b7f935ce37bac4b26305ecc781df422e38243dd87e63838",
+      "source_byte_size": 496340,
+      "category": "characters",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 2852432,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_02_four_worlds/characters/hero_iron_warden_run.png",
+      "converted_sha256": "d8cea79b32952fc261f9073c5b69397d8154833bc8202155d2be7c0464648734"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/hero_iron_warden_sword_attack.png",
+      "source_sha256": "dbe16b5b252d2fd9404f616ea05733ef4e11a98b3b39a2b05b44c1e882ddd1de",
+      "source_byte_size": 528154,
+      "category": "characters",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 2729539,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_02_four_worlds/characters/hero_iron_warden_sword_attack.png",
+      "converted_sha256": "c4a0633251d85513a51f7d1b002c7325999f94678029b3503d54b6ec7c445c44"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/hero_iron_warden_walk.png",
+      "source_sha256": "ae1aca10d3c2e4f3dcd1d2066462986775174eab1bedd9a0eac467c0cd03e287",
+      "source_byte_size": 470408,
+      "category": "characters",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        8192,
+        512
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 2629364,
+      "grid_candidate": {
+        "frame_size": [
+          512,
+          512
+        ],
+        "frames": 16,
+        "verified_frame_content": false
+      },
+      "local_path": "asset_bank/playground/round_02_four_worlds/characters/hero_iron_warden_walk.png",
+      "converted_sha256": "fa5a4bc0c961d288cbb31f75cfbdb1fbf5d3f2dbb6205011e61f0d06bd19bbe7"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/prop_chest_common.png",
+      "source_sha256": "0470cbb5575af8b3199c84e0befc22df95bbe05b1ffdf6499652055a9fb19691",
+      "source_byte_size": 66524,
+      "category": "props",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        660,
+        679
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 456499,
+      "local_path": "asset_bank/playground/round_02_four_worlds/props/prop_chest_common.png",
+      "converted_sha256": "f7760f26461cfc67153073470908d9b39c7c0a94f91bd05981b3150bdf830155"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/prop_chest_legendary.png",
+      "source_sha256": "39c969caec9e029bb3b71cd505f8747dfaa02af6f4ea046a5b3e69ee2295702a",
+      "source_byte_size": 83022,
+      "category": "props",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        762,
+        833
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 608765,
+      "local_path": "asset_bank/playground/round_02_four_worlds/props/prop_chest_legendary.png",
+      "converted_sha256": "1c7797640807d56d2042cbcdebc2f410cc0fe0c461c569ec46957fb8b2110705"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/prop_chest_rare.png",
+      "source_sha256": "08eecbde887413ca2e73efe8b06d36f1d641f45d90223a8af5a7110642a63918",
+      "source_byte_size": 120944,
+      "category": "props",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        772,
+        762
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 784802,
+      "local_path": "asset_bank/playground/round_02_four_worlds/props/prop_chest_rare.png",
+      "converted_sha256": "5a4a7f9d74942487dc19f3aed1d6888521e84d4d68ec2d59022bb644f9fd8ac3"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/prop_coin_pickup.png",
+      "source_sha256": "050e013e8bac27984ca8e5534aca5eb68843bf6a6c60283c1c02216860ee19cc",
+      "source_byte_size": 45708,
+      "category": "props",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        682,
+        650
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 330554,
+      "local_path": "asset_bank/playground/round_02_four_worlds/props/prop_coin_pickup.png",
+      "converted_sha256": "2b2dec292bb5302844ab3b44aa7bda4613af6aa21255df98ea11e0fc69066466"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/prop_crystal_pickup.png",
+      "source_sha256": "ab02d83c14f038f39369e1aa7fda134dc3a76c8353bf37d4840611596e2d95e7",
+      "source_byte_size": 55084,
+      "category": "props",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        638,
+        682
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 435002,
+      "local_path": "asset_bank/playground/round_02_four_worlds/props/prop_crystal_pickup.png",
+      "converted_sha256": "6944a56ada780c22e7dca095c8ad3eb7e5ae3b6aeafdfec97ed624f31cdb5f1f"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/prop_destructible_crate.png",
+      "source_sha256": "99ed583797e02e9dc096b36abef876f1d7b84ae8679232d908d9f4e3bfcd3c32",
+      "source_byte_size": 96282,
+      "category": "props",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        782,
+        838
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 653697,
+      "local_path": "asset_bank/playground/round_02_four_worlds/props/prop_destructible_crate.png",
+      "converted_sha256": "4d4cf7dd19b2015dee7d0dbaf70bc48bdf965fbdf93cab6bd5d8cf6aed90ddc8"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/prop_explosive_barrel.png",
+      "source_sha256": "32ea79ca3f037bfc024405382e9bdac61ade652d4433f2dfb9c9ac87ea93864d",
+      "source_byte_size": 41104,
+      "category": "props",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        475,
+        762
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 283382,
+      "local_path": "asset_bank/playground/round_02_four_worlds/props/prop_explosive_barrel.png",
+      "converted_sha256": "e073cf323794fbba6800ae86ad6c1f870c5738c27bb856b7b81fb1a4a7c2a1b9"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/prop_healing_shrine.png",
+      "source_sha256": "cb57af96ad52d7b6845dde9e5752335d821031bf85007f74518a73dbd945183d",
+      "source_byte_size": 56982,
+      "category": "props",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        782,
+        762
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 434214,
+      "local_path": "asset_bank/playground/round_02_four_worlds/props/prop_healing_shrine.png",
+      "converted_sha256": "1b21d78dcb4c6501c22c472fc079d0dcac8763961342b392bc1ab53b564560b6"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/prop_health_pickup.png",
+      "source_sha256": "b8b8b5e5d1bbec0947b48070aaaffd81c4af6d2d3d2b865eb6e38e9ad9c1dcb2",
+      "source_byte_size": 42478,
+      "category": "props",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        742,
+        741
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 341305,
+      "local_path": "asset_bank/playground/round_02_four_worlds/props/prop_health_pickup.png",
+      "converted_sha256": "97fde983db7780e5a1f24e2a4d7dcb2b50401fd48db2985854912b9971d6854a"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/prop_magic_altar.png",
+      "source_sha256": "f9885b92cb8a6e3692923bdb058c05511df2d7ebc1c2267cc4fe3d21ce0477cb",
+      "source_byte_size": 68152,
+      "category": "props",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        790,
+        617
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 403972,
+      "local_path": "asset_bank/playground/round_02_four_worlds/props/prop_magic_altar.png",
+      "converted_sha256": "0663364f072c5294fe32a877392830869652abda2d738f45dbd2564327224b19"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/prop_teleport_portal.png",
+      "source_sha256": "621aa26b596442a36e3a4c29e463493c7c6aa5574fcfcc61ffc7f746f6c84698",
+      "source_byte_size": 123042,
+      "category": "props",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        671,
+        859
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 737027,
+      "local_path": "asset_bank/playground/round_02_four_worlds/props/prop_teleport_portal.png",
+      "converted_sha256": "0ddc53bf3fe587fb135b14bbbfba3614ee1c2af91a9c92287d5cbde7b7d588fd"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/prop_weapon_pedestal.png",
+      "source_sha256": "98ce40db783e946e42d8a2324480d5dc4bce5a29fcc7168662e00b933166980b",
+      "source_byte_size": 47822,
+      "category": "props",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        700,
+        668
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 384945,
+      "local_path": "asset_bank/playground/round_02_four_worlds/props/prop_weapon_pedestal.png",
+      "converted_sha256": "01edcb9b3157ec600a751171cdfdb3ff7225d33e171c53fd8246bd9847ed8cd9"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/weapon_ancient_sword.png",
+      "source_sha256": "2974c4795c8d33f3e753075e3c95ba8f4789b7c8570634d05d8a2ab25fdf05fe",
+      "source_byte_size": 76786,
+      "category": "weapons",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        895,
+        895
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 415300,
+      "local_path": "asset_bank/playground/round_02_four_worlds/weapons/weapon_ancient_sword.png",
+      "converted_sha256": "288ad507cbe8ca091ba042731014fb76b14af15912641c413e37b9ca43316f9d"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/weapon_assault_rifle.png",
+      "source_sha256": "ab32622ceeaaab69635f90fe51aec0f5a14a9fe06198185c40e0f4f5995962ad",
+      "source_byte_size": 45618,
+      "category": "weapons",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        886,
+        567
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 265487,
+      "local_path": "asset_bank/playground/round_02_four_worlds/weapons/weapon_assault_rifle.png",
+      "converted_sha256": "705f1a1357a30c86d6db09c9624f48a72af30fb04ce2c5239d85f6c605622558"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/weapon_celestial_railgun.png",
+      "source_sha256": "f549213c369ff6722915af3796b6f8a2119f0c75d567d53da51fda1df2f79e72",
+      "source_byte_size": 78448,
+      "category": "weapons",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        857,
+        618
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 409157,
+      "local_path": "asset_bank/playground/round_02_four_worlds/weapons/weapon_celestial_railgun.png",
+      "converted_sha256": "66fc311303358fdd0c099c816a1d55f3261ba4bd6420898661cfad4a7043452f"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/weapon_dual_daggers.png",
+      "source_sha256": "f6152678c02edc01fa5127ec7ca48e7182508fcad1376707dad62a0d1565659e",
+      "source_byte_size": 93560,
+      "category": "weapons",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        866,
+        753
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 442862,
+      "local_path": "asset_bank/playground/round_02_four_worlds/weapons/weapon_dual_daggers.png",
+      "converted_sha256": "b72740dcd998d9430163536827c7a0cfd2232a35f4c5f4310d98cb0ecb580d59"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/weapon_energy_shotgun.png",
+      "source_sha256": "1dbd21bedc3762993667260d429547313469d705f80c0dfb68239d0ce77e009b",
+      "source_byte_size": 39144,
+      "category": "weapons",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        862,
+        444
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 239445,
+      "local_path": "asset_bank/playground/round_02_four_worlds/weapons/weapon_energy_shotgun.png",
+      "converted_sha256": "0ce757a223597eeda34b6a10ecb2f1dbacde001667da5e88c01b2fd033bd116c"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/weapon_heavy_crossbow.png",
+      "source_sha256": "f64c7e48152b9f941e01b4782c97fe454ec87b700ef0242a484b215235a83b7a",
+      "source_byte_size": 86954,
+      "category": "weapons",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        842,
+        526
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 472159,
+      "local_path": "asset_bank/playground/round_02_four_worlds/weapons/weapon_heavy_crossbow.png",
+      "converted_sha256": "a43d585dd833da1d4f4bb542991406df59496ea1475ee596ed8cda6294db8405"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/weapon_magical_staff.png",
+      "source_sha256": "7f1dc0bbfd6e09768f645b625350a87a549eaaf88dbe36bc135b7eaf382a8c9f",
+      "source_byte_size": 27604,
+      "category": "weapons",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        332,
+        822
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 145776,
+      "local_path": "asset_bank/playground/round_02_four_worlds/weapons/weapon_magical_staff.png",
+      "converted_sha256": "c0d88a510238677399af075768b9be8947e586d07daee6e5764286cae9363db7"
+    },
+    {
+      "round": "round_02_four_worlds",
+      "source_zip": "project-files (4).zip",
+      "source_path": "assets/images/weapon_plasma_cannon.png",
+      "source_sha256": "a6f5594b9fab50cb0745f68c95b58cdc06bf535f71fadbe5503f83dc71b34a6c",
+      "source_byte_size": 54222,
+      "category": "weapons",
+      "source_ext": ".png",
+      "approved_for_runtime": false,
+      "actual_format": "WEBP",
+      "dimensions": [
+        862,
+        618
+      ],
+      "raw_mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "has_transparency": true,
+      "alpha_status": "transparent",
+      "png_format_verified": true,
+      "converted_byte_size": 343645,
+      "local_path": "asset_bank/playground/round_02_four_worlds/weapons/weapon_plasma_cannon.png",
+      "converted_sha256": "a800268cd79a16f3323509222185e8b3eec860926ac19ed03cb057f06305e6c3"
+    }
+  ]
+}
