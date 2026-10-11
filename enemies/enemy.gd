@@ -42,6 +42,9 @@ var bar: Part
 
 # ---- presentacion opcional con sprite (arte importado). La logica nunca depende de esto.
 var spr: SpriteActor
+var hurt_t := 0.0                # presentacion: ventana del clip de dano recibido
+var _sp_base_pos := Vector2.ZERO
+var _sp_base_scale := 1.0
 var _sp_phase := ""
 var dying_dur := 0.26
 
@@ -133,6 +136,7 @@ func hurt(dmg: float, dir: Vector2, knock: float, p: Vector2, bkind: int, crit: 
 		game.fx.ring(p, 3.0, 20.0, Color("fff2a0"), 0.15, 2.0)
 		game.fx.sprite("combat/critical_hit", p, 22.0, 44.0, 0.18, Color.WHITE, 0.0, true)
 	flash = maxf(flash, 0.5)
+	hurt_t = 0.33
 	hp_show = 1.5
 	bar.queue_redraw()
 	var fx := game.fx
@@ -314,8 +318,6 @@ func _integrate(dt: float) -> void:
 ## Si hay perfil visual para este enemigo y el arte carga, oculta el dibujo procedural y muestra el sprite.
 ## Si algo falla, no se toca nada: el enemigo sigue con su render original.
 func _try_sprite() -> void:
-	if not VisualProfiles.sprites_enabled():
-		return
 	var prof := VisualProfiles.enemy(kind_name)
 	if prof.is_empty():
 		return
@@ -323,6 +325,8 @@ func _try_sprite() -> void:
 	if made == null:
 		return
 	spr = made
+	_sp_base_pos = spr.position
+	_sp_base_scale = spr.scale.x
 	if prof.has("tint"):
 		spr.self_modulate = prof["tint"]
 	for ch in vis.get_children():
@@ -350,10 +354,13 @@ func sprite_progress() -> float:
 func _sprite_tick(dt: float) -> void:
 	if spr == null:
 		return
+	hurt_t = maxf(0.0, hurt_t - dt)
 	var phase := "death" if state == S_DYING else sprite_phase()
+	if hurt_t > 0.0 and (phase == "idle" or phase == "move") and spr.has_logical("hurt"):
+		phase = "hurt"   # nunca interrumpe anticipacion, golpe ni recuperacion
 	if phase != _sp_phase:
 		_sp_phase = phase
-		var once := phase in ["windup", "strike", "recover", "death"]
+		var once := phase in ["windup", "strike", "recover", "death", "hurt"]
 		if phase == "windup":
 			# anticipacion legible: destello + aro breve en el instante en que arranca el ataque
 			flash = maxf(flash, 0.6)
@@ -379,3 +386,47 @@ func _sprite_tick(dt: float) -> void:
 		else:
 			spr.rate = 1.0
 		spr.tick(dt)
+	_sprite_procedural(phase)
+
+
+## Arte de un solo cuadro (Spark Drone, Rift Skitter) o sin clip de muerte (Ember Hound): el set R8 NO trae esos clips.
+## Se compensa con pose procedural uniforme (nunca deforma proporciones): flotacion, inclinacion, carga, golpe, dano y muerte.
+func _sprite_procedural(phase: String) -> void:
+	var static_art: bool = spr.prof.get("static_art", false)
+	var no_death: bool = spr.prof.get("no_death_clip", false)
+	if not static_art and not (no_death and phase == "death"):
+		return
+	var pos := _sp_base_pos
+	var rot := 0.0
+	var sc := 1.0
+	var alpha := 1.0
+	match phase:
+		"death":
+			var k := clampf(dying_t / maxf(dying_dur, 0.01), 0.0, 1.0)
+			rot = k * 5.0 * face_vis
+			sc = 1.0 - 0.65 * k
+			alpha = 1.0 - k * k
+			pos.y -= 10.0 * k
+		"windup":
+			var w := clampf(sprite_progress(), 0.0, 1.0) if sprite_progress() >= 0.0 else clampf(fmod(t * 3.0, 1.0), 0.0, 1.0)
+			pos.x -= 6.0 * w
+			rot = -0.22 * w
+			sc = 1.0 + 0.08 * w
+		"strike":
+			pos.x += 9.0
+			rot = 0.28
+			sc = 1.06
+		"recover":
+			pos.y += 2.0
+			rot = 0.06
+		"hurt":
+			pos.x += sin(t * 90.0) * 3.0
+			rot = 0.12
+		_:
+			if static_art:
+				pos.y += sin(t * 7.0 + float(get_instance_id() % 7)) * 2.5 - 4.0
+				rot = clampf(vel.length() / 220.0, 0.0, 1.0) * 0.16
+	spr.position = pos
+	spr.rotation = rot
+	spr.scale = Vector2.ONE * _sp_base_scale * sc
+	spr.modulate.a = alpha

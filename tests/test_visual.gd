@@ -63,8 +63,10 @@ func _profiles(t) -> void:
 		holder.free()
 
 	var all := {}
-	all.merge(VisualProfiles.ENEMIES)
-	all.merge(VisualProfiles.BOSSES)
+	for kind in Catalog.enemies:
+		all[kind] = VisualProfiles.enemy(kind)
+	for kind in Catalog.bosses:
+		all[kind] = VisualProfiles.enemy(kind)
 	for kind in all:
 		var pr: Dictionary = all[kind]
 		var s2 := AssetCatalog.anim_set(pr["set"])
@@ -151,14 +153,9 @@ func _game_integration(t) -> void:
 	g.director.entered = true
 	g.director.in_combat = false
 	for id in Catalog.enemies:
-		if VisualProfiles.enemy(id).is_empty():
-			var count := g.enemies.size()
-			t.check(g.director.spawn_enemy_at(id, Vector2.ZERO, false) == null, "%s poligonal excluido" % id)
-			t.check(g.director._try_spawn(id), "%s no bloquea la cola" % id)
-			t.eq(g.enemies.size(), count, "%s no se registra en combate" % id)
-			t.check(g.director.spawn_busy.is_empty(), "%s no abre portal" % id)
+		t.check(not VisualProfiles.enemy(id).is_empty(), "%s tiene perfil premium (ninguno se omite)" % id)
 	var spawned: Array = []
-	for kind in VisualProfiles.ENEMIES:
+	for kind in Catalog.enemies:
 		var e := g.director.spawn_enemy_at(kind, Vector2(randf_range(-200, 200), randf_range(-120, 120)), false)
 		t.check(e.spr != null and e.spr.texture != null, "enemigo %s sprite activo" % kind)
 		spawned.append(e)
@@ -167,11 +164,6 @@ func _game_integration(t) -> void:
 		if is_instance_valid(e):
 			e.hurt(9999.0, Vector2.RIGHT, 0.0, e.position, 0, true)
 	await _frames(t, 30)
-	# Sin sprites no debe aparecer el antiguo fallback poligonal.
-	VisualProfiles._enabled = 0
-	var e2 := g.director.spawn_enemy_at("caballero", Vector2(100, 0), false)
-	t.check(e2 == null, "enemigo sin sprites queda fuera de la partida")
-	VisualProfiles._enabled = -1
 	g.queue_free()
 	await _frames(t, 2)
 

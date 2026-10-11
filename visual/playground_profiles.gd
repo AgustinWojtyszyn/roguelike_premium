@@ -3,7 +3,7 @@ extends RefCounted
 ## R8 visual-only prototype for RPG PREMIUM. No gameplay/damage/boss HP modifications.
 ## Exactly 8 unique non-boss enemy designs + 4 bosses exist; the missing designs cannot be inferred.
 ## A few existing AI roles intentionally reuse a visual with different size/tint.
-## --no-playground restores the prior visual set. Commercial licence not yet established.
+## No legacy fallback exists: every enemy kind and boss resolves here. Commercial licence not yet established.
 
 const LOOKS := {
     # Tech (7 pre-existing AI identities)
@@ -34,10 +34,10 @@ const LOOKS := {
     "vigia": {"actor":"rift_monarch", "height":152.0},
 }
 const BOSSES := ["custodio", "xocotl", "mariscal", "vigia"]
-const FPS := {"default":9.0, "idle":5.0, "walk":11.0, "attack":13.0, "special":12.0, "hurt":10.0, "death":11.0}
+const FPS := {"default":9.0, "idle":5.0, "walk":11.0, "attack":13.0, "special":12.0, "hurt":24.0, "death":11.0}
 
 static func enabled() -> bool:
-    return not OS.get_cmdline_user_args().has("--no-playground")
+    return true
 
 static func enemy(kind: String) -> Dictionary:
     if not enabled() or not LOOKS.has(kind):
@@ -50,15 +50,35 @@ static func enemy(kind: String) -> Dictionary:
     var anims: Dictionary = metadata.get("anims", {})
     if not anims.has("idle"):
         return {}
-    var attack := "attack" if anims.has("attack") else "idle"
+    var boss := BOSSES.has(kind)
+    var has_attack := anims.has("attack")
     var move := "walk" if anims.has("walk") else "idle"
     var dying := "death" if anims.has("death") else "idle"
+    # Anticipacion y golpe salen del MISMO clip real: la primera parte es la carga, el resto la ejecucion.
+    # Los jefes usan su clip "special" para la anticipacion (distinto del ataque normal) cuando existe.
+    var windup := "idle"
+    var strike := "idle"
+    var ranges := {}
+    if has_attack:
+        windup = "attack"
+        strike = "attack"
+        ranges["windup"] = [0.0, 0.4]
+        ranges["strike"] = [0.4, 1.0]
+    if boss and anims.has("special"):
+        windup = "special"
+        ranges["windup"] = [0.0, 0.55]
+        ranges["strike"] = [0.0, 1.0]
+    var anim_map := {"idle":"idle", "move":move, "windup":windup, "strike":strike, "recover":"idle", "death":dying}
+    if anims.has("hurt"):
+        anim_map["hurt"] = "hurt"
+        ranges["hurt"] = [0.0, 0.5]
     # SpriteActor derives px-to-world scale from actual alpha bbox, rather than whole cell height.
     var profile := {
         "set":set_id, "height":float(spec["height"]), "filter":"nearest", "fps":FPS,
-        "shadow":1.0, "death_dur":0.9 if BOSSES.has(kind) else 0.55,
-        "anim_map": {"idle":"idle", "move":move, "windup":"idle", "strike":attack,
-                     "recover":"idle", "death":dying}
+        "shadow":1.0, "death_dur":0.9 if boss else 0.55,
+        "anim_map": anim_map, "ranges": ranges,
+        "static_art": not anims.has("walk"),
+        "no_death_clip": not anims.has("death")
     }
     if spec.has("tint"):
         profile["tint"] = spec["tint"]

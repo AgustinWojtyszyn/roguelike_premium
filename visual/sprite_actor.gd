@@ -16,6 +16,8 @@ var looping := true
 var finished := false
 var reverse := false
 var rate := 1.0
+var lo := 0                     # rango de frames activo (perfil "ranges": fracciones del clip por fase logica)
+var hi := -1
 var _key := ""
 var _fps_cache: Dictionary = {}
 
@@ -76,11 +78,24 @@ func play(logical: String, restart: bool = false, loop: bool = true) -> void:
 		looping = loop
 		return
 	anim = real
-	idx = 0
+	_set_range(logical)
+	idx = lo
 	clock = 0.0
 	looping = loop
 	finished = false
 	_apply()
+
+
+## Perfil "ranges": {fase_logica: [desde, hasta]} en fracciones 0..1 del clip. Permite que anticipacion y golpe usen mitades distintas del mismo clip real.
+func _set_range(logical: String) -> void:
+	var n := aset.frame_count(anim, dir)
+	var r: Array = (prof.get("ranges", {}) as Dictionary).get(logical, [])
+	if r.size() == 2 and n > 1:
+		lo = clampi(int(float(r[0]) * float(n)), 0, n - 1)
+		hi = clampi(int(ceil(float(r[1]) * float(n))) - 1, lo, n - 1)
+	else:
+		lo = 0
+		hi = n - 1
 
 
 func set_dir_vec(v: Vector2) -> void:
@@ -96,6 +111,8 @@ func tick(dt: float) -> void:
 		return
 	if finished:
 		return
+	var top := mini(hi, n - 1) if hi >= 0 else n - 1
+	var span := top - lo + 1
 	clock += dt * rate * fps_of(anim)
 	var step := int(clock)
 	if step <= 0:
@@ -103,13 +120,13 @@ func tick(dt: float) -> void:
 	clock -= float(step)
 	var ni := idx + (-step if reverse else step)
 	if looping:
-		idx = posmod(ni, n)
+		idx = lo + posmod(ni - lo, span)
 	else:
-		if ni >= n:
-			idx = n - 1
+		if ni > top:
+			idx = top
 			finished = true
-		elif ni < 0:
-			idx = 0
+		elif ni < lo:
+			idx = lo
 			finished = true
 		else:
 			idx = ni
@@ -124,7 +141,8 @@ func phase() -> float:
 
 func set_progress(k: float) -> void:
 	var n := aset.frame_count(anim, dir)
-	idx = clampi(int(k * float(n)), 0, n - 1)
+	var top := mini(hi, n - 1) if hi >= 0 else n - 1
+	idx = clampi(lo + int(k * float(top - lo + 1)), lo, top)
 	_apply()
 
 

@@ -211,15 +211,14 @@ func _rig_holds_weapon(t) -> void:
 func _enemies_and_room(t) -> void:
 	for kind in ["caballero", "escarabajo"]:
 		var pr := VisualProfiles.enemy(kind)
-		t.check(str(pr.get("set", "")).begins_with("premium/enemies/"), "enemigo %s usa set Premium pre-renderizado" % kind)
+		t.check(str(pr.get("set", "")).begins_with("playground_r8/"), "enemigo %s usa set del catalogo R8" % kind)
 		var s := AssetCatalog.anim_set(str(pr["set"]))
 		t.check(s != null, "enemigo %s: set carga" % kind)
 		if s == null:
 			continue
-		for a in ["idle", "walk", "windup", "attack", "recover", "death"]:
+		for a in ["idle", "walk", "attack", "death"]:
 			t.check(s.has_anim(a), "enemigo %s: animacion %s" % [kind, a])
-		t.check(s.dirs_of("walk").size() >= 5, "enemigo %s: >=5 direcciones (espejo horizontal en runtime)" % kind)
-		t.check(not (PremiumManifest.SETS[str(pr["set"])] as Dictionary).get("weapon_compatible", false), "enemigo %s no es jugable" % kind)
+		t.check(not (PlaygroundManifest.SETS[str(pr["set"])] as Dictionary).get("weapon_compatible", false), "enemigo %s no es jugable" % kind)
 	# procedencia de todo lo Premium estatico
 	for id in PremiumManifest.STATIC:
 		var inf: Dictionary = PremiumManifest.STATIC[id]

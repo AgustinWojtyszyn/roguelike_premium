@@ -2,7 +2,7 @@ class_name VisualProfiles
 extends RefCounted
 ## Perfiles visuales: que sprite usa cada personaje / enemigo / jefe / arma / cofre / prop, con su escala, offset, fps y anclas.
 ## `height` = alto en pixeles de juego de la silueta tipica (la escala sale de ahi, nunca se deforma el sprite).
-## Jugadores sin perfil aprobado usan placeholder temporal. Enemigos sin sprite quedan excluidos de las partidas por RunDirector.
+## Jugadores sin perfil aprobado usan placeholder temporal. Un enemigo sin perfil es un error de recursos explicito (RunDirector.art_errors), nunca se omite.
 
 ## Ajuste global del tamano del arte de armas importado (1.0 = la punta cae justo en `muzzle`).
 const WEAPON_ART_SCALE := 1.0
@@ -31,46 +31,10 @@ static func character(visual_id: String) -> Dictionary:
 	return CHARACTERS.get(visual_id, {})
 
 
-## Enemigos por `kind_name`. Solo cambia la PRESENTACION: IA, vida, hitboxes y ataques siguen siendo del enemigo Premium.
-## anim_map traduce fases logicas (idle, move, windup, strike, recover, death) a animaciones del set.
-## tint: matiz del sprite (para que una misma criatura sirva a dos enemigos sin parecer la misma skin).
-const ENEMY_FPS := {"default": 10.0, "walk": 11.0, "idle": 6.0, "attack": 14.0, "death": 16.0, "roll": 16.0}
-
-const ENEMIES := {
-	# Premium (pre-render 3D CC0): esqueleto guerrero KayKit con hoja+escudo montados en handslot; 5 direcciones (el espejo lo hace vis.scale.x).
-	"caballero": {"set": "premium/enemies/skeleton_warrior", "height": 62.0, "scale": 1.0, "fps": ENEMY_FPS, "shadow": 1.2, "death_dur": 0.8,
-		"anim_map": {"idle": "idle", "move": "walk", "windup": "windup", "strike": "attack", "recover": "recover"}},
-	"ballestero": {"set": "premium/enemies/skeleton_crossbow", "height": 62.0, "scale": 1.0, "fps": ENEMY_FPS, "shadow": 1.2, "death_dur": 0.8,
-		"anim_map": {"idle": "idle", "move": "walk", "windup": "windup", "strike": "attack", "recover": "recover"}},
-	"sabueso": {"set": "premium/enemies/imp", "height": 46.0, "scale": 1.15, "fps": ENEMY_FPS, "shadow": 1.0, "death_dur": 0.6,
-		"anim_map": {"idle": "idle", "move": "walk", "windup": "windup", "strike": "attack", "recover": "recover"}},
-	"acechador": {"set": "rpg/enemies/raptor", "height": 56.0, "fps": ENEMY_FPS, "tint": Color("c8a6ff"), "shadow": 1.1,
-		"anim_map": {"idle": "idle", "move": "walk", "windup": "lunge_windup", "strike": "lunge_attack", "recover": "recovery"}},
-	"ojo": {"set": "rpg/enemies/orb_stalker", "height": 70.0, "offset": Vector2(0, -16), "fps": ENEMY_FPS, "shadow": 1.2,
-		"anim_map": {"idle": "idle", "move": "move", "windup": "ranged_windup", "strike": "projectile_attack", "recover": "idle"}},
-	# Premium (pre-render 3D CC0): cangrejo Quaternius, criatura no humanoide.
-	"escarabajo": {"set": "premium/enemies/crab", "height": 34.0, "scale": 0.9, "fps": ENEMY_FPS, "shadow": 0.9, "death_dur": 0.6,
-		"anim_map": {"idle": "idle", "move": "walk", "windup": "windup", "strike": "attack", "recover": "recover"}},
-}
-
-
-## Jefes (mismas claves que los enemigos). Sus scripts y mecanicas no cambian; solo la representacion.
-const BOSS_FPS := {"default": 10.0, "idle_float": 8.0, "dimensional_cast": 10.0, "projectile_cast": 12.0, "death": 8.0, "hurt": 10.0}
-
-const BOSSES := {
-	"vigia": {"set": "rpg/bosses/rift_warden", "height": 142.0, "offset": Vector2(0, -6), "fps": BOSS_FPS, "shadow": 1.5,
-		"bar_y": -158.0, "death_dur": 1.8,
-		"anim_map": {"idle": "idle_float", "move": "idle_float", "windup": "dimensional_cast", "strike": "projectile_cast", "recover": "hurt"}},
-}
-
-
+## Enemigos y jefes por `kind_name`: unica fuente = PlaygroundProfiles (catalogo R8). No hay perfiles ni fallback antiguos.
+## Solo cambia la PRESENTACION: IA, vida, hitboxes y ataques siguen siendo del enemigo Premium.
 static func enemy(kind: String) -> Dictionary:
-	var pg_profile := PlaygroundProfiles.enemy(kind)
-	if not pg_profile.is_empty():
-		return pg_profile
-	if BOSSES.has(kind):
-		return BOSSES[kind]
-	return ENEMIES.get(kind, {})
+	return PlaygroundProfiles.enemy(kind)
 
 
 static var _enabled := -1
