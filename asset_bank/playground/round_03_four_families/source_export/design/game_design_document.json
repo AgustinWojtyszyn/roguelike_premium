@@ -1,0 +1,113 @@
+{
+  "title": "RPG Premium",
+  "hook": "Conquer four fractured mystical realms",
+  "game_overview": "A top-down action roguelite where warriors battle through mechanical, mystical, martial, and cosmic biomes to defeat formidable guardians.",
+  "artstyle": "pixelated",
+  "genre": "action_adventure",
+  "winning_condition": "Defeat the overseers across all four biomes and extinguish the Paradox Monarch in the Interdimensional Rift.",
+  "losing_condition": "The player hero loses all health points in combat.",
+  "player_mode": "single_player",
+  "supported_orientations": [
+    "landscape",
+    "wide"
+  ],
+  "input_methods": [
+    "touch",
+    "mouse",
+    "keyboard",
+    "dpad"
+  ],
+  "score_options": {
+    "score_type": "points",
+    "score_order": "higher_is_better"
+  },
+  "low_end_device_support": true,
+  "mobile_playable": true,
+  "tv_playable": true,
+  "language": [
+    "en"
+  ],
+  "content_descriptors": [
+    "violence"
+  ],
+  "controls": [
+    {
+      "input": "W / A / S / D or Arrow Keys / Virtual Joystick",
+      "action": "Move the player hero omnidirectionally through the arena."
+    },
+    {
+      "input": "Mouse Left Click / Spacebar / Primary Touch Button",
+      "action": "Execute primary weapon attack or cast equipped skill."
+    },
+    {
+      "input": "Mouse Right Click / Shift / Dash Touch Button",
+      "action": "Perform high-speed evasive dash with invulnerability frames."
+    },
+    {
+      "input": "Q / E / Secondary Touch Button",
+      "action": "Switch equipped weapon archetype or activate secondary ability."
+    }
+  ],
+  "sections": [
+    {
+      "title": "Design Pillars",
+      "content": "1. Kinetic Combat Readability: Fast-paced action with distinct attack telegraphs, sharp pixel silhouettes, and responsive dodge frames. 2. Biome Identity & Synergy: 4 distinct world phases (Robotic, Jade, Scarlet Fortress, Interdimensional Rift) featuring unique enemies, combat VFX, and terrain props. 3. Roguelite Mastery: Progressive difficulty scaling, weapon switching, and satisfying boss encounters.",
+      "summary": "Core foundational pillars of fast combat and visual excellence."
+    },
+    {
+      "title": "Core Loop",
+      "content": "Enter Biome Arena -> Evade enemy telegraphs & execute weapon combos -> Clear enemy waves & collect power essence -> Face the biome overseer boss -> Progress to the next fractured dimension -> Defeat the Paradox Monarch to secure victory.",
+      "summary": "The room-clearing, upgrade-gathering, and boss-slaying progression cycle."
+    },
+    {
+      "title": "Core Mechanics",
+      "content": "1. 3/4 Oblique Omnidirectional Combat: Fluid 360-degree aiming and 8-directional movement. 2. Active Telegraph Dodging: Red and cyan floor warning zones signal incoming heavy impacts, allowing players to time their dash i-frames. 3. Elemental Weapon Swapping: Switching between rapid blasters, heavy halberds, mystical staves, and rift blades. 4. Biome Modifiers: Environmental hazards like electrified tiles, root snares, and gravity pulses.",
+      "summary": "Key interactive systems driving combat and exploration."
+    },
+    {
+      "title": "Movement & Scrolling Alignment",
+      "content": "Scrolling Axis: Multi-Directional / Free-roaming arena. Asset Orientation Baseline: Oblique 3/4 top-down view with Flip-Rigid rendering where right-facing sprites flip along X-axis when maneuvering left. Movement Physics: Responsive acceleration with minimal drift for precise combat dodging. Camera Behavior: Smooth soft-deadzone camera tracking centering the active player avatar.",
+      "summary": "Oblique top-down movement and camera parameters."
+    },
+    {
+      "title": "Visual Hierarchy & Layering",
+      "content": "Layer Separation: Desaturated, low-contrast floor tiles and background structures sit on the lower z-plane with zero collision interference. The playfield layer contains high-contrast pixel characters, vibrant weapons, and glowing projectile VFX. Obstacle Affordance: Environmental barricades, pillars, and hazards have distinct highlight borders to clearly define impassable collision boxes. HUD: Sleek health and energy meters anchored cleanly to the top-left margin with adaptive opacity.",
+      "summary": "Strict contrast and plane separation guidelines."
+    },
+    {
+      "title": "Characters & Enemies",
+      "content": "Robotic Phase: Spark Drone (agile ranged harasser), Shock Trooper (bipedal rifle bot), Assembly Overseer (mechanized mega boss). Jade Phase: Jade Stalker (stealth melee predator), Stone Guardian (armored juggernaut), Emerald Warden (sacred blade master boss). Scarlet Fortress: Scarlet Duelist (fencing champion), Ember Hound (flame beast), Crimson Castellan (warplate warlord boss). Interdimensional Rift: Rift Skitter (void crawler), Void Lancer (warp skirmisher), Paradox Monarch (reality-warping cosmic ruler boss).",
+      "summary": "Comprehensive roster across four thematic biomes."
+    },
+    {
+      "title": "Fairness Tools",
+      "content": "Telegraph floor projections with escalating fill gauges before lethal attacks; distinctive audio-visual hit-stop effects upon taking damage; brief post-damage invulnerability flash.",
+      "summary": "Player assistance and visual clarity systems."
+    },
+    {
+      "title": "Juice & Game Feel",
+      "content": "Anticipation Juice: Weapon windup sprite flash and floor charging circles. State Change Juice: Dash trail ghosting, glowing particle bursts on elemental triggers. Impact Juice: Tiered screen-shake on boss hits, freeze-frame hit-stops (40ms), and crisp pixel spark explosions.",
+      "summary": "Sensory feedback across all gameplay moments."
+    },
+    {
+      "title": "Social Mechanics & Audience",
+      "content": "Targeted at fans of high-octane 2D action roguelites, featuring speedrun timers and biome high-score leaderboards.",
+      "summary": "Target audience and replayability systems."
+    },
+    {
+      "title": "Accessibility",
+      "content": "High-contrast visual mode for telegraphs, customizable screen shake intensity, and full keyboard/mouse/touch input remapping.",
+      "summary": "Inclusive gameplay options."
+    },
+    {
+      "title": "Structural Integrity",
+      "content": "Title Screen -> Biome Selector / Run Start -> Room Combat Loop -> Boss Arena -> Run Summary & Persistent Upgrades.",
+      "summary": "Seamless session state and flow."
+    },
+    {
+      "title": "Virtual Touch Controls Implementation",
+      "content": "Conditional mobile rendering using responsive breakpoints. Renders a Virtual D-Pad on bottom-left and Action/Dash buttons on bottom-right. Buttons have touch-none CSS, pointer-events-auto on interactive elements, and robust onPointerUp/onPointerLeave/onPointerCancel handlers.",
+      "summary": "Touch control overlay for mobile devices."
+    }
+  ]
+}

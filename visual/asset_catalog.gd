@@ -31,6 +31,8 @@ static func tex(id: String) -> Texture2D:
 	if not AssetManifest.STATIC.has(sid):
 		if PremiumManifest.STATIC.has(id):
 			return load_tex(PremiumManifest.STATIC[id]["path"])
+		if PlaygroundManifest.STATIC.has(id):
+			return load_tex(PlaygroundManifest.STATIC[id]["path"])
 		return null
 	return load_tex(AssetManifest.STATIC[sid]["path"])
 
@@ -64,6 +66,8 @@ static func anim_set(id: String) -> AnimSet:
 		s = AnimSet.create(id, AssetManifest.ANIMS[id])
 	elif PremiumManifest.SETS.has(id):
 		s = AnimSet.create(id, PremiumManifest.SETS[id])
+	elif PlaygroundManifest.SETS.has(id):
+		s = AnimSet.create(id, PlaygroundManifest.SETS[id])
 	if s != null:
 		if s.first_texture("idle") == null and s.first_texture("walk") == null:
 			s = null
@@ -80,14 +84,28 @@ static func clear_cache() -> void:
 ## enemigo, efecto o arma cause un ttiron de carga a mitad de partida. Solo toca lo que esta run puede usar.
 ## Carga (y compila) los scripts de enemigos y jefe del capitulo ahora, no en el primer spawn en pleno combate.
 static func _preload_scripts(chapter: ChapterData) -> void:
-	var ids: Array = []
-	ids.append_array(chapter.enemy_pool)
-	ids.append_array(chapter.elite_pool)
-	for id in ids:
-		if Catalog.enemies.has(id):
-			load((Catalog.enemies[id] as EnemyData).script_path)
-	if Catalog.bosses.has(chapter.boss):
-		load((Catalog.bosses[chapter.boss] as BossData).script_path)
+	var tree := Engine.get_main_loop() as SceneTree
+	if tree == null:
+		return
+	var registry := tree.root.get_node_or_null("Catalog")
+	if registry == null:
+		return
+	var enemies: Dictionary = registry.get("enemies")
+	var bosses: Dictionary = registry.get("bosses")
+	for id in chapter.enemy_pool + chapter.elite_pool:
+		if enemies.has(id):
+			load((enemies[id] as EnemyData).script_path)
+	if bosses.has(chapter.boss):
+		load((bosses[chapter.boss] as BossData).script_path)
+
+
+static func _r8_has_flag(name: String) -> bool:
+	var tree := Engine.get_main_loop() as SceneTree
+	if tree != null:
+		var boot := tree.root.get_node_or_null("Boot")
+		if boot != null:
+			return bool(boot.call("has_flag", name))
+	return OS.get_cmdline_user_args().has("--" + name)
 
 
 static func prewarm(chapter: ChapterData, char_look: Dictionary, weapon_ids: Array) -> void:
@@ -142,6 +160,6 @@ static func prewarm(chapter: ChapterData, char_look: Dictionary, weapon_ids: Arr
 	for kind in VisualProfiles.PROPS:
 		for art in VisualProfiles.PROPS[kind]["art"]:
 			tex(art)
-	_log_loads = Boot.has_flag("frametimes")
-	if Boot.has_flag("perf") or Boot.has_flag("frametimes"):
+	_log_loads = _r8_has_flag("frametimes")
+	if _r8_has_flag("perf") or _r8_has_flag("frametimes"):
 		print("PREWARM %.1f ms (%d texturas, %d sets)" % [float(Time.get_ticks_usec() - t0) / 1000.0, _tex.size(), done.size()])

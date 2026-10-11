@@ -65,6 +65,9 @@ const BOSSES := {
 
 
 static func enemy(kind: String) -> Dictionary:
+	var pg_profile := PlaygroundProfiles.enemy(kind)
+	if not pg_profile.is_empty():
+		return pg_profile
 	if BOSSES.has(kind):
 		return BOSSES[kind]
 	return ENEMIES.get(kind, {})

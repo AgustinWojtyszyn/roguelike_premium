@@ -1,0 +1,41 @@
+extends SceneTree
+## Standalone imported-PNG smoke test: godot --headless --path . --script tests/test_playground_r8.gd
+## Does not run a game or modify save files.
+
+func _initialize() -> void:
+    call_deferred("_verify")
+
+func _verify() -> void:
+    var n := 0
+    var failures: Array[String] = []
+    for id in PlaygroundManifest.SETS:
+        var aset: AnimSet = AssetCatalog.anim_set(id)
+        if aset == null:
+            failures.append("missing animated set: " + id)
+            continue
+        if not aset.has_anim("idle"):
+            failures.append("missing idle: " + id)
+            continue
+        for clip in aset.anim_names():
+            if aset.frame_count(clip, "south") < 1:
+                failures.append("no frames for " + id + "/" + clip)
+            elif aset.first_texture(clip) == null:
+                failures.append("unloadable texture for " + id + "/" + clip)
+        n += 1
+    for name in PlaygroundProfiles.LOOKS:
+        var profile: Dictionary = PlaygroundProfiles.enemy(name)
+        if profile.is_empty() and not OS.get_cmdline_user_args().has("--no-playground"):
+            failures.append("unmapped enemy/boss ID: " + name)
+        if profile.has("set") and not PlaygroundManifest.SETS.has(profile["set"]):
+            failures.append("profile points at nonexistent art: " + name)
+    for boss_kind in PlaygroundProfiles.BOSS_STATE_ANIMS:
+        if PlaygroundProfiles.boss_phase(boss_kind, 2, Vector2.ZERO) != "windup":
+            failures.append("Boss animation state mapping invalid: " + boss_kind)
+    if failures.is_empty() and n == 12:
+        print("PLAYGROUND R8 OK: 12 visual sets, actor profiles and sheets load.")
+        quit(0)
+    else:
+        for f in failures:
+            push_error(f)
+        push_error("PLAYGROUND R8 FAILED: %d sets loaded, %d failures" % [n, failures.size()])
+        quit(1)

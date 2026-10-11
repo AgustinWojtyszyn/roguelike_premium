@@ -337,6 +337,8 @@ func _try_sprite() -> void:
 
 ## Fase logica actual para el sprite: idle, move, windup, strike, recover. Los roles la sobreescriben.
 func sprite_phase() -> String:
+	if spr != null and PlaygroundProfiles.enabled() and PlaygroundProfiles.BOSS_STATE_ANIMS.has(kind_name):
+		return PlaygroundProfiles.boss_phase(kind_name, state, vel)
 	return "move" if vel.length() > 14.0 else "idle"
 
 

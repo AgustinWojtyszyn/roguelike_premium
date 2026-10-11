@@ -1,0 +1,86 @@
+{
+  "schema": [
+    {
+      "name": "playerMaxHealth",
+      "type": "number",
+      "label": "Player Max Health",
+      "default": 100,
+      "min": 50,
+      "max": 250,
+      "step": 10
+    },
+    {
+      "name": "playerSpeed",
+      "type": "number",
+      "label": "Player Movement Speed",
+      "default": 260,
+      "min": 150,
+      "max": 450,
+      "step": 10
+    },
+    {
+      "name": "dashSpeed",
+      "type": "number",
+      "label": "Dash Speed",
+      "default": 650,
+      "min": 400,
+      "max": 1000,
+      "step": 50
+    },
+    {
+      "name": "dashCooldown",
+      "type": "number",
+      "label": "Dash Cooldown (sec)",
+      "default": 0.8,
+      "min": 0.3,
+      "max": 2.0,
+      "step": 0.1
+    },
+    {
+      "name": "playerAttackDamage",
+      "type": "number",
+      "label": "Player Base Attack Damage",
+      "default": 30,
+      "min": 15,
+      "max": 100,
+      "step": 5
+    },
+    {
+      "name": "enemySpawnRate",
+      "type": "number",
+      "label": "Enemy Spawn Multiplier",
+      "default": 1.0,
+      "min": 0.5,
+      "max": 2.5,
+      "step": 0.1
+    },
+    {
+      "name": "bossHealthMultiplier",
+      "type": "number",
+      "label": "Boss Health Multiplier",
+      "default": 1.0,
+      "min": 0.5,
+      "max": 3.0,
+      "step": 0.1
+    },
+    {
+      "name": "defaultMusicVolume",
+      "type": "number",
+      "label": "Default Music Volume",
+      "default": 0.5,
+      "min": 0,
+      "max": 1,
+      "step": 0.1
+    }
+  ],
+  "values": {
+    "playerMaxHealth": 100,
+    "playerSpeed": 260,
+    "dashSpeed": 650,
+    "dashCooldown": 0.8,
+    "playerAttackDamage": 30,
+    "enemySpawnRate": 1.0,
+    "bossHealthMultiplier": 1.0,
+    "defaultMusicVolume": 0.5
+  }
+}

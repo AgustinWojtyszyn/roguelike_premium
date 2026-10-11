@@ -1,0 +1,361 @@
+{
+  "source_zip_sha256": "facf2d3240a56c47ab4a27b73f1fd9a4b7d093839397ebf65c82df82aa38c0ea",
+  "actors": {
+    "robotic_drone": {
+      "family": "tech",
+      "clips": {
+        "idle": {
+          "frames": 1,
+          "clipped_source_frames": 1
+        }
+      },
+      "visible_bbox": [
+        8,
+        40,
+        152,
+        150
+      ]
+    },
+    "robotic_trooper": {
+      "family": "tech",
+      "clips": {
+        "idle": {
+          "frames": 4,
+          "clipped_source_frames": 4
+        },
+        "walk": {
+          "frames": 16,
+          "clipped_source_frames": 16
+        },
+        "attack": {
+          "frames": 16,
+          "clipped_source_frames": 16
+        },
+        "hurt": {
+          "frames": 16,
+          "clipped_source_frames": 12
+        },
+        "death": {
+          "frames": 16,
+          "clipped_source_frames": 14
+        }
+      },
+      "visible_bbox": [
+        18,
+        13,
+        175,
+        180
+      ]
+    },
+    "robotic_overseer": {
+      "family": "tech",
+      "clips": {
+        "idle": {
+          "frames": 4,
+          "clipped_source_frames": 0
+        },
+        "walk": {
+          "frames": 16,
+          "clipped_source_frames": 16
+        },
+        "attack": {
+          "frames": 16,
+          "clipped_source_frames": 16
+        },
+        "special": {
+          "frames": 16,
+          "clipped_source_frames": 16
+        },
+        "hurt": {
+          "frames": 16,
+          "clipped_source_frames": 16
+        },
+        "death": {
+          "frames": 16,
+          "clipped_source_frames": 12
+        }
+      },
+      "visible_bbox": [
+        22,
+        19,
+        266,
+        270
+      ]
+    },
+    "jade_stalker": {
+      "family": "aztec",
+      "clips": {
+        "idle": {
+          "frames": 4,
+          "clipped_source_frames": 4
+        },
+        "walk": {
+          "frames": 16,
+          "clipped_source_frames": 13
+        },
+        "attack": {
+          "frames": 16,
+          "clipped_source_frames": 16
+        },
+        "hurt": {
+          "frames": 16,
+          "clipped_source_frames": 3
+        },
+        "death": {
+          "frames": 16,
+          "clipped_source_frames": 13
+        }
+      },
+      "visible_bbox": [
+        17,
+        13,
+        176,
+        180
+      ]
+    },
+    "jade_guardian": {
+      "family": "aztec",
+      "clips": {
+        "idle": {
+          "frames": 4,
+          "clipped_source_frames": 4
+        },
+        "walk": {
+          "frames": 16,
+          "clipped_source_frames": 16
+        },
+        "attack": {
+          "frames": 16,
+          "clipped_source_frames": 13
+        },
+        "hurt": {
+          "frames": 16,
+          "clipped_source_frames": 10
+        },
+        "death": {
+          "frames": 16,
+          "clipped_source_frames": 16
+        }
+      },
+      "visible_bbox": [
+        13,
+        15,
+        211,
+        210
+      ]
+    },
+    "jade_warden": {
+      "family": "aztec",
+      "clips": {
+        "idle": {
+          "frames": 4,
+          "clipped_source_frames": 4
+        },
+        "walk": {
+          "frames": 16,
+          "clipped_source_frames": 14
+        },
+        "attack": {
+          "frames": 16,
+          "clipped_source_frames": 14
+        },
+        "special": {
+          "frames": 16,
+          "clipped_source_frames": 16
+        },
+        "hurt": {
+          "frames": 16,
+          "clipped_source_frames": 10
+        },
+        "death": {
+          "frames": 16,
+          "clipped_source_frames": 15
+        }
+      },
+      "visible_bbox": [
+        19,
+        19,
+        270,
+        270
+      ]
+    },
+    "scarlet_duelist": {
+      "family": "castle",
+      "clips": {
+        "idle": {
+          "frames": 4,
+          "clipped_source_frames": 4
+        },
+        "walk": {
+          "frames": 16,
+          "clipped_source_frames": 15
+        },
+        "attack": {
+          "frames": 16,
+          "clipped_source_frames": 15
+        },
+        "hurt": {
+          "frames": 16,
+          "clipped_source_frames": 15
+        },
+        "death": {
+          "frames": 16,
+          "clipped_source_frames": 14
+        }
+      },
+      "visible_bbox": [
+        14,
+        13,
+        178,
+        180
+      ]
+    },
+    "scarlet_hound": {
+      "family": "castle",
+      "clips": {
+        "idle": {
+          "frames": 16,
+          "clipped_source_frames": 16
+        },
+        "walk": {
+          "frames": 16,
+          "clipped_source_frames": 14
+        },
+        "attack": {
+          "frames": 16,
+          "clipped_source_frames": 11
+        }
+      },
+      "visible_bbox": [
+        11,
+        11,
+        150,
+        150
+      ]
+    },
+    "scarlet_castellan": {
+      "family": "castle",
+      "clips": {
+        "idle": {
+          "frames": 4,
+          "clipped_source_frames": 4
+        },
+        "walk": {
+          "frames": 16,
+          "clipped_source_frames": 15
+        },
+        "attack": {
+          "frames": 16,
+          "clipped_source_frames": 16
+        },
+        "special": {
+          "frames": 16,
+          "clipped_source_frames": 16
+        },
+        "hurt": {
+          "frames": 16,
+          "clipped_source_frames": 15
+        },
+        "death": {
+          "frames": 16,
+          "clipped_source_frames": 16
+        }
+      },
+      "visible_bbox": [
+        19,
+        19,
+        270,
+        270
+      ]
+    },
+    "rift_skitter": {
+      "family": "anomaly",
+      "clips": {
+        "idle": {
+          "frames": 1,
+          "clipped_source_frames": 1
+        }
+      },
+      "visible_bbox": [
+        8,
+        15,
+        152,
+        150
+      ]
+    },
+    "rift_lancer": {
+      "family": "anomaly",
+      "clips": {
+        "idle": {
+          "frames": 4,
+          "clipped_source_frames": 4
+        },
+        "walk": {
+          "frames": 16,
+          "clipped_source_frames": 16
+        },
+        "attack": {
+          "frames": 16,
+          "clipped_source_frames": 16
+        },
+        "hurt": {
+          "frames": 16,
+          "clipped_source_frames": 16
+        },
+        "death": {
+          "frames": 16,
+          "clipped_source_frames": 15
+        }
+      },
+      "visible_bbox": [
+        13,
+        13,
+        180,
+        180
+      ]
+    },
+    "rift_monarch": {
+      "family": "anomaly",
+      "clips": {
+        "idle": {
+          "frames": 4,
+          "clipped_source_frames": 1
+        },
+        "walk": {
+          "frames": 16,
+          "clipped_source_frames": 15
+        },
+        "attack": {
+          "frames": 16,
+          "clipped_source_frames": 15
+        },
+        "special": {
+          "frames": 16,
+          "clipped_source_frames": 14
+        },
+        "hurt": {
+          "frames": 16,
+          "clipped_source_frames": 8
+        },
+        "death": {
+          "frames": 16,
+          "clipped_source_frames": 14
+        }
+      },
+      "visible_bbox": [
+        19,
+        19,
+        270,
+        270
+      ]
+    }
+  },
+  "counts": {
+    "source_images": 101,
+    "unique_actors": 12,
+    "clips": 54,
+    "frames": 726,
+    "staged_reference": 36,
+    "no_new_missing_enemy_designs": 8
+  }
+}
